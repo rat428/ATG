@@ -1,0 +1,386 @@
+@model ResourcesFileListDto
+@*
+	For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<h1 class="ui header centered">Supporting Resources</h1>
+<div class="ui container center aligned padding_tb">
+	<div class="ui search">
+		<div class="ui icon input">
+			<input class="prompt" type="text" placeholder="Search by filename..." id="doc_query" onkeyup="filterDocs()">
+			<i class="search icon"></i>
+		</div>
+		<div class="results"></div>
+	</div>
+</div>
+<div class="ui container">
+<div class="ui middle aligned divided list" id="document_list">
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/ATG AR Policies and Procedures Final Eff20160408.pdf" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file pdf outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/ATG AR Policies and Procedures Final Eff20160408.pdf">Accounts Receivable Policies and Procedures</a> *@
+@* 	</div> *@
+@* </div> *@
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/annualbusinessplan/ATG Annual Business Plan.docx" download>Download</a>
+	</div>
+	<i class="large file word outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/annualbusinessplan/ATG Annual Business Plan.docx">Annual Business Plan</a>
+	</div>
+</div>
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/bd/captureplantemplate.pdf" download>Download</a>
+	</div>
+	<i class="large file pdf outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/bd/captureplantemplate.pdf">Capture Plan Template</a>
+	</div>
+</div>
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectcloseout/New Logo_Address_Client Satisfaction Survey.pdf" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file pdf outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectcloseout/New Logo_Address_Client Satisfaction Survey.pdf">Client Satisfaction Survey</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/contract/pmtraining3contractnegotiationsfinal.pdf" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file pdf outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/contract/pmtraining3contractnegotiationsfinal.pdf">Contract Negotiations</a> *@
+@* 	</div> *@
+@* </div> *@
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/bd/gettinganopportunitycreated.pdf" download>Download</a>
+	</div>
+	<i class="large file pdf outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/bd/gettinganopportunitycreated.pdf">Creating New Opportunities</a>
+	</div>
+</div>
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Entering AR Comments 201606.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Entering AR Comments 201606.docx">Entering Accounts Receivable Comments</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Entering Contacts In Vision.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Entering Contacts In Vision.docx">Entering Contracts in Vision</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Entering Timesheet in Vision 201608.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Entering Timesheet in Vision 201608.docx">Entering Timesheet in Vision</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Expense Reports 201607.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Expense Reports 201607.docx">Expense Reports</a> *@
+@* 	</div> *@
+@* </div> *@
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/bd/externaldebriefform.pdf" download>Download</a>
+	</div>
+	<i class="large file pdf outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/bd/externaldebriefform.pdf">External Debrief Form</a>
+	</div>
+</div>
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/bd/go-nogoanalysis.pdf" download>Download</a>
+	</div>
+	<i class="large file pdf outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/bd/go-nogoanalysis.pdf">Go/No-Go Analysis</a>
+	</div>
+</div>
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/bd/ifbpform.pdf" download>Download</a>
+	</div>
+	<i class="large file pdf outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/bd/ifbpform.pdf">IFBP Form</a>
+	</div>
+</div>
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/bd/internaldebriefform.pdf" download>Download</a>
+	</div>
+	<i class="large file pdf outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/bd/internaldebriefform.pdf">Internal Debrief Form</a>
+	</div>
+</div>
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/bd/kickoffmeetingagenda.pdf" download>Download</a>
+	</div>
+	<i class="large file pdf outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/bd/kickoffmeetingagenda.pdf">Kickoff Meeting Agenda</a>
+	</div>
+</div>
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Large Project Template.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Large Project Template.docx">Large Project PMP Template</a> *@
+@* 	</div> *@
+@* </div> *@
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/bd/atgopportunitydevelopmentguide.pdf" download>Download</a>
+	</div>
+	<i class="large file pdf outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/bd/atgopportunitydevelopmentguide.pdf">Opportunity Development Guide</a>
+	</div>
+</div>
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/contract/Project Setup Fillable Form 20200625.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/contract/Project Setup Fillable Form 20200625.docx">Project Setup Fillable Form</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectcloseout/Project Closeout Fill-in Form revNov2020.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectcloseout/Project Closeout Fill-in Form revNov2020.docx">Project Closeout Fillable Form</a> *@
+@* 	</div> *@
+@* </div> *@
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/projectcloseout/Project Closeout Sheet Instructions.docx" download>Download</a>
+	</div>
+	<i class="large file word outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/projectcloseout/Project Closeout Sheet Instructions.docx">Project Closeout Sheet Instructions</a>
+	</div>
+</div>
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/PMP Instructions.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/PMP Instructions.docx">Project Management Plan Instructions</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/PMP Overview Sheet.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/PMP Overview Sheet.docx">Project Management Plan Overview Sheet</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Project Setup Fillable Form 20200625.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Project Setup Fillable Form 20200625.docx">Project Setup Fillable Form</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Project Setup Sheet Instructions.pdf" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file pdf outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Project Setup Sheet Instructions.pdf">Project Setup Sheet Instructions</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Project Setup Training.pptx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file powerpoint outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Project Setup Training.pptx">Project Setup Training</a> *@
+@* 	</div> *@
+@* </div> *@
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/bd/proofreadingchecklist.pdf" download>Download</a>
+	</div>
+	<i class="large file pdf outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/bd/proofreadingchecklist.pdf">Proofreading Checklist</a>
+	</div>
+</div>
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/bd/proposalchecklist.pdf" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file pdf outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/bd/proposalchecklist.pdf">Proposal Checklist</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Receipt Form 201607.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Receipt Form 201607.docx">Receipt Form</a> *@
+@* 	</div> *@
+@* </div> *@
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/retentionschedule/Record Retention Schedule.pdf" download>Download</a>
+	</div>
+	<i class="large file pdf outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/retentionschedule/Record Retention Schedule.pdf">Record Retention Schedule</a>
+	</div>
+</div>
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Sample Project Management Plan Outline.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Sample Project Management Plan Outline.docx">Sample Project Management Plan Outline</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Small Project PMP Template.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Small Project PMP Template.docx">Small Project PMP Template</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/contract/SUBCONSULTANT Master Service Agreement_Template.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/contract/SUBCONSULTANT Master Service Agreement_Template.docx">Subconsultant Master Service Agreement Template</a> *@
+@* 	</div> *@
+@* </div> *@
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/strategicplan/ATG Strategic Plan 2020_2024.docx" download>Download</a>
+	</div>
+	<i class="large file word outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/strategicplan/ATG Strategic Plan 2020_2024.docx">Strategic Plan</a>
+	</div>
+</div>
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/TIA Contracting and Payment Final 2015_06.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/TIA Contracting and Payment Final 2015_06.docx">TIA Contracting and Payment</a> *@
+@* 	</div> *@
+@* </div> *@
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/Timesheet Preparation - ATG Policy 201606.docx" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file word outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/Timesheet Preparation - ATG Policy 201606.docx">Timesheet Preparation Policy</a> *@
+@* 	</div> *@
+@* </div> *@
+<div class="item">
+	<div class="right floated content">
+		<a class="ui button" href="~/documents/processes/bd/trackingbdtime.pdf" download>Download</a>
+	</div>
+	<i class="large file pdf outline middle aligned icon"></i>
+	<div class="content">
+		<a target="_blank" href="~/documents/processes/bd/trackingbdtime.pdf">Tracking BD Time</a>
+	</div>
+</div>
+@* <div class="item"> *@
+@* 	<div class="right floated content"> *@
+@* 		<a class="ui button" href="~/documents/processes/projectexecution/DeltekVision76QRCExpenseReport.pdf" download>Download</a> *@
+@* 	</div> *@
+@* 	<i class="large file pdf outline middle aligned icon"></i> *@
+@* 	<div class="content"> *@
+@* 		<a target="_blank" href="~/documents/processes/projectexecution/DeltekVision76QRCExpenseReport.pdf">Vision Expense Report</a> *@
+@* 	</div> *@
+@* </div> *@
+<hr>
+
+@foreach (var file in Model.Files)
+{
+	<div class="item">
+		<div class="right floated content">
+			<a class="ui button" href="~/documents/commonfiles/@file.FileName" download>Download</a>
+		</div>
+		<i class="large file pdf outline middle aligned icon"></i>
+		<div class="content">
+			<a target="_blank" href="~/documents//commonfiles/@file.FileName">@file.Title</a>
+		</div>
+	</div>
+}
+
+</div>
+</div>
+
+@section scripts {
+	<script>
+		function filterDocs() {
+			var input = document.getElementById("doc_query");
+			var filter = input.value.toUpperCase();
+			var list = document.getElementById("document_list");
+			var l_item = list.getElementsByClassName("item");
+			for (var i = 0; i < l_item.length; i++) {
+				txtValue = l_item[i].children[2].innerText;
+				//console.log(txtValue);
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					l_item[i].style.display = "";
+				} else {
+					l_item[i].style.display = "none";
+				}
+			}
+		};
+	</script>
+}

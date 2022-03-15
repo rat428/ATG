@@ -1,0 +1,276 @@
+@model string
+
+@{
+	ViewBag.Title = "Role Definition";
+	Layout = "_Layout";
+}
+
+
+@if (Model == "principalInCharge")
+{
+	<div class="ui equal width center aligned padded grid stackable relaxed">
+
+		<h1 style="margin-top: 70px;">Principal-in-Charge (PIC)</h1>
+
+		<div class="row " style="margin: 45px 10px 25px;">
+			<div class="ten wide column" style="text-align: left;">
+				<p>
+					This individual is responsible for executing contracts in accordance with implementation of the Strategic
+					Business and Marketing Plan. This role is assigned when the project reaches the SNC stage. The
+					individual will coordinate with the Capture Manager, Project Manager and Project Accountant on the
+					resource and budget needs for executing the project, including category rates for staff. This role should
+					only be assigned to staff with contract signatory authority for the firm. This role accepts responsibility as
+					the final reviewer and signatory authority for the Contract. This role and should not be filled by the CM,
+					PM or CSM.
+				</p>
+				<span>
+					<p>• Ensure executed contracts are in accordance with the strategic direction for the company. </p>
+					<p>• Support business development being carried out by division directors and practice leaders.</p>
+					<p>• Develop and maintain client / teaming partner relationships</p>
+					<p>
+						• Promote continuous improvement in technical and operational capabilities through use of best
+						practice quality management principles across the company
+					</p>
+					<p>• Create a positive and productive workplace</p>
+					<p>• Empower staff to grow professionally</p>
+				</span>
+			</div>
+		</div>
+	</div>
+}
+else if (Model == "projectAccountant")
+{
+	<div class="ui equal width center aligned padded grid stackable relaxed">
+
+		<h1 style="margin-top: 70px;">Project Accountant</h1>
+
+		<div class="row " style="margin: 45px 10px 25px;">
+			<div class="ten wide column" style="text-align: left;">
+				<p>
+					This individual assists in development of project scope and fee information by providing rate sheets and
+					other support for use in initial contract scoping through final contract negotiations. These includes the
+					applicable multiplier and/or negotiated rates, when appropriate, and the required time that should be
+					incorporated for Accounting staff in the Project Plan. The Project Accountant is also responsible for
+					Project Set-up and Monthly Invoicing.
+				</p>
+			</div>
+		</div>
+	</div>
+}
+else if (Model == "assistantProjectManager")
+{
+	<div class="ui equal width center aligned padded grid stackable relaxed">
+
+		<h1 style="margin-top: 70px;">Assistant Project Manager (APM)</h1>
+
+		<div class="row " style="margin: 45px 10px 25px;">
+			<div class="ten wide column" style="text-align: left;">
+				<p>
+					This individual is responsible for assisting the Project Manager in management of the work product that
+					will be provided to the client. They should take on as much of the Project Manager responsibilities as
+					they are capable of leading. Fulfillment of all elements of Project Manager duties as an Assistant Project
+					Manager is necessary for future assignment as a Project Manager. When completing Vision entries,
+					leave blank if there is not an APM.
+				</p>
+			</div>
+		</div>
+	</div>
+}
+else if (Model == "opportunityLeadOriginator")
+{
+	<div class="ui equal width center aligned padded grid stackable relaxed">
+
+		<h1 style="margin-top: 70px;">Opportunity Lead Originator (LO)</h1>
+
+		<div class="row " style="margin: 45px 10px 25px;">
+			<div class="ten wide column" style="text-align: left;">
+				<p>
+					This individual is responsible for representing the company and assisting BD efforts for practices /
+					geographic areas. This individual discovers and leads BD efforts and provides market awareness.
+					Responsible for coordinating with other roles to move the lead forward into a pursuit. Once the Lead
+					Originator is defined, it should not be changed.
+				</p>
+			</div>
+		</div>
+	</div>
+}
+else if (Model == "clientServiceManager")
+{
+	<div class="ui equal width center aligned padded grid stackable relaxed">
+
+		<h1 style="margin-top: 70px;">Client Service Manager (CSM)</h1>
+
+		<div class="row " style="margin: 45px 10px 25px;">
+			<div class="ten wide column" style="text-align: left;">
+				<p>
+					This individual is responsible for developing and maintaining client relationships and successfully
+					promoting all viable Alliance services to clients. They will provide in depth knowledge of the client and
+					assist the Capture Manager in strategy, capture plans, contact plans, setting goals for specific clients,
+					making connections to the client’s staff, identifying pursuits, and creating marketing, proposal and
+					interview materials. This individual will provide input for go / no go decisions
+				</p>
+			</div>
+		</div>
+	</div>
+}
+else if (Model == "qualityManager")
+{
+	<div class="ui equal width center aligned padded grid stackable relaxed">
+
+		<h1 style="margin-top: 70px;">Quality Manager</h1>
+
+		<div class="row " style="margin: 45px 10px 25px;">
+			<div class="ten wide column" style="text-align: left;">
+				<p>
+					This is the individual who will be responsible for directing project QC activities and reporting results to
+					Project Manager as well as, coordinating QA audits with Division QA Manager.
+				</p>
+			</div>
+		</div>
+	</div>
+}
+else if (Model == "deputyCaptureManager")
+{
+	<div class="ui equal width center aligned padded grid stackable relaxed">
+
+		<h1 style="margin-top: 70px;">Deputy Capture Manager (DCM)</h1>
+
+		<div class="row " style="margin: 45px 10px 25px;">
+			<div class="ten wide column" style="text-align: left;">
+				<p>
+					This individual is responsible for assisting the Capture Manager in proposal process through SNC. The
+					DCM is encouraged to learn and take on as much of the Capture Manager responsibilities for developing
+					pursuits as they are capable of leading. Fulfillment of all elements of Capture Manager duties as a
+					Deputy Capture Manager is necessary for future assignment as a Capture Manager. When completing
+					Vision entries, leave blank if there is not a DCM.
+				</p>
+			</div>
+		</div>
+	</div>
+}
+else if (Model == "captureManager")
+{
+	<div class="ui equal width center aligned padded grid stackable relaxed">
+
+		<h1 style="margin-top: 70px;">Capture Manager (CM)</h1>
+
+		<div class="row " style="margin: 45px 10px 25px;">
+			<div class="ten wide column" style="text-align: left;">
+				<p>
+					This individual is responsible for a specific opportunity from initial stages through SNC and ensures that
+					all Processes and Procedures are followed and adhered to correctly. An individual can only be assigned
+					this role when they are able to fulfill ALL the CM duties. The Division Director is responsible for
+					confirming the CM designation. The duties of a CM include:
+				</p>
+				<span>
+					<p>• Lead the capture team</p>
+					<p>• Identify strategy, resource needs, appropriate Project Manager, subconsultants / team firms / people</p>
+					<p>
+						• Lead the go / no go decision. Take responsibility for the discussion and forms and make the
+						request for the decision
+					</p>
+					<p>• Ensure Vision entry(ies) are up to date and include all required information</p>
+					<p>• Set the pursuit / proposal schedule</p>
+					<p>• Assist the Proposal Coordinator in action item follow up</p>
+					<p>• Review the final proposal</p>
+					<p>• Verify the checklists are being used</p>
+					<p>• Train Deputy Capture Managers</p>
+				</span>
+				<br>
+				<p>
+					Note: When a pursuit becomes an on-call, the CM for that contract is to be listed as CM for all work
+					authorizations or task orders under that master contract.
+				</p>
+			</div>
+		</div>
+	</div>
+}
+else if (Model == "projectManager")
+{
+	<div class="ui equal width center aligned padded grid stackable relaxed">
+
+		<h1 style="margin-top: 70px;">Project Manager (PM)</h1>
+
+		<div class="row " style="margin: 45px 10px 25px;">
+			<div class="ten wide column" style="text-align: left;">
+				<p>
+					This individual is responsible for management of the work product that will be provided to the client, i.e.
+					project, for the opportunity that is being pursued. The Project Manager is finalized at SNC stage and will
+					work coordinate with the Principal-in-Charge and Project Accountant to provide scope, budget and
+					staffing information for use negotiation of the contract. During Project Execution, the PM role includes:
+				</p>
+				<span>
+					<p>• Ultimate responsibility for all project outcomes</p>
+					<p>• Service as the main point of contact to collects and shares project information</p>
+					<p>• Manages budgets and schedules</p>
+					<p>• Primary POC to client</p>
+					<p>• Plans and delegates work tasks</p>
+					<p>• Ensures project quality</p>
+					<p>• Project documentation</p>
+					<p>• Uses ATG standard procedures</p>
+					<p>• Assists accounting with invoices and prepares progress reports</p>
+					<p>• Owns the project</p>
+					<p>• Maintains communication with the entire project team (internal/external)</p>
+					<p>• Provide leadership</p>
+					<p>• Successfully prepare, review and coordinate execution of a contract</p>
+					<p>• Review and interpret a scope and develop an appropriate work breakdown structure</p>
+					<p>• Develop a budget and schedule</p>
+					<p>• Set up a project</p>
+					<p>• Develop a Project Management Plan</p>
+					<p>• Develop project-specific QC plan and direct QC activities</p>
+					<p>• Appoint Project QC Manager (if separate from Project Manager)</p>
+					<p>• Develop and maintain an effective communications plan</p>
+					<p>• Monitor and control a project (in terms of budget, schedule and deliverables)</p>
+					<p>• Coordinate QA audits with Division QA Manager</p>
+					<p>• Resolve deficiencies and implement corrective actions</p>
+					<p>• Conduct project lessons learned meetings; document and distribute lessons learned to project team, Division QA Manager, Practice Leader and Division Manager.</p>
+					<p>• Close a project out</p>
+				</span>
+			</div>
+		</div>
+	</div>
+}
+else if (Model == "proposalCoordinator")
+{
+	<div class="ui equal width center aligned padded grid stackable relaxed">
+
+		<h1 style="margin-top: 70px;">Proposal Coordinator (PC)</h1>
+
+		<div class="row " style="margin: 45px 10px 25px;">
+			<div class="ten wide column" style="text-align: left;">
+				<p>
+					This individual, from the marketing staff, is responsible for coordinating the efforts of the Capture Team
+					throughout the process. This individual is responsible for ensuring proposals meet all client
+					requirements and are created within the appropriate Alliance standards. Duties include:
+				</p>
+				<span>
+					<p>• Coordinate with the Capture Manager to set an appropriate schedule for all pursuit activities</p>
+					<p>• Create meeting minutes and action items, timely</p>
+					<p>• Follow up on action items to ensure completion</p>
+					<p>• Request appropriate subconsultant information</p>
+					<p>• Respond to prime requests</p>
+					<p>• Read and suggest edits on all text</p>
+					<p>• Maintain and ensure checklists are completed</p>
+				</span>
+			</div>
+		</div>
+	</div>
+}
+else if (Model == "businessDevelopmentExecutive")
+{
+	<div class="ui equal width center aligned padded grid stackable relaxed">
+
+		<h1 style="margin-top: 70px;">Business Development (BD) Executive</h1>
+
+		<div class="row " style="margin: 45px 10px 25px;">
+			<div class="ten wide column" style="text-align: left;">
+				<p>
+					This individual is responsible for strategic development and implementation of Business Development
+					and Marketing plans for the company, across divisions, disciplines, practice and geographic areas. This
+					individual will guide the Capture Manager, as needed, through the pursuit and provide input for go / no
+					go decisions.
+				</p>
+			</div>
+		</div>
+	</div>
+}

@@ -1,0 +1,77 @@
+@using ATGHR.Models.Enums
+@model CommonFileDto
+
+@{
+	ViewBag.Title = "Upload file";
+	Layout = "_Layout";
+}
+<h1 class="ui header center aligned">Upload file</h1>
+
+<div class="ui container  local_templates">
+	<form method="post" asp-action="UploadFile" class="ui form light_grey_box margin_t" style="padding: 25px 100px 50px;" id="common_file_form" enctype="multipart/form-data">
+
+		<input asp-for="CommonFile.Id" type="hidden"/>
+		<input asp-for="ReturnUrl" type="hidden"/>
+		<h3 class="ui dividing header">File Details</h3>
+		<div class="field">
+			<label asp-for="CommonFile.Title">Title</label>
+			<input type="text" asp-for="CommonFile.Title" placeholder="Title" data-serialize="true"/>
+		</div>
+
+		<div class="field">
+			<label asp-for="CommonFile.Description">Description</label>
+			<textarea  asp-for="CommonFile.Description" placeholder="Description of the file" data-serialize="true" rows="3"></textarea>
+		</div>
+
+		<div class="field">
+			<label asp-for="CommonFile.SopCategory">SOP Category</label>
+			<select asp-for="CommonFile.SopCategory" asp-items="Html.GetEnumSelectList<SopCategory>()">
+			</select>
+		</div>
+
+		<div class="field">
+			<input type="file" name="file"/>
+		</div>
+
+		<div class="ui container center aligned">
+			<button class="ui button" id="save"> Save</button>
+		</div>
+
+	</form>
+</div>
+
+@section Scripts
+{
+	<script>
+		// let modal;
+		if (typeof modal === 'object') {
+			modal.remove();
+		}
+
+		let isFromPost = '@Model.IsFromPost.ToString().ToLower()';
+		let isError = '@Model.IsError.ToString().ToLower()';
+		let errorDescription = '@Model.ErrorDescription';
+		let returnUrl = '@Model.ReturnUrl';
+
+		// console.log(isFromPost);
+		// console.log(isError);
+		// console.log(errorDescription);
+
+		if (isFromPost === 'true'){
+			modal = $('<div class="modal" style="display: none;"></div>').appendTo($('body')).text('Saving File...').fadeIn(100);
+
+			if (isError === 'false'){
+				// console.log(isFromPost + '--' + isError);
+				modal.addClass('modal_success');
+				modal.text('File Saved!');
+				setTimeout(function () { modal.fadeOut(500, 'swing', function () { modal.remove(); }); }, 2000);
+				setTimeout(function () { window.location = returnUrl; }, 2500);
+			}else{
+				// console.log('error:' + isFromPost + '--' + isError);
+				modal.addClass('modal_error');
+				modal.text(errorDescription);
+				setTimeout(function () { modal.fadeOut(500, 'swing', function () { modal.remove(); }); }, 2000);
+			}
+		}
+	</script>
+}

@@ -1,0 +1,326 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@{
+	ViewData["Title"] = "Users";
+	User ATGUser = (User)Util.GetUser(Context);
+}
+<h1 class="ui header center aligned">Users</h1>
+<div class="ui container  local_templates">
+	<form class="ui form light_grey_box margin_t" id="user_form">
+		<table class="ui striped table" id="user_table" style="width:100%">
+			<thead>
+				<tr>
+					<th><label class="checkbox-label"><input type="checkbox" name="select_all" value="1" id="select_all" /><span class="checkbox-custom"></span></label></th>
+					<th>Username/Email</th>
+					<th class="center aligned">Name</th>
+					<th class="center aligned">Division</th>
+					<th class="center aligned">Role</th>
+					<th class="center aligned">Edit User</th>
+				</tr>
+			</thead>
+		</table>
+		<div>
+			<button class="circular ui button icon add_more" onclick="window.location.href='/Admin/User/new'" type="button"><i class="plus icon"></i></button>
+			<a href="/Admin/User/new">Add New User</a>
+		</div>
+		<div class="padding_tb margin_t">
+			<h3>With the selected users:</h3>
+			<button class="ui button assign_sheet" id="assign_sheet">Assign a Worksheet</button>
+			<button class="ui button notify_sheet" id="notify_sheet">Send a Notification</button>
+		</div>
+		<div class="padding_tb margin_t">
+			<h3>Custom Selection Options:</h3>
+			<button class="ui button" id="current_employee">Select All Active</button>
+		</div>
+	</form>
+
+	<div class="ui fullscreen modal assign_sheet">
+		<i class="close icon"></i>
+		<div class="header">
+			Assign Worksheet(s)
+		</div>
+		<div class="light_blue_box">
+			<form class="ui form" id="assign_form">
+				<div class="field">
+					<label for="userId">You have selected the following user(s):</label>
+					<select multiple="" id="userId" name="userId" class="ui fluid search dropdown" data-serialize="true"></select>
+				</div>
+				<br />
+				<div class="two fields">
+					<div class="field margin_t">
+						<label>Sheet Year</label>
+						<input type="text" name="year" maxlength="4" placeholder="(YYYY)" data-serialize="true" />
+					</div>
+					<div class="field margin_t">
+						<label><strong>What would you like to assign?</strong></label>
+						<select id="sheet_selector" class="ui fluid dropdown">
+							<option value=""></option>
+							<option value="Goal">Goal Sheet</option>
+							<option value="Review">Review Sheet</option>
+						</select>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="actions">
+			<button name="assign_button" id="assign_button" class="fluid ui inverted orange button margin_t">Assign</button>
+		</div>
+	</div>
+
+	<div class="ui fullscreen modal notify_sheet">
+		<i class="close icon"></i>
+		<div class="header">
+			Send Notification(s)
+		</div>
+		<div class="light_blue_box">
+			<form class="ui form" id="notification_form">
+				<div id="all_notify" class="field margin_t">
+					<h2 class="ui center aligned header">You are sending a notification to all users with active action items.</h2>
+				</div>
+				<br />
+				<div class="field" id="notify_user_select">
+					<h2 class="ui center aligned header">You have selected the following user(s):</h2>
+					<select multiple="" id="notify_userId" name="notify_userId" class="ui fluid search dropdown" data-serialize="true"></select>
+				</div>
+				<div class="field" id="custom_message">
+					<label class="ui header">Optional Custom Message</label>
+					<textarea id="custom_message_t" name="custom_message_t" placeholder="Write your Custom Message Here" data-serialize="true"></textarea>
+				</div>
+			</form>
+		</div>
+		<div class="actions">
+			<button name="notify_button" id="notify_button" class="fluid ui inverted orange button margin_t">Send</button>
+		</div>
+	</div>
+</div>
+@section Scripts
+	{
+	<script>
+		$('#admin_nav').addClass('active');
+
+		var activeEmployees = false;
+		var btn = '<button>Edit</button>';
+		var DataUserId = @ATGUser.UserId;
+
+			$(function () {
+				loadLookups({
+					callback: function () {
+						$('#user_table').DataTable({
+							ajax: {
+								url: '/api/Admin/Users',
+								dataSrc: ''
+							},
+							"createdRow": function (row, data, dataIndex) {
+								if (data.activeFlag === true) {
+									$(row).addClass('currentEmployee');
+								}
+							},
+							
+							"order": [2, 'asc'],
+							columns: [{
+								targets: [0,5],
+								searchable: false,
+								orderable: false,
+								render: function (data, type, full, meta) {
+									return '<label class="checkbox-label"><input type="checkbox" class="complete_check" name="complete_check"/><span class="checkbox-custom"></span></label>';
+									
+								}
+							}, {
+								data: 'username'
+							}, {
+								data: 'name',
+								className: "center aligned"
+							}, {
+								data: 'divisionId',
+								className: "center aligned",
+								render: function (data) {
+									return findDivision(data).name;
+								}
+							}, {
+								data: 'userRoles',
+								className: "center aligned",
+								render: function (data) {
+									//console.log(data);
+									for (var i = 0; i < data.length; i++) {
+										if (data[i].mainRole == true) {
+											return findRole(data[i].roleId).name;
+										}
+									}
+								}
+							}, {
+								searchable: false,
+								target: [5],
+								className: "center aligned",
+								render: function () {
+									return "<button type='button' class='ui button edit_user'>Edit User</button>"
+								}
+							}]
+						});
+
+						var sUsers = sortUsers();
+						// finding list of users
+						for (i = 0; i < sUsers.length; i++) {
+							$('#userId').append($('<option></option>')
+								.val(sUsers[i].userId)
+								.text(sUsers[i].name));
+
+						};
+						$('#notify_userId').html($('#userId').html());
+					}
+				})
+
+				$('#user_table').on('click select', '.edit_user', function (event) {
+					genPrevention(event);
+					window.location.href = "/Admin/User/" + $('#user_table').DataTable().row($(this).closest('tr')).data().userId;
+				});
+			});
+
+		$('#user_table').on('click', 'input', function () {
+			$(this).closest('tr').toggleClass('selected');
+			$(this).closest('tr').toggleClass('positive');
+		});
+
+		// Handle click on "Select all" control
+		$('#select_all').on('click', function () {
+			// Get all rows with search applied
+			var rows = $('#user_table').DataTable().rows({ 'search': 'applied' }).nodes();
+			// Check/uncheck checkboxes for all rows in the table
+			$('input[type="checkbox"]', rows).prop('checked', this.checked);
+			if (this.checked === true) {
+				$(rows).addClass('selected');
+				$(rows).addClass('positive');
+			}
+			else {
+				$(rows).removeClass('selected');
+				$(rows).removeClass('positive');
+			}
+		});
+
+		$('#current_employee').on('click', function () {
+			event.preventDefault();
+			// Get all rows with search applied
+			var rows = $('#user_table').DataTable().rows('.currentEmployee').nodes();
+			 //Check/uncheck checkboxes for all rows in the table
+			if (rows.length !== 0 && activeEmployees === false) {
+				activeEmployees = true;
+			}
+			else if (rows.length !== 0 && activeEmployees) {
+				activeEmployees = false
+			};
+			$('input[type="checkbox"]', rows).prop('checked', activeEmployees);
+			if (activeEmployees === true) {
+				$(rows).addClass('selected');
+				$(rows).addClass('positive');
+			}
+			else {
+				$(rows).removeClass('selected');
+				$(rows).removeClass('positive');
+			}
+		});
+
+		// Handle click on checkbox to set state of "Select all" control
+		$('#user_table').on('change', 'input[type="checkbox"]', function () {
+			// If checkbox is not checked
+			if (!this.checked) {
+				var el = $('#complete_check').get(0);
+				// If "Select all" control is checked and has 'indeterminate' property
+				if (el && el.checked && ('indeterminate' in el)) {
+					// Set visual state of "Select all" control
+					// as 'indeterminate'
+					el.indeterminate = true;
+				}
+			};
+		});
+
+		$('#with_selected').on('click select', function () {
+			event.preventDefault();
+			var users = [];
+			$('.ui.dropdown').dropdown('setting',{ fullTextSearch: true });
+			$('#user_table').DataTable().rows('.selected').every(function () {
+				users.push(this.data());
+			});
+		});
+
+		$('#notify_sheet').on('click select', function () {
+			event.preventDefault();
+			var users = [];
+			var ids = [];
+			$('#user_table').DataTable().rows('.selected').every(function () {
+				users.push(this.data());
+				ids.push(this.data().userId);
+			});
+			$('.ui.fullscreen.modal.notify_sheet').modal('setting', {autofocus: false}, 10).modal('show');
+			$('#notification_form').find(':input[name=notify_userId]').dropdown('clear');
+			if (users.length == 0) {
+				$('#all_notify').show()
+				$('#notify_user_select').hide()
+			}
+			else {
+				$('#all_notify').hide()
+				$('#notify_user_select').show()
+				users.forEach(function (m) {
+					$('#notify_userId').dropdown('set selected', m.userId.toString());
+				});
+			}
+		});
+
+		$('#notify_button').on('click select', function () {
+			var data = serializeForm('#notification_form');
+			var objs = data.notify_userId.map(x => { return { Id: x, Text: data.custom_message_t }; });
+			
+			ajSubmit({
+				data: JSON.stringify(objs),
+				url: '/api/Admin/Remind',
+				workingMessage: 'Sending Notification(s)...',
+				successMessage: 'Notification(s) Sent!',
+				failedMessage: 'Failed to send Notification(s).',
+				successFunction: function () { window.location = '/Admin/User'; }
+			});
+		});
+
+		$('#assign_sheet').on('click select', function () {
+			event.preventDefault();
+			var users = [];
+			var ids = [];
+			$('#user_table').DataTable().rows('.selected').every(function () {
+				users.push(this.data());
+				ids.push(this.data().userId);
+			});
+			$('.ui.fullscreen.modal.assign_sheet').modal('setting', {autofocus: false}, 10).modal('show');
+			$('#assign_form').find(':input[name=userId]').dropdown('clear');
+			users.forEach(function (m) {
+				$('#assign_form').find(':input[name=userId]').dropdown('set selected', m.userId.toString());
+			});
+
+		});
+
+		$('#assign_button').on('click select', function () {
+			var sheetType = document.querySelector('#sheet_selector').value;
+			var data = serializeForm('#assign_form');
+			data.dataUserId = DataUserId;
+
+			if (sheetType == 'Goal') {
+				ajSubmit({
+					data: JSON.stringify(data),
+					url: '/api/Admin/User/CreateGoalSheets',
+					workingMessage: 'Creating Goal Sheet(s)...',
+					successMessage: 'Goal Sheet(s) Created!',
+					failedMessage: 'Failed to Create Goal Sheet(s).',
+					successFunction: function () { window.location = '/Admin/User'; }
+				});
+			} else if (sheetType == 'Review') {
+				//test push
+				ajSubmit({
+					data: JSON.stringify(data),
+					url: '/api/Admin/User/CreateReviewSheets',
+					workingMessage: 'Creating Review Sheet(s)...',
+					successMessage: 'Review Sheet(s) Created!',
+					failedMessage: 'Failed to create Goal Sheet(s).',
+					successFunction: function () { window.location = '/Admin/User'; }
+				});
+			};
+		});
+
+	</script>
+}
+

@@ -1,0 +1,90 @@
+@using ATGHR.Code.Enums
+@model CourseInDetailDto
+
+@{
+	ViewBag.Title = "Course In Detail";
+	Layout = "_Layout";
+}
+
+<div class="ui equal width center aligned padded grid stackable relaxed">
+
+	<h1 style="margin-top: 70px;">Course In Detail</h1>
+
+	<div class="row " style="margin: 45px 10px 25px;">
+
+		<div class="ten wide column" style="text-align: left;">
+
+			<div class="ui raised card" style="width:600px;">
+				<div class="content">
+					<div class="header">Course: @Model.Course.Title</div>
+				</div>
+				<div class="content">
+					<b>Recommended Level for Mastery:</b>
+					@Model.Course.RecommendedLevelForMastery.ToDescription()
+					<br>
+					<br>
+					<b>Subject Area - Topic:</b>
+					@Model.Course.SubjectArea.ToDescription()
+					<br>
+					<br>
+
+					@if (Model.Course.Source.StartsWith("http"))
+					{
+						<a href="@Model.Course.Source" class="ui button  inverted primary button">To Source</a>
+					}
+					else
+					{
+						<b>Source:</b>
+						@Model.Course.Source
+					}
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="row " style=" ">
+		<div class="ten wide column" style="text-align: left;">
+
+			<div class="ui raised segment">
+				<h5>Course Details</h5>
+				<p>@Html.Raw(Model.Course.CourseDetails)</p>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row " style=" ">
+		<div class="ten wide column" style="text-align: left;">
+
+			<div class="ui raised segment">
+				<h5>Learning Objectives </h5>
+				<p>@Html.Raw(Model.Course.LearningObjectives)</p>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row " style="">
+
+		<div class="ten wide column" style="text-align: left;">
+
+			<div class="ui raised card" style="width:600px;">
+				<div class="content">
+					<b>Skills Covered:</b>
+					@Model.Course.SkillsCovered
+					<br>
+					<br>
+					<b>Continuing Education Units:</b>
+					<br>
+					@Html.Raw(Model.Course.ContinuingEducationUnits)
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+

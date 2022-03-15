@@ -1,0 +1,470 @@
+@model ResourcesFileListDto
+
+@*
+	For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<style>
+	.cls-1,
+	.cls-4 {
+		fill: none;
+	}
+
+	.cls-1,
+	.cls-2,
+	.cls-3 {
+		stroke: #000;
+	}
+
+	.cls-1,
+	.cls-2,
+	.cls-3,
+	.cls-4,
+	.cls-5 {
+		stroke-width: 2px;
+	}
+
+	.cls-3 {
+		fill: #c7e8ac;
+		fill-opacity: 0.39;
+		stroke-opacity: 0;
+	}
+
+	.cls-4,
+	.cls-5 {
+		stroke: #4d6060;
+	}
+
+	.cls-13,
+	.cls-15,
+	.cls-5 {
+		fill: #4d6060;
+	}
+
+	.cls-6 {
+		fill: #0c7cba;
+	}
+
+	.cls-7 {
+		fill: #0e6d77;
+	}
+
+	.cls-8 {
+		fill: #15a5b6;
+	}
+
+	.cls-10,
+	.cls-11,
+	.cls-9 {
+		isolation: isolate;
+	}
+
+	.cls-10 {
+		font-size: 23px;
+	}
+
+	.cls-10,
+	.cls-11 {
+		fill: #f4f8f9;
+	}
+
+	.cls-10,
+	.cls-11,
+	.cls-13,
+	.cls-21 {
+		font-family: 'Lato', sans-serif;
+		font-weight: 500;
+	}
+
+	.cls-11 {
+		font-size: 15px;
+	}
+
+	.cls-12 {
+		fill: #ebebeb;
+		stroke: #15a5b6;
+		stroke-miterlimit: 10;
+	}
+
+	.cls-13 {
+		font-size: 20px;
+	}
+
+	.cls-14 {
+		letter-spacing: -0.03em;
+	}
+
+	.cls-16 {
+		fill: #d0912a;
+	}
+
+	.cls-17 {
+		fill: #fbb41d;
+	}
+
+	.cls-18 {
+		fill: #231f20;
+		font-size: 30px;
+		font-weight: bold;
+	}
+
+	.cls-20,
+	.cls-21 {
+		fill: #fffdfd;
+	}
+
+	.cls-21 {
+		font-size: 22px;
+	}
+
+	.cls-22 {
+		letter-spacing: -0.06em;
+	}
+
+	.cls-23 {
+		letter-spacing: 0em;
+	}
+
+	.cls-24 {
+		letter-spacing: -0.02em;
+	}
+
+	.cls-25 {
+		letter-spacing: -0.03em;
+	}
+
+	.cls-26 {
+		letter-spacing: -0.05em;
+	}
+
+	.cls-27 {
+		letter-spacing: -0.04em;
+	}
+
+	.cls-28 {
+		letter-spacing: -0.02em;
+	}
+
+	.cls-29 {
+		letter-spacing: -0.09em;
+	}
+
+	.cls-30 {
+		letter-spacing: 0em;
+	}
+
+	.cls-31 {
+		fill: #1c3a3a;
+	}
+</style>
+
+<div class="ui breadcrumb padding_g">
+	<a href="~/ATGProcesses" class="section">ATG Project Delivery System (Main)</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/StrategicPlan" class="section">Strategic Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/AnnualBusinessPlan" class="section">Annual Business Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/BusinessDevelopment" class="section">Business Development</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/Contracts" class="section">Contract Phase</a>
+	<i class="right arrow icon divider"></i>
+	<p class="section">TxDOT Contracts</p>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectExecution" class="section">Project Execution</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectCloseout" class="section">Project Closeout</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/RecordsRetention" class="section">Records Retention</a>
+</div>
+<div class="padding_t_2em">
+	<div class="padding_g">
+		<h1 class="ui horizontal divider header margin_tb">
+			TxDOT Contract Process
+		</h1>
+		@{ var file1 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("b28e8153-3adc-42af-aa43-278bfbcc6398"));}
+		<h3>
+			@file1?.Title [
+			<a href="~/documents/commonfiles/@file1?.FileName" target="_blank">
+				@file1?.Extension.Substring(1).ToUpper()
+			</a>]
+			@if (Model.UserI.IsAdmin)
+			{
+				<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file1?.Id" asp-route-returnUrl="/ATGProcesses/TxDOTContract"><i class="edit icon"></i></a>
+			}
+		</h3>
+		<p>TxDOT specific contract process. </p>
+	</div>
+	<div class="padding_tb">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1354.18 1318.15">
+			<g id="Layer_2" data-name="Layer 2">
+				<g id="Layer_1-2" data-name="Layer 1">
+					<path class="cls-1" d="M230.46,59.69H365.52" />
+					<path d="M230.49,60.69h-1v-2h1Z" />
+					<path class="cls-2" d="M380.22,59.69,366,64.33V55.05Z" />
+					<path class="cls-1" d="M581.76,59.69h192" />
+					<path class="cls-2" d="M785.22,59.69,771,64.33V55.05Z" />
+					<path class="cls-3" d="M1,196H1353.18V448.67H1Z" />
+					<path class="cls-1" d="M1013.29,121.69v58.72H458.7v70.5" />
+					<path class="cls-2" d="M458.46,266.17l-4.64-14.26h9.28Z" />
+					<path class="cls-1" d="M614.46,330.41H775" />
+					<path d="M636.49,331.41h-1v-2h1Z" />
+					<path class="cls-2" d="M790.22,330.41,776,335v-9.27Z" />
+					<path class="cls-4" d="M686,860.29v118H695" />
+					<path class="cls-5" d="M686,860.29v4m0,7.93v7.93m0,7.94V896m0,7.93v7.94m0,7.93v7.94m0,7.93v7.93m0,7.94v7.93m0,7.93v7.94m5,3h4" />
+					<path class="cls-6" d="M687,860.32h-2v-1h2Z" />
+					<path class="cls-5" d="M710.22,978.29,696,982.93v-9.28Z" />
+					<path class="cls-4" d="M631.34,860.29v258H695" />
+					<path class="cls-5" d="M631.34,860.29v4m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8.05m0,8v8m0,8.05v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v4.72h3.3m8.05,0h8m8,0h8m8,0h8m8,0h4" />
+					<path class="cls-6" d="M632.34,860.32h-2v-1h2Z" />
+					<path class="cls-5" d="M710.22,1118.29,696,1122.93v-9.28Z" />
+					<path class="cls-4" d="M579.78,860.29v398H695" />
+					<path class="cls-5" d="M579.78,860.29v4m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v8m0,8v1.1h6.93m8,0h8m8,0h8m8,0h8m8,0h8m8,0h8m8,0h8m8,0h4" />
+					<path class="cls-6" d="M580.78,860.32h-2v-1h2Z" />
+					<path class="cls-5" d="M710.22,1258.29,696,1262.93v-9.28Z" />
+					<path class="cls-1" d="M276.46,579.69H415" />
+					<path d="M276.49,580.69h-1v-2h1Z" />
+					<path class="cls-2" d="M430.22,579.69,416,584.33v-9.28Z" />
+					<path d="M1235.46,470.41h-1060v29.78h-2V468.41h1060V442h2Zm0-50h-2V392.66h2Z" />
+					<path d="M1235.46,392.69h-2v-1.78l1,.75,1-.75Zm-1061,122.76-4.64-14.26h9.28Z" />
+					<path d="M174.46,518.69l-6-18.5h12Zm-3.26-16.5,3.26,10,3.26-10Z" />
+					<path d="M1226.64,429.66v5.15h-1.7v-5.15l-4.75-7.25H1222l3.75,5.9,3.75-5.9h1.85" />
+					<path d="M1235.14,425.11c3.15,0,4.3,2.1,4.2,5.3h-6.75c0,2,.7,3.35,2.65,3.4a2.33,2.33,0,0,0,2.45-1.45l1.4.4c-.55,1.4-1.85,2.25-3.85,2.25-2.9,0-4.4-1.85-4.35-5S1232.19,425.11,1235.14,425.11Zm2.6,4.05a2.57,2.57,0,0,0-4.85-1.4,3.63,3.63,0,0,0-.3,1.4h5.15" />
+					<path d="M1246.89,427.66c-.15-1.7-4.3-1.9-4.35,0,.75,2.65,5.75.6,6,4.5s-7.5,3.7-7.85.4l1.4-.25c.2,1.8,4.85,2.25,4.9,0-.5-2.8-5.65-.75-5.9-4.5-.2-2.85,4.1-3.15,6.1-2.1a2.51,2.51,0,0,1,1.2,1.75" />
+					<path class="cls-1" d="M616.46,579.69H755" />
+					<path d="M616.49,580.69h-1v-2h1Z" />
+					<path class="cls-2" d="M770.22,579.69,756,584.33v-9.28Z" />
+					<path class="cls-1" d="M956.46,579.69H1035" />
+					<path d="M956.49,580.69h-1v-2h1Z" />
+					<path class="cls-2" d="M1050.22,579.69,1036,584.33v-9.28Z" />
+					<path class="cls-2" d="M201.66,738.36l-3.4-14.26h6.81Z" />
+					<path d="M316.49,799.29h-1v-2h1Z" />
+					<path class="cls-2" d="M419.59,798l-14.26,4.64v-9.28Z" />
+					<path d="M786.49,799h-1v-2h1Z" />
+					<path class="cls-2" d="M1030.22,799.59,1016,804.23V795Z" />
+					<path class="cls-1" d="M1016.46,330.41h117.83" />
+					<path d="M1016.49,331.41h-1v-2h1Z" />
+					<path class="cls-2" d="M1149.56,330.41,1135.29,335v-9.27Z" />
+					<path d="M1208.3,230.16H940.56v20.75h-1.77V228.16H1208.3Z" />
+					<path d="M1235.46,269.91l-1-.75-1,.75v-1.78h2Zm-296-4.74-4.64-14.26h9.28Z" />
+					<path d="M1230.11,254.65l-6.6-10.55,0,10.55h-1.45v-12.4h2l6.65,10.65-.1-10.65h1.55v12.4h-2.05" />
+					<path d="M1238.56,245c3.1,0,4.25,1.85,4.25,5s-1.35,4.95-4.3,4.95-4.15-1.95-4.2-4.95C1234.31,246.6,1235.71,245,1238.56,245Zm0,8.7c2.2,0,2.65-1.55,2.65-3.75s-.4-3.75-2.55-3.75-2.65,1.6-2.65,3.75.5,3.7,2.55,3.75" />
+					<path class="cls-7" d="M31,101.73,30.65,17C30.65,8,36,.55,42.72.52L164.87,0c6.68,0,12.17,7.33,12.21,16.35l.36,84.76c0,9-5.39,16.42-12.07,16.44L43.24,118C36.54,118.06,31.05,110.74,31,101.73Z" />
+					<path class="cls-8" d="M56.23,0H212.78c9,0,16.34,8.06,16.34,18v82c0,9.94-7.32,18-16.34,18H56.23c-9,0-16.34-8.06-16.34-18V18C39.89,8.06,47.2,0,56.23,0Z" />
+					<text class="cls-10" transform="translate(66 39) scale(0.91 1)">
+						Begin Contract
+						<tspan x="45" y="25">Phase</tspan>
+					</text>
+					<text class="cls-11" transform="translate(52 91) scale(0.91 1)">
+						Selected No Contract (SNC)
+					</text>
+					<path class="cls-8" d="M719.62,1021.83l-.36-85.48c0-9.08,5.45-16.56,12.2-16.59l123.38-.49c6.75,0,12.3,7.39,12.34,16.48l.36,85.49c0,9.08-5.44,16.55-12.2,16.57l-123.36.46C725.21,1038.3,719.66,1030.91,719.62,1021.83Z" />
+					<path class="cls-12" d="M748.37,919.64H931.63c10.56,0,19.13,8.06,19.13,18v82c0,9.94-8.57,18-19.13,18H748.37c-10.56,0-19.13-8.06-19.13-18v-82C729.24,927.7,737.81,919.64,748.37,919.64Z" />
+					<text class="cls-13" transform="translate(755 970)">
+						Request Certificate
+						<tspan x="5" y="24">of Insurance (COI)</tspan>
+					</text>
+					<g class="node pop_up move_to_up" data-object="dpspp_node">
+						<path class="cls-8" d="M720.64,1162.36l-.37-85.49c0-9.08,5.45-16.55,12.2-16.58l123.38-.5c6.75,0,12.3,7.4,12.34,16.49l.37,85.48c0,9.08-5.45,16.56-12.2,16.58l-123.36.45C726.22,1178.82,720.68,1171.44,720.64,1162.36Z" />
+						<path class="cls-12" d="M749.39,1060.16H932.64c10.57,0,19.13,8.06,19.13,18v82c0,9.94-8.56,18-19.13,18H749.39c-10.57,0-19.14-8.06-19.14-18v-82C730.25,1068.22,738.82,1060.16,749.39,1060.16Z" />
+						<text class="cls-13" transform="translate(790 1090) scale(0.91 1)">
+							Draft Project
+							<tspan x="-30" y="25">Setup/Project Plan</tspan>
+							<tspan x="-15" y="50">and submit it to</tspan>
+							<tspan x="-30" y="75">Project Accountant</tspan>
+						</text>
+						<foreignObject width="50" height="50" x="740" y="1065">
+							<body xmlns="http://www.w3.org/2000/svg">
+								<i class="external alternate icon" width="100" height="100"></i>
+								<div class="ui longer modal" id="dpspp_node">
+									<i class="close icon"></i>
+									<div class="header">
+										Draft Project Setup/Project Plan and submit to Project Accountant
+									</div>
+									<div class="content">
+										<div class="description">
+											<ul>
+													@{
+                                                        var file2 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("F7941B67-9D5B-4EA3-BD47-4145E258662F"));
+                                                        var file3 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("E3786DC2-A9B8-4897-8794-1D642C43E6CA"));
+													}
+													<li>
+														<a href="~/documents/commonfiles/@file2?.FileName" target="_blank">
+															[@file2?.Extension.Substring(1).ToUpper()]
+														</a>
+														@if (Model.UserI.IsAdmin)
+														{
+															<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file2?.Id" asp-route-returnUrl="/ATGProcesses/TxDOTContract"><i class="edit icon"></i></a>
+														}
+														Project Setup fillable form.
+													</li>
+													<li>
+														<a href="~/documents/commonfiles/@file3?.FileName" target="_blank">
+															[@file3?.Extension.Substring(1).ToUpper()]
+														</a>
+														@if (Model.UserI.IsAdmin)
+														{
+															<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file3?.Id" asp-route-returnUrl="/ATGProcesses/TxDOTContract"><i class="edit icon"></i></a>
+														}
+														Project Setup Sheet instructions.</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</body>
+						</foreignObject>
+					</g>
+				@{ var file4 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("EC79BE4B-2034-4917-B599-5D9205212776"));}
+
+						<g class="node move_to_up">
+							<foreignObject width="50" height="50" x="735" y="1205">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="file alternate outline icon" id="icon_bd" width="50" height="50"></i>
+								</body>
+							</foreignObject>
+							<path class="cls-8" d="M720.64,1301.72l-.37-85.48c0-9.08,5.45-16.56,12.2-16.59l123.38-.5c6.75,0,12.3,7.4,12.34,16.49l.37,85.48c0,9.08-5.45,16.56-12.2,16.58l-123.36.45C726.22,1318.18,720.68,1310.8,720.64,1301.72Z" />
+							<path class="cls-12" d="M749.39,1199.53H932.64c10.57,0,19.13,8,19.13,18v82c0,9.94-8.56,18-19.13,18H749.39c-10.57,0-19.14-8.06-19.14-18v-82C730.25,1207.58,738.82,1199.53,749.39,1199.53Z" />
+							<a xlink:href="../documents/commonfiles/@file4?.FileName">
+								<text class="cls-13" transform="translate(770 1230) scale(0.91 1)">
+									If urgent start date
+									<tspan x="-8" y="25">and sub-consultants</tspan>
+									<tspan x="18" y="50">on project: see</tspan>
+									<tspan x="-28" y="75">Sub-Consultant Process</tspan>
+								</text>
+							</a>
+							@if (Model.UserI.IsAdmin)
+							{
+								<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file4?.Id" asp-route-returnUrl="/ATGProcesses/TxDOTContract">
+									<foreignObject width="40" height="40" x="735" y="1205">
+										<body xmlns="http://www.w3.org/2000/svg">
+										<i class="edit alternate icon" width="40" height="40"></i>
+										</body>
+									</foreignObject>
+								</a>
+							}
+						</g>
+					<path class="cls-16" d="M1305.8,340.74l-65.1,48.06a11.25,11.25,0,0,1-13.5.1l-64.46-47c-7-5.08-6.88-16.35.15-21.53L1228,272.3a11.27,11.27,0,0,1,13.5-.11l64.44,47C1312.9,324.32,1312.82,335.55,1305.8,340.74Z" />
+					<path class="cls-17" d="M1305.54,342.82l-59.32,43.79a12.27,12.27,0,0,1-14.73.12l-58.74-42.83c-7.62-5.56-7.53-17.9.16-23.58l59.32-43.8a12.29,12.29,0,0,1,14.72-.12l58.74,42.85C1313.31,324.8,1313.23,337.12,1305.54,342.82Z" />
+					<text class="cls-18" transform="translate(40 320)">
+						Scope Meetings and
+						<tspan x="50" y="35">Negotiations</tspan>
+					</text>
+					<path class="cls-7" d="M385.66,101.74,385.3,17c0-9,5.4-16.41,12.08-16.44L519.52,0c6.68,0,12.18,7.33,12.22,16.34l.36,84.77c0,9-5.39,16.42-12.08,16.44L397.9,118C391.2,118.07,385.7,110.74,385.66,101.74Z" />
+					<path class="cls-8" d="M410.89,0H567.43c9,0,16.35,8.06,16.35,18v82c0,9.94-7.32,18-16.35,18H410.89c-9,0-16.35-8.06-16.35-18V18C394.54,8.07,401.86,0,410.89,0Z" />
+					<text class="cls-10" transform="translate(415 40) scale(0.91 1)">
+						Define Contract
+						<tspan x="-15" y="25">Type LS, Specified</tspan>
+						<tspan x="25" y="50">Rate, CPFF</tspan>
+					</text>
+					<path class="cls-7" d="M789.11,102.4l-.36-84.77c0-9,5.39-16.42,12.08-16.45L923,.69C929.65.69,935.15,8,935.19,17l.36,84.77c0,9-5.4,16.41-12.08,16.43l-122.12.45C794.64,118.72,789.15,111.4,789.11,102.4Z" />
+					<rect class="cls-8" x="799.57" y="0.69" width="437" height="118" rx="15.56" />
+					<text class="cls-10" transform="translate(830 30) scale(0.91 1)">
+						Compile initial Rates & Categories, ODEs,
+						<tspan x="20" y="25">Scope, Schedule in coordination with</tspan>
+						<tspan x="35" y="50">Division, Practice Leaders, Project</tspan>
+						<tspan x="45" y="75">Accountant and Subconsultants</tspan>
+					</text>
+					<path class="cls-7" d="M335.88,373.7l-.36-84.76c0-9,5.4-16.42,12.08-16.45L469.74,272c6.69,0,12.18,7.34,12.22,16.35l.36,84.76c0,9-5.39,16.42-12.08,16.44L348.12,390C341.42,390,335.92,382.71,335.88,373.7Z" />
+					<path class="cls-8" d="M368.76,272H598.63c13.25,0,24,8.06,24,18v82c0,9.94-10.75,18-24,18H368.76c-13.25,0-24-8.06-24-18V290C344.76,280,355.51,272,368.76,272Z" />
+					<text class="cls-10" transform="translate(382 298) scale(0.91 1)">
+						Accounting to check
+						<tspan x="-15" y="25">and/or request rates for</tspan>
+						<tspan x="-20" y="50">Profit, Escalation, FCCM. </tspan>
+						<tspan x="-25" y="75">Verify overhead (OH) rate.</tspan>
+					</text>
+					<path class="cls-7" d="M792.35,368.58,792,283.82c0-9,5.39-16.42,12.08-16.45l122.14-.49c6.68,0,12.18,7.33,12.22,16.35l.36,84.76c0,9-5.4,16.42-12.08,16.44l-122.12.45C797.89,384.91,792.39,377.58,792.35,368.58Z" />
+					<path class="cls-8" d="M825.23,266.85H1055.1c13.25,0,24,8.06,24,18v82c0,9.94-10.75,18-24,18H825.23c-13.26,0-24-8.06-24-18v-82C801.23,274.91,812,266.85,825.23,266.85Z" />
+					<text class="cls-10" transform="translate(810 302) scale(0.91 1)">
+						Coordinate with Approved
+						<tspan x="7" y="25">Rate Negotiators. Project</tspan>
+						<tspan x="3" y="50">Accountant reviews rates.</tspan>
+					</text>
+					<path d="M1216.38,312.63h-2.55v5.48h-2.57V303.44h6.44a4.45,4.45,0,0,1,4.8,4.6,4.12,4.12,0,0,1-3.48,4.31l3.59,5.76h-3Zm1-6.93h-3.52v4.67h3.52a2.34,2.34,0,1,0,0-4.67Z" />
+					<path d="M1231.06,317a4.51,4.51,0,0,1-3.44,1.41,3.53,3.53,0,0,1-3.69-3.52,3.42,3.42,0,0,1,3.69-3.46,4.37,4.37,0,0,1,3.44,1.37v-1.59c0-1.23-1-2-2.49-2a4.37,4.37,0,0,0-3.15,1.34l-.94-1.6a6.29,6.29,0,0,1,4.46-1.72c2.36,0,4.43,1,4.43,3.85v7h-2.31Zm0-2.88a3.1,3.1,0,0,0-2.53-1.1,1.93,1.93,0,1,0,0,3.8,3.1,3.1,0,0,0,2.53-1.1Z" />
+					<path d="M1236.82,315.65v-6.14h-1.76v-2h1.76v-2.91h2.31v2.91h2.16v2h-2.16v5.57c0,.72.35,1.25,1,1.25a1.55,1.55,0,0,0,1-.37l.55,1.74a3.08,3.08,0,0,1-2.18.68A2.45,2.45,0,0,1,1236.82,315.65Z" />
+					<path d="M1248.11,307.22c3.19,0,5.23,2.44,5.23,5.79v.55h-8.2a3.2,3.2,0,0,0,3.38,2.92,4.49,4.49,0,0,0,3-1.16l1.06,1.52a6.22,6.22,0,0,1-4.32,1.54,5.58,5.58,0,0,1-.17-11.16Zm-3,4.71h6a2.84,2.84,0,0,0-3-2.82A2.94,2.94,0,0,0,1245.11,311.93Z" />
+					<path d="M1255.76,315.05a5.44,5.44,0,0,0,3.61,1.5c1.39,0,2.09-.51,2.09-1.3s-1.12-1.25-2.42-1.54c-1.83-.39-4-.88-4-3.25,0-1.74,1.49-3.24,4.18-3.24a6.06,6.06,0,0,1,4.13,1.5l-1,1.63a4.24,4.24,0,0,0-3.14-1.28c-1.21,0-2,.44-2,1.19s1,1.1,2.31,1.38c1.85.4,4.11.93,4.11,3.44,0,1.87-1.56,3.3-4.42,3.3a6.45,6.45,0,0,1-4.55-1.65Z" />
+					<path d="M1196.07,341.7h-7l-1.07,2.81h-2.82l5.76-14.67h3.22l5.76,14.67h-2.82Zm-6.23-2.27h5.5l-2.75-7.41Z" />
+					<path d="M1206.34,333.62a4.77,4.77,0,0,1,4.07,1.89l-1.52,1.41a2.84,2.84,0,0,0-2.44-1.25,3.55,3.55,0,0,0,0,7.06,2.89,2.89,0,0,0,2.44-1.25l1.52,1.4a4.75,4.75,0,0,1-4.07,1.9,5.58,5.58,0,0,1,0-11.16Z" />
+					<path d="M1217.27,333.62a4.76,4.76,0,0,1,4.07,1.89l-1.51,1.41a2.86,2.86,0,0,0-2.45-1.25,3.55,3.55,0,0,0,0,7.06,2.91,2.91,0,0,0,2.45-1.25l1.51,1.4a4.74,4.74,0,0,1-4.07,1.9,5.58,5.58,0,0,1,0-11.16Z" />
+					<path d="M1228.1,333.62c3.19,0,5.23,2.44,5.23,5.79V340h-8.2a3.21,3.21,0,0,0,3.38,2.92,4.49,4.49,0,0,0,3-1.16l1.06,1.52a6.22,6.22,0,0,1-4.32,1.54,5.58,5.58,0,0,1-.17-11.16Zm-3,4.71h6a2.84,2.84,0,0,0-3-2.82A2.94,2.94,0,0,0,1225.1,338.33Z" />
+					<path d="M1235.62,348.56V333.89h2.31v1.45a4.22,4.22,0,0,1,3.41-1.72c2.75,0,4.71,2.07,4.71,5.57s-2,5.59-4.71,5.59a4.19,4.19,0,0,1-3.41-1.74v5.52Zm5-12.89a3.46,3.46,0,0,0-2.73,1.43v4.2a3.52,3.52,0,0,0,2.73,1.43c1.82,0,3-1.47,3-3.54S1242.48,335.67,1240.66,335.67Z" />
+					<path d="M1248.84,342.05v-6.14h-1.76v-2h1.76V331h2.31v2.91h2.16v2h-2.16v5.57c0,.72.35,1.25,1,1.25a1.55,1.55,0,0,0,1-.37l.55,1.74a3.08,3.08,0,0,1-2.18.68A2.45,2.45,0,0,1,1248.84,342.05Z" />
+					<path d="M1260.13,333.62c3.19,0,5.23,2.44,5.23,5.79V340h-8.2a3.21,3.21,0,0,0,3.39,2.92,4.48,4.48,0,0,0,3-1.16l1.06,1.52a6.22,6.22,0,0,1-4.32,1.54,5.58,5.58,0,0,1-.17-11.16Zm-3,4.71h6a2.84,2.84,0,0,0-3-2.82A2.93,2.93,0,0,0,1257.14,338.33Z" />
+					<path d="M1275.13,343.06a4.28,4.28,0,0,1-3.41,1.72c-2.73,0-4.73-2.07-4.73-5.57s2-5.59,4.73-5.59a4.27,4.27,0,0,1,3.41,1.74v-5.52h2.31v14.67h-2.31Zm0-6a3.5,3.5,0,0,0-2.75-1.43c-1.82,0-3,1.47-3,3.54s1.17,3.52,3,3.52a3.48,3.48,0,0,0,2.75-1.41Z" />
+					<path d="M1284.31,335.43c.81-.58,1.54-1.08,1.54-1.94s-.66-1.58-2.09-1.58a3.76,3.76,0,0,0-3.06,1.54l-1.48-1.65a6.09,6.09,0,0,1,4.8-2.18c2.77,0,4.47,1.47,4.47,3.45,0,1.83-1.24,2.71-2.34,3.48-.83.61-1.6,1.14-1.6,2a1.4,1.4,0,0,0,.48,1l-1.93.64a2.51,2.51,0,0,1-.8-1.87C1282.3,336.86,1283.36,336.11,1284.31,335.43Zm-.42,6.24a1.55,1.55,0,1,1-1.54,1.54A1.57,1.57,0,0,1,1283.89,341.67Z" />
+					<rect x="1233.46" y="258.05" width="2" height="12.43" />
+					<rect x="1208.18" y="228.16" width="27.29" height="2" />
+					<rect x="1233.34" y="228.43" width="2" height="11.11" />
+					<path class="cls-7" d="M34.47,644l-.36-103c0-11,5.39-20,12.07-20l122.14-.6c6.69,0,12.18,8.91,12.22,19.87l.36,103c0,10.94-5.39,20-12.08,20l-122.12.54C40,663.85,34.51,655,34.47,644Z" />
+					<path class="cls-8" d="M67.34,520.37H297.21c13.26,0,24,9.8,24,21.88V641.9c0,12.08-10.74,21.88-24,21.88H67.34c-13.25,0-24-9.8-24-21.88V542.25C43.34,530.17,54.09,520.37,67.34,520.37Z" />
+					<text class="cls-10" transform="translate(90 550) scale(0.91 1)">
+						Contract Exhibits:
+						<tspan x="0" y="25">A. State Services</tspan>
+						<tspan x="0" y="50">B. ATG Scope</tspan>
+						<tspan x="0" y="75">C. Schedule</tspan>
+						<tspan x="0" y="100">D. Budget</tspan>
+					</text>
+					<path class="cls-7" d="M436.9,621.75,436.54,537c0-9,5.39-16.42,12.08-16.45l122.14-.49c6.68,0,12.18,7.33,12.22,16.34l.36,84.77c0,9-5.4,16.42-12.08,16.44l-122.12.45C442.43,638.08,436.94,630.75,436.9,621.75Z" />
+					<path class="cls-8" d="M462.24,520H619.92c9.1,0,16.47,8.06,16.47,18v82c0,9.94-7.37,18-16.47,18H462.24c-9.09,0-16.46-8.06-16.46-18V538C445.78,528.08,453.15,520,462.24,520Z" />
+					<text class="cls-10" transform="translate(490 570) scale(0.91 1)">
+						Signatures
+						<tspan x="15" y="25">Defined</tspan>
+					</text>
+					<path class="cls-7" d="M775.32,621.3,775,536.54c0-9,5.4-16.42,12.08-16.45l122.14-.49c6.69,0,12.18,7.33,12.22,16.34l.36,84.77c0,9-5.39,16.42-12.08,16.44l-122.12.45C780.86,637.63,775.36,630.3,775.32,621.3Z" />
+					<path class="cls-8" d="M800.67,519.57H958.35c9.09,0,16.46,8.06,16.46,18v82c0,9.94-7.37,18-16.46,18H800.67c-9.1,0-16.47-8.06-16.47-18v-82C784.2,527.63,791.57,519.57,800.67,519.57Z" />
+					<text class="cls-10" transform="translate(840 570) scale(0.91 1)">
+						PEPS PM
+						<tspan x="-40" y="25">Review/Approval</tspan>
+					</text>
+					<path class="cls-7" d="M1055.38,624.28l-.36-84.76c0-9,5.39-16.42,12.07-16.45l122.15-.49c6.68,0,12.17,7.34,12.21,16.35l.36,84.76c0,9-5.39,16.42-12.07,16.44l-122.13.45C1060.91,640.61,1055.42,633.29,1055.38,624.28Z" />
+					<path class="cls-8" d="M1080.72,522.55H1238.4c9.09,0,16.46,8.06,16.46,18v82c0,9.94-7.37,18-16.46,18H1080.72c-9.09,0-16.47-8.06-16.47-18v-82C1064.25,530.61,1071.63,522.55,1080.72,522.55Z" />
+					<text class="cls-10" transform="translate(1100 585) scale(0.91 1)">
+						Receive H-2
+					</text>
+					<path class="cls-1" d="M838.08,799.29H1017" />
+					<path class="cls-1" d="M1156.8,632.81v58.72H201.66V762" />
+					<path class="cls-7" d="M114.36,840.05,114,755.29c0-9,5.4-16.42,12.08-16.45l122.14-.49c6.69,0,12.18,7.34,12.22,16.35l.36,84.76c0,9-5.39,16.42-12.08,16.44l-122.12.45C119.9,856.38,114.4,849.06,114.36,840.05Z" />
+					<path class="cls-8" d="M139.7,738.32H297.39c9.09,0,16.46,8.06,16.46,18v82c0,9.94-7.37,18-16.46,18H139.7c-9.09,0-16.46-8.06-16.46-18v-82C123.24,746.38,130.61,738.32,139.7,738.32Z" />
+					<text class="cls-10" transform="translate(143 790) scale(0.91 1)">
+						Submit to Client
+						<tspan x="15" y="25">for signature</tspan>
+					</text>
+					<path class="cls-1" d="M316.46,798.29H515" />
+					<path class="cls-7" d="M420,842l-.36-84.77c0-9,5.4-16.42,12.08-16.45l122.14-.49c6.68,0,12.18,7.34,12.22,16.35l.36,84.77c0,9-5.4,16.41-12.08,16.43l-122.12.45C425.49,858.32,420,851,420,842Z" />
+					<rect class="cls-8" x="427.97" y="740.13" width="413.13" height="118.33" rx="15.03" />
+					<text class="cls-10" transform="translate(450 775) scale(0.91 1)">
+						Contract/WA is ready to be executed.
+						<tspan x="-12" y="25">Have contract signed/partially executed</tspan>
+						<tspan x="-7" y="50">by Pres., VP, CEO, or Division Manager</tspan>
+					</text>
+
+					<a xlink:href="ProjectExecution">
+						<g class="node pop_up move_to_right">
+							<path class="cls-31" d="M1037.7,839.64l-.36-84.71c0-9,5.39-16.41,12.07-16.44l122.08-.5c6.68,0,12.17,7.33,12.21,16.34l.36,84.72c0,9-5.39,16.41-12.07,16.44l-122.08.49C1043.23,856,1037.74,848.66,1037.7,839.64Z" />
+							<rect class="cls-15" x="1046.7" y="737.99" width="208" height="118" rx="18" />
+							<text class="cls-10" transform="translate(1090 790) scale(0.91 1)">
+								Begin Project
+								<tspan x="-15" y="25">Execution Phase</tspan>
+							</text>
+							<foreignObject width="50" height="50" x="1055" y="745">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="sitemap inverted icon" width="50" height="50"></i>
+								</body>
+							</foreignObject>
+						</g>
+					</a>
+				</g>
+			</g>
+		</svg>
+	</div>
+</div>
+
+@section Scripts
+{
+	<script>
+		//Semantic Ui Modals.
+		$('.node').on('click', function () {
+			$('.ui.modal#' + $(this).attr('data-object')).modal('show');
+		});
+	</script>
+}

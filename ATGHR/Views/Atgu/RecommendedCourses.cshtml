@@ -1,0 +1,860 @@
+@model dynamic
+
+@{
+	ViewBag.Title = "Recommended Courses";
+	Layout = "_Layout";
+}
+
+<div class="ui equal width center aligned padded grid stackable relaxed">
+
+<h1 style="margin-top: 70px;">Recommended Courses </h1>
+
+<div class="row " style="margin: 45px 10px 25px;">
+
+<div class="column">
+
+<div class="ui raised segment padded teal left aligned">
+<h4 class="ui header">Learning A</h4>
+
+<div class="ui list">
+
+<div class="item">
+	<i class="sort down icon"></i>
+	<div class="content">
+		<div class="header">3rd Party</div>
+		<div class="list">
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">HR</div>
+					<div class="list">
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="14">Harrassment</a>
+							</div>
+						</div>
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="25">IT Security</a>
+							</div>
+						</div>
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="24">Safety</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="item">
+	<i class="sort down icon"></i>
+	<div class="content">
+		<div class="header">ATG- at hire</div>
+
+		<div class="list">
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">HR</div>
+					<div class="list">
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="26">Basic Onboarding: HR, Timesheets, Expenses, Cars</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="item">
+	<i class="sort down icon"></i>
+	<div class="content">
+		<div class="header">ATG- scheduled quarterly</div>
+
+		<div class="list">
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">HR</div>
+					<div class="list">
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="27">ATG Goal Setting and Performance Reviews</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">PD</div>
+					<div class="list">
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="28">Consulting 101</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="29">PMP - What is that?</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="30">QA/QC</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="item">
+	<i class="sort down icon"></i>
+	<div class="content">
+		<div class="header">LIL- on demand</div>
+
+		<div class="list">
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">Comm</div>
+					<div class="list">
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="31">Communication Foundations</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="33">Interpersonal Communication</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">PD</div>
+					<div class="list">
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="40">Project Management Foundations: Quality</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">Pers</div>
+					<div class="list">
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="36">Goal Setting</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="34">How to Be an Adaptable Employee during Change and Uncertainty</a>
+							</div>
+						</div>
+
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="38">Time Management Tips: Individual/Personal Scheduling</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="39">Time Management: Working from Home</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="37">Virtual Performance Reviews and Feedback</a>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="column">
+	<div class="ui raised segment padded teal left aligned">
+		<h4 class="ui header">Learning B</h4>
+
+		<div class="ui list">
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="header">as assigned</div>
+					<div class="list">
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">Tech</div>
+								<div class="list">
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a  >Technical as assigned</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="header">ATG- scheduled quarterly</div>
+
+					<div class="list">
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">PD</div>
+								<div class="list">
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="41">ATGLD/MS Proj 100</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">Pers</div>
+								<div class="list">
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="42">ATG Goal Setting and Performance Reviews - Supervisors</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="header">LIL- on demand</div>
+
+					<div class="list">
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">Comm</div>
+								<div class="list">
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="45">Best Practices for New People Leaders</a>
+										</div>
+									</div>
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="44">New Manager Foundations</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">PD</div>
+								<div class="list">
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="43">Learning Microsoft Project</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">Pers</div>
+								<div class="list">
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="46">Time Management for Managers</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+</div>
+
+<div class="row " style=" margin-bottom: 25px;  margin-left: 10px; margin-right: 10px; ">
+
+<div class="column">
+	<div class="ui raised segment padded teal left aligned">
+		<h4 class="ui header">Teaching A</h4>
+
+		<div class="ui list">
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="header">as assigned</div>
+					<div class="list">
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">Tech</div>
+								<div class="list">
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a  >Technical as assigned</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="header">ATG- scheduled quarterly</div>
+
+					<div class="list">
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">PD</div>
+								<div class="list">
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="58">Business Development</a>
+										</div>
+									</div>
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="48">Marketing</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">PM</div>
+								<div class="list">
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="49">Developing Scope</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="header">ATG AND/OR LIL</div>
+
+					<div class="list">
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">PD</div>
+								<div class="list">
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="50">Advanced QA/QC</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="header">LIL- on demand</div>
+
+					<div class="list">
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">Comm</div>
+								<div class="list">
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="51">Becoming a Manager Your Team Loves</a>
+										</div>
+									</div>
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="52">Management Foundations</a>
+										</div>
+									</div>
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="53">Managing Teams</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">PD</div>
+								<div class="list">
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="55">Microsoft Project 2016 Essential Training</a>
+										</div>
+									</div>
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="54">Project Management Foundations: Schedules</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="sort down icon"></i>
+							<div class="content">
+								<div class="description">PM</div>
+								<div class="list">
+
+									<div class="item">
+										<i class="chevron right icon"></i>
+										<div class="content">
+											<a asp-action="CourseInDetail" asp-route-courseId="56">EV Management</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+<div class="column">
+<div class="ui raised segment padded teal left aligned">
+<h4 class="ui header">Teaching B</h4>
+
+<div class="ui list">
+
+<div class="item">
+	<i class="sort down icon"></i>
+	<div class="content">
+		<div class="header">as assigned</div>
+		<div class="list">
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">Tech</div>
+					<div class="list">
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a >Technical as assigned</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="item">
+	<i class="sort down icon"></i>
+	<div class="content">
+		<div class="header">ATG- scheduled quarterly</div>
+
+		<div class="list">
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">BD</div>
+					<div class="list">
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="58">Business Development</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="59">Marketing Proposals</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">PD</div>
+					<div class="list">
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="60">Contracts</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="61">On-Calls</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">PM</div>
+					<div class="list">
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="62">EV Application, PM Dashboard Setup</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="65">Project Communication Plan</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="69">Project Kickoff (Everything is ready Day 0)</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="63">Project Management Plan Development and Mgmt</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="67">Project Quality Plan</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="68">Project Recovery Plan</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="64">Project Setup Plan</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="66">Project Resource Plan</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="item">
+	<i class="sort down icon"></i>
+	<div class="content">
+		<div class="header">ATG AND/OR LIL</div>
+
+		<div class="list">
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">BD</div>
+					<div class="list">
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="57">Managing Client Relationships</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="item">
+	<i class="sort down icon"></i>
+	<div class="content">
+		<div class="header">LIL- on demand</div>
+
+		<div class="list">
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">Leadership</div>
+					<div class="list">
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="72">Transitioning From Manager to Leader</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="item">
+				<i class="sort down icon"></i>
+				<div class="content">
+					<div class="description">PM</div>
+					<div class="list">
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="70">Leading Projects, Chapter 3. Start at Project Communications</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<i class="chevron right icon"></i>
+							<div class="content">
+								<a asp-action="CourseInDetail" asp-route-courseId="71">Leading the Project Team</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<div class="row " style="margin: 45px 30px 25px; text-align: right">
+	<div class="column">
+		<a asp-action="CoursesByLearningLevel" class="ui  right labeled icon   button" style="margin-bottom: 10px;"> <i class="right arrow icon"></i>Courses by Learning Level</a>
+	</div>
+
+	<div class="column" style="margin-top: 25px;">
+		<a asp-action="CoursesBySubjectArea" class="ui  right labeled icon   button" style="margin-bottom: 10px;"> <i class="right arrow icon"></i>Courses by Subject Area</a>
+	</div>
+</div>
+
+<br>
+<br>
+<br>
+<br>

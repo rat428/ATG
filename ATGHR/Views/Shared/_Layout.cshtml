@@ -1,0 +1,58 @@
+@using System.Security.Principal
+@using System
+@{
+	string Year = DateTime.Now.ToString("yyyy");
+}
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - ATG Connect</title>
+
+	<environment include="Development">
+		<link rel="stylesheet" href="~/lib/semantic-ui/dist/semantic.css" />
+		<link rel="stylesheet" href="~/lib/datatables.net-se/css/dataTables.semanticui.css" />
+		<link rel="stylesheet" href="https://use.typekit.net/fze1lwb.css">
+		<link rel="stylesheet" href="~/trumbowyg/ui/trumbowyg.min.css" />
+		<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	</environment>
+		<link rel="stylesheet" href="~/css/print.css" asp-append-version="true" />
+	<environment exclude="Development">
+		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+	</environment>
+</head>
+<body>
+	<a id="skip_to_main" href="#main_content" class="ui button" role="navigation" style="z-index: 1000;" tab-index="0">
+		Skip to Main Content
+	</a>
+	<partial name="_LoginPartial" />
+	<div class="pusher">
+		<div class="main_container">
+			<a name="main_content"></a>
+			@RenderBody()
+		</div>
+		<footer>
+			<p>&copy; @Year Alliance Transportation Group</p>
+		</footer>
+	</div>
+	<environment include="Development">
+		<script src="~/lib/jquery/dist/jquery.js"></script>
+		<script src="~/lib/jquery-dateFormat/dist/jquery-dateFormat.js"></script>
+		<script src="~/lib/datatables.net/js/jquery.dataTables.js"></script>
+		<script src="~/lib/datatables.net-se/js/dataTables.semanticui.js"></script>
+		<script src="~/lib/semantic-ui/dist/semantic.js"></script>
+		<script src="~/lib/orgchart/dist/js/jquery.orgchart.js"></script>
+
+
+
+		<script src="~/js/site.js" asp-append-version="true"></script>
+	</environment>
+		<script src="~/trumbowyg/trumbowyg.min.js"></script>
+	<environment exclude="Development">
+		<script src="~/js/site.min.js" asp-append-version="true"></script>
+	</environment>
+	@RenderSection("Scripts", required: false)
+</body>
+</html>

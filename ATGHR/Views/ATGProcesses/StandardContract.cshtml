@@ -1,0 +1,454 @@
+@model ResourcesFileListDto
+
+@*
+	For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<style>
+	.txt {
+		font-family: 'Lato', sans-serif;
+	}
+
+	.white {
+		fill: #f4f8f9;
+	}
+
+	.black {
+		fill: #020202;
+	}
+
+	.gray {
+		fill: #4d6060;
+	}
+
+	.txt-bold {
+		font-weight: 600;
+	}
+
+	.txt-24 {
+		font-size: 24px;
+	}
+
+	.txt-22 {
+		font-size: 22px;
+	}
+
+	.txt-18 {
+		font-size: 18px;
+	}
+
+	.line {
+		stroke: black;
+		fill: none;
+		stroke-width: 2px;
+	}
+
+	.teal {
+		fill: #15a5b6;
+	}
+
+	.background {
+		opacity: 0.2;
+	}
+
+	.dark-teal {
+		fill: #0e6d77;
+	}
+
+	.dark-yellow {
+		fill: #d0912a;
+	}
+
+	.yellow {
+		fill: #fbb41d;
+	}
+
+	.light-gray {
+		fill: #ebebeb;
+	}
+
+	.dark-gray {
+		fill: #1c3a3a;
+	}
+
+	#contract_flowchart {
+		padding: 1rem;
+	}
+
+	.clients a {
+		padding-left: 2rem;
+		text-align: center;
+	}
+</style>
+<div class="ui breadcrumb padding_g">
+	<a href="~/ATGProcesses" class="section">ATG Project Delivery System (Main)</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/StrategicPlan" class="section">Strategic Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/AnnualBusinessPlan" class="section">Annual Business Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/BusinessDevelopment" class="section">Business Development</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/Contracts" class="section">Contract Phase</a>
+	<i class="right arrow icon divider"></i>
+	<p class="section">Standard Contracts</p>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectExecution" class="section">Project Execution</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectCloseout" class="section">Project Closeout</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/RecordsRetention" class="section">Records Retention</a>
+</div>
+<div class="padding_t_2em" style="display: block !important;">
+	<div class="padding_g">
+		<h1 class="ui horizontal divider header margin_tb">
+			Standard/Public Client Contract Process
+		</h1>
+			@{ var file1 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("b28e8153-3adc-42af-aa43-278bfbcc6398"));}
+			<h3>
+				@file1?.Title [
+				<a href="~/documents/commonfiles/@file1?.FileName" target="_blank">
+					@file1?.Extension.Substring(1).ToUpper()
+				</a>]
+				@if (Model.UserI.IsAdmin)
+				{
+					<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file1?.Id" asp-route-returnUrl="/ATGProcesses/StandardContract"><i class="edit icon"></i></a>
+				}
+			</h3>
+	</div>
+	<div id="contract_flowchart">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+			<g id="Layer_2" data-name="Layer 2">
+				<g id="Layer_1-2" data-name="Layer 1">
+					<rect class="teal background" x="30" y="30" width="1140" height="1100" />
+
+					<rect class="dark-teal" x="5" y="0" width="240" height="100" rx="15" />
+					<rect class="teal" x="15" y="0" width="240" height="100" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(30 40)">
+						Begin Contract Phase
+					</text>
+					<text class="txt white txt-18" transform="translate(25 70)">Selected No Contract (SNC)</text>
+
+					<line class="line" x1="255" y1="50" x2="300" y2="50" />
+					<polygon points="300,45 315,50 300,55" />
+
+					<rect class="dark-teal" x="315" y="0" width="400" height="100" rx="15" />
+					<rect class="teal" x="325" y="0" width="400" height="100" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(340 40)">Verify information in Vision is correct</text>
+					<text class="txt white txt-18" transform="translate(385 70)">(opportunity, proposal, roles, etc.)</text>
+
+					<polyline class="line" points="525,100 525,115 135,115 135,210 150,210" />
+					<polygon points="150,205 165,210 150,215" />
+
+					<rect class="dark-teal" x="165" y="160" width="600" height="100" rx="15" />
+					<rect class="teal" x="175" y="160" width="600" height="100" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(225 190)">
+						Negotiate rates/ODEs coordinating with approved
+						<tspan x="25" y="25">rate negotiators and client. Assistance/review</tspan>
+						<tspan x="-15" y="50">from Division Manager/Practice Lead and Accounting.</tspan>
+					</text>
+
+					<line class="line" x1="775" y1="210" x2="878" y2="210" />
+					<polygon points="878,205 893,210 878,215" />
+
+					<path class="dark-yellow"
+						  d="m 1045 222 l -65 45 a 15 15 0 0 1 -16 0 l -65 -45 c -8 -8 -8 -18 0 -24 l 65 -45 a 14 14 0 0 1 16 0 l 65 45 c 8 8 8 18 0 24 z" />
+					<path class="yellow"
+						  d="m 1055 222 l -65 45 a 15 15 0 0 1 -16 0 l -65 -45 c -8 -8 -8 -18 0 -24 l 65 -45 a 14 14 0 0 1 16 0 l 65 45 c 8 8 8 18 0 24 z" />
+					<text class="txt black txt-22 txt-bold" transform="translate(950 200)">
+						Client
+						<tspan x="-13" y="25">Decision</tspan>
+					</text>
+
+					<polyline class="line" points="1060,210 1090,210 1090,130 475,130 475,145" />
+					<polygon points="470,145 480,145 475,160" />
+					<text class="txt black txt-bold txt-20" transform="translate(820 125)">
+						No
+					</text>
+					<polyline class="line" points="982,269 982,290 155,290 155,305" />
+					<polygon points="150,305 160,305 155,320" />
+					<text class="txt black txt-bold txt-20" transform="translate(820 285)">
+						Yes
+					</text>
+
+					<rect class="dark-teal" x="5" y="320" width="220" height="120" rx="15" />
+					<rect class="teal" x="15" y="320" width="220" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(25 348)">
+						Document approved
+						<tspan x="30" y="25">rates saved on</tspan>
+						<tspan x="14" y="50">Z:Drive and share</tspan>
+						<tspan x="20" y="75">with Accounting</tspan>
+					</text>
+
+					<line class="line" x1="235" y1="380" x2="250" y2="380" />
+					<polygon points="250,375 265,380 250,385" />
+
+					<rect class="dark-teal" x="265" y="320" width="380" height="120" rx="15" />
+					<rect class="teal" x="275" y="320" width="380" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(285 348)">
+						Prepare project plan, including WBS,
+						<tspan x="15" y="25">schedule and budget for ATG staff</tspan>
+						<tspan x="35" y="50">resources and ODEs based on</tspan>
+						<tspan x="35" y="75">agreed upon contract rates.</tspan>
+					</text>
+
+					<line class="line" x1="655" y1="380" x2="670" y2="380" />
+					<polygon points="670,375 685,380 670,385" />
+
+					<rect class="dark-teal" x="685" y="320" width="200" height="120" rx="15" />
+					<rect class="teal" x="695" y="320" width="200" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(710 348)">
+						Submit insurance
+						<tspan x="5" y="25">requirements to</tspan>
+						<tspan x="15" y="50">Accounting for</tspan>
+						<tspan x="30" y="75">verification</tspan>
+					</text>
+
+					<line class="line" x1="895" y1="380" x2="910" y2="380" />
+					<polygon points="910,375 925,380 910,385" />
+
+					<rect class="dark-teal" x="925" y="320" width="250" height="120" rx="15" />
+					<rect class="teal" x="935" y="320" width="250" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(950 348)">
+						Review/approval from
+						<tspan x="15" y="25">Division Manager/</tspan>
+						<tspan x="20" y="50">Practice Lead and</tspan>
+						<tspan x="55" y="75">Accounting</tspan>
+					</text>
+
+					<polyline class="line" points="1060,440 1060,470 120,470 120,485" />
+					<polygon points="115,485 125,485 120,500" />
+
+					<rect class="dark-teal" x="5" y="500" width="210" height="120" rx="15" />
+					<rect class="teal" x="15" y="500" width="210" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(25 553)">
+						Submit to Client for
+						<tspan x="10" y="25">Review/Approval</tspan>
+					</text>
+
+					<line class="line" x1="225" y1="560" x2="240" y2="560" />
+					<polygon points="240,555 255,560 240,565" />
+
+					<rect class="dark-teal" x="255" y="500" width="225" height="120" rx="15" />
+					<rect class="teal" x="265" y="500" width="225" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(305 528)">
+						Draft contract
+						<tspan x="-30" y="25">received from Client;</tspan>
+						<tspan x="-20" y="50">verify information</tspan>
+						<tspan x="25" y="75">in Vision.</tspan>
+					</text>
+
+					<line class="line" x1="490" y1="560" x2="505" y2="560" />
+					<polygon points="505,555 520,560 505,565" />
+
+					<rect class="dark-teal" x="520" y="500" width="210" height="120" rx="15" />
+					<rect class="teal" x="530" y="500" width="210" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(580 540)">
+						Sign off on
+						<tspan x="-5" y="25">checklist by</tspan>
+						<tspan x="-40" y="50">Project Accountant</tspan>
+					</text>
+
+					<line class="line" x1="740" y1="560" x2="755" y2="560" />
+					<polygon points="755,555 770,560 755,565" />
+
+					<rect class="dark-teal" x="770" y="500" width="400" height="120" rx="15" />
+					<rect class="teal" x="780" y="500" width="400" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(790 540)">
+						Review draft contract and project plan
+						<tspan x="5" y="25">by PM, Division Manager, Accounting,</tspan>
+						<tspan x="90" y="50">and CEO as needed</tspan>
+					</text>
+
+					<polyline class="line" points="980,620 980,635 45,635 45,740 60,740" />
+					<polygon points="60,735 75,740 60,745" />
+
+					<rect class="dark-teal" x="75" y="680" width="225" height="120" rx="15" />
+					<rect class="teal" x="85" y="680" width="225" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(105 720)">
+						Negotiate contract
+						<tspan x="-10" y="25">language with Client</tspan>
+						<tspan x="-10" y="50">and revise as needed</tspan>
+					</text>
+
+					<line class="line" x1="310" y1="740" x2="425" y2="740" />
+					<polygon points="425,735 440,740 425,745" />
+
+					<path class="dark-yellow" d="m 632 757 l -83 58 a 18 18 0 0 1 -21 0 l -81 -57 c -11 -7 -11 -24 0 -31 l 83 -58 a 18 18 0 0 1 21 0 l 82 57 c 10 7 10 23 -1 31 z" />
+					<path class="yellow" d="m 642 757 l -83 58 a 18 18 0 0 1 -21 0 l -81 -57 c -11 -7 -11 -24 0 -31 l 83 -58 a 18 18 0 0 1 21 0 l 82 57 c 10 7 10 23 -1 31 z" />
+					<text class="txt black txt-22 txt-bold" transform="translate(510 725)">
+						Contract
+						<tspan x="-50" y="25">changes accepted</tspan>
+						<tspan x="-2" y="50">by client?</tspan>
+					</text>
+
+					<polyline class="line" points="650,740 665,740 665,650 195,650 195,665" />
+					<polygon points="190,665 200,665 195,680" />
+					<text class="txt black txt-bold txt-20" transform="translate(670 695)">
+						No
+					</text>
+					<polyline class="line" points="550,818 550,820 710,820 710,740 770,740" />
+					<polygon points="770,735 785,740 770,745" />
+					<text class="txt black txt-bold txt-20" transform="translate(715 785)">
+						Yes
+					</text>
+
+					<rect class="dark-teal" x="785" y="680" width="400" height="120" rx="15" />
+					<rect class="teal" x="795" y="680" width="400" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(805 720)">
+						Contract is ready to be executed: Have
+						<tspan x="5" y="25">contract signed/partially executed by</tspan>
+						<tspan x="15" y="50">Pres., VP, CEO, or Division Manager</tspan>
+					</text>
+
+					<polyline class="line" points="970,800 970,830 105,830 105,845" />
+					<polygon points="100,845 110,845 105,860" />
+
+					<rect class="dark-teal" x="5" y="860" width="180" height="120" rx="15" />
+					<rect class="teal" x="15" y="860" width="180" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(25 913)">
+						Submit to client
+						<tspan x="15" y="25">for signature</tspan>
+					</text>
+
+					<line class="line" x1="195" y1="920" x2="210" y2="920" />
+					<polygon points="210,915 225,920 210,925" />
+
+					<rect class="dark-teal" x="225" y="860" width="270" height="120" rx="15" />
+					<rect class="teal" x="235" y="860" width="270" height="120" rx="15" />
+					<text class="txt txt-22 txt-bold white" transform="translate(260 890)">
+						Fully execute contract
+						<tspan x="-10" y="25">received. File in proposal</tspan>
+						<tspan x="30" y="50">folder and share</tspan>
+						<tspan x="30" y="75">with Accounting</tspan>
+					</text>
+
+					<line class="line" x1="505" y1="920" x2="520" y2="920" />
+					<polygon points="520,915 535,920 520,925" />
+
+					<a xlink:href="ProjectExecution">
+						<g class="node pop_up move_to_right">
+							<rect class="dark-gray" x="535" y="860" width="200" height="120" rx="15" />
+							<rect class="gray" x="545" y="860" width="200" height="120" rx="15" />
+							<text class="txt txt-22 txt-bold white" transform="translate(610 910)">
+								Project
+								<tspan x="-45" y="25">Execution Phase</tspan>
+							</text>
+							<foreignObject width="40" height="40" x="550" y="865">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="sitemap inverted icon" width="40" height="40"></i>
+								</body>
+							</foreignObject>
+						</g>
+					</a>
+
+					<polyline class="line" points="1000,800 1000,1010 330,1010 330,1025" />
+					<polygon points="325,1025 335,1025 330,1040" />
+
+					<rect class="teal" x="210" y="1040" width="220" height="120" rx="15" />
+					<rect class="light-gray" x="220" y="1040" width="220" height="120" rx="15" />
+					<text class="txt txt-bold gray txt-22" transform="translate(235 1090)">
+						Request Certificate
+						<tspan x="5" y="25">of Insurance (COI)</tspan>
+					</text>
+
+					<line class="line" x1="590" y1="1010" x2="590" y2="1025" />
+					<polygon points="585,1025 595,1025 590,1040" />
+
+					<g class="node pop_up move_to_down" data-object="dpspp_node">
+						<rect class="teal" x="470" y="1040" width="220" height="120" rx="15" />
+						<rect class="light-gray" x="480" y="1040" width="220" height="120" rx="15" />
+						<text class="txt gray txt-bold txt-22" transform="translate(525 1070)">
+							Draft Project
+							<tspan x="-30" y="25">Setup/Project Plan</tspan>
+							<tspan x="-11" y="50">and submit it to</tspan>
+							<tspan x="-31" y="75">Project Accountant</tspan>
+						</text>
+						<foreignObject width="40" height="40" x="485" y="1045">
+							<body xmlns="http://www.w3.org/2000/svg">
+								<i class="external alternate icon" width="40" height="40"></i>
+								<div class="ui longer modal" id="dpspp_node">
+									<i class="close icon"></i>
+									<div class="header">
+										Draft Project Setup/Project Plan and submit to Project Accountant
+									</div>
+									<div class="content">
+										<div class="description">
+											<ul>
+												@{
+                                                	var file2 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("F7941B67-9D5B-4EA3-BD47-4145E258662F"));
+                                                	var file3 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("E3786DC2-A9B8-4897-8794-1D642C43E6CA"));
+                                                }
+												<li>
+													<a href="~/documents/commonfiles/@file2?.FileName" target="_blank">
+                                                          [@file2?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file2?.Id" asp-route-returnUrl="/ATGProcesses/StandardContract"><i class="edit icon"></i></a>
+													}
+													Project Setup fillable form.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file3?.FileName" target="_blank">
+                                                          [@file3?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file3?.Id" asp-route-returnUrl="/ATGProcesses/StandardContract"><i class="edit icon"></i></a>
+													}
+                                                    Project Setup Sheet instructions.</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</body>
+						</foreignObject>
+					</g>
+
+				<line class="line" x1="865" y1="1010" x2="865" y2="1025" />
+					@{ var file4 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("EC79BE4B-2034-4917-B599-5D9205212776"));}
+					<polygon points="860,1025 870,1025 865,1040" />
+
+						<g class="node move_to_down">
+							<foreignObject width="40" height="40" x="745" y="1045">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="file alternate outline icon gray" id="icon_bd" width="40" height="40"></i>
+								</body>
+							</foreignObject>
+							<rect class="teal" x="730" y="1040" width="250" height="120" rx="15" />
+							<rect class="light-gray" x="740" y="1040" width="250" height="120" rx="15" />
+							<a xlink:href="../documents/commonfiles/@file4?.FileName">
+								<text class="txt gray txt-bold txt-22" transform="translate(772 1070)">
+									If urgent start date
+									<tspan x="-6" y="25">and sub-consultants</tspan>
+									<tspan x="20" y="50">on project: see</tspan>
+									<tspan x="-25" y="75">Sub-Consultant Process</tspan>
+								</text>
+							</a>
+							@if (Model.UserI.IsAdmin)
+							{
+								<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file4?.Id" asp-route-returnUrl="/ATGProcesses/StandardContract">
+									<foreignObject width="40" height="40" x="745" y="1045">
+										<body xmlns="http://www.w3.org/2000/svg">
+										<i class="edit alternate icon" width="40" height="40"></i>
+										</body>
+									</foreignObject>
+								</a>
+							}
+						</g>
+				</g>
+			</g>
+		</svg>
+	</div>
+</div>
+
+@section Scripts
+{
+	<script>
+		//Semantic Ui Modals.
+		$('.node').on('click', function () {
+			$('.ui.modal#' + $(this).attr('data-object')).modal('show');
+		});
+	</script>
+}

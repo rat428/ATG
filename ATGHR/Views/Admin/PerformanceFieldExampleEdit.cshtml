@@ -1,0 +1,214 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@{
+	ViewData["Title"] = "Performance Field Example";
+	User ATGUser = (User)Util.GetUser(Context);
+}
+
+<h1 class="ui header center aligned">@(Model == -1 ? "Create a" : "Edit a") Example</h1>
+<div class="ui container light_blue_box">
+	<div class="ui text container">
+		<form id="example_form" class="ui form local_padding_top example_form">
+			<input type="hidden" id="userId" name="userId" value="@ATGUser.UserId" data-serialize="true" />
+			<input type="hidden" id="performanceFieldExampleId" name="performanceFieldExampleId" data-serialize="true" data-primaryKey="true" />
+			<h3 class="ui dividing header">Performance Field Example</h3>
+			<div class="field">
+				<label for="name">Example Description</label>
+				<textarea id="performanceFieldExampleText" name="performanceFieldExampleText" placeholder="Write your example here." data-serialize="true"></textarea>
+			</div>
+			<div class="field">
+				<label for="performanceFieldExampleCategoryId">Category</label>
+				<select class="ui fluid search dropdown" id="performanceFieldExampleCategoryId" name="performanceFieldExampleCategoryId" data-serialize="true"></select>
+			</div>
+			<div class="field">
+				<div class="ui toggle checkbox g">
+					<input type="checkbox" id="general" name="general" data-serialize="true" />
+					<label for="general">Example is for Everyone?</label>
+				</div>
+			</div>
+			<div id="roles" class="field">
+				<label for="Roles">Roles Able to View the Example</label>
+				<select multiple="" id="Roles" name="Roles" class="ui fluid search dropdown" data-serialize="true"></select>
+			</div>
+			<div id="divisions" class="field">
+				<label for="Divisions">Divisions Able to View the Example</label>
+				<select multiple="" id="Divisions" name="Divisions" class="ui fluid search dropdown" data-serialize="true"></select>
+			</div>
+			<div id="practices" class="field">
+				<label for="Practices">Practice Areas Able to View the Example</label>
+				<select multiple="" id="Practices" name="Practices" class="ui fluid search dropdown" data-serialize="true"></select>
+			</div>
+			<div class="field">
+				<div class="ui toggle checkbox">
+					<input type="checkbox" id="activeFlag" name="activeFlag" class="hidden" data-serialize="true" />
+					<label for="activeFlag">Active Example?</label>
+				</div>
+			</div>
+			<div class="ui container center aligned">
+				<button class="ui button" id="add_new_example">@(Model == -1 ? "Create Example" : "Save")</button>
+			</div>
+		</form>
+	</div>
+</div>
+@section Scripts
+	{
+	<script>
+		var id = @Model;
+		var userName = '@ATGUser.Name';
+		var userId = @ATGUser.UserId;
+
+	$(function() {
+		loadLookups({
+			callback: function () {
+				// assign divisions and practices to drop down
+				for (i = 0; i < divisions.length; i++) {
+					if (divisions[i].hasOwnProperty('parentDivisionId')) {
+						$('#Practices').append($('<option></option>')
+							.val(divisions[i].divisionId)
+							.text(divisions[i].name));
+					}
+					else {
+						$('#Divisions').append($('<option></option>')
+							.val(divisions[i].divisionId)
+							.text(divisions[i].name));
+					}
+				};
+
+				for (i = 0; i < roles.length; i++) {
+					$('#Roles').append($('<option></option>')
+						.val(roles[i].roleId)
+						.text(roles[i].name));
+				};
+				
+				for (i = 0; i < performanceFieldExampleCategories.length; i++) {
+					$('#performanceFieldExampleCategoryId').append($('<option></option>')
+						.val(performanceFieldExampleCategories[i].performanceFieldExampleCategoryId)
+						.text(performanceFieldExampleCategories[i].performanceFieldExampleCategoryText));
+				};
+
+				if (id > -1) {
+					$.ajax({
+						url: '/api/Admin/PerformanceFieldExample/@Model',
+						success: function (example) {
+							
+							//console.log(example);
+							for (var property in example.performanceFieldExample) {
+								
+								if (property == 'activeFlag' || property == 'general') {
+									var val = eval('example.performanceFieldExample.' + property);
+									$('#' + property).prop('checked', val);
+								}
+
+								if (property == 'performanceFieldExampleDivisions') {
+									for (var i in example.performanceFieldExample.performanceFieldExampleDivisions) {
+										for (j = 0; j < divisions.length; j++) {
+											if (divisions[j].divisionId == example.performanceFieldExample.performanceFieldExampleDivisions[i].divisionId && divisions[j].hasOwnProperty('parentDivisionId')) {
+												var id = example.performanceFieldExample.performanceFieldExampleDivisions[i].divisionId;
+												$('#example_form').find(':input[name=Practices]').dropdown('set selected', id);
+											}
+											else {
+												var id = example.performanceFieldExample.performanceFieldExampleDivisions[i].divisionId;
+												$('#example_form').find(':input[name=Divisions]').dropdown('set selected', id);
+											}
+										}
+									}
+								}
+								else if (property == 'performanceFieldExampleRoles') {
+									for (var i in example.performanceFieldExample.performanceFieldExampleRoles) {
+										var id = example.performanceFieldExample.performanceFieldExampleRoles[i].roleId;
+										$('#example_form').find(':input[name=Roles]').dropdown('set selected', id);
+									};
+								}
+								else {
+									val = eval('example.performanceFieldExample.' + property);
+									$('#example_form').find(':input[name=' + property + ']').val(val).change();
+								}
+							};
+							//hiding buttons and fields may move buttons to nav bar
+							if (example.general == true) {
+								$('#roles').hide();
+								$('#divisions').hide();
+								$('#practices').hide();
+							};
+						}
+					});
+				}
+				else {
+					$('#example_form').find(':input[name=general]').prop("checked", false);
+					$('#example_form').find(':input[name=performanceFieldExampleId]').val(-1).change();
+					$('#example_form').find(':input[name=activeFlag]').prop("checked", true);
+				}
+
+				$('#general').change(function () {
+					if (this.checked) {
+						$('#roles').hide();
+						$('#example_form').find(':input[name=performanceFieldExampleRoles]').dropdown('clear');
+						$('#divisions').hide();
+						$('#example_form').find(':input[name=performanceFieldExampleDivisions]').dropdown('clear');
+						$('#practices').hide();
+						$('#example_form').find(':input[name=performanceFieldExamplePractices]').dropdown('clear');
+					} else {
+						$('#roles').show();
+						$('#example_form').find(':input[name=performanceFieldExampleRoles]').dropdown('clear');
+						$('#divisions').show();
+						$('#example_form').find(':input[name=performanceFieldExampleDivisions]').dropdown('clear');
+						$('#practices').show();
+						$('#example_form').find(':input[name=performanceFieldExamplePractices]').dropdown('clear');
+					};
+				});
+			}
+		});
+	});
+
+	//$('ui.search.dropdown').dropdown({ fullTextSearch: true });
+
+	$('#add_new_example').on('click select', function () {
+		event.preventDefault();
+		var example = serializeForm('#example_form');
+		example.performanceFieldExampleRoles = [];
+		example.performanceFieldExampleDivisions = [];
+
+		example.Roles.forEach(function(m) {
+			var obj = {
+				performanceFieldExampleId: example.performanceFieldExampleId,
+				RoleId: m
+			};	
+			example.performanceFieldExampleRoles.push(obj);
+		});
+		example.Divisions.forEach(function(m) {
+			var obj = {
+				performanceFieldExampleId: example.performanceFieldExampleId,
+				DivisionId: m
+			};	
+			example.performanceFieldExampleDivisions.push(obj);
+		});
+		example.Practices.forEach(function(m) {
+			var obj = {
+				performanceFieldExampleId: example.performanceFieldExampleId,
+				DivisionId: m
+			};	
+			example.performanceFieldExampleDivisions.push(obj);
+		});
+		delete example.Divisions;
+		delete example.Roles;
+		delete example.Practices;
+		//console.log(example);
+		ajSubmit({
+			data: JSON.stringify(example),
+			url: '/api/Admin/PerformanceFieldExample/Save',
+			workingMessage: 'Saving Example...',
+			successMessage: 'Example Saved!',
+			failedMessage: 'Failed to Save Example.',
+			successFunction: function (data) {
+				if (typeof data.performanceFieldExampleId != 'undefined') {
+					window.location = '/Admin/PerformanceFieldExample/' + data.performanceFieldExampleId;
+				}
+				else {
+					window.location = '/Admin/PerformanceFieldExample';
+				}
+				
+			}
+		});
+	});
+	</script>
+}

@@ -1,0 +1,934 @@
+@model ResourcesFileListDto
+
+@{
+	ViewData["Title"] = "ATG Delivery Process";
+}
+
+<style>
+	.cls-1 {
+		fill: #91a43b;
+	}
+
+	.cls-2 {
+		fill: #bfd74b;
+	}
+
+	.cls-3 {
+		fill: #15a5b6;
+	}
+
+	.cls-4 {
+		fill: #0e6d77;
+	}
+
+	.cls-5,
+	.cls-6 {
+		fill: #fff;
+	}
+
+	.cls-5 {
+		font-size: 28px;
+		font-family: proxima-nova, sans-serif;
+		font-weight: 600;
+	}
+
+	.cls-6 {
+		font-size: 16px;
+		font-family: proxima-nova, sans-serif;
+		font-weight: 500;
+	}
+
+	.cls-9 {
+		font-size: 42px;
+		font-family: proxima-nova, sans-serif;
+		font-weight: 500;
+		fill: #000;
+	}
+
+	.cls-6,
+	.cls-9 {
+		letter-spacing: 0em;
+	}
+
+	.cls-7 {
+		letter-spacing: -0.05em;
+	}
+
+	.cls-8 {
+		letter-spacing: -0.03em;
+	}
+
+	.cls-10 {
+		letter-spacing: 0em;
+	}
+
+	.cls-11 {
+		letter-spacing: 0em;
+	}
+
+	.cls-12 {
+		letter-spacing: -0.04em;
+	}
+
+	.cls-13 {
+		letter-spacing: -0.01em;
+	}
+
+	.cls-14 {
+		letter-spacing: 0em;
+	}
+
+	.cls-15 {
+		letter-spacing: -0.04em;
+	}
+
+	.cls-16 {
+		letter-spacing: -0.02em;
+	}
+
+	.cls-17 {
+		letter-spacing: -0.05em;
+	}
+
+	.cls-18 {
+		letter-spacing: 0em;
+	}
+
+	.cls-19 {
+		letter-spacing: -0.01em;
+	}
+
+	.cls-20 {
+		letter-spacing: -0.12em;
+	}
+
+	#main_flowchart {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+</style>
+
+<div class="ui breadcrumb padding_g">
+	<a href="~/ATGProcesses" class="section">ATG Project Delivery System (Main)</a>
+	@*<i class="right arrow icon divider"></i>*@
+</div>
+<div class="padding_t_2em" style="display: block !important;">
+	<h1 class="ui horizontal divider header margin_tb">
+		ATG Project Delivery System
+	</h1>
+	<div class="padding_g">
+		<p class="">
+			Understand ATG's Project Delivery System with these step-by-step flow charts. Some steps may contain other flow charts ( <i class="sitemap icon"></i>), more details ( <i class="external alternate icon"></i>), or open documents ( <i class="file alternate icon"></i>). Clicking on these steps with the following symbols can redirect you to another flow chart, provide more information in a pop-up window, or download a corresponding document.
+		</p>
+	</div>
+	<div class="ui stackable grid">
+		<div class="row">
+			<div class="eight wide column">
+				<div class="key padding_g">
+					<h4>Symbols used on flowcharts include:</h4>
+					<p><i class="sitemap icon"></i> - View flowchart in depth</p>
+					<p><i class="external alternate icon"></i> - Pop-up contains relevant information</p>
+					<p><i class="file alternate outline icon"></i> - Download/View related document</p>
+				</div>
+			</div>
+			<div class="eight wide column" align="right">
+				<div class="padding_g">
+					<a class="ui button" href="/ATGProcesses/Resources">Documents and Resources <i class="list alternate icon" style="padding-left: 1rem;"></i></a>
+				</div>
+				<sup class="button_sup">(Contains a list of ALL process related documents.)</sup>
+			</div>
+		</div>
+	</div>
+	<div id="main_flowchart">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1789.21 709.84">
+			<g id="Layer_2" data-name="Layer 2">
+				<g id="Layer_1-2" data-name="Layer 1">
+					<path class="cls-1" d="M1739.5,340.8,1524,20.61C1509.15-1.52,1474.6,9,1474.6,35.69V676.07c0,26.67,34.55,37.21,49.44,15.08L1739.5,371A27,27,0,0,0,1739.5,340.8Z" />
+					<g class="main_arrow node pop_up move_to_right" data-object="qaqc_node">
+						<path class="cls-2" d="M1726.52,340.54,1520.46,12.69C1506-10.26,1470.57,0,1470.57,27.07v655.7c0,27.11,35.47,37.33,49.89,14.38L1726.52,369.3A27,27,0,0,0,1726.52,340.54Z" />
+						<rect class="cls-2" y="153.67" width="1515.39" height="355.07" rx="51.97" />
+						<g>
+							<text class="cls-9" transform="translate(300 420)">
+								QA/QC: Ongoing Feedback, Assessments, and Improvement
+							</text>
+						</g>
+						<foreignObject width="100" height="100" x="1420" y="370">
+							<body xmlns="http://www.w3.org/2000/svg">
+								<i class="external alternate icon" width="100" height="100"></i>
+								<div class="ui longer modal" id="qaqc_node">
+									<i class="close icon"></i>
+									<div class="header">
+										ATG Quality Assurance and Quality Control Program
+									</div>
+									<div class="content">
+										<div class="description">
+											The Alliance Transportation Group (ATG) corporate leadership uses strategic quality planning to establish a vision for the corporation and an action plan to achieve that vision. From that Vision, a set of corporate goals has been established for ATG’s Quality  Assurance and Quality Control Program:
+											<ul>
+												<li>Establish a corporate culture that values quality and focuses on delivering quality products that meet or exceed client specifications and expectations; </li>
+												<li>Develop quality processes at the management level that support the development project teams responsible for the development and delivery of quality products and services to clients; </li>
+												<li>Develop a strategic planning process to provide continual improvement in the quality of all corporate products and services; </li>
+												<li>Identify internal and external customer requirements and make corporate decisions that support those requirements; </li>
+												<li>Require that all employees work as a team to develop and support quality goals; </li>
+												<li>Provide training and development to all employees on the processes and methodologies necessary to ensure the creation of quality products and services and the meeting of customer requirements; </li>
+												<li>Establish an ongoing process for the collection and analysis of data relative to quality objectives; </li>
+												<li>Create a process of improvements based on the analysis of that data; and </li>
+												<li>Provide continual feedback to managerial and functional personnel for further quality process improvement. </li>
+											</ul>
+											<h2>QA/QC Resources</h2>
+											<hr />
+											The procedures and processes that have been defined for ATG’s Quality Program are described in the ATG Quality Assurance and Quality Control Plan which is one of the resources for QA/QC made available along with other resources assemble by the ATG Quality Committee.  Here are the resources:
+											<ul>
+												@{
+													var file1 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("8B5256BD-C150-4FE6-91BF-ECA2F997BB5A"));
+													var file2 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("E6DD8CE1-A117-45AF-9D4E-FBDE55107501"));
+													var file3 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("0A3C3577-E34D-464F-95D6-0D24D500B2D5"));
+													var file4 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("4B95FFA0-287A-4FBD-8957-159E788D057D"));
+													var file5 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("0CAF1655-F96B-4AAE-B3E5-1CADE99939D0"));
+													var file6 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("C413C955-CDC9-46D1-9EC8-2155AA4CA65B"));
+													var file7 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("DF66144F-5127-4E70-9945-21D3D3F89657"));
+													var file8 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("D7FA63E6-449B-4BBA-8123-24577BA12036"));
+													var file9 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("1EE4CFBA-BBAA-4336-8343-2F9B697A3BAE"));
+													var file10 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("BF45A8FB-4017-4993-BDC6-381DB231BAA8"));
+													var file11 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("C1DA427A-C6E9-49BF-9334-3DB2B961E24A"));
+													var file12 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("97F2F214-12A0-429F-BFE9-4E80CCF48220"));
+													var file13 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("63D23F3A-0753-41D8-96F1-57E003FAF6BA"));
+													var file14 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("8F33C6B8-660E-4FFC-B23C-5A9B2945DA12"));
+													var file15 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("DA13D103-9C94-4681-A885-6330D8633A39"));
+													var file16 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("88A18DBC-29A4-426D-B6B5-66ACDA89C57B"));
+													var file17 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("397CFE3B-B71B-4EC0-AE5D-686D029A39BB"));
+													var file18 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("7F4ED3C5-AA3C-4775-817F-6CAF58DD66F3"));
+													var file19 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("4AE5CA64-7DFA-4FEA-9F25-709544DC455E"));
+													var file20 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("493BEC3F-B6C8-4509-9F80-7BFC9E8FE0A0"));
+													var file21 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("D259879C-A52B-4AEF-BDB6-81CF54243BA3"));
+													var file22 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("59943E8C-C119-4D4A-92C9-8CD8EB83CC21"));
+													var file23 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("FB0C8422-E2B4-4153-BE12-957398F8C51D"));
+													var file24 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("3AA8A95E-D05C-4465-B39B-95B856EAF8BC"));
+													var file25 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("B05E27A1-5196-45BC-AF93-9D5FBFE3103C"));
+													var file26 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("5F8C7926-9224-4D6D-82A9-9E20C07515AD"));
+													var file27 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("1BEC9A16-6571-42F9-9BC3-A90FD8CF5DDA"));
+													var file28 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("05D7E84D-3F2D-4441-938F-A9566903DB64"));
+													var file29 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("1491B820-EC10-48F9-860B-AA133F8CE1CA"));
+													var file30 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("3CDFC1F1-5086-410B-AA0F-B1CE324F9F25"));
+													var file31 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("F23A9EAF-2C00-44F4-8C08-B2DF3FAF3694"));
+													var file32 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("76D407AA-F3C5-4E28-9707-C08E1C67C2AB"));
+													var file33 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("36F96EAA-4C29-434B-9EA2-CB8D0A3A0009"));
+													var file34 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("708DA0BE-5B6D-4AD6-83BF-CEA8704D95A5"));
+													var file35 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("885791A2-2403-4F3B-A41B-D4CC61789564"));
+													var file36 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("4B4CC655-C0FE-4555-8E81-DE2BA8E00522"));
+													var file37 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("6455629E-E298-47A1-9A61-E16FFC9C486F"));
+													var file38 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("5FA7AA9D-54E7-4F8A-B921-E6BD7B8EF061"));
+													var file39 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("29C382D9-4F0B-4D5C-9992-F33975108F20"));
+													var file40 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("759E950A-2EF0-4351-B171-F59188405B58"));
+													var file41 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("875C7BA5-D640-4389-B461-FE5C9EDEE39C"));
+													var file42 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("F90CF902-8BE1-4F04-9BF1-214C3F900E54"));
+													var file43 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("CD86D261-66DD-4E5D-8DD6-055851DAC478"));
+													var file44 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("17B77BA5-4BBC-4BEF-A4F9-16A687F22B9D"));
+													var file45 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("DA925FB8-1DEB-4C3D-AEC3-5D5B8C61AC4B"));
+													var file46 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("A1A06B72-B3DD-48FD-B485-84F013F3A7B8"));
+													var file47 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("BDA88C89-A03C-463C-AEDD-EA4765381F40"));
+													var file48 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("FA469DA3-426D-4903-8CC8-54735AF532EA"));
+												}
+
+												<li>Alliance QA-QC Plan</li>
+												<ul>
+													<li>
+                                                        <a href="~/documents/commonfiles/@file1?.FileName" target="_blank">
+                                                        	[@file1?.Extension.Substring(1).ToUpper()]
+															@file1?.Title
+                                                        </a>
+														@if (Model.UserI.IsAdmin)
+														{
+															<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file1?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+														}
+													</li>
+												</ul>
+												<li>Alliance QA Audit Forms</li>
+												<ul>
+													<li>
+														<a href="~/documents/commonfiles/@file2?.FileName" target="_blank">
+                                                        	[@file2?.Extension.Substring(1).ToUpper()]
+															@file2?.Title
+                                                        </a>
+														@if (Model.UserI.IsAdmin)
+														{
+															<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file2?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+														}
+													</li>
+												</ul>
+												<li>Sample Project QA-QC Plans and Templates</li>
+												<ul>
+													<li>
+														<a href="~/documents/commonfiles/@file3?.FileName" target="_blank">
+															[@file3?.Extension.Substring(1).ToUpper()]
+															@file3?.Title
+														</a>
+														@if (Model.UserI.IsAdmin)
+														{
+															<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file3?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+														}
+													</li>
+												</ul>
+												<li>Sample QA and QC Checklists</li>
+												<ul>
+													<li>Engineering</li>
+													<ul>
+														<li>ENG_Illumination</li>
+														<ul>
+															<li>
+																<a href="~/documents/commonfiles/@file4?.FileName" target="_blank">
+																	[@file4?.Extension.Substring(1).ToUpper()]
+																	@file4?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file4?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file5?.FileName" target="_blank">
+																	[@file5?.Extension.Substring(1).ToUpper()]
+																	@file5?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file5?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file6?.FileName" target="_blank">
+																	[@file6?.Extension.Substring(1).ToUpper()]
+																	@file6?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file6?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+														</ul>
+														<li>ENG_Report</li>
+														<ul>
+															<li>
+																<a href="~/documents/commonfiles/@file7?.FileName" target="_blank">
+																	[@file7?.Extension.Substring(1).ToUpper()]
+																	@file7?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file7?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file8?.FileName" target="_blank">
+																	[@file8?.Extension.Substring(1).ToUpper()]
+																	@file8?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file8?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file9?.FileName" target="_blank">
+																	[@file9?.Extension.Substring(1).ToUpper()]
+																	@file9?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file9?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+														</ul>
+														<li>ENG_Roadway</li>
+														<ul>
+															<li>
+																<a href="~/documents/commonfiles/@file10?.FileName" target="_blank">
+																	[@file10?.Extension.Substring(1).ToUpper()]
+																	@file10?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file10?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file11?.FileName" target="_blank">
+																	[@file11?.Extension.Substring(1).ToUpper()]
+																	@file11?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file11?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file12?.FileName" target="_blank">
+																	[@file12?.Extension.Substring(1).ToUpper()]
+																	@file12?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file12?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file13?.FileName" target="_blank">
+																	[@file13?.Extension.Substring(1).ToUpper()]
+																	@file13?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file13?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file14?.FileName" target="_blank">
+																	[@file14?.Extension.Substring(1).ToUpper()]
+																	@file14?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file14?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file15?.FileName" target="_blank">
+																	[@file15?.Extension.Substring(1).ToUpper()]
+																	@file15?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file15?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file16?.FileName" target="_blank">
+																	[@file16?.Extension.Substring(1).ToUpper()]
+																	@file16?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file16?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+														</ul>
+														<li>ENG_Signals</li>
+														<ul>
+															<li>
+																<a href="~/documents/commonfiles/@file17?.FileName" target="_blank">
+																	[@file17?.Extension.Substring(1).ToUpper()]
+																	@file17?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file17?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file18?.FileName" target="_blank">
+																	[@file18?.Extension.Substring(1).ToUpper()]
+																	@file18?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file18?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file19?.FileName" target="_blank">
+																	[@file19?.Extension.Substring(1).ToUpper()]
+																	@file19?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file19?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file20?.FileName" target="_blank">
+																	[@file20?.Extension.Substring(1).ToUpper()]
+																	@file20?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file20?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+														</ul>
+														<li>ENG_Simulation</li>
+														<ul>
+															<li>
+																<a href="~/documents/commonfiles/@file21?.FileName" target="_blank">
+																	[@file21?.Extension.Substring(1).ToUpper()]
+																	@file21?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file21?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file22?.FileName" target="_blank">
+																	[@file22?.Extension.Substring(1).ToUpper()]
+																	@file22?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file22?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file23?.FileName" target="_blank">
+																	[@file23?.Extension.Substring(1).ToUpper()]
+																	@file23?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file23?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file24?.FileName" target="_blank">
+																	[@file24?.Extension.Substring(1).ToUpper()]
+																	@file24?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file24?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file25?.FileName" target="_blank">
+																	[@file25?.Extension.Substring(1).ToUpper()]
+																	@file25?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file25?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file26?.FileName" target="_blank">
+																	[@file26?.Extension.Substring(1).ToUpper()]
+																	@file26?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file26?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+														</ul>
+														<li>ENG_TCPS</li>
+														<ul>
+															<li>
+																<a href="~/documents/commonfiles/@file27?.FileName" target="_blank">
+																	[@file27?.Extension.Substring(1).ToUpper()]
+																	@file27?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file27?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file28?.FileName" target="_blank">
+																	[@file28?.Extension.Substring(1).ToUpper()]
+																	@file28?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file28?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file29?.FileName" target="_blank">
+																	[@file29?.Extension.Substring(1).ToUpper()]
+																	@file29?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file29?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file30?.FileName" target="_blank">
+																	[@file30?.Extension.Substring(1).ToUpper()]
+																	@file30?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file30?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+														</ul>
+														<li>ENG_TIA</li>
+														<ul>
+															<li>
+																<a href="~/documents/commonfiles/@file31?.FileName" target="_blank">
+																	[@file31?.Extension.Substring(1).ToUpper()]
+																	@file31?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file31?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file32?.FileName" target="_blank">
+																	[@file32?.Extension.Substring(1).ToUpper()]
+																	@file32?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file32?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file33?.FileName" target="_blank">
+																	[@file33?.Extension.Substring(1).ToUpper()]
+																	@file33?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file33?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file34?.FileName" target="_blank">
+																	[@file34?.Extension.Substring(1).ToUpper()]
+																	@file34?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file34?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+														</ul>
+														<li>
+															[JPG] Alliance Internal QAQC Stamp
+															<br/>
+															<a href="~/documents/QA/Sample QA and QC Checklists/Engineering/Alliance_InternalQAQC_Stamp(05-02-2016).jpg"><img src="~/documents/QA/Sample QA and QC Checklists/Engineering/Alliance_InternalQAQC_Stamp(05-02-2016).jpg" width="30%"/></a>
+
+														</li>
+														<li>
+															<a href="~/documents/commonfiles/@file35?.FileName" target="_blank">
+																[@file35?.Extension.Substring(1).ToUpper()]
+																@file35?.Title
+															</a>
+															@if (Model.UserI.IsAdmin)
+															{
+																<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file35?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+															}
+														</li>
+													</ul>
+													<li>Planning</li>
+													<ul>
+														<li>Data</li>
+														<ul>
+															<li>
+																<a href="~/documents/commonfiles/@file36?.FileName" target="_blank">
+																	[@file36?.Extension.Substring(1).ToUpper()]
+																	@file36?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file36?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+														</ul>
+														<li>Travel Demand Forecasting</li>
+														<ul>
+															<li>
+																<a href="~/documents/commonfiles/@file37?.FileName" target="_blank">
+																	[@file37?.Extension.Substring(1).ToUpper()]
+																	@file37?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file37?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file38?.FileName" target="_blank">
+																	[@file38?.Extension.Substring(1).ToUpper()]
+																	@file38?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file38?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file39?.FileName" target="_blank">
+																	[@file39?.Extension.Substring(1).ToUpper()]
+																	@file39?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file39?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file40?.FileName" target="_blank">
+																	[@file40?.Extension.Substring(1).ToUpper()]
+																	@file40?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file40?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file41?.FileName" target="_blank">
+																	[@file41?.Extension.Substring(1).ToUpper()]
+																	@file41?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file41?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+															<li>
+																<a href="~/documents/commonfiles/@file42?.FileName" target="_blank">
+																	[@file42?.Extension.Substring(1).ToUpper()]
+																	@file42?.Title
+																</a>
+																@if (Model.UserI.IsAdmin)
+																{
+																	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file42?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+																}
+															</li>
+
+														</ul>
+													</ul>
+													<li>Technical Writing and Meeting Displays</li>
+													<ul>
+														<li>
+															<a href="~/documents/commonfiles/@file43?.FileName" target="_blank">
+																[@file43?.Extension.Substring(1).ToUpper()]
+																@file43?.Title
+															</a>
+															@if (Model.UserI.IsAdmin)
+															{
+																<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file43?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+															}
+														</li>
+														<li>
+															<a href="~/documents/commonfiles/@file44?.FileName" target="_blank">
+																[@file44?.Extension.Substring(1).ToUpper()]
+																@file44?.Title
+															</a>
+															@if (Model.UserI.IsAdmin)
+															{
+																<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file44?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+															}
+														</li>
+														<li>
+															<a href="~/documents/commonfiles/@file45?.FileName" target="_blank">
+																[@file45?.Extension.Substring(1).ToUpper()]
+																@file45?.Title
+															</a>
+															@if (Model.UserI.IsAdmin)
+															{
+																<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file45?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+															}
+														</li>
+													</ul>
+												</ul>
+												<li>Sample QA and QC Logs</li>
+												<ul>
+													<li>
+														<a href="~/documents/commonfiles/@file46?.FileName" target="_blank">
+															[@file46?.Extension.Substring(1).ToUpper()]
+															@file46?.Title
+														</a>
+														@if (Model.UserI.IsAdmin)
+														{
+															<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file46?.Id" asp-route-returnUrl="/ATGProcesses/Index"><i class="edit icon"></i></a>
+														}
+													</li>
+												</ul>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</body>
+						</foreignObject>
+					</g>
+					<a xlink:href="/ATGProcesses/RecordsRetention">
+						<g class="node move_to_right link" id="retention_schedule">
+							<foreignObject width="50" height="50" x="1520" y="105">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="sitemap icon inverted" width="50" height="50"></i>
+								</body>
+							</foreignObject>
+							<rect class="cls-3" x="1530" y="100" width="225" height="220" rx="15" />
+							<rect class="cls-4" x="1515" y="100" width="225" height="220" rx="15" />
+							<text class="cls-5" transform="translate(1570 175)">
+								Retention
+								<tspan x="5" y="30">Schedule</tspan>
+							</text>
+							<text class="cls-6" transform="translate(1570 230)">
+								Hard Copy Files,
+								<tspan x="5" y="20">Electronic Files</tspan>
+							</text>
+						</g>
+					</a>
+					<a xlink:href="/ATGProcesses/ProjectCloseout">
+						<g class="node pop_up move_to_right">
+							<rect class="cls-3" x="1399.89" y="302.93" width="61.02" height="17.33" transform="translate(2.77 -12.47) rotate(0.5)" />
+							<rect class="cls-3" x="1399.89" y="98.25" width="61.02" height="17.33" />
+							<path class="cls-3" d="M1441.4,311.78l-65-82.53c-9.11-11.57-8.9-30.36.49-41.76l66.52-80.77c9.4-11.42,24.57-11.28,33.7.31l65,82.46c9.06,11.49,8.85,30.17-.48,41.49l-66.8,81.11C1465.46,323.39,1450.45,323.25,1441.4,311.78Z" />
+							<path class="cls-4" d="M1268.81,289.74l1.37-164.55c.13-15.81,10.71-28.61,23.52-28.45l150.9,1.93c12.83.16,23.22,13.25,23.09,29.09l-1.36,164.45c-.13,15.71-10.65,28.43-23.38,28.27l-151.27-1.93C1279,318.39,1268.68,305.42,1268.81,289.74Z" />
+							<path class="cls-4" d="M1431.06,309.47l-64-81.05c-9-11.37-8.82-29.77.34-40.9l64.89-78.92c9.17-11.15,24-11,33,.43l63.91,81c8.92,11.29,8.76,29.58-.33,40.64l-65.17,79.24C1454.66,320.93,1440,320.74,1431.06,309.47Z" />
+							<text class="cls-5" transform="translate(1340 150)">
+								Project
+								<tspan x="-10" y="30">Closeout</tspan>
+							</text>
+							<text class="cls-6" transform="translate(1335 205)">
+								Closeout Form,
+								<tspan x="5" y="20">Client Survey,</tspan>
+								<tspan x="-7" y="40">Update Resumes,</tspan>
+								<tspan x="2" y="60">Update Project</tspan>
+								<tspan x="15" y="80">Description</tspan>
+							</text>
+							<foreignObject width="50" height="50" x="1290" y="105">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="sitemap icon inverted" width="100" height="100"></i>
+								</body>
+							</foreignObject>
+						</g>
+					</a>
+					<a xlink:href="/ATGProcesses/ProjectExecution">
+						<g class="node move_to_right link" id="project_execution">
+							<foreignObject width="50" height="50" x="1040" y="105">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="sitemap icon inverted" id="icon_bd" width="100" height="100"></i>
+								</body>
+							</foreignObject>
+							<rect class="cls-3" x="1158.75" y="302.93" width="61.02" height="17.33" transform="translate(2.76 -10.37) rotate(0.5)" />
+							<rect class="cls-3" x="1158.75" y="98.25" width="61.02" height="17.33" />
+							<path class="cls-3" d="M1200.26,311.78l-65-82.53c-9.12-11.57-8.9-30.36.48-41.76l66.53-80.77c9.4-11.42,24.57-11.28,33.7.31l65,82.46c9.06,11.49,8.84,30.17-.48,41.49l-66.8,81.11C1224.32,323.39,1209.3,323.25,1200.26,311.78Z" />
+							<path class="cls-4" d="M1027.67,289.74,1029,125.19c.14-15.81,10.72-28.61,23.53-28.45l150.9,1.93c12.83.16,23.22,13.25,23.09,29.09l-1.36,164.45c-.13,15.71-10.65,28.43-23.38,28.27l-151.27-1.93C1037.83,318.39,1027.54,305.42,1027.67,289.74Z" />
+							<path class="cls-4" d="M1189.92,309.47l-64-81.05c-9-11.37-8.81-29.77.34-40.9l64.9-78.92c9.17-11.15,24-11,33,.43l63.91,81c8.91,11.29,8.76,29.58-.34,40.64l-65.16,79.24C1213.52,320.93,1198.81,320.74,1189.92,309.47Z" />
+							<text class="cls-5" transform="translate(1100 160)">
+								Project
+								<tspan x="-15" y="30">Execution</tspan>
+							</text>
+							<text class="cls-6" transform="translate(1097 215)">
+								Project Setup,
+								<tspan x="-17" y="20">Project Work Plans,</tspan>
+								<tspan x="-20" y="40">Project Performance,</tspan>
+								<tspan x="-23" y="60">Production, Reporting</tspan>
+							</text>
+						</g>
+					</a>
+					<a xlink:href="/ATGProcesses/Contracts">
+						<g class="node move_to_right link" id="contracts">
+							<foreignObject width="50" height="50" x="797.82" y="102.93">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="sitemap icon inverted" id="icon_bd" width="50" height="50"></i>
+								</body>
+							</foreignObject>
+							<rect class="cls-3" x="915.82" y="302.93" width="61.02" height="17.33" transform="translate(2.76 -8.25) rotate(0.5)" />
+							<rect class="cls-3" x="915.82" y="98.25" width="61.02" height="17.33" />
+							<path class="cls-3" d="M957.33,311.78l-65-82.53c-9.12-11.57-8.9-30.36.48-41.76l66.53-80.77c9.4-11.42,24.57-11.28,33.7.31l65,82.46c9.06,11.49,8.84,30.17-.48,41.49l-66.8,81.11C981.39,323.39,966.37,323.25,957.33,311.78Z" />
+							<path class="cls-4" d="M784.74,289.74l1.36-164.55c.14-15.81,10.72-28.61,23.53-28.45l150.9,1.93c12.83.16,23.22,13.25,23.09,29.09l-1.36,164.45c-.13,15.71-10.65,28.43-23.38,28.27l-151.27-1.93C794.9,318.39,784.61,305.42,784.74,289.74Z" />
+							<path class="cls-4" d="M947,309.47l-64-81.05c-9-11.37-8.81-29.77.34-40.9l64.9-78.92c9.17-11.15,24-11,33,.43l63.91,81c8.91,11.29,8.76,29.58-.34,40.64l-65.16,79.24C970.59,320.93,955.88,320.74,947,309.47Z" />
+							<text class="cls-5" transform="translate(850 185)">
+								Contracts
+							</text>
+							<text class="cls-6" transform="translate(835 210)">
+								Negotiations, Contract
+								<tspan x="-5" y="20">Provisions, COI, Contract</tspan>
+								<tspan x="0" y="40">Review, Fully Executed</tspan>
+							</text>
+						</g>
+					</a>
+					<a xlink:href="/ATGProcesses/BusinessDevelopment">
+						<g class="node move_to_right link" id="business_development">
+							<foreignObject width="50" height="50" x="557.03" y="102.93">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="sitemap icon inverted" id="icon_bd" width="50" height="50"></i>
+								</body>
+							</foreignObject>
+							<rect class="cls-3" x="674.03" y="302.93" width="61.02" height="17.33" transform="translate(2.75 -6.14) rotate(0.5)" />
+							<rect class="cls-3" x="674.03" y="98.25" width="61.02" height="17.33" />
+							<path class="cls-3" d="M715.54,311.78l-65-82.53c-9.12-11.57-8.9-30.36.48-41.76l66.53-80.77c9.4-11.42,24.57-11.28,33.7.31l65,82.46c9.06,11.49,8.84,30.17-.48,41.49l-66.8,81.11C739.6,323.39,724.58,323.25,715.54,311.78Z" />
+							<path class="cls-4" d="M543,289.74l1.36-164.55c.14-15.81,10.72-28.61,23.53-28.45l150.9,1.93c12.83.16,23.22,13.25,23.09,29.09l-1.36,164.45c-.13,15.71-10.65,28.43-23.38,28.27l-151.27-1.93C553.11,318.39,542.82,305.42,543,289.74Z" />
+							<path class="cls-4" d="M705.2,309.47l-64-81.05c-9-11.37-8.81-29.77.34-40.9l64.9-78.92c9.17-11.15,24-11,33,.43l63.91,81c8.91,11.29,8.76,29.58-.34,40.64l-65.16,79.24C728.8,320.93,714.09,320.74,705.2,309.47Z" />
+							<text class="cls-5" transform="translate(625 170)">
+								Business
+								<tspan x="-25" y="30">Development</tspan>
+							</text>
+							<text class="cls-6" transform="translate(620 225)">
+								Capture Planning,
+								<tspan x="-5" y="20">Proposal, Interview,</tspan>
+								<tspan x="30" y="40">Selection</tspan>
+							</text>
+						</g>
+					</a>
+					<a xlink:href="/ATGProcesses/AnnualBusinessPlan">
+						<g class="node move_to_right link" id="annual_business_plan">
+							<foreignObject width="50" height="50" x="310" y="105">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="sitemap icon inverted" width="50" height="50"></i>
+								</body>
+							</foreignObject>
+							<rect class="cls-3" x="431.49" y="302.93" width="61.02" height="17.33" transform="translate(2.74 -4.02) rotate(0.5)" />
+							<rect class="cls-3" x="431.49" y="98.25" width="61.02" height="17.33" />
+							<path class="cls-3" d="M473,311.78l-65-82.53c-9.12-11.57-8.9-30.36.48-41.76L475,106.72c9.4-11.42,24.56-11.28,33.7.31l65,82.46c9.06,11.49,8.84,30.17-.48,41.49l-66.8,81.11C497.06,323.39,482,323.25,473,311.78Z" />
+							<path class="cls-4" d="M300.41,289.74l1.36-164.55c.13-15.81,10.72-28.61,23.53-28.45l150.9,1.93c12.83.16,23.22,13.25,23.09,29.09l-1.37,164.45c-.13,15.71-10.65,28.43-23.38,28.27l-151.27-1.93C310.57,318.39,300.28,305.42,300.41,289.74Z" />
+							<path class="cls-4" d="M462.65,309.47l-64-81.05c-9-11.37-8.81-29.77.34-40.9l64.9-78.92c9.17-11.15,24-11,33,.43l63.91,81c8.91,11.29,8.76,29.58-.34,40.64l-65.16,79.24C486.26,320.93,471.55,320.74,462.65,309.47Z" />
+							<text class="cls-5" transform="translate(380 170)">
+								Annual
+								<tspan x="-35" y="30">Business Plan</tspan>
+							</text>
+							<text class="cls-6" transform="translate(364 225)">
+								Revenue Estimate,
+								<tspan x="20" y="20">Staffing Plan,</tspan>
+								<tspan x="35" y="40">Budget</tspan>
+							</text>
+						</g>
+					</a>
+					<a xlink:href="/ATGProcesses/StrategicPlan">
+						<g class="node move_to_right link" id="strategic_plan">
+							<foreignObject width="50" height="50" x="65" y="105">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="sitemap icon inverted" id="icon_bd" width="50" height="50"></i>
+								</body>
+							</foreignObject>
+							<rect class="cls-3" x="186.47" y="302.93" width="61.02" height="17.33" transform="translate(2.73 -1.88) rotate(0.5)" />
+							<rect class="cls-3" x="186.47" y="98.25" width="61.02" height="17.33" />
+							<path class="cls-3" d="M228,311.78l-65-82.53c-9.12-11.57-8.9-30.36.48-41.76L230,106.72c9.4-11.42,24.57-11.28,33.7.31l65,82.46c9.06,11.49,8.84,30.17-.48,41.49l-66.8,81.11C252,323.39,237,323.25,228,311.78Z" />
+							<path class="cls-4" d="M55.39,289.74l1.36-164.55c.14-15.81,10.72-28.61,23.53-28.45l150.9,1.93c12.83.16,23.22,13.25,23.09,29.09l-1.36,164.45c-.13,15.71-10.66,28.43-23.38,28.27L78.26,318.55C65.55,318.39,55.26,305.42,55.39,289.74Z" />
+							<path class="cls-4" d="M217.63,309.47l-64-81.05c-9-11.37-8.81-29.77.34-40.9l64.9-78.92c9.17-11.15,24-11,33,.43l63.91,81c8.91,11.29,8.76,29.58-.34,40.64l-65.16,79.24C241.24,320.93,226.53,320.74,217.63,309.47Z" />
+							<text class="cls-5" transform="translate(90 200)">
+								Strategic Plan
+							</text>
+							<text class="cls-6" transform="translate(110 225)">
+								5 Year Plan, Goals
+							</text>
+						</g>
+					</a>
+				</g>
+			</g>
+		</svg>
+	</div>
+
+</div>
+
+@section Scripts
+{
+	<script>
+		//Semantic Ui Modals.
+		$('.node').on('click', function () {
+			$('.ui.modal#' + $(this).attr('data-object')).modal('show');
+		});
+
+		$('.node').hover(function () {
+			$(this).find('.cls-4').addClass('is_hovered');
+		}, function () {
+			$(this).find('.cls-4').removeClass('is_hovered');
+		});
+	</script>
+}

@@ -1,0 +1,228 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@{
+	ViewData["Title"] = "HR Landing Page";
+	User ATGUser = (User)Util.GetUser(Context);
+}
+
+<div class="ui container padding_t_2em">
+	<div class="ui stackable grid">
+			<div class="row">
+				<div class="five wide column">
+					@* User ID card. *@
+					<div class="ui card my_info">
+						@*<img class="ui centered tiny circular image profile_img" src="img/user.png" alt="profile picture" />*@
+						<div class="content left aligned my_emp_info">
+							<h1 class="center aligned">@ATGUser.Name</h1>
+							<div class="description">
+								<div class="ui grid">
+									<div class="row">
+										<p class="six wide column job_title">Job Title: </p>
+										<p class="ten wide column job_title">@ATGUser.JobTitle</p>
+									</div>
+									<div class="row">
+										<p class="six wide column division">Practice: </p>
+										<p class="ten wide column division">@ATGUser.Division?.Name</p>
+									</div>
+									@*<div class="row">
+										<p class="six wide column manager">Manager: </p>
+										<p class="ten wide column manager">@ATGUser.Manager?.Name</p>
+									</div>*@
+									<div class="row">
+										<p class="six wide column start_date">Start Date: </p>
+										<p class="ten wide column start_date">@String.Format("{0:MM/dd/yyyy}", ATGUser.StartDate)</p>
+									</div>
+									<div class="row">
+										<p class="six wide column extention">Office: </p>
+										<p class="ten wide column extention">@Html.Raw(ATGUser.ATGOffice?.Address)</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="local_padding_top hide_in_mobile">
+						<img class="ui centered image" src="img/stay_on_target.svg" alt="staying on target" />
+					</div>
+				</div>
+
+					<div class="eleven wide column">
+						@* goal container *@
+						<div class="ui container banner" id="preloaded_goals">
+							<h2>My Current Goals</h2>
+							<ol id="user_goals">
+							</ol>
+						</div>
+
+						@* goal sheet and review sheet cards *@
+						<div class="ui container cards" id="sheet_cards">
+							<div class="ui styled fluid accordion" id="card_holder">
+								@* accordion title and content goes here *@
+							</div>
+						</div>
+					</div>
+			</div>
+	</div>
+</div>
+
+@* accordion title *@
+<div class="title" id="ac_title_template">
+	<span class="gr_sheet_year" align="center"></span>
+	<span><i class="plus circle icon"></i><i class="minus circle icon"></i></span>
+</div>
+
+@* accordion content *@
+<div class="content" id="ac_content_template">
+	<div class="ui link cards"></div>
+</div>
+
+@* card templates *@
+<div class="sheet card" id="card_template">
+	<div class="header prog_bar">
+		<div class="column"><span class="sheet_type"></span></div>
+		<div class="ui two column centered grid">
+			<div class="column sheet_status_bar">
+				<div class="ui equal width column grid sheet_progress_bar goal_progress_bar">
+					<div class="column">
+						<div alt="Employee Progress"></div>
+					</div>
+					<div class="column">
+						<div alt="Manager Progress"></div>
+					</div>
+					<div class="column">
+						<div alt="Division Lead Progress"></div>
+					</div>
+					<div class="column">
+						<div alt="Human Resources Progress"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="image">
+		<img src="~/img/goal_sheet.svg" />
+	</div>
+	<div class="content">
+		<span class="status"></span>
+		@*<div class="sheet_timestamp">
+				Sent to Manager On:&nbsp; <span class="sheet_e_complete_time">.sheet_e_complete_time</span>
+			</div>*@
+		<div>Year: &nbsp; <span class="sh_year"></span></div>
+		<div>Due: &nbsp; <span class="due_date"></span></div>
+	</div>
+	<div class="sheet_card_actions" align="center">
+		<a href="#" class="ui button view_sheet_btn">VIEW</a>
+	</div>
+	<div class="ui dimmer">
+		<div class="content">
+			<h2 class="ui inverted icon header">
+				<i class="thumbs up icon"></i>
+				<span class="sheet_type"></span>
+				<br />
+				Sheet Approved
+			</h2>
+			<h3><span class="sheet_type"></span> &nbsp;sheet is done.</h3>
+		</div>
+	</div>
+</div>
+
+@section Scripts
+	{
+	<script>
+		var goalSheets;
+
+		$(function () {
+			// underlines top menu options
+			$('#performance_nav').addClass('active');
+			$.get('/api/Performance/HomePageGoals', function (sheets) {
+				var mostRecentSheet = false;
+				//  append current goals to main banner
+				var textGoals = [];
+				sheets[0].performanceGoalSheetItems[0].performanceGoalSheetItems.forEach(function (goal, i) {
+					textGoals.push(goal.performanceGoalSheetItemTexts[0].contents);
+				});
+				var blank = textGoals.every(function (text) { return text === '' });
+
+				if (blank) {
+				//goals are blank
+						var goal_text = "There are no current goals for this year. Please create them in your goalsheet below.";
+						$('#user_goals').append("<div class='ui yellow message'>" + goal_text + "</div>");
+				} else {
+				//fill goals in user goals section on home page.
+						$.each(sheets[0].performanceGoalSheetItems[0].performanceGoalSheetItems, function (j, items) {
+								$.each(items.performanceGoalSheetItemTexts, function (k, text) {
+										$('#user_goals').append("<li>" + text.contents + "</li>");
+								});
+						})
+				}
+				$.each(sheets, function (i, sheet) {
+					mostRecentSheet = (i === 0) ? true : false;
+					// build accordion sections based on number of goal sheets
+						// because there will always be an equal number or one more goal sheet in existence than review sheets.
+					var ac_title = $('#ac_title_template').clone().attr('id', 'ac_title_' + sheet.year).appendTo('#card_holder');
+					ac_title.find('.gr_sheet_year').text(sheet.year);
+					var ac_content = $('#ac_content_template').clone().attr('id', 'ac_content_' + sheet.year).appendTo('#card_holder');
+					var ac_content_cards = ac_content.find('.ui.link.cards');
+
+					if (mostRecentSheet) {
+						ac_title.addClass('active');
+						ac_content.addClass('active');
+					}
+
+					// build/customize goal sheet cards
+					var gSheetCard = $('#card_template').clone().attr('id', "goal_sheet_" + i).appendTo(ac_content_cards);
+					setStatus(gSheetCard, sheet.employeeComplete, sheet.managerComplete, sheet.leadComplete, sheet.hrComplete);
+					gSheetCard.find('.sheet_progress_bar>div.column>div').addClass('goal_progress');
+					gSheetCard.find('.sheet_type').text('Goals');
+					gSheetCard.find('.sh_year').text(sheet.year);
+					gSheetCard.find('.due_date').text($.format.date(sheet.dueDate, 'MM/dd/yyyy'))	;
+					gSheetCard.find('a.view_sheet_btn').attr('href', '/Performance/GoalSheet/' + sheet.performanceGoalSheetId);
+
+					// Dimming card if status is done. undimming on hover.
+					if (sheet.hrComplete) {
+						gSheetCard.dimmer('show');
+
+						gSheetCard.hover(function () {
+							gSheetCard.dimmer('hide');
+						}, function () {
+								gSheetCard.dimmer('show');
+						});
+					}
+				});
+				$.get('/api/Performance/HomePageReviews', function (sheets) {
+					$.each(sheets, function (i, sheet) {
+						//set content box to append card
+						var ac_r_content = $('#ac_content_' + sheet.year).find('.ui.link.cards');
+						//build review card
+						var rSheetCard = $('#card_template').clone().attr('id', "review_sheet_" + i).appendTo(ac_r_content);
+						setStatus(rSheetCard, sheet.employeeComplete, sheet.managerComplete, sheet.leadComplete, sheet.hrComplete);
+						rSheetCard.find('.image img').attr('src', '/img/review_sheet.svg');
+						rSheetCard.find('.sheet_progress_bar').removeClass('goal_progress_bar').addClass('review_progress_bar');
+						rSheetCard.find('.sheet_progress_bar>div.column>div').addClass('review_progress');
+						rSheetCard.find('.sheet_type').text('Performance Review');
+						rSheetCard.find('.sh_year').text(sheet.year);
+						rSheetCard.find('.due_date').text($.format.date(sheet.dueDate, 'MM/dd/yyyy'))	;
+						rSheetCard.find('a.view_sheet_btn').attr('href', '/Performance/ReviewSheet/' + sheet.performanceReviewSheetId);
+
+						// Dimming card if status is done. undimming on hover.
+						if (sheet.hrComplete) {
+							rSheetCard.dimmer('show');
+							rSheetCard.hover(function () {
+								rSheetCard.dimmer('hide');
+							}, function () {
+									rSheetCard.dimmer('show');
+								});
+						}
+					});
+				});
+			});
+
+			$(document).on('click', '.sheet.card' , function () {
+				//console.log('im clicked');
+				var url = $(this).find('.view_sheet_btn').attr('href');
+				window.location.href = url;
+			});
+
+		});
+	</script>
+
+}

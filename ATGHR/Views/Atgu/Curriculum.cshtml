@@ -1,0 +1,250 @@
+@model dynamic
+
+@{
+	ViewBag.Title = "Curriculum";
+	Layout = "_Layout";
+}
+
+<div class="ui equal width center aligned padded grid stackable relaxed">
+
+<h1 style="margin-top: 70px;">ATG University Curriculum </h1>
+<div class="row " style="margin: 50px 10px 25px;">
+	<div class="ten wide left floated column">
+
+		<div class="ui stacked segment teal">
+			<div class="ui header" style="font-weight: normal">
+				<b>Knowledge, Skills and Abilities, i.e. KSAs</b>
+				, are those necessary to provide quality professional services and conduct the other aspects of business at ATG.
+			</div>
+			<div class="inline">
+				<a asp-action="HrPracticeLadder" class="ui  right labeled icon   button" style="margin-bottom: 10px;"> <i class="right arrow icon"></i>Practice (P-P10)</a>
+				<a asp-action="HrBusinessLadder" class="ui  right labeled icon   button" style="margin-bottom: 10px;"> <i class="right arrow icon"></i>Business (B-B10)</a>
+				<a asp-action="HrAdministrativeLadder" class="ui  right labeled icon   button" style="margin-bottom: 10px;"> <i class="right arrow icon"></i>Administrative (A-A5)</a>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<a asp-action="TestAzureToken" class="ui    button" style="margin-bottom: 10px;"> Test Calendar </a>
+<a asp-action="TestCreateEvent" class="ui    button" style="margin-bottom: 10px;"> Test Create </a>
+<a asp-action="GetScheduleTest" class="ui    button" style="margin-bottom: 10px;"> Test GetSchedule </a>
+<div class="row " style="margin: 50px 10px 25px;">
+	<div class="ten wide right floated column">
+
+		<div class="ui stacked segment teal">
+			<div class="ui header" style="font-weight: normal">
+				<b>Ladders</b>
+				define the KSAs required at the various levels of professional development.
+			</div>
+
+			<div class="ui relaxed divided list" style="text-align: left;">
+
+				<div class="item">
+					<i class="large arrow right middle aligned icon"></i>
+					<div class="content">
+						<div class="description">
+							P-Learning Levels
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<i class="large arrow right middle aligned icon"></i>
+					<div class="content">
+						<div class="description">
+							B-Learning Levels
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<i class="large arrow right middle aligned icon"></i>
+					<div class="content">
+						<div class="description">
+							A-Learning Levels TBD
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="inline" style="text-align: right">
+					<a asp-action="LevelsAndTopics" class="ui   right labeled icon  button" style="margin-bottom: 10px;"><i class="right arrow icon"></i>Ladders</a>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="row " style="margin: 50px 10px 25px;">
+	<div class="ten wide left floated column">
+
+		<div class="ui stacked segment teal">
+			<div class="ui header" style="font-weight: normal">
+				<b>Levels</b> define the sequential development of the necessary KSAs, as shown on the various ladders.
+			</div>
+
+			<div class="ui relaxed divided list" style="text-align: left;">
+
+				<div class="item">
+					<i class="large arrow right middle aligned icon"></i>
+					<div class="content">
+						<div class="description">
+							Learning
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<i class="large arrow right middle aligned icon"></i>
+					<div class="content">
+						<div class="description">
+							Teaching
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<i class="large arrow right middle aligned icon"></i>
+					<div class="content">
+						<div class="description">
+							Leadership
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<i class="large arrow right middle aligned icon"></i>
+					<div class="content">
+						<div class="description">
+							Executive
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="inline" style="text-align: right">
+					<a asp-action="Levels" class="ui   right labeled icon  button" style="margin-bottom: 10px;"><i class="right arrow icon"></i>Levels </a>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="row " style="margin: 50px 10px 25px;">
+	<div class="ten wide right floated column">
+
+		<div class="ui stacked segment teal">
+			<div class="ui header" style="font-weight: normal">
+				<b>Subject Areas</b> define similar class topics that can be used for discussion, concentration and tracking of progress along of each of the KSAs.
+			</div>
+
+			<div class="ui relaxed divided list" style="text-align: left;">
+				<div class="item">
+					<i class="large globe middle aligned icon"></i>
+					<div class="content">
+						<a class="header">Human Resource (HR) </a>
+						<div class="description">
+							Courses that are relevant to your employment and standard employment tasks.
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<i class="large globe middle aligned icon"></i>
+					<div class="content">
+						<a class="header">Personal Development (Pers) </a>
+						<div class="description">
+							Courses that are relevant to your personal professional development.
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<i class="large globe middle aligned icon"></i>
+					<div class="content">
+						<a class="header">Project Delivery (PD) </a>
+						<div class="description">
+							Courses required to understand ATG’s business model and project life cycle, i.e. PMP and all the components required when managing and working on a project. All staff will take these broad, introductory level courses.
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<i class="large globe middle aligned icon"></i>
+					<div class="content">
+						<a class="header">Communication (Comm) </a>
+						<div class="description">
+							Courses that are relevant to how you communicate with others in a team and/or leadership position.
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<i class="large globe middle aligned icon"></i>
+					<div class="content">
+						<a class="header">Project Management (PM) </a>
+						<div class="description">
+							Advanced courses required for those seeking the internal Project Management Certification; as well as, made available to advanced technical staff seeing to increase their knowledge of project management.
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<i class="large globe middle aligned icon"></i>
+					<div class="content">
+						<a class="header">Technical Development (Tech) </a>
+						<div class="description">
+							Courses relevant to continued technical development as assigned by a Supervisor.
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<i class="large globe middle aligned icon"></i>
+					<div class="content">
+						<a class="header">Business Development (BD) </a>
+						<div class="description">
+							Courses relevant to the project life cycle prior to contract signature including developing and maintaining Client Relationships, developing Leads, tracking Opportunities, creating and developing Proposals.
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+	</div>
+</div>
+
+<div class="row " style="margin: 50px 10px 25px;">
+	<div class="ten wide left floated column">
+
+		<div class="ui stacked segment teal">
+			<div class="ui header" style="font-weight: normal">
+				<b>Recommended Courses</b> are courses that cover the KSAs and minimum topics for each of the Learning Levels.
+			</div>
+
+			<br>
+			<div class="inline" style="text-align: right">
+				<a asp-action="RecommendedCourses" class="ui   right labeled icon  button" style="margin-bottom: 10px;"><i class="right arrow icon"></i>Recommended Courses </a>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="row " style="margin: 50px 10px 25px;">
+	<div class="five wide right floated column">
+
+		<div class="ui stacked segment teal" style=" width: 300px;">
+			<div class="ui header" style="font-weight: normal">
+				<b>Roles</b>
+			</div>
+
+			<br>
+			<div class="inline" style="text-align: right">
+				<a asp-action="Roles" class="ui   right labeled icon  button" style="margin-bottom: 10px;"><i class="right arrow icon"></i>Roles </a>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+</div>
+
+
+

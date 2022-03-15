@@ -1,0 +1,1070 @@
+@using ATGHR.Models.Database
+@{
+	ViewData["Title"] = "Goal Sheet";
+	User ATGUser = (User)ViewData["User"];
+}
+<div class="show_for_print">
+	<img class="ui image small" src="~/img/atg_color_logo.svg" />
+</div>
+<div class="ui teal inverted segment refresh_warning">
+	Please click <a href="">here</a> to keep your session active.
+</div>
+<div class="sheet_sub_nav local_active">
+	<div class="ui container">
+		<button class="ui button print_sheet" onclick="window.print()"><i class="print icon"></i> Print</button>
+		<button class="expander local_active" aria-label="hide sheet menu"><i class="dropdown icon"></i></button>
+		<div class="spacer" style="clear: both"></div>
+	</div>
+</div>
+<div class="local_spacer local_active" style="display:none;">&nbsp;</div>
+<h1 class="ui header center aligned"><span id="sheet_year"></span> Goals (Audit Version)</h1>
+<div class="ui stackable grid container">
+	<div class="ten wide column page_header_info">
+		<h2 class="ui header container" id="user_name"></h2>
+		<h3 class="ui header container">Role: <span id="user_role"></span></h3>
+		<h3 class="ui header container">Division Name: <span id="user_division"></span></h3>
+		<h3 class="ui header container" style="display: none;">Practice Name: <span id="user_practice"></span></h3>
+		<h3 class="ui header container">Due: <span id="sheet_due_date"></span></h3>
+	</div>
+	<div class="six wide column">
+		<div class="ui equal width grid sheet_progress_bar goal_progress_bar">
+			<div class="column">
+				<div class="goal_progress" alt="Employee Progress"></div>
+			</div>
+			<div class="column">
+				<div class="goal_progress" alt="Manager Progress"></div>
+			</div>
+			<div class="column">
+				<div class="goal_progress" alt="Division Lead Progress"></div>
+			</div>
+			<div class="column">
+				<div class="goal_progress" alt="Human Resources Progress"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="ui container" id="weight_warning" text-align="center">
+	<div class="ui red message" id="expected_100" style="display: none">Your weights combined are <strong>not</strong> 100%. Instead they equal <strong><span></span>%</strong>. <br /> The weights must add up to 100%. Please adjust your weights accordingly.</div>
+</div>
+
+<form class="ui form" id="goal_sheet" method="post" action="" onsubmit="return false;">
+	<div class="ui container padding_tb" id="tab_container">
+		<div class="ui top attached tabular menu goals wrapped" id="tab_headers">
+			<!-- menu tabs get placed here -->
+			<div class="item active" data-tab="company_wide_goals" id="company_wide_goals"><h2>Company</h2></div>
+			<div class="item" data-tab="tab_template" id="tab_header" style="display: none;"><h2></h2></div>
+		</div>
+		<!-- tab bodies get "appended" here -->
+		<div class='ui bottom attached tab segment active' id="comapny_wide_goals_body" data-tab="company_wide_goals">
+			<h2 class="ui header centered">Company Wide Goals</h2>
+			<table class="ui celled table">
+				<thead>
+					<tr>
+						<th data-label="Name">&nbsp;</th>
+						<th data-label="Company">Company</th>
+						<th data-label="Division">Division</th>
+						<th data-label="Practice">Practice</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="cwg_row table_row" data-pfield="Job Starts">
+						<td data-label="Name">Job Starts</td>
+						<td data-label="Company"><span class="company table_item" data-pfield="Job Starts">$0</span></td>
+						<td data-label="Division">
+							<div class="content">
+								<p>ENG: <span class="eng table_item" data-division="Engineering" data-pfield="Job Starts">$0</span></p>
+								<p>PLAN: <span class="plan table_item" data-division="Planning" data-pfield="Job Starts">$0</span></p>
+								<p>ADMIN: <span class="admin table_item" data-division="Administration" data-pfield="Job Starts">$0</span></p>
+							</div>
+						</td>
+						<td data-label="Practice">
+							<div class="content">
+								<p>Traffic: <span class="traffic table_item" data-division="Traffic" data-practice="true" data-pfield="Job Starts">$0</span></p>
+								<p>Roadway: <span class="roadway table_item" data-division="Roadway" data-practice="true" data-pfield="Job Starts">$0</span></p>
+								<p>Planning: <span class="planning table_item" data-division="Planning" data-practice="true" data-pfield="Job Starts">$0</span></p>
+								<p>Data: <span class="data table_item" data-division="Data Systems and Analysis" data-practice="true" data-pfield="Job Starts">$0</span></p>
+							</div>
+						</td>
+					</tr>
+					<tr class="cwg_row table_row" data-pfield="Revenues">
+						<td data-label="Name">Revenues</td>
+						<td data-label="Company"><span class="company table_item" data-pfield="Revenues">$0</span></td>
+						<td data-label="Division">
+							<div class="content">
+								<p>ENG: <span class="eng table_item" data-division="Engineering" data-pfield="Revenues">$0</span></p>
+								<p>PLAN: <span class="plan table_item" data-division="Planning" data-pfield="Revenues">$0</span></p>
+								<p>ADMIN: <span class="admin table_item" data-division="Administration" data-pfield="Revenues">$0</span></p>
+							</div>
+						</td>
+						<td data-label="Practice">
+							<div class="content">
+								<p>Traffic: <span class="traffic table_item" data-division="Traffic" data-practice="true" data-pfield="Revenues">$0</span></p>
+								<p>Roadway: <span class="roadway table_item" data-division="Roadway" data-practice="true" data-pfield="Revenues">$0</span></p>
+								<p>Planning: <span class="planning table_item" data-division="Planning" data-practice="true" data-pfield="Revenues">$0</span></p>
+								<p>Data: <span class="data table_item" data-division="Data Systems and Analysis" data-practice="true" data-pfield="Revenues">$0</span></p>
+							</div>
+						</td>
+					</tr>
+					<tr class="cwg_row table_row" data-pfield="Utilization">
+						<td data-label="Name">Utilization</td>
+						<td data-label="Company" class="company table_item" data-pfield="Utilization">%</td>
+						<td data-label="Division">
+							<div class="content">
+								<p>ENG: <span class="eng table_item" data-division="Engineering" data-pfield="Utilization">%</span></p>
+								<p>PLAN: <span class="plan table_item" data-division="Planning" data-pfield="Utilization">%</span></p>
+								<p>ADMIN: <span class="admin table_item" data-division="Administration" data-pfield="Utilization">%</span></p>
+							</div>
+						</td>
+						<td data-label="Practice">
+							<div class="content">
+								<p>Traffic: <span class="traffic table_item" data-division="Traffic" data-practice="true" data-pfield="Utilization">%</span></p>
+								<p>Roadway: <span class="roadway table_item" data-division="Roadway" data-practice="true" data-pfield="Utilization">%</span></p>
+								<p>Planning: <span class="planning table_item" data-division="Planning" data-practice="true" data-pfield="Utilization">%</span></p>
+								<p>Data: <span class="data table_item" data-division="Data Systems and Analysis" data-practice="true" data-pfield="Utilization">%</span></p>
+							</div>
+						</td>
+					</tr>
+					<tr class="cwg_row table_row" data-pfield="Multiplier">
+						<td data-label="Name">Multiplier</td>
+						<td data-label="Company"><span class="company table_item" data-pfield="Multiplier">0.0</span></td>
+						<td data-label="Division">
+							<div class="content">
+								<p>ENG: <span class="eng table_item" data-division="Engineering" data-pfield="Multiplier">0.0</span></p>
+								<p>PLAN: <span class="plan table_item" data-division="Planning" data-pfield="Multiplier">0.0</span></p>
+								<p>ADMIN: <span class="admin table_item" data-division="Administration" data-pfield="Multiplier">0.0</span></p>
+							</div>
+						</td>
+						<td data-label="Practice">
+							<div class="content">
+								<p>Traffic: <span class="traffic table_item" data-division="Traffic" data-practice="true" data-pfield="Multiplier">0.0</span></p>
+								<p>Roadway: <span class="roadway table_item" data-division="Roadway" data-practice="true" data-pfield="Multiplier">0.0</span></p>
+								<p>Planning: <span class="planning table_item" data-division="Planning" data-practice="true" data-pfield="Multiplier">0.0</span></p>
+								<p>Data: <span class="data table_item" data-division="Data Systems and Analysis" data-practice="true" data-pfield="Multiplier">0.0</span></p>
+							</div>
+						</td>
+					</tr>
+					<tr class="cwg_row table_row" data-pfield="MUT">
+						<td data-label="Name">MUT</td>
+						<td data-label="Company"><span class="company table_item" data-pfield="MUT">0.0</span></td>
+						<td data-label="Division">
+							<div class="content">
+								<p>ENG: <span class="eng table_item" data-division="Engineering" data-pfield="MUT">0.0</span></p>
+								<p>PLAN: <span class="plan table_item" data-division="Planning" data-pfield="MUT">0.0</span></p>
+								<p>ADMIN: <span class="admin table_item" data-division="Administration" data-pfield="MUT">0.0</span></p>
+							</div>
+						</td>
+						<td data-label="Practice">
+							<div class="content">
+								<p>Traffic: <span class="traffic table_item" data-division="Traffic" data-practice="true" data-pfield="MUT">0.0</span></p>
+								<p>Roadway: <span class="roadway table_item" data-division="Roadway" data-practice="true" data-pfield="MUT">0.0</span></p>
+								<p>Planning: <span class="planning table_item" data-division="Planning" data-practice="true" data-pfield="MUT">0.0</span></p>
+								<p>Data: <span class="data table_item" data-division="Data Systems and Analysis" data-practice="true" data-pfield="MUT">3.25</span></p>
+							</div>
+						</td>
+					</tr>
+					<tr class="cwg_row table_row" data-pfield="A/R">
+						<td data-label="Name">A/R</td>
+						<td data-label="Company"><span class="company table_item" data-pfield="A/R">$0.00 > 120 Days</span></td>
+						<td data-label="Division"><span class="division table_item" data-pfield="A/R">$0.00 > 120 Days</span></td>
+						<td data-label="Practice"><span class="practice table_item" data-pfield="A/R">$0.00 > 120 Days</span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class='ui bottom attached tab segment' id="tab_body" data-tab="tab_template" style="display: none;">
+			<h2 class=""></h2>
+			<span class="add_span" style="display: none;">
+				<button class="circular ui button icon add_more"><i class="plus icon"></i></button>
+				<a href="#">Add </a>
+			</span>
+		</div>
+	</div>
+	<div class="ui container center aligned local_padding_top">
+	</div>
+</form>
+@*----------------------Item Template-----------------------------------*@
+<div class="performance_item" id="item_template" style="display: none;" aria-hidden="true">
+	<div class="white_form_box margin_tb" id="top_level">
+		<div class="ui form">
+			<h3 class="ui header performance_header" style="display: none;"></h3>
+			<h4 class="ui header performance_children_header" style="display: none;"></h4>
+			<div class="ui grid performance_top_form_row" style="display: none;">
+				<div class="two column row stackable top_row">
+					<div class="field column performance_due_date">
+						<label for="due_date">Due Date:</label>
+						<input type="date" name="performanceGoalSheetItemDate" />
+					</div>
+					<div class="field column performance_weight">
+						<label class="weight_label" for="weight" data-content="Set this weight out of 100%.">Weight of Importance:</label>
+						<div class="ui icon input">
+							<input type="number" name="weight" placeholder="30" step="any" />
+							<i class="percent icon"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="field performance_division_description" style="display: none;"><strong>Division: </strong><span id="d_goal"></span></div>
+			<div class="field performance_practice_description" style="display: none;"><strong>Practice: </strong><span id="p_goal"></span></div>
+			<div class="performance_text  margin_b" style="display: none;"></div>
+			<div class="ui fluid accordion item_detail margin_t margin_b">
+				<div class="title">
+					<i class="dropdown icon"></i>
+					Details
+				</div>
+				<div class="content">
+					<div class="performance_children" style="display: none;">
+						<span class="add_span" style="display: none;">
+							<button class="circular ui button icon add_more"><i class="plus icon"></i></button>
+							<a href="#">Add </a>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="performance_comment performance_comment_top" data-serialize="false">
+				<div class="ui accordion comment_box">
+					<div class="title active">
+						<button class="c_add comment_action" aria-label="Discussion" title="Click to create a discussion.">Discussion (<span class="comment_count">0</span>) &nbsp;<i class="comments icon"></i></button>
+					</div>
+					<div class="content ">
+						<div class="accordion comment_box performance_comment" performanceItemTextId="">
+							<div class="title">
+							</div>
+							<div class="content">
+								<textarea type="text" placeholder="Comment" class="comment_text" rows="2"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="performance_delete_button margin_t" align="right" style="display: none;">
+				<button class="ui inverted red button performance_delete_button" id="">Delete</button>
+			</div>
+
+			<div class="performance_addExample_button margin_t" align="right" style="display: none;">
+				<button class="ui inverted green button performance_addExample_button" id="">View Suggestions</button>
+			</div>
+
+		</div>
+	</div>
+	<div class="ui fluid accordion item_detail_past margin_t margin_b" id="PastAccordion">
+		<div class="title">
+			<i class="dropdown icon"></i>
+			Past Versions
+		</div>
+		<div class="content active" id="PastAccordionContent">
+		</div>
+	</div>
+</div>
+
+@*-----------------------------Comment Template--------------------------------------*@
+<div id="comment_template" class="performance_comment" style="display: none;">
+	<div class="c_owner"></div>
+	<div class="c_timestamp"></div>
+	<p class="c_text"></p>
+	<div class="c_textinput" style="display: none;">
+		<textarea type="text" placeholder="Comment" class="comment_text" rows="2"></textarea>
+		<button class="c_save comment_action" aria-label="Save Comment">Save &nbsp;<i class="save icon"></i></button>
+	</div>
+	<button class="c_edit comment_action" aria-label="Edit Comment">Edit &nbsp;<i class="eraser icon"></i></button>
+	<span class="hide_for_print">&nbsp;</span>
+	<button class="c_delete comment_action" aria-label="Delete Comment">Delete &nbsp;<i class="trash icon"></i></button>
+	<div class="accordion comment_box margin_l performance_comment" performanceItemTextId="">
+		<div class="title">
+			<button class="c_reply comment_action" aria-label="Reply">Reply &nbsp;<i class="comments icon"></i></button>
+		</div>
+		<div class="content">
+			<textarea type="text" placeholder="Comment" class="comment_text" rows="2"></textarea>
+			<button class="c_save comment_action" aria-label="Save Comment">Save &nbsp;<i class="save icon"></i></button>
+		</div>
+	</div>
+	<div class="accordion comment_box margin_l performance_comment performance_comment_replies" style="display: none;">
+		<div class="title plusminus"></div>
+		<div class="content"></div>
+	</div>
+</div>
+
+<div class="move_page_container">
+	<div align="right"><button class="back-to-top"><i class="arrow up icon"></i></button></div>
+</div>
+
+@*------------------------------suggest a goal--------------------------------------------------*@
+<div class="ui modal suggest_modal">
+	<i class="close icon"></i>
+	<div class="header">
+		Add a suggested goal?
+	</div>
+	<div class="light_blue_box">
+		<form class="ui form" id="suggest_form">
+			<div class="field" id="suggest_select">
+				<h3 class="ui center aligned header">Select a goal from the following list of suggested goals.</h3>
+				<select id="suggested_exampleId" name="suggested_exampleId" class="ui fluid search dropdown"></select>
+			</div>
+			<img class="ui small image centered margin_t" src="~/img/files.svg" alt="files" />
+		</form>
+	</div>
+	<div class="actions">
+		<button name="assign_example_button" id="assign_example_button" class="fluid ui inverted orange button margin_t">Assign</button>
+	</div>
+</div>
+
+@section Scripts
+	{
+	<script>
+	var sheet;
+	var self;
+	var done;
+	var goalWeights;
+	var sheetType = 'Goal';
+	var data = {
+		"userId": 46,
+		"self": true,
+		"supervisor": false,
+		"lead": false,
+		"administrator": true,
+		"sheet": {
+			"performanceGoalSheetItems": [
+				{
+					"performanceGoalSheetItemId": 2068,
+					"performanceGoalSheetId": 148,
+					"performanceFieldId": 83,
+					"dataDatetime": "2020-04-27T08:01:48.653",
+					"performanceGoalSheetItems": [
+						{
+							"performanceGoalSheetItemId": 2457,
+							"performanceGoalSheetId": 148,
+							"parentPerformanceGoalSheetItemId": 2068,
+							"performanceFieldId": 95,
+							"past": false,
+							"deleted": false,
+							"dataDatetime": "2020-04-27T08:01:48.683",
+							"performanceGoalSheetItemTexts": [
+								{
+									"performanceGoalSheetItemTextId": 277,
+									"performanceGoalSheetItemId": 2457,
+									"performanceTextTypeId": 1,
+									"userId": 46,
+									"contents": "25%",
+									"dataDatetime": "2020-04-27T08:01:50.82"
+								}
+							]
+						},
+						{
+							"performanceGoalSheetItemId": 2457,
+							"performanceGoalSheetId": 148,
+							"parentPerformanceGoalSheetItemId": 2068,
+							"performanceFieldId": 95,
+							"past": true,
+							"deleted": false,
+							"dataDatetime": "2020-04-27T08:01:48.683",
+							"performanceGoalSheetItemTexts": [
+								{
+									"performanceGoalSheetItemTextId": 277,
+									"performanceGoalSheetItemId": 2457,
+									"performanceTextTypeId": 1,
+									"userId": 46,
+									"contents": "500000000000000000000% Single handedly fund the firm",
+									"dataDatetime": "2020-04-27T08:01:50.82"
+								}
+							]
+						},
+
+					]
+				},
+				//overall qualitative goal
+				{
+					"performanceGoalSheetItemId": 2069,
+					"performanceGoalSheetId": 148,
+					"performanceFieldId": 84,
+					"dataDatetime": "2020-04-27T08:01:48.653",
+					"performanceGoalSheetItems": [
+						{
+							//Goal 1
+							"performanceGoalSheetItemId": 2454,
+							"performanceGoalSheetId": 148,
+							"parentPerformanceGoalSheetItemId": 2069,
+							"performanceGoalSheetItemDate": "2020-09-30T00:00:00",
+							"performanceFieldId": 88,
+							"weight": 0.3333000000000000,
+							"itemOrder": 0,
+							"dataUserId": 46,
+							"past": false,
+							"deleted": false,
+							"dataDatetime": "2020-05-12T17:20:21.02",
+							"performanceGoalSheetItemTexts": [
+								{
+									"performanceGoalSheetItemTextId": 274,
+									"performanceGoalSheetItemId": 2454,
+									"performanceTextTypeId": 1,
+									"userId": 46,
+									"contents": "stuff",
+									"dataDatetime": "2020-05-12T17:20:21.02"
+								},
+								{
+									"performanceGoalSheetItemTextId": 1757,
+									"performanceGoalSheetItemId": 2454,
+									"performanceTextTypeId": 2,
+									"userId": 46,
+									"contents": "a",
+									"dataDatetime": "2020-05-12T17:19:48.013"
+								}
+							],
+							"performanceGoalSheetItems": [
+								{
+									"performanceGoalSheetItemId": 3267,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2454,
+									"performanceFieldId": 89,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"past": false,
+									"deleted": false,
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1087,
+											"performanceGoalSheetItemId": 3267,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3270,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2454,
+									"performanceFieldId": 90,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"past": false,
+									"deleted": false,
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1090,
+											"performanceGoalSheetItemId": 3270,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3273,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2454,
+									"performanceFieldId": 91,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"past": false,
+									"deleted": false,
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1093,
+											"performanceGoalSheetItemId": 3273,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3276,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2454,
+									"performanceFieldId": 92,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"past": false,
+									"deleted": false,
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1096,
+											"performanceGoalSheetItemId": 3276,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								}
+							]
+						},
+						// past version of goal 1
+						{
+							"performanceGoalSheetItemId": 2454,
+							"performanceGoalSheetId": 148,
+							"parentPerformanceGoalSheetItemId": 2069,
+							"performanceGoalSheetItemDate": "2020-10-30T00:00:00",
+							"performanceFieldId": 88,
+							"weight": 0.25,
+							"itemOrder": 0,
+							"dataUserId": 46,
+							"past": true,
+							"deleted": false,
+							"dataDatetime": "2020-05-11T17:20:21.02",
+							"performanceGoalSheetItemTexts": [
+								{
+									"performanceGoalSheetItemTextId": 274,
+									"performanceGoalSheetItemId": 2454,
+									"performanceTextTypeId": 1,
+									"userId": 46,
+									"contents": "old stuff",
+									"dataDatetime": "2020-05-12T17:20:21.02"
+								},
+								{
+									"performanceGoalSheetItemTextId": 1757,
+									"performanceGoalSheetItemId": 2454,
+									"performanceTextTypeId": 2,
+									"userId": 46,
+									"contents": "a",
+									"dataDatetime": "2020-05-12T17:19:48.013"
+								}
+							],
+							"performanceGoalSheetItems": [
+								{
+									"performanceGoalSheetItemId": 3267,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2454,
+									"performanceFieldId": 89,
+									"past": true,
+									"deleted": false,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1087,
+											"performanceGoalSheetItemId": 3267,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3270,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2454,
+									"performanceFieldId": 90,
+									"past": true,
+									"deleted": false,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1090,
+											"performanceGoalSheetItemId": 3270,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3273,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2454,
+									"performanceFieldId": 91,
+									"past": true,
+									"deleted": false,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1093,
+											"performanceGoalSheetItemId": 3273,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3276,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2454,
+									"performanceFieldId": 92,
+									"past": true,
+									"deleted": false,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1096,
+											"performanceGoalSheetItemId": 3276,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								}
+							]
+						},
+						// goal 2
+						{
+							"performanceGoalSheetItemId": 2455,
+							"performanceGoalSheetId": 148,
+							"parentPerformanceGoalSheetItemId": 2069,
+							"performanceGoalSheetItemDate": "2020-09-30T00:00:00",
+							"performanceFieldId": 88,
+							"weight": 0.3333000000000000,
+							"itemOrder": 1,
+							"dataUserId": 46,
+							"past": false,
+							"deleted": false,
+							"dataDatetime": "2020-05-12T17:20:21.02",
+							"performanceGoalSheetItemTexts": [
+								{
+									"performanceGoalSheetItemTextId": 275,
+									"performanceGoalSheetItemId": 2455,
+									"performanceTextTypeId": 1,
+									"userId": 46,
+									"contents": "a",
+									"dataDatetime": "2020-05-12T17:20:21.02"
+								},
+								{
+									"performanceGoalSheetItemTextId": 1758,
+									"performanceGoalSheetItemId": 2455,
+									"performanceTextTypeId": 2,
+									"userId": 46,
+									"contents": "a",
+									"dataDatetime": "2020-05-12T17:20:06.837"
+								}
+							],
+							"performanceGoalSheetItems": [
+								{
+									"performanceGoalSheetItemId": 3265,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2455,
+									"performanceFieldId": 89,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1085,
+											"performanceGoalSheetItemId": 3265,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3268,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2455,
+									"performanceFieldId": 90,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1088,
+											"performanceGoalSheetItemId": 3268,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3271,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2455,
+									"performanceFieldId": 91,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1091,
+											"performanceGoalSheetItemId": 3271,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3274,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2455,
+									"performanceFieldId": 92,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1094,
+											"performanceGoalSheetItemId": 3274,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								}
+							]
+						},
+						// goal 3
+						{
+							"performanceGoalSheetItemId": 2456,
+							"performanceGoalSheetId": 148,
+							"parentPerformanceGoalSheetItemId": 2069,
+							"performanceGoalSheetItemDate": "2020-09-30T00:00:00",
+							"performanceFieldId": 88,
+							"weight": 0.3334000000000000,
+							"itemOrder": 2,
+							"dataUserId": 46,
+							"past": false,
+							"deleted": true,
+							"dataDatetime": "2020-05-12T17:20:50.407",
+							"performanceGoalSheetItemTexts": [
+								{
+									"performanceGoalSheetItemTextId": 276,
+									"performanceGoalSheetItemId": 2456,
+									"performanceTextTypeId": 1,
+									"userId": 46,
+									"contents": "Delete Recent version",
+									"dataDatetime": "2020-05-12T17:20:21.02"
+								},
+								{
+									"performanceGoalSheetItemTextId": 1759,
+									"performanceGoalSheetItemId": 2456,
+									"performanceTextTypeId": 2,
+									"userId": 46,
+									"contents": "a",
+									"dataDatetime": "2020-05-12T17:20:12.693"
+								}
+							],
+							"performanceGoalSheetItems": [
+								{
+									"performanceGoalSheetItemId": 3266,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2456,
+									"performanceFieldId": 89,
+									"past": false,
+									"deleted": true,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1086,
+											"performanceGoalSheetItemId": 3266,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3269,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2456,
+									"performanceFieldId": 90,
+									"past": false,
+									"deleted": true,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1089,
+											"performanceGoalSheetItemId": 3269,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3272,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2456,
+									"performanceFieldId": 91,
+									"past": false,
+									"deleted": true,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1092,
+											"performanceGoalSheetItemId": 3272,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3275,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2456,
+									"performanceFieldId": 92,
+									"past": false,
+									"deleted": true,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1095,
+											"performanceGoalSheetItemId": 3275,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:21:13.983"
+										}
+									]
+								}
+							]
+						},
+						// goal 3 past
+						{
+							"performanceGoalSheetItemId": 2456,
+							"performanceGoalSheetId": 148,
+							"parentPerformanceGoalSheetItemId": 2069,
+							"performanceGoalSheetItemDate": "2020-09-30T00:00:00",
+							"performanceFieldId": 88,
+							"weight": 0.3334000000000000,
+							"itemOrder": 2,
+							"dataUserId": 46,
+							"past": true,
+							"deleted": true,
+							"dataDatetime": "2020-05-12T17:20:50.407",
+							"performanceGoalSheetItemTexts": [
+								{
+									"performanceGoalSheetItemTextId": 276,
+									"performanceGoalSheetItemId": 2456,
+									"performanceTextTypeId": 1,
+									"userId": 46,
+									"contents": "Deleted Old Version",
+									"dataDatetime": "2020-05-12T17:20:21.02"
+								},
+								{
+									"performanceGoalSheetItemTextId": 1759,
+									"performanceGoalSheetItemId": 2456,
+									"performanceTextTypeId": 2,
+									"userId": 46,
+									"contents": "a",
+									"dataDatetime": "2020-05-12T17:20:12.693"
+								}
+							],
+							"performanceGoalSheetItems": [
+								{
+									"performanceGoalSheetItemId": 3266,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2456,
+									"performanceFieldId": 89,
+									"past": true,
+									"deleted": true,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1086,
+											"performanceGoalSheetItemId": 3266,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3269,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2456,
+									"performanceFieldId": 90,
+									"past": true,
+									"deleted": true,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1089,
+											"performanceGoalSheetItemId": 3269,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3272,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2456,
+									"performanceFieldId": 91,
+									"past": true,
+									"deleted": true,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1092,
+											"performanceGoalSheetItemId": 3272,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:20:50.407"
+										}
+									]
+								},
+								{
+									"performanceGoalSheetItemId": 3275,
+									"performanceGoalSheetId": 148,
+									"parentPerformanceGoalSheetItemId": 2456,
+									"performanceFieldId": 92,
+									"past": true,
+									"deleted": true,
+									"dataDatetime": "2020-04-27T08:01:48.723",
+									"performanceGoalSheetItemTexts": [
+										{
+											"performanceGoalSheetItemTextId": 1095,
+											"performanceGoalSheetItemId": 3275,
+											"performanceTextTypeId": 1,
+											"userId": 46,
+											"contents": "a",
+											"dataDatetime": "2020-05-12T17:21:13.983"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"performanceGoalSheetId": 148,
+			"userId": 46,
+			"year": 2020,
+			"divisionId": 10,
+			"roleId": 6,
+			"dueDate": "2019-12-01T00:00:00",
+			"employeeComplete": true,
+			"employeeCompleteUserId": 46,
+			"employeeCompleteDatetime": "2020-05-12T17:21:14.57",
+			"managerComplete": true,
+			"leadComplete": true,
+			"hrComplete": false,
+			"dataUserId": 46,
+			"dataDatetime": "2020-05-12T17:23:12.947"
+		}
+	}
+
+	//Global variable for the addition of suggested goals
+	var itemId;
+
+		$(function () {
+			loadLookups({
+				callback: function () {
+					@*$.ajax({
+						url: '/api/Performance/GoalSheetHistory/@ViewData["PerformanceGoalSheetHistoryId"]',
+						success: function (data) {*@
+
+
+							sheet = data.sheet;
+							self = data.self;
+							done = data.sheet.employeeComplete;
+							setStatus($('body'), sheet.employeeComplete, sheet.managerComplete, sheet.leadComplete, sheet.hrComplete);
+							$('#sheet_year').text(sheet.year);
+							$('#sheet_due_date').text($.format.date(sheet.dueDate, 'MM/dd/yyyy'));
+							$('#user_name').text(findUser(sheet.userId).name);
+							$('#user_role').text(findRole(sheet.roleId).name);
+							//finding practice name
+							if (typeof findDivision(sheet.divisionId).parentDivisionId !== 'undefined') {
+								$('.page_header_info #user_practice').parent('h3').css('display', 'block');
+								$('#user_practice').text(findDivision(sheet.divisionId).name);
+							}
+							//finding division name
+							if (typeof findDivision(sheet.divisionId).parentDivisionId !== 'undefined') {
+								$('#user_division').text(findDivision(findDivision(sheet.divisionId).parentDivisionId).name);
+							} else {
+								$('#user_division').text(findDivision(sheet.divisionId).name);
+							}
+							//Fill table using data attributes from the HTML
+							var item = $('.table_item');
+
+							for (var i = 0; i < item.length; i++) {
+								var pfieldName = $(item[i]).attr('data-pfield').toString();
+								var divId = null;
+								if (item[i].hasAttribute('data-division')) {
+									if ($(item[i]).attr('data-practice') === 'true') {
+										divId = item[i].hasAttribute('data-division') ? findPracticeByName($(item[i]).attr('data-division')).divisionId : null;
+									}
+									else {
+										divId = item[i].hasAttribute('data-division') ? findDivisionByName($(item[i]).attr('data-division')).divisionId : null;
+									}
+								}
+								var text = 'N/A';
+								if (divId !== null) {
+									if (typeof findDescription(divId, findFieldByYearAndName(sheet.year, pfieldName).performanceFieldId) !== "undefined") {
+										text = findDescription(divId, findFieldByYearAndName(sheet.year, pfieldName).performanceFieldId).description;
+									}
+										item[i].textContent = text;
+								} else {
+									item[i].textContent = findFieldByYearAndName(sheet.year, pfieldName).description.split('Company Goal: ')[1];
+								}
+							};
+
+							sheetButtons({
+								self: data.self,
+								supervisor: data.supervisor,
+								lead: data.lead,
+								administrator: data.administrator,
+								employeeComplete: sheet.employeeComplete,
+								managerComplete: sheet.managerComplete,
+								leadComplete: sheet.leadComplete,
+								hrComplete: sheet.hrComplete,
+								reviewSheet: sheet.performanceReviewSheetItems,
+								goalSheet: sheet.performanceGoalSheetItems,
+								reviewActive: sheet.performanceReviewSheetId
+							});
+
+							buildTabs({
+								tabs: sheet.performanceGoalSheetItems,
+								userId: data.userId,
+								divisionId: sheet.divisionId,
+								self: data.self,
+								supervisor: data.supervisor,
+								lead: data.lead,
+								administrator: data.administrator,
+								sheetType: "goal",
+								reviewActive: sheet.performanceReviewSheetId
+							});
+
+							$('body').on('click', '[data-tab=GoalsQualitative]', function (event) {
+								if (!self) {
+									$(':button.performance_addExample_button').remove();
+									$('span.add_span').remove();
+									$(':button.performance_delete_button').remove();
+								}
+							});
+
+							$('.c_edit').remove()
+							$('.c_delete').remove()
+							$('.c_reply').remove()
+							//Timeout sessions
+							if (self && !done) {
+								setTimeout(function () {
+									$('.refresh_warning').css('display', 'block');
+								}, 2700000); //45 min mark
+								setTimeout(function () {
+									saveApprove(sheet, "refresh");
+								}, 3300000); //55 min mark
+							}
+					//	}
+
+					//});
+
+
+
+				}
+			});
+
+			$('.refresh_warning, .refresh_warning a').on('click', function () {
+				event.preventDefault();
+				$('.refresh_warning').css('display', 'none');
+				saveApprove(sheet, "refresh");
+			});
+
+
+			$('.expander').on('click select', function () {
+				$('.sheet_sub_nav').hasClass('local_active') && $('.local_spacer').hasClass('local_active') ?
+					($('.sheet_sub_nav, .local_spacer, .expander').removeClass('local_active'), $('.local_spacer').slideUp('slow')) :
+					($('.sheet_sub_nav, .local_spacer, .expander').addClass('local_active'), $('.local_spacer').slideDown('slow'));
+			});
+
+		});
+	</script>
+}

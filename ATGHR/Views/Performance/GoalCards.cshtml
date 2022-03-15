@@ -1,0 +1,126 @@
+@{
+	ViewData["Title"] = "Goals";
+}
+<h1 class="ui header center aligned">Goals</h1>
+<div class="ui container white_form_box">
+	<div class="ui top attached tabular menu">
+		<a class="item active" data-tab="current">Active Goals</a>
+		<a class="item" data-tab="past">Approved Goals</a>
+	</div>
+	<div class="ui bottom attached tab segment active" data-tab="current">
+		<div class="ui container light_blue_box margin_t" id="employee_list">
+			<h4 class="ui header center aligned">View the progression of your team's goals.</h4>
+			<div class="ui stackable grid user_details">
+				<div class="row team-cards">
+					<div class="ui active inverted dimmer local_loader">
+						<div class="ui large text loader">Loading</div>
+					</div>
+					<!-- supervisor cards placed here -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ui bottom attached tab segment" data-tab="past">
+		<h4 class="ui header center aligned">View your team's approved goals.</h4>
+		<table class="ui striped table" id="past_sheet_table" style="width:100%">
+			<thead>
+				<tr>
+					<th>Owner</th>
+					<th>Relationship</th>
+					<th>Year</th>
+					<th>View</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+
+
+<div class="ui container padding_t_2em">
+	<hr class="" />
+	<div class="ui stackable grid user_details">
+		<div class="row self-card" style="display: none;"></div>
+	</div>
+</div>
+@section Scripts
+		{
+	<script>
+		$('#goal_sheet_nav').addClass('local_active_tab');
+
+		$(function () {
+			loadLookups({
+				callback: function () {
+					$.get('/api/Performance/GoalSheetSupervisorCards', function (data) {
+						$.each(data, function (i, sheet) {
+							var card = createUserCard({
+								progressType: 'goal',
+								name: findUser(sheet.userId).name,
+								division: findDivision(findUser(sheet.userId).divisionId).name,
+								role: findRole(sheet.roleId).name,
+								year: sheet.year,
+								sheetType: typeof sheet.performanceGoalSheetId !== 'undefined' ? 'Goal' : 'Review',
+								userId: sheet.userId,
+								sheetId: sheet.performanceGoalSheetId
+							});
+							if (sheet.self) {
+								$('.self-card').show();
+								card.prependTo($('.self-card'));
+							} else {
+								card.appendTo($('.team-cards'));
+							}
+							setStatus(card, sheet.employeeComplete, sheet.managerComplete, sheet.leadComplete, sheet.hrComplete);
+						});
+					}).done(function () {
+						$('.ui.inverted.dimmer').removeClass("active");
+					});
+
+					$('#past_sheet_table').DataTable({
+						ajax: {
+							url: '/api/PastInteractableGoalSheetList',
+							type: 'POST',
+							dataSrc: ''
+						},
+						orderFixed: { pre: [2, 'desc'] },
+						columns: [{
+							data: 'userId',
+							className: "dt-body-center",
+							render: function (data) {
+								return findUser(data).name;
+							}
+						}, {
+							data: 'relationship',
+							className: "dt-body-center"
+						}, {
+							data: 'year',
+							className: "dt-body-center"
+						}, {
+							data: 'sheetId',
+							className: "dt-body-center",
+							render: function () {
+								return "<button type='button' class='ui button view_sheet'>View</button>"
+							}
+						}]
+					});
+				}
+			})
+
+
+			$('body').on('click select', 'button.options', function () {
+				genPrevention(event);
+				var sheetId = $(this).attr('data-sheetid');
+				window.location.href = "/Performance/GoalSheet/" + sheetId
+			});
+
+
+
+			//BUTTON TO VIEW THE approved goals
+			$('#past_sheet_table').on('click select', '.view_sheet', function (event) {
+				genPrevention(event);
+				var id = $('#past_sheet_table').DataTable().row($(this).parents('tr')).data().sheetId
+				window.location.href = "/Performance/GoalSheet/" + id;
+			});
+		});
+
+	</script>
+}

@@ -1,0 +1,361 @@
+@model ResourcesFileListDto
+
+<div class="ui breadcrumb padding_g">
+	<a href="~/ATGProcesses" class="section">ATG Project Delivery System (Main)</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/StrategicPlan" class="section">Strategic Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/AnnualBusinessPlan" class="section">Annual Business Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/BusinessDevelopment" class="section">Business Development</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/Contracts" class="section">Contract Phase</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectExecution" class="section">Project Execution</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectCloseout" class="section">Project Closeout</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/RecordsRetention" class="section">Records Retention</a>
+</div>
+<div class="padding_t_2em" style="display: block !important;">
+<h1 class="ui horizontal divider header margin_tb">
+	Annual Business Plan
+</h1>
+<div class="ui container">
+<h3 class="ui header">What is an Annual Business Plan</h3>
+<p>The Annual Business Plan outlines ATG’s goals for a 12-month calendar period and 12-month measurement period of the Strategic Plan. The Plan ties it all together – Strategic Plan, Marketing Plan, Roadmaps, and Financial and includes the division and practice goals and objectives for the year.</p>
+<h3 class="ui header">What is the Annual Business Plan process?</h3>
+<p>The Annual Business Planning Process starts in June of each year and has the following five elements in the Planning Process:</p>
+<img id="annual_business_plan_graphic" src="~/documents/processes/annualbusinessplan/ATG_Annual_Business_Plan_Graphic.png" alt="ATG Annual Business Plan Outline"/>
+<ol>
+	<li>Strategic Plan Overview</li>
+	<li>
+		Job Starts Forecast and Goals
+		<ul>
+			<li>Forecasts Job Starts for the upcoming year.</li>
+		</ul>
+	</li>
+	<li>
+		Staffing Plan / Revenue Forecast Goals
+		<ul>
+			<li>Staffing Plan includes existing staff with utilization and potential pay increases.</li>
+			<li>Staffing needs are compared to the Revenue Forecast and Backlog.</li>
+			<li>New staffing needs are identified and incorporated into the Staffing Plan to ensure staffing will support the Revenue Forecast and Goals.</li>
+			<li>Revenue Forecasting identifies and researches future opportunities in the market. Forecasting is a continuous process, but special focus is given during business planning each year.</li>
+		</ul>
+	</li>
+	<li>
+		Operating and Capital Budget
+		<ul>
+			<li>The budgets measure performance and profitability.</li>
+			<li>Operating Budget plans for the annual expenses while maintaining a planned level of profitability.</li>
+			<li>Operating Budget includes planning for all ATG expenses including direct/indirect labor based on the approved staffing plan, employee benefits, rent/utilities, training/conferences and travel.</li>
+			<li>Capital Budget plans for computers, equipment, software for existing employees as well as new employees.</li>
+		</ul>
+	</li>
+	<li>Annual Business Plan Document including Annual Business Plan Metric Goals</li>
+</ol>
+@{
+	var file1 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("DF8439F6-A26B-46A0-B84F-55CEADA3BB10"));
+	var file2 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("B1E5FD48-6ABC-4F9B-9EB5-B5BADC13B9EF"));
+}
+<a class="ui button" href="~/documents/commonfiles/@file1?.FileName" target="_blank">@file1?.Title</a>
+@if (Model.UserI.IsAdmin)
+{
+	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file1?.Id" asp-route-returnUrl="/ATGProcesses/AnnualBusinessPlan">
+		<i class="edit icon"></i>
+	</a>
+}
+<a class="ui button" href="~/documents/commonfiles/@file2?.FileName" target="_blank">@file2?.Title</a>
+@if (Model.UserI.IsAdmin)
+{
+	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file2?.Id" asp-route-returnUrl="/ATGProcesses/AnnualBusinessPlan">
+		<i class="edit icon"></i>
+	</a>
+}
+<h3 class="ui header">What are the 2021 Performance Metrics?</h3>
+<p>The Annual Performance Metrics are the resulting Goals from the Annual Business Planning Process. The Goals for 2021 are:</p>
+<table class="ui compact collapsing celled table striped">
+	<thead>
+	<tr>
+		<th>Metric</th>
+		<th>Goal</th>
+		<th>Growth</th>
+		<th>Definition</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>Job Starts</td>
+		<td>$21,000,000</td>
+		<td class="positive">2.38% Increase</td>
+		<td>Work awarded, negotiated, and under contract (expenses in net labor revenue)</td>
+	</tr>
+	<tr>
+		<td>Net Revenue</td>
+		<td>$17,500,000</td>
+		<td class="positive">2.85% Increase</td>
+		<td>Gross revenue less expenses</td>
+	</tr>
+	<tr>
+		<td>Utilization</td>
+		<td>65.00%</td>
+		<td class="negative">1.36% Decrease</td>
+		<td>(Total Job Chargeable Hours * Base Rate) / (Standard Hours * Base Rate)</td>
+	</tr>
+	<tr>
+		<td>Multiplier</td>
+		<td>3.25</td>
+		<td>No Change</td>
+		<td>Net Revenue / Direct Labor Cost</td>
+	</tr>
+	<tr>
+		<td>Accounts Receivable > 120 Days</td>
+		<td>0</td>
+		<td>No Change</td>
+		<td>Billings with payment not yet received</td>
+	</tr>
+	<tr>
+		<td>MUT</td>
+		<td>2.11</td>
+		<td class="negative">0.03 Decrease</td>
+		<td>Multiplier * Utilization</td>
+	</tr>
+	</tbody>
+</table>
+<p>The Goals for 2021 by Practice are:</p>
+<table class="ui compact collapsing celled table">
+	<thead>
+	<tr>
+		<th>Metric</th>
+		<th class="center aligned">2020</th>
+		<th class="center aligned">2021</th>
+		<th class="center aligned">Change</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td colspan="4" class="center aligned">Roadway</td>
+	</tr>
+	<tr>
+		<td>Job Starts</td>
+		<td class="center aligned">$5,000,000</td>
+		<td class="center aligned">$5,000,000</td>
+		<td class="center aligned">0%</td>
+	</tr>
+	<tr>
+		<td>Net Revenue</td>
+		<td class="center aligned">$3,700,000</td>
+		<td class="center aligned">$3,500,000</td>
+		<td class="center aligned negative">-5.40%</td>
+	</tr>
+	<tr>
+		<td>Utilization</td>
+		<td class="center aligned">74.6%</td>
+		<td class="center aligned">70.0%</td>
+		<td class="center aligned negative">-6.20%</td>
+	</tr>
+	<tr>
+		<td>Multiplier</td>
+		<td class="center aligned">3.25</td>
+		<td class="center aligned">3.25</td>
+		<td class="center aligned">0%</td>
+	</tr>
+	<tr>
+		<td>MUT</td>
+		<td class="center aligned">2.42</td>
+		<td class="center aligned">2.28</td>
+		<td class="center aligned negative">-6.20</td>
+	</tr>
+	<tr>
+		<td colspan="4" class="center aligned">Traffic</td>
+	</tr>
+	<tr>
+		<td>Job Starts</td>
+		<td class="center aligned">$9,500,000</td>
+		<td class="center aligned">$9,500,000</td>
+		<td class="center aligned">0%</td>
+	</tr>
+	<tr>
+		<td>Net Revenue</td>
+		<td class="center aligned">$7,100,000</td>
+		<td class="center aligned">$8,200,000</td>
+		<td class="center aligned positive">13.41%</td>
+	</tr>
+	<tr>
+		<td>Utilization</td>
+		<td class="center aligned">81.6%</td>
+		<td class="center aligned">82.0%</td>
+		<td class="center aligned positive">0.50%</td>
+	</tr>
+	<tr>
+		<td>Multiplier</td>
+		<td class="center aligned">3.25</td>
+		<td class="center aligned">3.25</td>
+		<td class="center aligned">0%</td>
+	</tr>
+	<tr>
+		<td>MUT</td>
+		<td class="center aligned">2.65</td>
+		<td class="center aligned">2.67</td>
+		<td class="center aligned positive">0.50%</td>
+	</tr>
+	<tr>
+		<td colspan="4" class="center aligned">Planning</td>
+	</tr>
+	<tr>
+		<td>Job Starts</td>
+		<td class="center aligned">$6,000,000</td>
+		<td class="center aligned">$6,500,000</td>
+		<td class="center aligned positive">7.69%</td>
+	</tr>
+	<tr>
+		<td>Net Revenue</td>
+		<td class="center aligned">$6,200,000</td>
+		<td class="center aligned">$5,800,000</td>
+		<td class="center aligned negative">-6.45%</td>
+	</tr>
+	<tr>
+		<td>Utilization</td>
+		<td class="center aligned">76.5%</td>
+		<td class="center aligned">75.0%</td>
+		<td class="center aligned negative">-2.20%</td>
+	</tr>
+	<tr>
+		<td>Multiplier</td>
+		<td class="center aligned">3.25</td>
+		<td class="center aligned">3.25</td>
+		<td class="center aligned">0%</td>
+	</tr>
+	<tr>
+		<td>MUT</td>
+		<td class="center aligned">2.49</td>
+		<td class="center aligned">2.44</td>
+		<td class="center aligned negative">-2.20%</td>
+	</tr>
+	<tr>
+		<td colspan="4" class="center aligned">Total</td>
+	</tr>
+	<tr>
+		<td>Job Starts</td>
+		<td class="center aligned">$20,500,000</td>
+		<td class="center aligned">$21,000,000</td>
+		<td class="center aligned positive">2.38%</td>
+	</tr>
+	<tr>
+		<td>Net Revenue</td>
+		<td class="center aligned">$17,000,000</td>
+		<td class="center aligned">$17,500,000</td>
+		<td class="center aligned positive">2.85%</td>
+	</tr>
+	<tr>
+		<td>Utilization</td>
+		<td class="center aligned">65.9%</td>
+		<td class="center aligned">65.0%</td>
+		<td class="center aligned positive">1.36%</td>
+	</tr>
+	<tr>
+		<td>Multiplier</td>
+		<td class="center aligned">3.25</td>
+		<td class="center aligned">3.25</td>
+		<td class="center aligned">0%</td>
+	</tr>
+	<tr>
+		<td>MUT</td>
+		<td class="center aligned">2.14</td>
+		<td class="center aligned">2.11</td>
+		<td class="center aligned negative">-1.40%</td>
+	</tr>
+	</tbody>
+</table>
+<h3 class="ui header">How do our goals compare to our Strategic Plan?</h3>
+<p>ATG’s 2020-2025 Strategic Plan establishes a Net Revenue Goal of $16.5 Million for 2020 and $20.3 Million for 2021. The following chart shows our Strategic Plan Goals for 2020 and 2021 compared to 2020 Year End Projections and 2021 Goals.</p>
+<table class="ui compact collapsing celled table">
+	<thead>
+	<tr>
+		<th>Practice</th>
+		<th class="center aligned">2020 YTD Net Revenue</th>
+		<th class="center aligned">2020 Year End Projections</th>
+		<th class="center aligned">2020 Annual Goal</th>
+		<th class="center aligned">% of Goal</th>
+		<th class="center aligned">2020 Strategic Plan Target</th>
+		<th class="center aligned">% of Target</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>Roadway</td>
+		<td class="center aligned">$3,500,000</td>
+		<td class="center aligned">$3,800,000</td>
+		<td class="center aligned">$3,700,000</td>
+		<td class="center aligned">103%</td>
+		<td class="center aligned">$3,900,000</td>
+		<td class="center aligned">97%</td>
+	</tr>
+	<tr>
+		<td>Traffic</td>
+		<td class="center aligned">$5,100,000</td>
+		<td class="center aligned">$5,600,000</td>
+		<td class="center aligned">$7,000,000</td>
+		<td class="center aligned">80%</td>
+		<td class="center aligned">$5,700,000</td>
+		<td class="center aligned">98%</td>
+	</tr>
+	<tr>
+		<td>Planning</td>
+		<td class="center aligned">$6,100,000</td>
+		<td class="center aligned">$6,800,000</td>
+		<td class="center aligned">$6,300,000</td>
+		<td class="center aligned">108%</td>
+		<td class="center aligned">$6,900,000</td>
+		<td class="center aligned">98%</td>
+	</tr>
+	<tr>
+		<td>Total</td>
+		<td class="center aligned">$14,700,000</td>
+		<td class="center aligned">$16,200,000</td>
+		<td class="center aligned">$17,000,000</td>
+		<td class="center aligned">95%</td>
+		<td class="center aligned">$16,500,000</td>
+		<td class="center aligned">98%</td>
+	</tr>
+	</tbody>
+</table>
+<table class="ui compact collapsing celled table">
+	<thead>
+	<tr>
+		<th>Practice</th>
+		<th class="center aligned">2021 Annual Goal</th>
+		<th class="center aligned">2020 Strategic Plan Target</th>
+		<th class="center aligned">% of Target</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>Roadway</td>
+		<td class="center aligned">$3,500,000</td>
+		<td class="center aligned">$4,500,000</td>
+		<td class="center aligned">78%</td>
+	</tr>
+	<tr>
+		<td>Traffic</td>
+		<td class="center aligned">$8,200,000</td>
+		<td class="center aligned">$10,700,000</td>
+		<td class="center aligned">78%</td>
+	</tr>
+	<tr>
+		<td>Planning</td>
+		<td class="center aligned">$5,800,000</td>
+		<td class="center aligned">$6,300,000</td>
+		<td class="center aligned">92%</td>
+	</tr>
+	<tr>
+		<td>Total</td>
+		<td class="center aligned">$17,500,000</td>
+		<td class="center aligned">$20,300,000</td>
+		<td class="center aligned">86%</td>
+	</tr>
+	</tbody>
+</table>
+</div>
+</div>

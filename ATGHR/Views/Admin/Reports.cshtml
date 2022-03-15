@@ -1,0 +1,63 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@{
+	ViewData["Title"] = "Reports";
+	User ATGUser = (User)Util.GetUser(Context);
+}
+<h1 class="ui header center aligned">ATGHR Reports</h1>
+
+<div class="ui container white_form_box">
+	<select id="report_name" class="ui dropdown">
+		<option value="">Select A Report</option>
+		<option value="UserDetailsReport">User Details Report</option>
+		<option value="UserSupervisionReport">User Supervision Report</option>
+		<option value="ActiveGoalsReport">Active Goal Status Report</option>
+		<option value="UserRoleReport">User Role Report</option>
+		<option value="ActivePerformanceReviewReport">Active Performance Review Status Report</option>
+		<option value="PerformanceReviewReportScores">Performance Review Scores Report</option>
+	</select>
+	<button class="ui custom button download_report" id="download_report" data-content="popup text">Download Report</button>
+	<div id="report_popup" class="ui custom popup right center transition hidden" data-position="right center">
+		Please select a report from the drop down.
+	</div>
+</div>
+<div class="ui container padding_t_2em">
+	<h4>For more reports, contact <a href="mailto: acarter@emailatg.com">Alice Carter</a>.</h4>
+</div>
+
+
+
+@section Scripts
+	{
+	<script>
+		$('#download_report')
+		.popup({
+			popup: $('#report_popup'),
+			position: 'right center',
+			on: 'click'
+		});
+
+		$('#download_report').on('click select', function () {
+			event.preventDefault();
+			if ($('.active.selected').text() != "") {
+				var obj = { text: $('#report_name').dropdown('get value') };
+				var reportName = $('#report_name').dropdown('get value') + '.csv';
+				$.ajax({
+					type: "POST",
+					url: "/api/Admin/Reports",
+					data: JSON.stringify(obj),
+					contentType: "application/json",
+					success: function (data) {
+						//console.log(data);
+						var blob = new Blob([data]);
+						var link = document.createElement('a');
+						link.href = window.URL.createObjectURL(blob);
+						link.download = reportName;
+						link.target = '_blank';
+						link.click();
+					}
+				});
+			}
+		});
+	</script>
+}

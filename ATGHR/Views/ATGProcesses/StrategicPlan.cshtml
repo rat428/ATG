@@ -1,0 +1,252 @@
+@model ResourcesFileListDto
+
+<div class="ui breadcrumb padding_g">
+	<a href="~/ATGProcesses" class="section">ATG Project Delivery System (Main)</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/StrategicPlan" class="section">Strategic Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/AnnualBusinessPlan" class="section">Annual Business Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/BusinessDevelopment" class="section">Business Development</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/Contracts" class="section">Contract Phase</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectExecution" class="section">Project Execution</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectCloseout" class="section">Project Closeout</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/RecordsRetention" class="section">Records Retention</a>
+</div>
+<div class="padding_t_2em" style="display: block !important;">
+<h1 class="ui horizontal divider header margin_tb">
+	Strategic Plan
+</h1>
+<div class="ui container">
+<h3 class="ui header">What is a Strategic Plan?</h3>
+<p>It is a Roadmap that guides our annual business and marketing plans. It guides our annual metric goals and focus areas. Guide to our Strategic Marketing Plan, our Practice Roadmaps and 90 Day plans, and our Annual Business Planning process.</p>
+<p>ATG has four previous Strategic Plans. The current plan is the 2020 – 2024 ATG Strategic Plan.</p>
+<h3 class="ui header">What is the Strategic Planning Process?</h3>
+<p>The Strategic Planning process has four basic steps:</p>
+<ol>
+	<li>Analyze ATG's current state.</li>
+	<li>Define the future state of ATG.</li>
+	<li>Develop objectives and strategies to achieve our Vision.</li>
+	<li>Implement and assess the Plan.</li>
+</ol>
+<h3 class="ui header">What is ATG's Mission and Vision?</h3>
+<p>What is ATG’s purpose? Why do we exist? What are we about?</p>
+<p>ATG’s Mission: ATG improves people’s lives by using an integrated, multi-disciplined team approach to provide exceptional Planning and Engineering Solutions.</p>
+<p>ATG’s Vision: ATG creates solutions that make people’s lives better.</p>
+<h3 class="ui header">What are ATG's Core Values?</h3>
+<p>Core Values are what support the vision, shape the culture and reflect what ATG values. ATG’s Core Values are:</p>
+<ul>
+	<li>We are passionate about developing solutions that serve the greater good and improve peoples’ lives.</li>
+	<li>We take reasonable risks to enhance ATG’s success and growth.</li>
+	<li>We communicate – in an open, honest, frequent, clear and respectful way.</li>
+	<li>We are profitable.</li>
+	<li>We take care of our people.</li>
+	<li>We produce quality products.</li>
+	<li>We innovate.</li>
+	<li>We reward performance and will not tolerate non-performers.</li>
+</ul>
+<h3 class="ui header">What is ATG's future vision for the 2020 Plan?</h3>
+<p>During the Strategic Planning Process, a 5-year plan was developed with a Financial Vision and Focus Area goals and strategies to achieve ATG’s Vision.</p>
+<p>Over the next five years, ATG will review and implement the Strategic Plan. The goals will be incorporated into ATG’s Annual Business Plan, Annual Road Maps, Staffing Plans, Annual Metrics and 90-day plans.</p>
+<p>The Key Focus Areas of the 2020 Strategic Plan are:</p>
+<ul>
+	<li>Organization</li>
+	<li>Business Development and Marketing</li>
+	<li>Communication</li>
+	<li>Financial Vision and Growth</li>
+</ul>
+<p>Goals and action plans were developed for each of these focus areas.</p>
+@{ var file1 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("B1E5FD48-6ABC-4F9B-9EB5-B5BADC13B9EF")); }
+ <a class="ui button" href="~/documents/commonfiles/@file1?.FileName" target="_blank">@file1?.Title</a>
+@if (Model.UserI.IsAdmin)
+{
+	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file1?.Id" asp-route-returnUrl="/ATGProcesses/StrategicPlan">
+		<i class="edit icon"></i>
+	</a>
+}
+<h3 class="ui header">What makes a good ATG Leader?</h3>
+<p>ATG’s leadership development process is focused on growing strong leaders from our existing array of talent in our management ranks. ATG needs strong leaders to execute our strategies, lead the business, and grow a sustainable, profitable, and internally transitional planning, and engineering practice.</p>
+<p>ATG Leadership Criteria:</p>
+<ul>
+	<li>External and internal evangelist for the firm; passionate, positive motivator</li>
+	<li>Financially astute</li>
+	<li>Good communicator</li>
+	<li>Visionary</li>
+	<li>Able to make good decisions without all the information in hand</li>
+	<li>Understands what we do</li>
+	<li>Trustworthy</li>
+	<li>Possesses strong ethics</li>
+	<li>Humble</li>
+	<li>Excellent interpersonal skills</li>
+	<li>Courage to stay the course</li>
+	<li>Lives ATG’s core values</li>
+	<li>Resilient</li>
+</ul>
+<h3 class="ui header">Who are ATG's Board and Shareholders?</h3>
+<h4 class="ui header">Board of Directors</h4>
+<div id="board_of_directors_container">
+	<div class="board_of_directors_image_label_group">
+		<img class="board_of_directors_image" src="~/documents/processes/strategicplan/employeeheadshots/heath_gayle.jpg" alt="Gayle L. Heath"/>
+		<p class="board_of_directors_label">Gayle L. Heath</p>
+	</div>
+	<div class="board_of_directors_image_label_group">
+		<img class="board_of_directors_image" src="~/documents/processes/strategicplan/employeeheadshots/allen_jd.jpg" alt="JD Allen"/>
+		<p class="board_of_directors_label">JD Allen</p>
+	</div>
+	<div class="board_of_directors_image_label_group">
+		<img class="board_of_directors_image" src="~/documents/processes/strategicplan/employeeheadshots/rios_daniel.jpg" alt="Daniel Rios"/>
+		<p class="board_of_directors_label">Daniel Rios</p>
+	</div>
+</div>
+<h4 class="ui header">Shareholders</h4>
+<table class="ui compact collapsing celled table">
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th>Title</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td colspan="2" class="year_row">1997</td>
+	</tr>
+	<tr>
+		<td>Gayle L. Heath</td>
+		<td>Chief Executive Officer</td>
+	</tr>
+	<tr>
+		<td>James M. Heath</td>
+		<td>President</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="year_row">1998</td>
+	</tr>
+	<tr>
+		<td>Arthur F. Gamble, III</td>
+		<td>Senior Transportation Engineer</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="year_row">2001</td>
+	</tr>
+	<tr>
+		<td>James D. Allen</td>
+		<td>Exec. Vice President - Lake Charles, LA Office</td>
+	</tr>
+	<tr>
+		<td>Jack Scott Jones</td>
+		<td>Senior Planner</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="year_row">2002</td>
+	</tr>
+	<tr>
+		<td>Robert M. Chaney</td>
+		<td>Senior Planner</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="year_row">2007</td>
+	</tr>
+	<tr>
+		<td>Misty Ramirez</td>
+		<td>Marketing Engineer</td>
+	</tr>
+	<tr>
+		<td>James Harvey</td>
+		<td>Vice President, Planning</td>
+	</tr>
+	<tr>
+		<td>Daniel Rios</td>
+		<td>Chief Information Officer</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="year_row">2017</td>
+	</tr>
+	<tr>
+		<td>Clinton D. Jumper</td>
+		<td>Vice President, Engineering</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="year_row">2018</td>
+	</tr>
+	<tr>
+		<td>Larry Irvine</td>
+		<td>Human Resource Manager</td>
+	</tr>
+	<tr>
+		<td>Jacob Sessions</td>
+		<td>Project Manager</td>
+	</tr>
+	<tr>
+		<td>Cody Stone</td>
+		<td>Project Manager</td>
+	</tr>
+	<tr>
+		<td>Tim Simon</td>
+		<td>Project Manager</td>
+	</tr>
+	<tr>
+		<td>Mark Ingram</td>
+		<td>Vice President &amp; Director, Traffic</td>
+	</tr>
+	<tr>
+		<td>Gaby Tassin</td>
+		<td>Assistant Director, Traffic</td>
+	</tr>
+	<tr>
+		<td>Keri Johnson</td>
+		<td>Senior Project Manager</td>
+	</tr>
+	<tr>
+		<td>Julia Coleman</td>
+		<td>Project Manager</td>
+	</tr>
+	<tr>
+		<td>Alice Carter</td>
+		<td>Systems Architect</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="year_row">2019</td>
+	</tr>
+	<tr>
+		<td>Tyler Houston</td>
+		<td>Project Manager</td>
+	</tr>
+	<tr>
+		<td>Tian Huang</td>
+		<td>Project Manager</td>
+	</tr>
+	<tr>
+		<td>Ben Wallach</td>
+		<td>Project Manager</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="year_row">2020</td>
+	</tr>
+	<tr>
+		<td>Emily Hodge</td>
+		<td>Human Resource Generalist</td>
+	</tr>
+	<tr>
+		<td>Bethany James</td>
+		<td>Project Manager</td>
+	</tr>
+	<tr>
+		<td>Ben Magallon</td>
+		<td>Project Manager</td>
+	</tr>
+	<tr>
+		<td>Sheena Tolentino</td>
+		<td>Project Accountant</td>
+	</tr>
+	<tr>
+		<td>Edward Galicia</td>
+		<td>Project Manager</td>
+	</tr>
+	</tbody>
+</table>
+</div>
+</div>

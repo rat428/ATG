@@ -1,0 +1,224 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@{
+	ViewData["Title"] = "All Star Award";
+	User ATGUser = (User)Util.GetUser(Context);
+}
+
+<div class="sheet_sub_nav local_active">
+	<div class="ui container">
+		<button class="ui button save_button">Save</button>
+		<button class="ui button approve_button" style="display: none;"></button>
+		<button class="ui red button unapprove_button" style="float: right; display: none;"></button>
+		@if (Model != -1)
+		{
+			<button class="ui red button delete_button" id="delete_bonus" style="float: right">Delete</button>
+		}
+		<button class="expander local_active" aria-label="hide sheet menu"><i class="dropdown icon"></i></button>
+		<div class="spacer" style="clear: both"></div>
+	</div>
+</div>
+
+@if (Model != -1)
+{
+	<div class="local_spacer local_active" style="display:none;">&nbsp;</div>
+	<div class="ui stackable grid container">
+		<div class="ten wide column page_header_info">
+		</div>
+		<div class="six wide column">
+			@*<div class="status"><span>Status: </span></div>*@
+			<div class="ui equal width grid sheet_progress_bar goal_progress_bar">
+				<div class="column">
+					<div class="goal_progress" alt="Employee Progress"></div>
+				</div>
+				<div class="column">
+					<div class="goal_progress" alt="Manager Progress"></div>
+				</div>
+				<div class="column">
+					<div class="goal_progress" alt="Division Lead Progress"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+
+<h1 class="ui header center aligned">@(Model == -1 ? "Give an" : "Edit") All Star Award</h1>
+<div class="ui container light_blue_box">
+	<div class="ui text container">
+		<form class="ui form local_padding_top bonus_form">
+			<input type="hidden" id="userId" name="userId" value="@ATGUser.UserId" data-serialize="true" />
+			<input type="hidden" id="spotBonusId" name="spotBonusId" data-serialize="true" data-primaryKey="true" />
+			<h2 class="ui header center aligned" id="name"></h2>
+			<h3 class="ui dividing header">All Star Award</h3>
+			<div class="field">
+				<label for="name">Submitted By</label>
+				<input readonly type="text" id="name" name="name" data-serialize="false" />
+			</div>
+			<div class="field">
+				<label for="submitteeUserId">All Star</label>
+				<select class="ui fluid search dropdown" id="submitteeUserId" name="submitteeUserId" data-serialize="true"></select>
+			</div>
+			<div class="field">
+				<label for="amount">Amount</label>
+				<input readonly id="amount" type="text" name="amount" placeholder="$500" data-serialize="true" />
+			</div>
+			<div class="field">
+				<label for="reason">Reason for Award</label>
+				<textarea id="reason" name="reason" placeholder="Write why this award is being given." data-serialize="true"></textarea>
+			</div>
+			<div class="field rejectReason" id="rejectReason">
+				<label for="rejectReason">Reason for Rejecting the Award</label>
+				<textarea id="rejectReason" name="rejectReason" placeholder="Write why this award is being rejected." data-serialize="true"></textarea>
+			</div>
+			@if(Model == -1)
+			{
+				<div class="ui container center aligned">
+					<button class="ui button" id="add_new_bonus">@(Model == -1 ? "Create All Star Award" : "Save")</button>
+
+				</div>
+			}
+		</form>
+	</div>
+</div>
+@section Scripts
+	{
+	<script>
+
+
+		var id = @Model;
+		var userName = '@ATGUser.Name';
+		var userId = @ATGUser.UserId;
+
+	$(function() {
+		loadLookups({
+			callback: function () {
+				// finding list of managers
+				var susers = sortUsers();
+				for (i = 0; i < susers.length; i++) {
+					if (susers[i].userId !== userId && susers[i].activeFlag === true) {
+						$('#submitteeUserId').append($('<option></option>')
+							.val(susers[i].userId)
+							.text(susers[i].name));
+					}
+				}
+				if (id > -1) {
+					$.ajax({
+						url: '/api/Bonus/@Model',
+						success: function (data) {
+							var user = data;
+							var bonus = data.bonus;
+							done = data.bonus.complete;
+							setBonusStatus($('body'), bonus.submitted, bonus.approved, bonus.complete);
+							//changes the possible list of exclude the
+
+							for (i = 0; i < susers.length; i++) {
+								if (susers[i].userId !== data.userId && susers[i].activeFlag === true) {
+									$('#submitteeUserId').append($('<option></option>')
+										.val(susers[i].userId)
+										.text(susers[i].name));
+								}
+							}
+							//console.log(data.bonus);
+
+							for (var property in bonus) {
+								var val = eval('bonus.' + property);
+									$('.bonus_form').find(':input[name=' + property + ']').val(val).change();
+							}
+							//hiding buttons and fields may move buttons to nav bar
+							
+							if ((bonus.submitted == false && bonus.hasOwnProperty('rejectReason') == false) || (bonus.submitted == true && bonus.userId == userId && bonus.hasOwnProperty('rejectReason') == false)) {
+								$('div.rejectReason').hide();
+							}
+							if (bonus.userId == userId) {
+								$('textarea#rejectReason').attr('readonly', 'readonly');
+							}
+							if (bonus.userId != userId) {
+								$('.delete_button').hide();
+							}
+							if (bonus.submitted == true) {
+								$('#delete_bonus').hide();
+							}
+							if (bonus.submitted == true && bonus.userId == userId) {
+								$('#add_new_bonus').hide();
+								$('input').attr('readonly', 'readonly');
+								$('textarea').attr('readonly', 'readonly');
+								$('.ui.fluid.dropdown').addClass('disabled');
+							}
+							if (bonus.complete == true) {
+								$('input').attr('readonly', 'readonly');
+								$('textarea').attr('readonly', 'readonly');
+								$('.ui.fluid.dropdown').addClass('disabled');
+								$('#add_new_bonus').hide();
+							}
+							if (bonus.hasOwnProperty('rejectReason') == true) {
+								$('.ui.fluid.dropdown').addClass('disabled');
+							}
+							$('.bonus_form').find(':input[name=name]').val(findUser(bonus.userId).name).change();
+
+							bonusButtons({
+							self: data.self,
+							administrator: data.administrator,
+							spotBonusRequestor: data.spotBonusRequestor,
+							spotBonusApprover: data.spotBonusApprover,
+							spotBonusCompleter: data.spotBonusCompleter,
+							submitted: bonus.submitted,
+							approved: bonus.approved,
+							complete: bonus.complete
+						});
+						}
+					})
+				}
+				else {
+					$('div.rejectReason').hide();
+					$('#delete_bonus').hide();
+					$('.bonus_form').find(':input[name=amount]').val(500).change();
+					$('.bonus_form').find(':input[name=name]').val(userName).change();
+					$('.bonus_form').find(':input[name=spotBonusId]').val(-1).change();
+				}
+			}
+		});
+
+		$('.expander').on('click select', function () {
+			$('.sheet_sub_nav').hasClass('local_active') && $('.local_spacer').hasClass('local_active') ?
+				($('.sheet_sub_nav, .local_spacer, .expander').removeClass('local_active'), $('.local_spacer').slideUp('slow')) :
+				($('.sheet_sub_nav, .local_spacer, .expander').addClass('local_active'), $('.local_spacer').slideDown('slow'));
+		});
+	});
+
+	$('.save_button').on('click', function (event) {
+		var bonus = serializeForm('.bonus_form');
+		saveApproveBonus(bonus);
+	});
+
+	$('ui.search.dropdown').dropdown({ fullTextSearch: true });
+
+	$('#add_new_bonus').on('click select', function () {
+		event.preventDefault();
+		var bonus = serializeForm('.bonus_form');
+		ajSubmit({
+			data: JSON.stringify(bonus),
+			url: '/api/Rewards/Bonus/Save',
+			workingMessage: 'Saving Award...',
+			successMessage: 'All Star Award Saved!',
+			failedMessage: 'Failed to Save Award.',
+			successFunction: function () { window.location = '/Rewards/Bonus';}
+		});
+	});
+
+	$('#delete_bonus').on('click select', function () {
+		event.preventDefault();
+		var bonus = serializeForm('.bonus_form');
+		ajSubmit({
+			data: JSON.stringify(bonus),
+			url: '/api/Rewards/Bonus/Delete',
+			workingMessage: 'Deleting Award...',
+			successMessage: 'All Star Award Deleted!',
+			failedMessage: 'Failed to Delete Award.',
+			successFunction: function () { window.location = '/Rewards/Bonus';}
+		});
+	});
+
+
+	</script>
+}

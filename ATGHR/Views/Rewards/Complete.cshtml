@@ -1,0 +1,273 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@{
+	ViewData["Title"] = "All Star Award";
+	User ATGUser = (User)Util.GetUser(Context);
+}
+<h1 class="ui header center aligned">Active All Star Awards</h1>
+<div class="ui container  local_templates">
+	<form class="ui form light_blue_box margin_t" id="complete_form">
+		<table class="ui striped table" id="bonus_table" style="width:100%">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Requestor</th>
+					<th>Recipient</th>
+					<th>Approver</th>
+					<th>Reason</th>
+					<th>View</th>
+				</tr>
+			</thead>
+		</table>
+		<button class="ui button complete_bonus" id="complete_bonus">Complete Selected Awards</button>
+		<button class="ui button complete_bonus" id="download_report">Download Active Report</button>
+		<div id="right_here"></div>
+	</form>
+</div>
+
+<h1 class="ui header center aligned">Completed All Star Awards</h1>
+<div class="ui container  local_templates">
+	<form class="ui form light_grey_box margin_t" id="complete_form">
+		<table class="ui striped table" id="bonus_table_2" style="width:100%">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Requestor</th>
+					<th>Recipient</th>
+					<th>Approver</th>
+					<th>Reason</th>
+					<th>View</th>
+				</tr>
+			</thead>
+		</table>
+		<button class="ui button uncomplete_bonus" id="uncomplete_bonus">Un-Complete Selected Awards</button>
+	</form>
+</div>
+
+
+
+@section Scripts
+	{
+	<script>
+		$('#admin_nav').addClass('active');
+
+		var UserId = @ATGUser.UserId;
+		var btn = '<button>View</button>';
+
+		//BULK COMPLETE AWARDS
+		$(function () {
+			loadLookups({
+				callback: function () {
+					$('#bonus_table').DataTable({
+						ajax: {
+							url: '/api/Bonus/Complete',
+							dataSrc: ''
+						},
+						columns: [{
+							data: 'complete',
+							render: function (data) {
+								return '<input class="ui checkbox complete_check" name="complete_check" id="complete_check" type="checkbox"' + ((data == true) ? 'checked' : '') + ' />';
+							}
+						}, {
+							data: 'submitterUserId',
+							render: function (data) {
+								return findUser(data).name;
+							}
+						}, {
+							data: 'submitteeUserId',
+							render: function (data) {
+								return findUser(data).name;
+							}
+						}, {
+							data: 'approvalUserId',
+							render: function (data) {
+								return findUser(data).name;
+							}
+						}, {
+							data: 'reason'
+						}, {
+							data: 'spotBonusId',
+							render: function () {
+								return "<button type='button' class='ui button view_bonus'>View</button>"
+							}
+							}]
+					});
+				}
+			});
+
+
+			//BUTTON TO VIEW THE AWARD
+			$('#bonus_table').on('click select', '.view_bonus', function (event) {
+				genPrevention(event);
+				var id = $('#bonus_table').DataTable().row($(this).parents('tr')).data().spotBonusId
+				window.location.href = "/Rewards/Bonus/" + id;
+			});
+
+			$('#bonus_table').on('click', 'tr', function () {
+				var data = $('#bonus_table').DataTable().row(this).data();
+				if (typeof data != 'undefined') {
+					if ($(this).find('.complete_check').prop('checked')) {
+						data.complete = true;
+						$(this).closest('tr').addClass('positive');
+					} else {
+						data.complete = false;
+						$(this).closest('tr').removeClass('positive');
+					}
+				}
+			});
+
+			$('#complete_bonus').on('click select', function () {
+				event.preventDefault();
+				var object = {
+					ids: []
+					};
+				$('#bonus_table').DataTable().rows().every(function () {
+					if (this.data().complete == true) {
+						object.ids.push(this.data().spotBonusId);
+					}
+				});
+				var bulkApproveFunction = function (i) {
+					var data = {};
+					data.approved = true;
+					data.approvalType = 'complete';
+					data.spotBonusIds = i.ids;
+					ajSubmit({
+						data: JSON.stringify(data),
+						url: '/api/Rewards/Bonus/BulkComplete',
+						workingMessage: 'Approving award(s) status...',
+						successMessage: 'Approval complete.',
+						successClear: false,
+						successFunction: function (data) {
+							location.reload();
+						},
+						successFunctionWait: 3000,
+						failedMessage: 'Failed to approve award(s).',
+						failedFunction: function (error) {
+							console.log(error);
+						}
+					});
+				};
+
+				if (object.ids.lenth != 0) {
+					bulkApproveFunction(object);
+				};
+			});
+		});
+
+		//BULK UNCOMPLETE AWARDS
+		$(function () {
+			loadLookups({
+				callback: function () {
+					$.get()
+					var test = $('#bonus_table_2').DataTable({
+						ajax: {
+							url: '/api/Bonus/Completed',
+							dataSrc: ''
+						},
+						columns: [{
+							data: 'complete',
+							render: function (data) {
+								return '<input class="ui toggle checkbox complete_check_2" name="complete_check_2" id="complete_check_2" type="checkbox"' + ((data == false) ? 'checked': '') + ' />';
+							}
+						}, {
+							data: 'submitterUserId',
+							render: function (data) {
+								return findUser(data).name;
+							}
+						}, {
+							data: 'submitteeUserId',
+							render: function (data) {
+								return findUser(data).name;
+							}
+						}, {
+							data: 'approvalUserId',
+							render: function (data) {
+								return findUser(data).name;
+							}
+						}, {
+							data: 'reason'
+						}, {
+							data: 'spotBonusId',
+							render: function () {
+								return "<button type='button' class='ui button view_bonus'>View</button>"
+							}
+						}]
+					});
+				}
+			})
+
+			//BUTTON TO VIEW THE AWARD
+			$('#bonus_table_2').on('click select', '.view_bonus', function (event) {
+				genPrevention(event);
+				var id = $('#bonus_table_2').DataTable().row($(this).parents('tr')).data().spotBonusId
+				window.location.href = "/Rewards/Bonus/" + id;
+			});
+
+			$('#bonus_table_2').on('click', 'tr', function () {
+				var data = $('#bonus_table_2').DataTable().row(this).data();
+				if (typeof data != 'undefined') {
+					if ($(this).find('.complete_check_2').prop('checked')) {
+						data.complete = false;
+						$(this).closest('tr').addClass('negative');
+					} else {
+						data.complete = true;
+						$(this).closest('tr').removeClass('negative');
+					}
+				}
+			});
+
+			$('#uncomplete_bonus').on('click select', function () {
+				event.preventDefault();
+				var object = {
+					ids: []
+					};
+				$('#bonus_table_2').DataTable().rows().every(function () {
+					if (this.data().complete == false) {
+						object.ids.push(this.data().spotBonusId);
+					}
+				});
+				var bulkApproveFunction = function (i) {
+					var data = {};
+					data.approved = false;
+					data.approvalType = 'complete';
+					data.spotBonusIds = i.ids;
+					ajSubmit({
+						data: JSON.stringify(data),
+						url: '/api/Rewards/Bonus/BulkComplete',
+						workingMessage: 'Reseting completion status...',
+						successMessage: 'Reset complete.',
+						successClear: false,
+						successFunction: function (data) {
+							location.reload();
+						},
+						successFunctionWait: 3000,
+						failedMessage: 'Failed to reset award(s).',
+						failedFunction: function (error) {
+							console.log(error);
+						}
+					});
+				};
+
+				if (object.ids.lenth != 0) {
+					bulkApproveFunction(object);
+				};
+			});
+		});
+
+		$('#download_report').on('click select', function () {
+			event.preventDefault();
+			$.ajax({
+				url: '/api/Rewards/Bonus/ActiveAllStarAwardsReport',
+				method: 'POST',
+				success: function(data) {
+					var blob = new Blob([data]);
+					var link = document.createElement('a');
+					link.href = window.URL.createObjectURL(blob);
+					link.download = 'Report.csv';
+					link.target = '_blank';
+					link.click();
+				}
+			});
+		});
+	</script>
+}

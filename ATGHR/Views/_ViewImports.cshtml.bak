@@ -1,0 +1,4 @@
+﻿@using ATGHR
+@using ATGHR.Models
+@using ATGHR.Models.Dtos
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

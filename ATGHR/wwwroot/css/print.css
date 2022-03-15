@@ -1,0 +1,271 @@
+/* Printing Style Sheet */
+
+.show_for_print {
+	display: none;
+	
+}
+
+h2.show_for_print {
+	text-align: center;
+	padding-top: 1.5em;
+}
+
+@media print {
+	.comment_box textarea:empty {
+		display: none;
+	}
+
+	.show_for_print {
+		display: block !important;
+	}
+
+	.hide_for_print {
+		display: none;
+	}
+
+	body, html {
+		font-size: 10pt;
+		/*margin-top: -1cm;*/
+		/*padding: 1cm;*/
+		background: none;
+	}
+
+	.ui.radio.checkbox input:checked ~ .box:after, .ui.radio.checkbox input:checked ~ label:after {
+		-webkit-print-color-adjust: exact;
+	}
+
+	.column .attention {
+		-webkit-print-color-adjust: exact;
+		background-color: #ffd32a !important;
+	}
+
+	.column .ready {
+		-webkit-print-color-adjust: exact;
+		background-color: #93a63a !important;
+	}
+
+	.column .done {
+		-webkit-print-color-adjust: exact;
+		background-color: #1a918c !important;
+	}
+
+	.column .default {
+		-webkit-print-color-adjust: exact;
+		background-color: #eaeaea !important;
+	}
+
+	h1, h2, h3, h4, h5 {
+		margin: 0;
+		padding: 0;
+	}
+
+	.ui.header.container {
+		font-size: 12pt;
+		font-weight: 400;
+	}
+
+	#user_name {
+		font-weight: 600;
+	}
+
+	.margin_tb {
+		margin: 0;
+	}
+
+	header, nav, .local_navbar, footer, button,  button.c_addNew, button.c_add.comment_action, div.title.plusminus::after, div.title.plusminus::before,	#skip_to_main, .ui.sidebar, .sheet_sub_nav.local_active, .local_spacer {
+		display: none !important;
+		margin: 0;
+		padding: 0;
+	}
+
+	img.ui.large.image {
+		display: none;
+	}
+
+	.main_container {
+		box-shadow: none;
+		border: none;
+		padding: 0;
+		width: 100%;
+		margin: 0;
+	}
+
+	.ui.header {
+		margin: 0;
+	}
+
+	h1.ui.header {
+		margin-bottom: 20pt;
+	}
+
+	.ui.form {
+		max-width: 100%;
+	}
+
+	.performance_item {
+		padding: 1rem !important;
+		display: block;
+	}
+
+	div.performance_sheet_score_container {
+		margin: 0px;
+		padding: 0px;
+	}
+
+	div.performance_sheet_score_container h2.score_phrase {
+		margin-bottom: 0em;
+		padding: 0em;
+	}
+
+	div.performance_approval_date_container p, div.performance_approval_date_container span {
+		margin-bottom: 0em;
+		padding: 0em;
+	}
+
+	.ui.form textarea {
+		background: #ffffff;
+		padding: 0;
+		margin: 0;
+		max-height: 50pt;
+	}
+
+	.ui.form h3 {
+		float: left;
+	}
+
+	#review_sheet .white_form_box {
+		margin: 0 !important;
+		margin-top: 2pt !important;
+		/*page-break-inside: avoid;*/
+	}
+
+	.performance_text {
+		page-break-inside: avoid;
+	}
+
+	.ui.form .white_form_box h3 {
+		font-size: 11pt;
+	}
+
+	.ui.form .field {
+		margin: 0;
+		padding: 0;
+	}
+
+	.ui.form input[type="text"] {
+		display: none;
+	}
+
+	.accordion.comment_box {
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		border: none;
+	}
+
+	.ui.form .ui.fluid.accordion.item_detail .accordion.comment_box.performance_comment {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	.sixteen.wide.column.container {
+		padding: 0;
+		margin: 0;
+	}
+
+	.bottom.attached.tab.segment {
+		background: #ffffff;
+		display: block;
+		padding: 0;
+		border: none;
+	}
+
+	#tab_headers {
+		display: none;
+	}
+
+	.ui.form .ui.fluid.accordion.item_detail {
+		border: none;
+		margin: 0 !important;
+		padding: 0 !important;
+		padding-left: 30pt;
+	}
+
+	#goal_sheet .white_form_box {
+		margin: 0 !important;
+		margin-top: 2pt !important;
+		page-break-inside: avoid;
+	}
+
+	#goal_sheet .performance_item .white_form_box {
+		page-break-inside:auto;
+	}
+
+	#goal_sheet .ui.fluid.accordion.item_detail {
+		margin: 0 !important;
+		padding: 0 !important;
+		padding-left: 30pt;
+	}
+
+	#goal_sheet .ui.fluid.accordion.item_detail .performance_children .performance_item .white_form_box {
+		page-break-inside: avoid;
+		padding: 0;
+		margin: 0;
+		padding-left: 50pt;
+		}
+
+	#goal_sheet div[data-tab="GoalsQualitative"] h3 {
+		padding-top: 10pt;
+	}
+
+	.ui.form .ui.fluid.accordion.item_detail div.title {
+		display: none;
+	}
+
+	div .ui.label {
+		background: none;
+	}
+
+	.ui.labeled.input, .ui.form .review_section textarea {
+		border: none;
+	}
+
+	.ui.accordion .title, .ui.accordion .content, .ui.accordion .title .content .performance_children {
+		display: block !important;
+	}
+
+	.review_section, .sign_date_box, div .goal_section {
+		page-break-inside: avoid;
+	}
+
+	.sign_date_box {
+		display: block !important;
+	}
+
+	.c_add{
+		display: block !important;
+	}
+
+	.c_reply, .c_save, .c_edit, .c_delete {
+		display: none !important;
+	}
+
+	.ui.disabled.checkbox .box:after, .ui.disabled.checkbox label, .ui.checkbox input[disabled] ~ .box:after, .ui.checkbox input[disabled] ~ label {
+		opacity: 1.0;
+		color: black;
+	}
+
+	.admin_use {
+		page-break-inside: avoid;
+	}
+
+	.admin_use h3 {
+		padding-top: 3rem;
+	}
+
+	@page {
+		size: auto;
+		margin: 5%;
+	}
+}

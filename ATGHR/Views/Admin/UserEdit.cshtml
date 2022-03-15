@@ -1,0 +1,577 @@
+<h1 class="ui header center aligned">@(Model == -1 ? "Add" : "Edit") Employee</h1>
+<div class="ui container white_form_box">
+	<div class="ui top attached tabular menu">
+		<a class="item active" data-tab="details">Employee Information</a>
+		<a class="item" data-tab="goal">Goals</a>
+		<a class="item" data-tab="review">Performance Reviews</a>
+	</div>
+	<div class="ui bottom attached tab segment active" data-tab="details">
+		<div class="ui text container">
+			<form class="ui form local_padding_top user_form">
+				<h2 class="ui header center aligned" id="name"></h2>
+				<input type="hidden" name="userId" data-serialize="true" />
+				@*The User Information Section*@
+				<h3 class="ui dividing header">User Information</h3>
+				<div class="field">
+					<label for="nameTitle">Personal Title</label>
+					<input type="text" id="nameTitle" name="nameTitle" placeholder="Title" data-serialize="true" />
+				</div>
+				<div class="two fields">
+					<div class="field">
+						<label for="nameFirst">First Name</label>
+						<input type="text" id="nameFirst" name="nameFirst" placeholder="First" data-serialize="true" />
+					</div>
+					<div class="field">
+						<label for="nameMiddle">Middle</label>
+						<input type="text" id="nameMiddle" name="nameMiddle" placeholder="Middle" data-serialize="true" />
+					</div>
+				</div>
+				<div class="field">
+					<label for="nameLast">Last Name</label>
+					<input type="text" id="nameLast" name="nameLast" placeholder="Last" data-serialize="true" />
+				</div>
+				<div class="two fields">
+					<div class="field">
+						<label for="nameSuffix">Suffix</label>
+						<input type="text" id="nameSuffix" name="nameSuffix" placeholder="Suffix" data-serialize="true" />
+					</div>
+					<div class="field">
+						<label for="nameGoesBy">Nick Name</label>
+						<input type="text" id="nameGoesBy" name="nameGoesBy" placeholder="Goes by" data-serialize="true" />
+					</div>
+				</div>
+				<div class="field">
+					<label for="msName">Full Name</label>
+					<input type="text" id="msName" name="msName" placeholder="Microsoft Account Name" data-serialize="true" />
+				</div>
+				<div class="field">
+					<label for="mobilePhone">Personal Phone Number</label>
+					<input type="text" id="mobilePhone" name="mobilePhone" placeholder="(000)000-0000" data-serialize="true" />
+				</div>
+				<div class="field">
+					<label for="username">Work Email</label>
+					<input type="email" id="username" name="username" placeholder="nlast@emailatg.com" data-serialize="true" />
+				</div>
+				<!-- office location -->
+				<div class="field">
+					<label for="atgOfficeId">ATG Office</label>
+					<select class="ui fluid search dropdown" id="atgOfficeId" name="atgOfficeId" data-serialize="true"></select>
+				</div>
+				@*Personal Address Section *@
+				<h3 class="ui dividing header">Personal Address</h3>
+				<div class="two fields">
+					<div class="field">
+						<label for="streetAddress">Address</label>
+						<input type="text" id="streetAddress" name="streetAddress" placeholder="Street Address" data-serialize="true" />
+					</div>
+					<div class="field">
+						<label for="unit">Apt #</label>
+						<input type="text" id="unit" name="office_address_2" placeholder="Apt #" data-serialize="true" />
+					</div>
+				</div>
+				<div class="three fields">
+					<div class="field">
+						<label for="city">City</label>
+						<input id="city" type="text" name="city" placeholder="City" data-serialize="true" />
+					</div>
+					<div class="field">
+						<label for="state">State</label>
+						<select id="state" name="state" class="ui fluid search dropdown" data-serialize="true">
+							<option value="">State</option>
+							<option value="AL">Alabama</option>
+							<option value="AK">Alaska</option>
+							<option value="AZ">Arizona</option>
+							<option value="AR">Arkansas</option>
+							<option value="CA">California</option>
+							<option value="CO">Colorado</option>
+							<option value="CT">Connecticut</option>
+							<option value="DE">Delaware</option>
+							<option value="DC">District Of Columbia</option>
+							<option value="FL">Florida</option>
+							<option value="GA">Georgia</option>
+							<option value="HI">Hawaii</option>
+							<option value="ID">Idaho</option>
+							<option value="IL">Illinois</option>
+							<option value="IN">Indiana</option>
+							<option value="IA">Iowa</option>
+							<option value="KS">Kansas</option>
+							<option value="KY">Kentucky</option>
+							<option value="LA">Louisiana</option>
+							<option value="ME">Maine</option>
+							<option value="MD">Maryland</option>
+							<option value="MA">Massachusetts</option>
+							<option value="MI">Michigan</option>
+							<option value="MN">Minnesota</option>
+							<option value="MS">Mississippi</option>
+							<option value="MO">Missouri</option>
+							<option value="MT">Montana</option>
+							<option value="NE">Nebraska</option>
+							<option value="NV">Nevada</option>
+							<option value="NH">New Hampshire</option>
+							<option value="NJ">New Jersey</option>
+							<option value="NM">New Mexico</option>
+							<option value="NY">New York</option>
+							<option value="NC">North Carolina</option>
+							<option value="ND">North Dakota</option>
+							<option value="OH">Ohio</option>
+							<option value="OK">Oklahoma</option>
+							<option value="OR">Oregon</option>
+							<option value="PA">Pennsylvania</option>
+							<option value="RI">Rhode Island</option>
+							<option value="SC">South Carolina</option>
+							<option value="SD">South Dakota</option>
+							<option value="TN">Tennessee</option>
+							<option value="TX">Texas</option>
+							<option value="UT">Utah</option>
+							<option value="VT">Vermont</option>
+							<option value="VA">Virginia</option>
+							<option value="WA">Washington</option>
+							<option value="WV">West Virginia</option>
+							<option value="WI">Wisconsin</option>
+							<option value="WY">Wyoming</option>
+						</select>
+					</div>
+					<div class="field">
+						<label for="zip">Zip Code</label>
+						<input id="zip" type="text" name="zip" placeholder="Zip Code" data-serialize="true" />
+					</div>
+				</div>
+				@*Permission Section*@
+				<h3 class="ui dividing header">Administrative Information</h3>
+				<div class="field">
+					<label for="permissionId">Global Permissions <sub>(multi-select)</sub></label>
+					<select multiple="" id="permissionId" name="permissionId" class="ui fluid search dropdown" data-serialize="true"></select>
+				</div>
+				<div class="field">
+					<label for="managerUserId">Managers <sub>(multi-select)</sub></label>
+					<select multiple="" id="managerUserId" name="managerUserId" class="ui fluid search dropdown" data-serialize="true"></select>
+				</div>
+				<div class="field">
+					<label for="leadUserId">Leads <sub>(multi-select)</sub></label>
+					<select multiple="" id="leadUserId" name="leadUserId" class="ui fluid search dropdown" data-serialize="true"></select>
+				</div>
+				<div class="field">
+					<label for="spotBonusApproverUserId">Spot Bonus Approvers <sub>(multi-select)</sub></label>
+					<select multiple="" id="spotBonusApproverUserId" name="spotBonusApproverUserId" class="ui fluid search dropdown" data-serialize="true"></select>
+				</div>
+				@*Employement Information*@
+
+				<h3 class="ui dividing header">Employment Information</h3>
+				<div class="field">
+					<label for="divisionId">Division</label>
+					<select class="ui fluid search dropdown" id="divisionId" name="divisionId" data-serialize="true"></select>
+				</div>
+				<div class="field">
+					<label for="jobTitle">Job Title</label>
+					<input type="text" id="jobTitle" name="jobTitle" placeholder="Job Title" data-serialize="true" />
+				</div>
+				<div class="field">
+					<label for="careerLadder">Career Ladder Classification</label>
+					<select id="careerLadder" name="careerLadder" class="ui fluid search dropdown" data-serialize="true">
+						<option value="" disabled>Career Ladder Classification</option>
+						<option value="(A-1) Office Asst/Int/FileClerk">(A-1) Office Asst/Int/FileClerk</option>
+						<option value="(A-2) Office Asst/Int/FileClerk/Acct/HR/IS/Mkt">(A-2) Office Asst/Int/FileClerk/Acct/HR/IS/Mkt</option>
+						<option value="(A-3) Office Asst/Int/FileClerk/Acct/HR/IS/Mkt/Rece">(A-3) Office Asst/Int/FileClerk/Acct/HR/IS/Mkt/Rece</option>
+						<option value="(A-4) Office Asst/Int/FileClerk/Acct/HR/IS/Mkt/Rece">(A-4) Office Asst/Int/FileClerk/Acct/HR/IS/Mkt/Rece</option>
+						<option value="(A-5) Office Asst/Int/FileClerk/Acct/HR/IS/Mkt/Rece">(A-5) Office Asst/Int/FileClerk/Acct/HR/IS/Mkt/Rece</option>
+						<option value="(A-6) Office Asst/Int/FileClerk/Acct/HR/IS/Mkt/Rece">(A-6) Office Asst/Int/FileClerk/Acct/HR/IS/Mkt/Rece</option>
+						<option value="(B-1) MK Coor/Graphic Des/Proj Acct/HR Anal/IT Anal">(B-1) MK Coor/Graphic Des/Proj Acct/HR Anal/IT Anal</option>
+						<option value="(B-2) MK Coor/Graphic Des/Proj Acct/HR Anal/IT Anal">(B-2) MK Coor/Graphic Des/Proj Acct/HR Anal/IT Anal</option>
+						<option value="(B-3) MK Coor/Graphic Des/Proj Acct/HR Anal/IT Anal">(B-3) MK Coor/Graphic Des/Proj Acct/HR Anal/IT Anal</option>
+						<option value="(B-4) MK Coor/Graphic Des/Acct MGR/HR Gene/IT Anal">(B-4) MK Coor/Graphic Des/Acct MGR/HR Gene/IT Anal</option>
+						<option value="(B-5) Sr. Level HR, IT,Market,Acct Depart Managers">(B-5) Sr. Level HR, IT,Market,Acct Depart Managers</option>
+						<option value="(B-6) Sr. Level HR, IT,Market,Acct Depart Managers">(B-6) Sr. Level HR, IT,Market,Acct Depart Managers</option>
+						<option value="(B-7) Sr. Level HR, IT,Market,Acct Depart Managers">(B-7) Sr. Level HR, IT,Market,Acct Depart Managers</option>
+						<option value="(B-8) Sr. Level HR, IT,Market,Acct Dept Mngrs/Direc">(B-8) Sr. Level HR, IT,Market,Acct Dept Mngrs/Direc</option>
+						<option value="(B-9) Sr. Level HR, IT,Market,Acct Dept Mngrs/Direc">(B-9) Sr. Level HR, IT,Market,Acct Dept Mngrs/Direc</option>
+						<option value="(B-10) Chief Executive Officer">(B-10) Chief Executive Officer</option>
+						<option value="(P-1) Engineering Analyst/Planner/TD Modeler">(P-1) Engineering Analyst/Planner/TD Modeler</option>
+						<option value="(P-2) Engineering Analyst/Planner/TD Modeler">(P-2) Engineering Analyst/Planner/TD Modeler</option>
+						<option value="(P-3) Engineering Analyst/Planner/TD Modeler">(P-3) Engineering Analyst/Planner/TD Modeler</option>
+						<option value="(P-4) Engineer/Planner/TD Modeler">(P-4) Engineer/Planner/TD Modeler</option>
+						<option value="(P-5) Engineer/Planner/TD Modeler">(P-5) Engineer/Planner/TD Modeler</option>
+						<option value="(P-6) Senior Engineer/Planner/TD Modeler">(P-6) Senior Engineer/Planner/TD Modeler</option>
+						<option value="(P-7) Dept. Manager: Sr Engineer/Planner/TD Modeler">(P-7) Dept. Manager: Sr Engineer/Planner/TD Modeler</option>
+						<option value="(P-8) Dept. Manager: Sr Engineer/Planner/TD Modeler">(P-8) Dept. Manager: Sr Engineer/Planner/TD Modeler</option>
+						<option value="(P-9) VP/Assoc./Div. Manager/Dir. Of Ops/Off Lead">(P-9) VP/Assoc./Div. Manager/Dir. Of Ops/Off Lead</option>
+						<option value="(P-10) Pres/Exec VP/VP/Associate/Division Manager">(P-10) Pres/Exec VP/VP/Associate/Division Manager</option>
+						<option value="(T-1) Data Coll Tech/Intern">(T-1) Data Coll Tech/Intern</option>
+						<option value="(T-2) Data Coll Tech/Intern">(T-2) Data Coll Tech/Intern</option>
+						<option value="(T-3) Data Coll Tech">(T-3) Data Coll Tech</option>
+						<option value="(T-4) Data Coll Analyst">(T-4) Data Coll Analyst</option>
+						<option value="(T-5) Asst Field Supervisor/Data Coll Analyst">(T-5) Asst Field Supervisor/Data Coll Analyst</option>
+						<option value="(T-6) Field Supervisor">(T-6) Field Supervisor</option>
+					</select>
+				</div>
+				<div class="field">
+					<label for="trainingLevel">Current Training Level</label>
+					<select id="trainingLevel" name="trainingLevel" class="ui fluid search dropdown" data-serialize="true">
+						<option value="" disabled>Current Training Level</option>
+						<option value="Executive A">Executive A</option>
+						<option value="Executive B">Executive B</option>
+						<option value="Executive C">Executive C</option>
+						<option value="Leadership A">Leadership A</option>
+						<option value="Leadership B">Leadership B</option>
+						<option value="Learning A">Learning A</option>
+						<option value="Learning B">Learning B</option>
+						<option value="Teaching A">Teaching A</option>
+						<option value="Teaching B">Teaching B</option>
+					</select>
+				</div>
+				<div class="field">
+					<label for="userRole">Role</label>
+					<select id="userRole" name="userRole" class="ui fluid search dropdown" data-serialize="true"></select>
+				</div>
+				<div class="field">
+					<label for="utilization">Personal Utilization</label>
+					<input type="text" id="utilization" name="utilization" placeholder="utilization" data-serialize="true" />
+				</div>
+				<div class="two fields">
+					<div class="field">
+						<label for="hireDate">Hire Date</label>
+						<input type="date" id="hireDate" name="hireDate" placeholder="Hire Date" data-serialize="true" />
+					</div>
+					<div class="field">
+						<label for="startDate">Start Date</label>
+						<input type="date" id="startDate" name="startDate" placeholder="Start Date" data-serialize="true" />
+					</div>
+				</div>
+				<div class="field">
+					<label for="officeExtension">Telephone Extension</label>
+					<input type="number" id="officeExtension" name="officeExtension" placeholder="Ext." data-serialize="true" />
+				</div>
+				<div class="field">
+					<div class="ui toggle checkbox">
+						<input type="checkbox" id="remoteWorker" name="remoteWorker" class="hidden" data-serialize="true" />
+						<label for="remoteWorker">Remote Worker</label>
+					</div>
+				</div>
+				<div class="field">
+					<div class="ui toggle checkbox">
+						<input type="checkbox" id="activeFlag" name="activeFlag" class="hidden" data-serialize="true" />
+						<label for="activeFlag">Active Employee</label>
+					</div>
+				</div>
+				<div class="field">
+					<label for="terminationDate">Termination Date</label>
+					<input type="date" id="terminationDate" name="terminationDate" placeholder="Termination Date" data-serialize="true" />
+				</div>
+				<div class="field">
+					<label for="birthDate">Birth Date</label>
+					<input type="date" id="birthDate" name="birthDate" placeholder="Birth Date" data-serialize="true" />
+				</div>
+				<div class="ui container center aligned">
+					<button class="ui button" id="add_new_user">@(Model == -1 ? "Add New Employee" : "Save")</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="ui bottom attached tab segment" data-tab="goal">
+		<table class="ui striped table" id="goal_table" style="width:100%">
+			<thead>
+				<tr>
+					<th>Owner</th>
+					<th>Year</th>
+					<th>View</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+	<div class="ui bottom attached tab segment" data-tab="review">
+		<table class="ui striped table" id="review_table" style="width:100%">
+			<thead>
+				<tr>
+					<th>Owner</th>
+					<th>Year</th>
+					<th>View</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+@section Scripts
+	{
+<script>
+	$('#admin_nav').addClass('active');
+
+	//The id of the user being edited or -1 if a new user
+	var PrimaryUserId = @Model;
+		
+	var user;
+
+	$(function() {
+		loadLookups({
+			callback: function() {
+				// builds select dropdown for forms for new and exisiting users
+				for (i = 0; i < divisions.length; i++) {
+					var divisionName = divisions[i].name;
+					if (divisions[i].hasOwnProperty('parentDivisionId')){
+						divisionName += ' (Practice)';
+					};
+					$('#divisionId').append($('<option></option>')
+						.val(divisions[i].divisionId)
+						.text(divisionName));
+				};
+				for (i = 0; i < roles.length; i++) {
+					$('#userRole').append($('<option></option>')
+						.val(roles[i].roleId)
+						.text(roles[i].name));
+				};
+				var sUsers = sortUsers();
+				// finding list of managers
+				for (i = 0; i < sUsers.length; i++) {
+					if (sUsers[i].userId !== PrimaryUserId) {
+						$('#managerUserId').append($('<option></option>')
+							.val(sUsers[i].userId)
+							.text(sUsers[i].name));
+					}
+				};
+				// finding list of Leads
+				for (i = 0; i < sUsers.length; i++) {
+					if (sUsers[i].userId !== PrimaryUserId) {
+						$('#leadUserId').append($('<option></option>')
+							.val(sUsers[i].userId)
+							.text(sUsers[i].name));
+					}
+				};
+				// finding list of Spot Bonus Approvers
+				for (i = 0; i < sUsers.length; i++) {
+					if (sUsers[i].userId !== PrimaryUserId) {
+						$('#spotBonusApproverUserId').append($('<option></option>')
+							.val(sUsers[i].userId)
+							.text(sUsers[i].name));
+					}
+				};
+				//Finding a list of offices
+				for (i = 0; i < offices.length; i++) {
+					$('#atgOfficeId').append($('<option></option>')
+						.val(offices[i].atgOfficeId)
+						.text(offices[i].name + ' - ' + offices[i].streetAddress));
+				};
+				//Determine the possible global permissions that a user can have 
+				for (i = 0; i < permissions.length; i++) {
+					if (permissions[i].name == 'Administrator' || permissions[i].name == 'Viewer' || permissions[i].name == 'Spot Bonus Completer' || permissions[i].name == 'Spot Bonus Requestor'){
+					$('#permissionId').append($('<option></option>')
+						.val(permissions[i].permissionId)
+						.text(permissions[i].name + ': ' + permissions[i].description));
+					};
+				};
+
+				if (PrimaryUserId > -1) {
+					$.ajax({
+						url: '/api/Admin/User/@Model',
+						success: function (data) {
+							user = data;
+							//Use the getPermissionId to get the id of each permission name for later comparison 						
+							var managerPermissionId = getLookup('Supervisor','name',permissions).permissionId;
+							var leadPermissionId = getLookup('Lead', 'name',permissions).permissionId;
+							var spaPermissionId = getLookup('Spot Bonus Approver', 'name',permissions).permissionId;
+
+							for (var property in data) {
+								if (data.hasOwnProperty(property)) {
+									//Set the selected useRoles based on the data recieved from the API
+									if (property === 'userRoles') {
+										var vals = []
+										for (var role in data.userRoles) {
+											var val = data.userRoles[role].roleId;
+											if (typeof val !== 'undefined') {
+												vals.push(val.toString());
+											}
+										}
+										$('.user_form').find(':input[name=userRole]').dropdown('set selected', vals);
+									}
+									//Updates the multi select with data from the api
+									else if (property === 'incomingUserPermissions') {
+										for (var i in data.incomingUserPermissions) {
+											var id = data.incomingUserPermissions[i].userId;
+											if (data.incomingUserPermissions[i].permissionId === managerPermissionId) {
+												$('.user_form').find(':input[name=managerUserId]').dropdown('set selected', id.toString());
+											}
+											else if (data.incomingUserPermissions[i].permissionId === leadPermissionId) {
+												$('.user_form').find(':input[name=leadUserId]').dropdown('set selected', id.toString());
+											}
+											else if (data.incomingUserPermissions[i].permissionId === spaPermissionId) {
+												$('.user_form').find(':input[name=spotBonusApproverUserId]').dropdown('set selected', id.toString());
+											}
+										}
+									}
+									//updates global permission multi select 
+									else if (property === 'outgoingUserPermissions') {
+										for (var i in data.outgoingUserPermissions) {
+											var id = data.outgoingUserPermissions[i].permissionId;
+											if (data.outgoingUserPermissions[i].isGlobal === true) {
+												$('.user_form').find(':input[name=permissionId]').dropdown('set selected', id.toString());
+											};
+										};
+									}
+									else
+									{
+									var val = eval('data.' + property);
+										if (typeof eval('data.' + property) === 'boolean') {
+											//updates check boxes visually
+											$('.user_form').find(':input[name=' + property + ']').prop('checked', val).change();
+										}
+										else {
+											if (property.match(/Date/g) !== null) {
+												val = formatInputDate(val);
+											};
+											//otherwise assign all other values appropriately 
+											$('.user_form').find(':input[name=' + property + ']').val(val).change();
+										}
+									}
+								}
+							}
+							$('.user_form').find('#name').text(data.name);
+						}
+					})
+				};
+
+				$('#goal_table').DataTable({
+					ajax: {
+						url: '/api/Admin/User/Goals/@Model',
+						dataSrc: ''
+					},
+					order: [1, 'desc'],
+					columns: [
+					{
+						data: 'userId',
+						className: 'dt-body-center',
+						render: function (data) {
+							return findUser(data).name;
+						}
+					}, {
+						data: 'year',
+						className: 'dt-body-center'
+					},{
+						data: 'performanceGoalSheetId',
+						className: 'dt-body-center',
+						render: function () {
+							return "<button type='button' class='ui button view_goal'>View</button>"
+						}
+					}]
+				});
+
+				$('#review_table').DataTable({
+					ajax: {
+						url: '/api/Admin/User/Reviews/@Model',
+						dataSrc: ''
+					},
+					order: [1, 'desc'],
+					columns: [
+					{
+						data: 'userId',
+						className: 'dt-body-center',
+						render: function (data) {
+							return findUser(data).name;
+						}
+					}, {
+						data: 'year',
+						className: 'dt-body-center'
+					},{
+						data: 'performanceReviewSheetId',
+						className: 'dt-body-center',
+						render: function () {
+							return "<button type='button' class='ui button view_review'>View</button>"
+						}
+					}]
+				});
+			}
+		});
+
+		
+		//BUTTON TO VIEW THE GOAL SHEET
+		$('#goal_table').on('click select', '.view_goal', function (event) {
+			genPrevention(event);
+			var id = $('#goal_table').DataTable().row($(this).parents('tr')).data().performanceGoalSheetId
+			window.location.href = "/Performance/GoalSheet/" + id;
+		});
+		//BUTTON TO VIEW THE REVIEW SHEET
+		$('#review_table').on('click select', '.view_review', function (event) {
+			genPrevention(event);
+			var id = $('#review_table').DataTable().row($(this).parents('tr')).data().performanceReviewSheetId
+			window.location.href = "/Performance/ReviewSheet/" + id;
+		});
+	});
+
+	$('#add_new_user').on('click select', function (event) {
+		event.preventDefault();
+		//serlize the form
+		var user = serializeForm('.user_form');
+		//create new keys on the user object
+		user.outgoingUserPermissions = [];
+		user.incomingUserPermissions = [];
+		user.userRoles = [];
+
+		//Take value from the multiselect dropdown and assign them to an object within the appropriate array
+		user.managerUserId.forEach(function(m) {
+			var obj = {
+				userId: m,
+				employeeUserId: user.userId,
+				performanceGoalSheetId: null,
+				performanceReviewSheetId: null,
+				DivisionId: null,
+				permissionId: getLookup('Supervisor', 'name', permissions).permissionId
+			};	
+			user.incomingUserPermissions.push(obj);
+		});
+		user.leadUserId.forEach(function (m) {
+			var obj = {
+				userId: m,
+				employeeUserId: user.userId,
+				performanceGoalSheetId: null,
+				performanceReviewSheetId: null,
+				DivisionId: null,
+				permissionId: getLookup('Lead', 'name', permissions).permissionId
+			};
+			user.incomingUserPermissions.push(obj);
+		});
+		user.spotBonusApproverUserId.forEach(function (m) {
+			var obj = {
+				userId: m,
+				employeeUserId: user.userId,
+				performanceGoalSheetId: null,
+				performanceReviewSheetId: null,
+				DivisionId: null,
+				permissionId: getLookup('Spot Bonus Approver', 'name', permissions).permissionId
+			};
+			user.incomingUserPermissions.push(obj);
+		});
+		user.permissionId.forEach(function (m) {
+			var obj = {
+				userId: user.userId,
+				employeeUserId: null,
+				performanceGoalSheetId: null,
+				performanceReviewSheetId: null,
+				DivisionId: null,
+				permissionId: m
+			};
+			user.outgoingUserPermissions.push(obj);
+		});
+		
+		var obj2 = {
+			userId: user.userId,
+			roleId: user.userRole,
+			mainRole: true
+		};
+		user.userRoles.push(obj2);
+		
+		//delete the unecessary keys from the serialization of the from 
+		delete user.permissionId;
+		delete user.managerUserId;
+		delete user.leadUserId;
+		delete user.spotBonusApproverUserId;
+		delete user.userRole;
+
+		//console.log(user);
+		//submit the user object for saving
+		ajSubmit({
+			data: JSON.stringify(user),
+			url: '/api/Admin/User/Save',
+			workingMessage: 'Saving User...',
+			successMessage: 'User Saved!',
+			failedMessage: 'Failed to Save User.',
+			successFunction: function () { window.location = '/Admin/User/'+user.userId;}
+		});
+	});
+</script>
+}

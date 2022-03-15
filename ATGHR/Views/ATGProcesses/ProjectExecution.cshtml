@@ -1,0 +1,850 @@
+@model ResourcesFileListDto
+
+<style>
+	.txt {
+		font-family: 'Lato', sans-serif;
+	}
+
+	.white {
+		fill: #f4f8f9;
+	}
+
+	.black {
+		fill: #020202;
+	}
+
+	.gray {
+		fill: #4d6060;
+	}
+
+	.txt-bold {
+		font-weight: 600;
+	}
+
+	.txt-24 {
+		font-size: 24px;
+	}
+
+	.txt-22 {
+		font-size: 22px;
+	}
+
+	.txt-18 {
+		font-size: 18px;
+	}
+
+	.line {
+		stroke: black;
+		fill: none;
+		stroke-width: 2px;
+	}
+
+	.teal {
+		fill: #15a5b6;
+	}
+
+	.background {
+		opacity: 0.2;
+	}
+
+	.dark-teal {
+		fill: #0e6d77;
+	}
+
+	.dark-yellow {
+		fill: #d0912a;
+	}
+
+	.yellow {
+		fill: #fbb41d;
+	}
+
+	.light-gray {
+		fill: #ebebeb;
+	}
+
+	.dark-gray {
+		fill: #1c3a3a;
+	}
+
+	#project_execution_flowchart {
+		padding: 1rem;
+	}
+</style>
+
+<div class="ui breadcrumb padding_g">
+	<a href="~/ATGProcesses" class="section">ATG Project Delivery System (Main)</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/StrategicPlan" class="section">Strategic Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/AnnualBusinessPlan" class="section">Annual Business Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/BusinessDevelopment" class="section">Business Development</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/Contracts" class="section">Contract Phase</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectExecution" class="section">Project Execution</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectCloseout" class="section">Project Closeout</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/RecordsRetention" class="section">Records Retention</a>
+</div>
+<div class="padding_t_2em" style="display: block !important;">
+	<h1 class="ui horizontal divider header margin_tb">
+		Project Execution
+	</h1>
+	<div id="project_execution_flowchart">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 990">
+			<g id="Layer_2" data-name="Layer 2">
+				<g id="Layer_1-2" data-name="Layer 1">
+					<rect class="teal background" x="30" y="30" width="1140" height="930" />
+
+					<rect class="dark-teal" x="5" y="0" width="180" height="100" rx="15" />
+					<rect class="teal" x="15" y="0" width="180" height="100" rx="15" />
+					<text class="txt white txt-bold txt-22" transform="translate(37 40)">
+						Begin Project
+						<tspan x="-15" y="25">Execution Phase</tspan>
+					</text>
+
+					<line class="line" x1="195" y1="50" x2="210" y2="50" />
+					<polygon points="210,45 225,50 210,55" />
+
+					<g class="node pop_up move_to_right" data-object="cps_node">
+						<rect class="dark-teal" x="225" y="0" width="180" height="100" rx="15" />
+						<rect class="teal" x="235" y="0" width="180" height="100" rx="15" />
+						<text class="txt txt-bold txt-22 white" transform="translate(280 40)">
+							Complete
+							<tspan x="-20" y="25">Project Setup</tspan>
+						</text>
+						<foreignObject width="40" height="40" x="240" y="5">
+							<body xmlns="http://www.w3.org/2000/svg">
+								<i class="external alternate inverted icon" width="40" height="40"></i>
+								<div class="ui longer modal" id="cps_node">
+									<i class="close icon"></i>
+									<div class="header">
+										Complete Project Setup
+									</div>
+									<div class="content">
+										<div class="description">
+											<ul>
+												@{
+                                                    var file1 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("4B6E4082-9E81-41C3-8F0F-C4266E2AD638"));
+													var file2 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("F7941B67-9D5B-4EA3-BD47-4145E258662F"));
+                                                    var file3 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("E3786DC2-A9B8-4897-8794-1D642C43E6CA"));
+                                                }
+                                                <li>
+	                                                <a href="~/documents/commonfiles/@file2?.FileName" target="_blank">
+		                                                [@file2?.Extension.Substring(1).ToUpper()]
+	                                                </a>
+	                                                @if (Model.UserI.IsAdmin){
+                                                		<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file2?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+	                                                }
+                                                	Project Setup fillable form.
+                                                </li>
+                                                <li>
+                                                	<a href="~/documents/commonfiles/@file3?.FileName" target="_blank">
+                                                          [@file3?.Extension.Substring(1).ToUpper()]
+                                                	</a>
+                                                	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file3?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+                                                    Project Setup Sheet instructions.</li>
+												<li>
+													<a href="~/documents/commonfiles/@file1?.FileName" target="_blank">
+														[@file1?.Extension.Substring(1).ToUpper()]
+													</a>
+                                                	@if (Model.UserI.IsAdmin)
+	                                                {
+		                                                <a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file1?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+	                                                }
+													Project setup training PowerPoint.
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</body>
+						</foreignObject>
+					</g>
+
+					<line class="line" x1="415" y1="50" x2="430" y2="50" />
+					<polygon points="430,45 445,50 430,55" />
+
+					<g class="node pop_up move_to_right" data-object="cipp_node">
+						<rect class="dark-teal" x="445" y="0" width="220" height="100" rx="15" />
+						<rect class="teal" x="455" y="0" width="220" height="100" rx="15" />
+						<text class="txt txt-bold txt-22 white" transform="translate(490 30)">
+							Complete initial
+							<tspan x="5" y="25">Project Plan in</tspan>
+							<tspan x="-5" y="50">Microsoft Project</tspan>
+						</text>
+						<foreignObject width="40" height="40" x="460" y="5">
+							<body xmlns="http://www.w3.org/2000/svg">
+								<i class="external alternate inverted icon" width="40" height="40"></i>
+								<div class="ui longer modal" id="cipp_node">
+									<i class="close icon"></i>
+									<div class="header">
+										Complete Initial Project Plan in Microsoft Project
+									</div>
+									<div class="content">
+										<div class="description">
+											@{
+                                                var file4 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("8B2B363D-6F71-4B30-B5A1-E92CA110D3EA"));
+                                            	var file5 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("3AE148AD-4120-429F-8151-7E75E3AA8C36"));
+                                                var file6 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("9FA745BA-FFDF-4FA0-A420-94F6D968C74F"));
+                                                var file7 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("CC752C28-F1DD-455F-8032-980815BFC027"));
+                                                var file8 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("99DD9E30-08FB-4113-BA9B-D785408F20E7"));
+											}
+											<ul>
+												<li>
+													<a href="~/documents/commonfiles/@file4?.FileName" target="_blank">
+														[@file4?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file4?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													Large project template.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file5?.FileName" target="_blank">
+														[@file5?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file5?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													Project Management Plan instructions.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file6?.FileName" target="_blank">
+														[@file6?.Extension.Substring(1).ToUpper()]
+													</a>
+												@if (Model.UserI.IsAdmin)
+												{
+													<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file6?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+												}
+													Project Management Plan overview sheet.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file7?.FileName" target="_blank">
+														[@file7?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file7?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													Sample Project Management Plan outline.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file8?.FileName" target="_blank">
+														[@file8?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file8?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													Small project Project Management Plan template.
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</body>
+						</foreignObject>
+					</g>
+
+					<polyline class="line" points="675,50 705,50 705,130 75,130 75,210 90,210" />
+					<polygon points="90,205 105,210 90,215" />
+
+					<rect class="dark-teal" x="105" y="160" width="260" height="100" rx="15" />
+					<rect class="teal" x="115" y="160" width="260" height="100" rx="15" />
+					<text class="txt txt-bold txt-22 white" transform="translate(155 200)">
+						Complete Project
+						<tspan x="-30" y="25">Management Plan (PMP)</tspan>
+					</text>
+
+					<line class="line" x1="245" y1="260" x2="245" y2="630" />
+					<line class="line" x1="230" y1="370" x2="260" y2="370" />
+					<polygon points="215,370 230,365 230,375" />
+					<polygon points="275,370 260,365 260,375" />
+					<line class="line" x1="230" y1="490" x2="260" y2="490" />
+					<polygon points="215,490 230,485 230,495" />
+					<polygon points="275,490 260,485 260,495" />
+					<line class="line" x1="230" y1="630" x2="260" y2="630" />
+					<polygon points="215,630 230,625 230,635" />
+					<polygon points="275,630 260,625 260,635" />
+					<line class="line" x1="375" y1="210" x2="600" y2="210" />
+					<polygon points="600,205 615,210 600,215" />
+
+					<rect class="teal" x="5" y="320" width="200" height="100" rx="15" />
+					<rect class="light-gray" x="15" y="320" width="200" height="100" rx="15" />
+					<text class="txt txt-22 gray" transform="translate(45 350)">
+						Staffing Plan -
+						<tspan x="20" y="25">Roles and</tspan>
+						<tspan x="-10" y="50">Responsibilities</tspan>
+					</text>
+
+					<rect class="teal" x="5" y="450" width="200" height="100" rx="15" />
+					<rect class="light-gray" x="15" y="450" width="200" height="100" rx="15" />
+					<text class="txt txt-22 gray" transform="translate(30 495)">
+						Communications
+						<tspan x="60" y="25">Plan</tspan>
+					</text>
+
+					<rect class="teal" x="5" y="580" width="200" height="100" rx="15" />
+					<rect class="light-gray" x="15" y="580" width="200" height="100" rx="15" />
+					<text class="txt txt-22 gray" transform="translate(55 610)">
+						Project Plan
+						<tspan x="-8" y="25">(Schedule and</tspan>
+						<tspan x="-3" y="50">Deliverables)</tspan>
+					</text>
+
+					<polyline class="line" points="115,680 115,870 130,870" />
+					<polygon points="130,865 145,870 130,875" />
+					<line class="line" x1="115" y1="730" x2="130" y2="730" />
+					<polygon points="130,725 145,730 130,735" />
+					<line class="line" x1="115" y1="800" x2="130" y2="800" />
+					<polygon points="130,795 145,800 130,805" />
+
+					<rect class="teal" x="145" y="710" width="165" height="40" rx="15" />
+					<rect class="light-gray" x="155" y="710" width="165" height="40" rx="15" />
+					<text class="txt txt-22 gray" transform="translate(170 735)">
+						Baseline, PMB
+					</text>
+
+					<rect class="teal" x="145" y="780" width="260" height="40" rx="15" />
+					<rect class="light-gray" x="155" y="780" width="260" height="40" rx="15" />
+					<text class="txt txt-22 gray" transform="translate(170 805)">
+						Monitoring and Analysis
+					</text>
+
+					<rect class="teal" x="145" y="850" width="120" height="40" rx="15" />
+					<rect class="light-gray" x="155" y="850" width="120" height="40" rx="15" />
+					<text class="txt txt-22 gray" transform="translate(170 875)">
+						Recovery
+					</text>
+
+					<rect class="teal" x="275" y="320" width="200" height="100" rx="15" />
+					<rect class="light-gray" x="285" y="320" width="200" height="100" rx="15" />
+					<text class="txt txt-22 gray" transform="translate(295 350)">
+						Quality Assurance
+						<tspan x="35" y="25">and Quality</tspan>
+						<tspan x="50" y="50">Control</tspan>
+					</text>
+
+					<rect class="teal" x="275" y="450" width="200" height="100" rx="15" />
+					<rect class="light-gray" x="285" y="450" width="200" height="100" rx="15" />
+					<text class="txt txt-22 gray" transform="translate(325 495)">
+						Information
+						<tspan x="-10" y="25">Exchange Plan</tspan>
+					</text>
+
+					<rect class="teal" x="275" y="580" width="200" height="100" rx="15" />
+					<rect class="light-gray" x="285" y="580" width="200" height="100" rx="15" />
+					<text class="txt txt-22 gray" transform="translate(310 610)">
+						Financial Plan -
+						<tspan x="20" y="25">Invoice and</tspan>
+						<tspan x="45" y="50">Billing</tspan>
+					</text>
+
+					<rect class="dark-teal" x="615" y="160" width="260" height="100" rx="15" />
+					<rect class="teal" x="625" y="160" width="260" height="100" rx="15" />
+					<text class="txt txt-bold txt-22 white" transform="translate(635 190)">
+						Perform ongoing project
+						<tspan x="40" y="25">tasks, per scope,</tspan>
+						<tspan x="0" y="50">budget, and deliverables</tspan>
+					</text>
+
+					<line class="line" x1="755" y1="260" x2="755" y2="630" />
+					<line class="line" x1="740" y1="370" x2="770" y2="370" />
+					<polygon points="725,370 740,365 740,375" />
+					<polygon points="785,370 770,365 770,375" />
+					<line class="line" x1="740" y1="490" x2="770" y2="490" />
+					<polygon points="725,490 740,485 740,495" />
+					<polygon points="785,490 770,485 770,495" />
+					<line class="line" x1="740" y1="630" x2="770" y2="630" />
+					<polygon points="725,630 740,625 740,635" />
+					<polygon points="785,630 770,625 770,635" />
+					<line class="line" x1="885" y1="210" x2="975" y2="210" />
+					<polygon points="975,205 990,210 975,215" />
+
+					<g class="node pop_up move_to_left" data-object="etiv_node">
+						<rect class="teal" x="515" y="320" width="200" height="100" rx="15" />
+						<rect class="light-gray" x="525" y="320" width="200" height="100" rx="15" />
+						<text class="txt txt-18 gray" transform="translate(565 345)">
+							Enter time into
+							<tspan x="-5" y="20">Vision daily and</tspan>
+							<tspan x="-10" y="40">submit timesheet</tspan>
+							<tspan x="35" y="60">weekly</tspan>
+						</text>
+						<foreignObject width="40" height="40" x="530" y="325">
+							<body xmlns="http://www.w3.org/2000/svg">
+								<i class="external alternate icon" width="40" height="40"></i>
+								<div class="ui longer modal" id="etiv_node">
+									<i class="close icon"></i>
+									<div class="header">
+										Enter time to Vision daily and submit timesheet weekly
+									</div>
+									<div class="content">
+										<div class="description">
+											@{
+                                                var file9 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("B73991C2-C74E-4DE9-BD7B-FF3DB34068A0"));
+                                                var file10 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("0146413D-4CF8-4C30-9D4E-EBB898B4569F"));
+											}
+											<ul>
+												<li>
+													<a href="~/documents/commonfiles/@file9?.FileName" target="_blank">
+														[@file9?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file9?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													How to enter timesheets in Vision.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file10?.FileName" target="_blank">
+														[@file10?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file10?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													ATG timesheet policy.
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</body>
+						</foreignObject>
+					</g>
+
+					<rect class="teal" x="515" y="450" width="200" height="100" rx="15" />
+					<rect class="light-gray" x="525" y="450" width="200" height="100" rx="15" />
+					<text class="txt txt-18 gray" transform="translate(555 475)">
+						Complete invoice
+						<tspan x="20" y="20">with Project</tspan>
+						<tspan x="8" y="40">Accountant and</tspan>
+						<tspan x="8" y="60">submit to Client</tspan>
+					</text>
+
+					<g class="node pop_up move_to_left" data-object="ceerm_node">
+						<rect class="teal" x="515" y="580" width="200" height="100" rx="15" />
+						<rect class="light-gray" x="525" y="580" width="200" height="100" rx="15" />
+						<text class="txt txt-18 gray" transform="translate(585 615)">
+							Complete
+							<tspan x="-25" y="20">employee expense</tspan>
+							<tspan x="-20" y="40">report monthly</tspan>
+						</text>
+						<foreignObject width="40" height="40" x="530" y="585">
+							<body xmlns="http://www.w3.org/2000/svg">
+								<i class="external alternate icon" width="40" height="40"></i>
+								<div class="ui longer modal" id="ceerm_node">
+									<i class="close icon"></i>
+									<div class="header">
+										Complete employee expense report monthly
+									</div>
+									<div class="content">
+										<div class="description">
+											@{
+                                                var file15 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("B5CB504A-085B-47F5-ABDA-22260E31B626"));
+                                                var file16 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("EF7B193F-6E3C-4AD7-B1FA-809CD46DA43E"));
+                                                var file17 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("2550F8ED-F88E-4D69-953A-87EB855CBB56"));
+                                            }
+											<ul>
+												<li>
+													<a href="~/documents/commonfiles/@file15?.FileName" target="_blank">
+														[@file15?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file15?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													How to enter expense reports in Vision.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file16?.FileName" target="_blank">
+														[@file16?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file16?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													ATG receipt form.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file17?.FileName" target="_blank">
+														[@file17?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file17?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													Vision expense report quick reference card.
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</body>
+						</foreignObject>
+					</g>
+
+					<g class="node pop_up move_to_right" data-object="mcar_node">
+						<rect class="teal" x="785" y="320" width="200" height="100" rx="15" />
+						<rect class="light-gray" x="795" y="320" width="200" height="100" rx="15" />
+						<text class="txt txt-18 gray" transform="translate(820 355)">
+							Monitor and collect
+							<tspan x="28" y="20">on Accounts</tspan>
+							<tspan x="36" y="40">Receivable</tspan>
+						</text>
+						<foreignObject width="40" height="40" x="800" y="325">
+							<body xmlns="http://www.w3.org/2000/svg">
+								<i class="external alternate icon" width="40" height="40"></i>
+								<div class="ui longer modal" id="mcar_node">
+									<i class="close icon"></i>
+									<div class="header">
+										Monitor and collect on Accounts Receivable
+									</div>
+									<div class="content">
+										<div class="description">
+											@{
+                                                var file11 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("92A1EDEE-287D-4A05-89D7-A93AA9764E2E"));
+                                                var file12 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("1071ED62-CE90-49FB-92D6-B10E577AD89B"));
+                                                var file13 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("60332352-B16D-485F-9C69-DB465F879E88"));
+                                                var file14 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("A3C3AEAD-931B-479E-BBAA-E784CC12FC7D"));
+                                            }
+											<ul>
+												<li>
+													<a href="~/documents/commonfiles/@file11?.FileName" target="_blank">
+														[@file11?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file11?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													ATG Accounts Receivable policies and procedures.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file12?.FileName" target="_blank">
+														[@file12?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file12?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													Entering Accounts Receivable comments.</li>
+												<li>
+													<a href="~/documents/commonfiles/@file13?.FileName" target="_blank">
+														[@file13?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file13?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													Entering contacts in Vision.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file14?.FileName" target="_blank">
+														[@file14?.Extension.Substring(1).ToUpper()]
+													</a>
+													@if (Model.UserI.IsAdmin)
+													{
+														<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file14?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+													}
+													TIA contracts and payment standard operating procedure.
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</body>
+						</foreignObject>
+					</g>
+
+					<g class="node pop_up move_to_right" data-object="rpmp_node">
+						<rect class="teal" x="785" y="450" width="200" height="100" rx="15" />
+						<rect class="light-gray" x="795" y="450" width="200" height="100" rx="15" />
+						<text class="txt txt-18 gray" transform="translate(835 475)">
+							Review Project
+							<tspan x="5" y="20">Plan and PMP</tspan>
+							<tspan x="-15" y="40">weekly and update</tspan>
+							<tspan x="20" y="60">as needed</tspan>
+						</text>
+						<foreignObject width="40" height="40" x="800" y="455">
+							<body xmlns="http://www.w3.org/2000/svg">
+								<i class="external alternate icon" width="100" height="100"></i>
+								<div class="ui longer modal" id="rpmp_node">
+									<i class="close icon"></i>
+									<div class="header">
+										Review Project Plan and PMP weekly and updated as needed
+									</div>
+									<div class="content">
+										<div class="description">
+											<ul>
+											@{
+                                                var file4 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("8B2B363D-6F71-4B30-B5A1-E92CA110D3EA"));
+                                                var file5 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("3AE148AD-4120-429F-8151-7E75E3AA8C36"));
+                                                var file6 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("9FA745BA-FFDF-4FA0-A420-94F6D968C74F"));
+                                                var file7 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("CC752C28-F1DD-455F-8032-980815BFC027"));
+                                                var file8 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("99DD9E30-08FB-4113-BA9B-D785408F20E7"));
+                                            }
+												<li>
+                                                	<a href="~/documents/commonfiles/@file4?.FileName" target="_blank">
+                                                		[@file4?.Extension.Substring(1).ToUpper()]
+                                                	</a>
+                                                	@if (Model.UserI.IsAdmin)
+	                                                {
+		                                                <a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file4?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+	                                                }
+                                                	Large project template.
+                                                </li>
+                                                <li>
+                                                	<a href="~/documents/commonfiles/@file5?.FileName" target="_blank">
+                                                		[@file5?.Extension.Substring(1).ToUpper()]
+                                                	</a>
+                                                	@if (Model.UserI.IsAdmin)
+	                                                {
+		                                                <a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file5?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+	                                                }
+                                                	Project Management Plan instructions.
+                                                </li>
+                                                <li>
+                                                	<a href="~/documents/commonfiles/@file6?.FileName" target="_blank">
+                                                		[@file6?.Extension.Substring(1).ToUpper()]
+                                                	</a>
+                                                	@if (Model.UserI.IsAdmin)
+	                                                {
+		                                                <a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file6?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+	                                                }
+                                                	Project Management Plan overview sheet.
+                                                </li>
+                                                <li>
+                                                	<a href="~/documents/commonfiles/@file7?.FileName" target="_blank">
+                                                		[@file7?.Extension.Substring(1).ToUpper()]
+                                                	</a>
+                                                	@if (Model.UserI.IsAdmin)
+	                                                {
+		                                                <a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file7?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+	                                                }
+                                                	Sample Project Management Plan outline.
+                                                </li>
+												<li>
+													<a href="~/documents/commonfiles/@file8?.FileName" target="_blank">
+														[@file8?.Extension.Substring(1).ToUpper()]
+													</a>
+												@if (Model.UserI.IsAdmin)
+												{
+													<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file8?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+												}
+													Small project Project Management Plan template.
+												</li>
+
+											</ul>
+										</div>
+									</div>
+								</div>
+							</body>
+						</foreignObject>
+					</g>
+
+					<g class="node pop_up move_to_right" data-object="pr_node">
+						<rect class="teal" x="785" y="580" width="200" height="100" rx="15" />
+						<rect class="light-gray" x="795" y="580" width="200" height="100" rx="15" />
+						<text class="txt txt-18 gray" transform="translate(825 615)">
+							Project Reporting:
+							<tspan x="13" y="20">Monitor project</tspan>
+							<tspan x="4" y="40">and performance</tspan>
+						</text>
+						<foreignObject width="40" height="40" x="800" y="585">
+							<body xmlns="http://www.w3.org/2000/svg">
+								<i class="external alternate icon" width="40" height="40"></i>
+								<div class="ui longer modal" id="pr_node">
+									<i class="close icon"></i>
+									<div class="header">
+										Project Reporting: Monitor project and performance
+									</div>
+									<div class="content">
+										<div class="description">
+										@{
+											var file18 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("8F20935E-D927-4CEE-B346-01C1E7878440"));
+											var file19 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("C697EE8B-DBB7-4841-8C13-0ACF7125C639"));
+											var file20 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("FA469DA3-426D-4903-8CC8-54735AF532EA"));
+											var file21 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("0A51127B-C8A2-4B56-97FD-720352113294"));
+											var file22 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("A67A6B2A-1581-4E62-9778-909A1C0D0B73"));
+											var file23 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("BDA88C89-A03C-463C-AEDD-EA4765381F40"));
+										}
+											<ul>
+												<li>
+													<a target="_blank" href="~/documents/processes/projectexecution/Project Overview Report Calculations.xlsx">[XLSX]</a>
+													Project Overview Report calculations.
+												</li>
+												<li>
+												    <a href="~/documents/commonfiles/@file18?.FileName" target="_blank">
+                                                        [@file18?.Extension.Substring(1).ToUpper()]
+                                                    </a>
+                                                    @if (Model.UserI.IsAdmin)
+                                                    {
+                                                        <a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file18?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+                                                    }
+													Project Overview Report calculations - 1 page.
+												</li>
+												<li>
+												   <a href="~/documents/commonfiles/@file19?.FileName" target="_blank">
+                                                        [@file19?.Extension.Substring(1).ToUpper()]
+                                                    </a>
+                                                    @if (Model.UserI.IsAdmin)
+                                                    {
+                                                        <a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file19?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+                                                    }
+													Project Overview Report calculations - 3 page.
+												</li>
+												<li>
+												   <a href="~/documents/commonfiles/@file20?.FileName" target="_blank">
+                                                        [@file20?.Extension.Substring(1).ToUpper()]
+                                                    </a>
+                                                    @if (Model.UserI.IsAdmin)
+                                                    {
+                                                        <a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file20?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+                                                    }
+													Project Overview Report manual.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file21?.FileName" target="_blank">
+                                                        [@file21?.Extension.Substring(1).ToUpper()]
+                                                    </a>
+                                                    @if (Model.UserI.IsAdmin)
+                                                    {
+                                                        <a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file21?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+                                                    }
+													Project Progress Report manual.
+												</li>
+												<li>
+												   <a href="~/documents/commonfiles/@file22?.FileName" target="_blank">
+                                                        [@file22?.Extension.Substring(1).ToUpper()]
+                                                    </a>
+                                                    @if (Model.UserI.IsAdmin)
+                                                    {
+                                                        <a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file22?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+                                                    }
+													Project Labor Detail Report explanations.
+												</li>
+												<li>
+													<a href="~/documents/commonfiles/@file23?.FileName" target="_blank">
+                                                        [@file23?.Extension.Substring(1).ToUpper()]
+                                                    </a>
+                                                    @if (Model.UserI.IsAdmin)
+                                                    {
+                                                        <a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file23?.Id" asp-route-returnUrl="/ATGProcesses/ProjectExecution"><i class="edit icon"></i></a>
+                                                    }
+													Project Unposted Labor Detail Report explanations.
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</body>
+						</foreignObject>
+					</g>
+
+					<a xlink:href="Contracts">
+						<g class="node pop_up move_to_up">
+							<rect class="dark-gray" x="980" y="10" width="200" height="80" rx="15" />
+							<rect class="gray" x="990" y="10" width="200" height="80" rx="15" />
+							<text class="txt txt-22 txt-bold white" transform="translate(1040 45)">
+								Go back to
+								<tspan x="-20" y="25">Contract Phase</tspan>
+							</text>
+							<foreignObject width="40" height="40" x="995" y="15">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="sitemap inverted icon" width="40" height="40"></i>
+								</body>
+							</foreignObject>
+						</g>
+					</a>
+
+					<path class="dark-yellow" d="m 1160 225 l -72 50 a 16 16 0 0 1 -18 0 l -72 -50 c -8 -8 -8 -22 0 -28 l 72 -50 a 16 16 0 0 1 18 0 l 72 50 c 8 8 8 22 0 28 z" />
+					<path class="yellow" d="m 1170 225 l -72 50 a 16 16 0 0 1 -18 0 l -72 -50 c -8 -8 -8 -22 0 -28 l 72 -50 a 16 16 0 0 1 18 0 l 72 50 c 8 8 8 22 0 28 z" />
+					<text class="txt txt-18 txt-bold black" transform="translate(1045 205)">
+						Additional
+						<tspan x="5" y="20">Changes?</tspan>
+					</text>
+
+					<text class="txt black txt-bold txt-20" transform="translate(1090 125)">
+						Yes
+					</text>
+					<text class="txt black txt-bold txt-20" transform="translate(1090 310)">
+						No
+					</text>
+
+					<line class="line" x1="1085" y1="145" x2="1085" y2="105" />
+					<polygon points="1080,105 1085,90 1090,105" />
+					<line class="line" x1="1085" y1="280" x2="1085" y2="700" />
+					<polygon points="1080,700 1085,715 1090,700" />
+
+					<path class="dark-yellow" d="m 1160 800 l -72 50 a 16 16 0 0 1 -18 0 l -72 -50 c -8 -8 -8 -22 0 -28 l 72 -50 a 16 16 0 0 1 18 0 l 72 50 c 8 8 8 22 0 28 z" />
+					<path class="yellow" d="m 1170 800 l -72 50 a 16 16 0 0 1 -18 0 l -72 -50 c -8 -8 -8 -22 0 -28 l 72 -50 a 16 16 0 0 1 18 0 l 72 50 c 8 8 8 22 0 28 z" />
+					<text class="txt txt-18 txt-bold black" transform="translate(1060 780)">
+						Project
+						<tspan x="-15" y="20">Complete?</tspan>
+					</text>
+
+					<polyline class="line" points="995,785 965,785 965,710 1025,710 1025,290 915,290 915,130 755,130 755,145" />
+					<polygon points="750,145 760,145 755,160" />
+					<line class="line" x1="1085" y1="855" x2="1085" y2="885" />
+					<polygon points="1080,885 1085,900 1090,885" />
+					<text class="txt black txt-bold txt-20" transform="translate(1090 875)">
+						Yes
+					</text>
+					<text class="txt black txt-bold txt-20" transform="translate(940 745)">
+						No
+					</text>
+
+					<a xlink:href="ProjectCloseout">
+						<g class="node pop_up move_to_down">
+							<rect class="dark-gray" x="980" y="900" width="200" height="80" rx="15" />
+							<rect class="gray" x="990" y="900" width="200" height="80" rx="15" />
+							<text class="txt txt-22 txt-bold white" transform="translate(1025 935)">
+								Begin Project
+								<tspan x="-10" y="25">Closeout Phase</tspan>
+							</text>
+							<foreignObject width="40" height="40" x="995" y="905">
+								<body xmlns="http://www.w3.org/2000/svg">
+									<i class="sitemap inverted icon" width="40" height="40"></i>
+								</body>
+							</foreignObject>
+						</g>
+					</a>
+				</g>
+			</g>
+		</svg>
+	</div>
+</div>
+
+@section Scripts
+{
+	<script>
+		//Semantic Ui Modals.
+		$('.node').on('click', function () {
+			$('.ui.modal#' + $(this).attr('data-object')).modal('show');
+		});
+
+		//Changing path colors on hover to show clickable items.
+		$('.node').hover(function () {
+			$(this).find('.cls-11, .cls-12, .cls-20').css('transition', 'all 0.2s ease-out');
+			$(this).find('.cls-12').css('fill', '#0e6d77');
+		}, function () {
+			$(this).find('.cls-12').css('fill', '#15a5b6');
+		});
+
+		$('.node').hover(function () {
+			$(this).find('path.cls-7').css('transition', 'all 0.2s ease-out');
+			$(this).find('path.cls-7').css('fill', '#1c3a3a');
+			$(this).find('.cls-11').css('transition', 'all 0.2s ease-out');
+			$(this).find('.cls-11').css('fill', '#0e6d77');
+		}, function () {
+			$(this).find('path.cls-7').css('fill', '#4d6060');
+			$(this).find('.cls-11').css('fill', '#15a5b6');
+		});
+	</script>
+}

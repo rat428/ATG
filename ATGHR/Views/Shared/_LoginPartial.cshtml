@@ -1,0 +1,153 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@using System.Diagnostics
+@*@inject  Microsoft.AspNetCore.Hosting.IHostingEnvironment env*@
+@{
+	User ATGUser = (User)Util.GetUser(Context);
+	//Boolean IsDev = env.EnvironmentName == "Development";
+	Boolean IsDev = ATGHR.AppSettings.IsDev;
+}
+
+<!--Sidebar Menu-->
+<div class="ui vertical inverted sidebar menu @if (IsDev){<text> dev</text>}">
+	@if (User.Identity.IsAuthenticated)
+	{
+		<a class="item main" href="/Home" aria-label="Home Tab"><i class="home icon"></i>Home</a>
+		<a class="item main" href="/Performance" id="performance_nav" aria-label="Performance Tab">Performance</a>
+		@if (ATGUser.IsManager)
+		{
+			<a class="item" href="/Performance/GoalCards">Goals</a>
+			<a class="item" href="/Performance/ReviewCards">Reviews</a>
+			@*<a class="item" href="/Performance/SheetList">User Sheets</a>*@
+		}
+		<a class="item" href="/ATGProcesses">Project Delivery Process</a>
+		<a class="item" href="/ATGProcesses/Resources">Resources</a>
+		<a class="item" href="/ATGProcesses/SOPs">SOPs</a>
+		@*@if (ATGUser.IsSpotBonusRequestor)
+		{
+			<a class="item" href="/Rewards/Bonus">All Star Awards</a>
+			@if (ATGUser.IsSpotBonusApprover)
+			{
+				<a class="item" href="/Rewards/Manage">Manage Awards</a>
+			}
+			@if (ATGUser.IsSpotBonusCompleter)
+			{
+				<a class="item" href="/Rewards/Complete">Finalize Awards</a>
+			}
+		}*@
+		@if (ATGUser.IsAdmin)
+		{
+			<a class="item" href="/Admin/User">Users</a>
+		}
+
+		<a class="item" asp-area="AzureAD" asp-controller="Account" asp-action="SignOut">Sign out</a>
+	}
+	else
+	{
+		<a class="item" href="https://atghr">Sign in</a>
+	}
+
+	<a href="/"><img class="ui tiny image centered padding_tb_2em" src="~/img/atg_white_minimal_logo.svg" alt="Alliance Transportation Group Logo" /></a>
+
+	@if (IsDev)
+	{
+		<a class="item bold" style="text-align: center;" href="/" aria-label="Home Icon">(DEV)</a>
+	}
+</div>
+
+@* Main Menu *@
+<div class="ui large secondary pointing fixed inverted menu local_navbar @if (IsDev){<text> dev</text>}">
+	<div class="ui container">
+
+		@if (User.Identity.IsAuthenticated)
+		{
+			<a class="toc item"><i class="bars icon"></i></a>
+			<a href="/" class="main" style="padding-right: 1em;" aria-label="Home Icon"><img class="ui tiny image main hide_in_mobile" src="~/img/atg_white_minimal_logo.svg" alt="Alliance Transportation Group Logo" /></a>
+			@if (IsDev)
+			{
+				<a class="item bold" href="/" aria-label="Home Icon">(DEV)</a>
+			}
+			<a class="item main" href="/Home" id="home_nav" aria-label="Home Tab">Home</a>
+			<a class="item main" href="/Performance" id="performance_nav" aria-label="Performance Tab">Performance</a>
+			@if (ATGUser.IsManager)
+			{
+				<div class="ui dropdown item">
+					Manage
+					<i class="dropdown icon"></i>
+					<div class="menu">
+						<a class="item" href="/Performance/GoalCards" id="goal_sheet_nav"><i class="file icon"></i>Goals</a>
+						<a class="item" href="/Performance/ReviewCards" id="review_sheet_nav"><i class="clipboard check icon"></i>Reviews</a>
+						@if (ATGUser.IsViewer)
+						{
+							<a class="item" href="/Performance/Viewer" id="sheetList_sheet_nav"><i class="list ul icon"></i>Viewers</a>
+						}
+					</div>
+				</div>
+			}
+
+			<div class="ui dropdown item">
+				References
+				<i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item" href="/documents/cover/ATG Phone Ext List.docx"><i class="address book icon"></i>Phone Extension List</a>
+					<a class="item" href="/ATGProcesses"><i class="sitemap icon"></i>Project Delivery Process</a>
+					<a class="item" href="/ATGProcesses/Resources"><i class="archive icon"></i>Resources</a>
+					@* <a class="item" href="/ATGProcesses/SOPs"><i class="tasks icon"></i>SOPs</a> *@
+				</div>
+			</div>
+			@*@if (ATGUser.IsSpotBonusRequestor)
+			{
+				<div class="ui dropdown item">
+					Rewards
+					<i class="dropdown icon"></i>
+					<div class="menu">
+						<a class="item" href="/Rewards/Bonus" id="org_nav" aria-label="All Star Award"><i class="star icon"></i> All Star Awards</a>
+						@if (ATGUser.IsSpotBonusApprover)
+						{
+							<a class="item" href="/Rewards/Manage"><i class="suitcase icon"></i> Manage Rewards</a>
+						}
+						@if (ATGUser.IsSpotBonusCompleter)
+						{
+							<a class="item" href="/Rewards/Complete"><i class="check icon"></i>Finalize Awards</a>
+						}
+					</div>
+				</div>
+			}*@
+
+			<div class="ui dropdown item">
+				ATG University
+				<i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item" asp-controller="Atgu" asp-action="Index"><i class="university icon"></i>ATGU Home</a>
+					<a class="item" asp-controller="Atgu" asp-action="Curriculum"><i class="file alternate outline icon"></i>Curriculum</a>
+				</div>
+			</div>
+
+			<a class="item main" asp-controller="Epg" asp-action="Index" >EPG</a>
+
+			@if (ATGUser.IsAdmin)
+			{
+				<div class="ui dropdown item">
+					Admin
+					<i class="dropdown icon"></i>
+					<div class="menu">
+						<a class="item" href="/Admin/User" id="admin_nav" aria-label="Admin"><i class="users icon"></i> Users</a>
+						<a class="item" href="/Admin/Reports" id="admin_sheetList_nav" aria-label="Admin Reports"><i class="list ul icon"></i>Reports</a>
+						<a class="item" href="/Admin/PerformanceFieldExample" id="admin_sheetList_nav" aria-label="Admin Goal Library"><i class="book icon"></i>Goal Library</a>
+						<a class="item" href="/Admin/Courses" id="admin_nav" aria-label="Admin"><i class="table icon"></i> Courses</a>
+					</div>
+				</div>
+			}
+			<div class="right item main">
+				<a class="ui inverted button" asp-area="AzureAD" asp-controller="Account" asp-action="SignOut">Sign Out</a>
+			</div>
+		}
+		else
+		{
+			<a class="toc item"><i class="bars icon"></i></a>
+			<div class="right item main">
+				<a class="ui inverted button" href="https://atghr">Sign in</a>
+			</div>
+		}
+	</div>
+</div>

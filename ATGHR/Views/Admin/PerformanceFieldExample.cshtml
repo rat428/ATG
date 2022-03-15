@@ -1,0 +1,95 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@{
+	ViewData["Title"] = "Performance Field Example";
+	User ATGUser = (User)Util.GetUser(Context);
+}
+<h1 class="ui header center aligned">Examples</h1>
+<div class="ui container  local_templates">
+	<form class="ui form light_grey_box margin_t" id="example_form">
+		<table class="ui striped table" id="example_table" style="width:100%">
+			<thead>
+				<tr>
+					<th>Example</th>
+					<th>Category</th>
+					@*<th>Divisions</th>
+					<th>Roles</th>*@
+					<th>Edit</th>
+				</tr>
+			</thead>
+		</table>
+		<div>
+			<button class="circular ui button icon add_more" onclick="window.location.href='/Admin/PerformanceFieldExample/new'" type="button"><i class="plus icon"></i></button>
+			<a href="/Admin/PerformanceFieldExample/new">Add New Goal Example</a>
+		</div>
+	</form>
+</div>
+@section Scripts
+	{
+	<script>
+		var btn = '<button>Edit</button>';
+		var DataUserId = @ATGUser.UserId;
+
+			$(function () {
+				loadLookups({
+					callback: function () {
+						$('#example_table').DataTable({
+							ajax: {
+								url: '/api/Admin/PerformanceFieldExamples',
+								dataSrc: ''
+							},
+							columns: [{
+								data: 'performanceFieldExampleText'
+							}, {
+								data: 'performanceFieldExampleCategoryId',
+									render: function (data) {
+										return getLookup(data,"performanceFieldExampleCategoryId",performanceFieldExampleCategories).performanceFieldExampleCategoryText
+									}
+							}, {
+							//	data: 'performanceFieldExampleDivisions',
+							//	render: function (data) {
+							//		var d = []
+							//		if (data) {
+							//			for (var i = 0; i < data.length; i++) {
+							//				d.push(" " + findDivision(data[i].divisionId).name);
+							//			}
+							//			return d
+							//		}
+							//		else {
+							//			d.push("None");
+							//			return d
+							//		}
+							//	}
+							//}, {
+							//	data: 'performanceFieldExampleRoles',
+							//	render: function (data) {
+							//		var d = []
+							//		if (data) {
+							//			for (var i = 0; i < data.length; i++) {
+							//				d.push(" " + findRole(data[i].roleId).name);
+							//			}
+							//			return d
+							//		}
+							//		else {
+							//			d.push("None");
+							//			return d
+							//		}
+							//	}
+							//}, {
+								render: function () {
+									return "<button type='button' class='ui button edit_example'>Edit</button>"
+								}
+							}]
+						});
+					}
+				})
+
+				$('#example_table').on('click select', '.edit_example', function (event) {
+					genPrevention(event);
+					window.location.href = "/Admin/PerformanceFieldExample/" + $('#example_table').DataTable().row($(this).closest('tr')).data().performanceFieldExampleId;
+				});
+			});
+
+	</script>
+}
+

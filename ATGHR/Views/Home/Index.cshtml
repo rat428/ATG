@@ -1,0 +1,306 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@{
+	ViewData["Title"] = "Home";
+	User ATGUser = (User)Util.GetUser(Context);
+}
+
+<div class="ui container margin_t">
+	<div class="ui container margin_b">
+		<a href="/documents/cover/2022 Employee Referral Bonus.pdf" target="_blank" class="ui button teal fluid">2022 Employee Referral Bonus Amounts</a>
+	</div>
+	<div class="ui three column grid">
+		<div class="column">
+			<div class="ui fluid card">
+				<div class="image">
+					<img src="/documents/cover/Project Delivery System.png" style="height: 200px; object-fit: cover;">
+				</div>
+				<div class="content">
+					<a class="header" href="/ATGProcesses">Project Delivery System</a>
+				</div>
+			</div>
+		</div>
+		<div class="column">
+			<div class="ui fluid card">
+				<div class="image">
+					<img src="/documents/cover/Newsletter Cover.png" style="height: 200px; object-fit: cover;">
+				</div>
+				<div class="content">
+					<a class="header" href="/documents/cover/ATGNewsletter.pdf" target="_blank">Newsletter</a>
+				</div>
+			</div>
+		</div>
+		<div class="column">
+			<div class="ui fluid card">
+				<div class="image">
+					<img src="/documents/cover/HybridWork.jpg" style="height: 200px; object-fit: cover;">
+				</div>
+				<div class="content">
+					<a class="header" href="/documents/cover/Hybrid Work Policy.pdf" target="_blank">ATG Hybrid Work Policy</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ui three column grid">
+		<div class="column">
+			<div class="ui fluid card">
+				<div class="image">
+					<img src="/documents/cover/sops.png" style="height: 200px; object-fit: cover;">
+				</div>
+				<div class="content">
+					<a class="header" asp-controller="ATGProcesses" asp-action="SOPs">SOPs</a>
+				</div>
+			</div>
+		</div>
+		<div class="column">
+			<div class="ui fluid card">
+				<div class="content">
+					<h2 class="header" id="anniversaries_heading">Staff Anniversaries</h2>
+				</div>
+				<div class="content" id="communications_anniversaries_container">
+				</div>
+			</div>
+		</div>
+		<div class="column">
+			<div class="ui fluid card">
+				<div class="content" href="/documents/cover/ATGNewsletter.pdf" target="_blank">
+					<h2 class="header" id="birthdays_heading">Staff Birthdays</h2>
+				</div>
+				<div class="content" id="communications_birthdays_container">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ui three column grid">
+		<div class="column">
+			<div class="ui fluid card">
+				<div class="content">
+					<h2 class="header " id="wins_heading">Project Wins</h2>
+				</div>
+				<div class="content" id="communications_wins_container">
+					<p>Coming soon...</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="in_out_container">
+	<table class="ui striped table" id="in_out_table" style="width:100%">
+		<thead>
+		<tr>
+			<th>Office</th>
+			<th>Name</th>
+			<th class="center aligned">Ext</th>
+			<th class="center aligned">Remote</th>
+			<th class="center aligned">In Office</th>
+			<th>Note: Include work times outside of normal hours (M-F, 8-5), appointments (TxDOT Meeting 1-3pm), or extended outs (APA Conference 2/12-2/14).</th>
+			<th class="center aligned">Last Updated</th>
+		</tr>
+		</thead>
+	</table>
+</div>
+
+@section Scripts {
+	<script>
+		$(document).ready(function () {
+			var groupColumn = 0;
+			var currentMonth = getMonthName(new Date().getMonth());
+
+			$("#anniversaries_heading").text(currentMonth + " Anniversaries");
+			$("#birthdays_heading").text(currentMonth + " Birthdays");
+
+			$.get("/api/Home/Anniversaries", function (data) {
+				for (i = 0; i < data.length; i++) {
+					if (data[i]["years"] === 0) {
+						$("#communications_anniversaries_container").append("<p class='anniversary_employee'>" + data[i]["employeeName"] + ", Welcome to ATG!");
+					} else {
+						$("#communications_anniversaries_container").append("<p class='anniversary_employee'>" + data[i]["employeeName"] + ", " + data[i]["years"] + (data[i]["years"] === 1 ? " Year" : " Years") + "</p>");
+					}
+				}
+			});
+
+			$.get("/api/Home/Birthdays", function (data) {
+				for (i = 0; i < data.length; i++) {
+					$("#communications_birthdays_container").append("<p class='birthday_employee'>" + data[i]["employeeName"] + ", " + data[i]["month"] + "/" + data[i]["day"] + "</p>");
+				}
+			});
+
+			var table = $("#in_out_table").dataTable({
+				ajax: {
+					url: "/api/Home/InOutBoard",
+					dataSrc: ""
+				},
+				lengthChange: false,
+				pageLength: -1,
+				language: {
+					info: "",
+					infoFilter: ""
+				},
+				paginate: false,
+				autoWidth: false,
+				order: [[groupColumn, "asc"],[1, "asc"]],
+				columns: [
+					{
+						data: "office",
+						visible: false
+					},
+					{
+						data: "employeeName",
+						searchable: true,
+						orderable: false,
+						width: "160px",
+						orderData: 1
+					},
+					{
+						data: "officeExtension",
+						width: "30px",
+						orderable: false,
+						className: "center aligned",
+						render: function (data) {
+							return data === null ? "" : data;
+						}
+					},
+					{
+						data: "wfhFlag",
+						searchable: false,
+						orderable: false,
+						className: "center aligned in_out_wfh",
+						width: "90px",
+						render: function (data, type, row) {
+							return "<div class='ui toggle checkbox in_out_checkbox'><input type='checkbox' class='in_out_wfh_checkbox hidden' id='in_out_wfh_checkbox_" + row.userId + "' name='in_out_wfh_checkbox_" + row.userId + "' "+ (data ? "checked" : "") +"><label class='in_out_wfh_label' for='in_out_wfh_checkbox_" + row.userId + "'></label></div>"
+						}
+					},
+					{
+						data: "inOutFlag",
+						searchable: false,
+						orderable: false,
+						className: "center aligned in_out_flag",
+						width: "70px",
+						render: function (data, type, row) {
+							return "<div class='ui toggle checkbox in_out_checkbox'><input type='checkbox' class='in_out_flag_checkbox hidden' id='in_out_flag_checkbox_" + row.userId + "' name='in_out_flag_checkbox_" + row.userId + "' " + (data ? "checked" : "") +"><label class='in_out_flag_label' for='in_out_flag_checkbox_" + row.userId + "'></label></div>"
+						}
+					},
+					{
+						data: "inOutNote",
+						searchable: false,
+						orderable: false,
+						className: "in_out_note",
+						render: function (data, type, row) {
+							return "<div class='ui input'><input class='in_out_note_input' type='text' value='" + (typeof data === 'undefined' ? "" : data) + "'><button class='in_out_note_update' id='in_out_note_update_"+ row.userId + "'>Save</button></div>";
+						}
+					},
+					{
+						data: "inOutDatetime",
+						searchable: false,
+						orderable: false,
+						className: "center aligned",
+						width: "160px",
+						render: function (data) {
+							if (typeof data == "undefined") {
+								return "-"
+							} else {
+								var date = new Date(data);
+								var dateString = date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
+								var hour = date.getHours();
+								var end = "AM";
+								if (hour === 0) {
+									hour = "12";
+								} else if (hour === 12) {
+									end = "PM";
+								} else if (hour >= 13) {
+									hour = date.getHours() - 12;
+									end = "PM";
+								};
+								var timeString = hour + ":" + (date.getMinutes() >= 10 ? date.getMinutes() : "0" + date.getMinutes()) + " " + end;
+								return dateString + " " + timeString;
+							}
+						}
+					}
+				],
+				preDrawCallback: function (settings) {
+					var headerRows = $("thead tr");
+					var rowNode;
+					if (headerRows.length > 1) {
+						rowNode = headerRows.eq(headerRows.length - 1);
+						headerRows.eq(headerRows.length - 1).remove();
+					}
+
+					this.api().rows(function (index, data, node) { return data.userId === @ATGUser.UserId; }).every(function () {
+						rowNode = this.node();
+						this.remove();
+					});
+
+					$("tr").eq(0).after(rowNode);
+				},
+				drawCallback: function (settings) {
+					var api = this.api();
+					var rows = api.rows({ page: "current" }).nodes();
+					var last = null;
+
+					api.column(groupColumn, { page: "current" }).data().each(function (group, i) {
+						if (last !== group) {
+							var groupLabel;
+							if (group !== "Remote") {
+								groupLabel = group + " Office";
+							} else {
+								groupLabel = "Fully " + group;
+							}
+
+							$(rows).eq(i).before("<tr class='office_group'><td colspan='6'>" + groupLabel + "</td></tr>");
+							last = group;
+						}
+					});
+
+					$("input.in_out_note_input").on("input propertychange paste", function (el) {
+						$(el.target).siblings("button.in_out_note_update").css("display", "inline-block");
+					});
+
+					$("button.in_out_note_update").on("click select", function (el) {
+						var id = $(el.target).attr("id").slice($(el.target).attr("id").lastIndexOf("_") + 1);
+						var row = $(el.target).parent().parent().parent();
+						var rowObject = {
+							UserId: id,
+							WFHFlag: row.find("input.in_out_wfh_checkbox").is(":checked"),
+							InOutFlag: row.find("input.in_out_flag_checkbox").is(":checked"),
+							InOutNote: row.find("input.in_out_note_input").val()
+						};
+
+						$.ajax({
+							type: "POST",
+							url: "/api/Home/InOutBoard",
+							data: JSON.stringify(rowObject),
+							dataType: "json",
+							contentType: "application/json",
+							success: function () {
+								$(el.target).css("display", "none");
+								table.ajax.reload();
+							}
+						});
+					});
+
+					$("div.in_out_checkbox input").on("change", function (el) {
+						var id = $(el.target).attr("id").slice($(el.target).attr("id").lastIndexOf("_") + 1);
+						var row = $(el.target).parent().parent().parent();
+						var rowObject = {
+							UserId: id,
+							WFHFlag: row.find("input.in_out_wfh_checkbox").is(":checked"),
+							InOutFlag: row.find("input.in_out_flag_checkbox").is(":checked"),
+							InOutNote: row.find("input.in_out_note_input").val()
+						};
+
+						$.ajax({
+							type: "POST",
+							url: "/api/Home/InOutBoard",
+							data: JSON.stringify(rowObject),
+							dataType: "json",
+							contentType: "application/json",
+							success: function () {
+								table.ajax.reload();
+							}
+						});
+					});
+				}
+			}).api();
+		});
+	</script>
+}

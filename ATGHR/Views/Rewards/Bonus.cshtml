@@ -1,0 +1,79 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@{
+	ViewData["Title"] = "Your All Star Awards";
+	User ATGUser = (User)Util.GetUser(Context);
+}
+
+<h1 class="ui header center aligned">All Star Award</h1>
+<div class="local_spacer local_active" style="display:none;">&nbsp;</div>
+<div class="ui stackable grid container alpha">
+	<div class="ten wide column page_header_info">
+		<h1 class="center aligned">@ATGUser.Name</h1>
+		<h3 class="ui header container">All Star Awards Given: @ATGUser.SpotBonusUsed / @ATGUser.TotalSpotBonus</h3>
+	</div>
+</div>
+<div class="ui container light_blue_box margin_t" id="approvedSpotBonuses">
+	<h4 class="ui header center aligned">See the All Star Awards you have given.</h4>
+	<div class="ui stackable grid user_details">
+		<div class="row team-cards">
+			<div class="ui active inverted dimmer local_loader">
+				<div class="ui large text loader">Loading</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<button class="circular ui button icon add_more" onclick="window.location.href='/Rewards/Bonus/new'" type="button"><i class="plus icon"></i></button>
+		<a href="/Rewards/Bonus/New">Give An All Star Award</a>
+	</div>
+
+</div>
+
+@section Scripts
+	{
+	<script>
+		$('#review_sheet_nav').addClass('local_active_tab');
+		var userId = @ATGUser.UserId
+		$(function () {
+			loadLookups({
+				callback: function () {
+					$.get('/api/Bonus/HomePageBonuses', function (data) {
+						//console.log(data);
+						$.each(data, function (i, bonus) {
+							var card = createBonusCard({
+								progressType: 'goal',
+								name: findUser(bonus.submitteeUserId).name,
+								submitter: findUser(bonus.userId).name,
+								year: formatInputDate(bonus.createdDatetime),
+								submitted: bonus.submitted,
+								approved: bonus.approved,
+								complete: bonus.complete,
+								userId: bonus.userId,
+								bonusId: bonus.spotBonusId
+							})
+
+							if (bonus.self) {
+								$('.self-card').show();
+								card.prependTo($('.self-card'));
+							} else {
+								card.appendTo($('.team-cards'));
+							}
+							setBonusStatus(card, bonus.submitted, bonus.approved, bonus.complete);
+							//console.log(card);
+						});
+					}).done(function () {
+						$('.ui.inverted.dimmer').removeClass("active");
+
+					});
+				}
+			});
+
+			$('body').on('click select', 'button.options', function () {
+				genPrevention(event);
+				var bonusId = $(this).attr('data-bonusid');
+				window.location.href = "Bonus/" + bonusId
+			});
+		});
+
+	</script>
+}

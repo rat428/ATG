@@ -1,0 +1,1101 @@
+@model ResourcesFileListDto
+
+<style>
+	.cls-1 {
+		fill: #c1e4f7;
+	}
+
+	.cls-1, .cls-3 {
+		fill-opacity: 0.43;
+	}
+
+	.cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+		stroke: #000;
+		stroke-width: 2px;
+	}
+
+	.cls-1, .cls-2, .cls-3, .cls-6 {
+		stroke-opacity: 0;
+	}
+
+	.cls-2 {
+		fill: #3aa6dd;
+	}
+
+	.cls-2 {
+		fill-opacity: 0.33;
+	}
+
+	.cls-3 {
+		fill: #99d5ca;
+	}
+
+	.cls-4 {
+		fill: none;
+	}
+
+	.cls-5 {
+		fill: #000;
+	}
+
+	.cls-6 {
+		fill: #5abaa7;
+		fill-opacity: 0.53;
+	}
+
+	.cls-7, .cls-8 {
+		fill: #231f20;
+	}
+
+	.cls-8 {
+		font-size: 22.94px;
+	}
+
+	.cls-10, .cls-13, .cls-18, .cls-21, .cls-24, .cls-30, .cls-8 {
+		font-family: 'Lato', sans-serif;
+		font-weight: 600;
+	}
+
+	.cls-10 {
+		font-size: 17px;
+	}
+
+	.cls-11 {
+		fill: #0e6d77;
+	}
+
+	.cls-12 {
+		fill: #15a5b6;
+	}
+
+	.cls-13, .cls-21 {
+		font-size: 24px;
+	}
+
+	.cls-13, .cls-24 {
+		fill: #f4f8f9;
+	}
+
+	.cls-16 {
+		fill: #91a43b;
+	}
+
+	.cls-17 {
+		fill: #bfd74b;
+	}
+
+	.cls-18 {
+		font-size: 22px;
+	}
+
+	.cls-18, .cls-21 {
+		fill: #020202;
+	}
+
+	.cls-19 {
+		fill: #d0912a;
+	}
+
+	.cls-20 {
+		fill: #fbb41d;
+	}
+
+	.cls-22 {
+		fill: #3160aa;
+	}
+
+	.cls-23 {
+		fill: #1d428c;
+	}
+
+	.cls-24 {
+		font-size: 20px;
+	}
+
+	.cls-30 {
+		font-size: 18px;
+	}
+
+	.cls-25 {
+		fill: #3e3e3e;
+	}
+
+	.cls-26 {
+		fill: #1e1e1e;
+	}
+
+	.cls-28 {
+		fill: #b1313c;
+	}
+
+	.cls-29 {
+		fill: #ee4450;
+	}
+
+	.cls-30 {
+		fill: #ffffff;
+	}
+
+	.cls-31 {
+		fill: #4d6060;
+		stroke: #4d6060;
+	}
+
+	.cls-32 {
+		fill: #1c3a3a;
+	}
+
+	#business_development_flowchart {
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+<div class="ui breadcrumb padding_g">
+	<a href="~/ATGProcesses" class="section">ATG Project Delivery System (Main)</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/StrategicPlan" class="section">Strategic Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/AnnualBusinessPlan" class="section">Annual Business Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/BusinessDevelopment" class="section">Business Development</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/Contracts" class="section">Contract Phase</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectExecution" class="section">Project Execution</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectCloseout" class="section">Project Closeout</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/RecordsRetention" class="section">Records Retention</a>
+</div>
+
+<div class="padding_t_2em" style="display: block !important;">
+<h1 class="ui horizontal divider header margin_tb">
+	Business Development
+</h1>
+@{
+	var file1 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("19D2499B-F626-4203-81AB-158DF964DD39"));
+	var file2 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("A4E55679-8FE2-4F92-9423-74A095009639"));
+}
+<a class="ui button margin_l" href="~/documents/commonfiles/@file1?.FileName"><i class="file alternate inverted icon"></i>Opportunity Stages, Probabilities, and Descriptions</a>
+@if (Model.UserI.IsAdmin)
+{
+	<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file1?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment">
+		<i class="edit icon"></i>
+	</a>
+}
+<a class="ui button" href="~/documents/commonfiles/@file2?.FileName"><i class="file alternate inverted icon"></i>CM Managing Opportunity Records</a>
+<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file2?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment">
+	<i class="edit icon"></i>
+</a>
+	<div id="business_development_flowchart" class="margin_tb">
+		<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1249 2290">
+			<title>Business Development</title>
+			<path class="cls-1" d="M1,1H1246V636.6H1Z" />
+			<path class="cls-2" d="M1,666.4H1246V1585H1Z" />
+			<path class="cls-3" d="M1,1627.4H1246v200H1Z" />
+			<path class="cls-4" d="M534.6,1083.1h119" />
+			<path d="M570.4,1084.1h-1.1v-2h1.1Z" />
+			<path class="cls-5" d="M667.1,1083.1l-14.3,4.6v-9.2Z" />
+			<path class="cls-4" d="M850.3,1083.1h83.5" />
+			<path d="M850.4,1084.1h-1.1v-2h1.1Z" />
+			<path class="cls-5" d="M948.1,1083.1l-14.3,4.6v-9.2Z" />
+			<path d="M1090.3,982.8H489.4V1007h-2.1V980.5h600.9V811.1h2.1Z" />
+			<path class="cls-6" d="M1.9,1860.1h1245v406.2H1.9Z" />
+			<path class="cls-4" d="M1139.2,1083.1h32.7v315.1h-705v33.5" />
+			<path class="cls-5" d="M466.3,1438.9l-4.6-14.3H471Z" />
+			<polygon points="485 1135 492 1155 478 1155"></polygon>
+			<polyline class="cls-4" points="1172 1205 485 1205 485 1100"></polyline>
+			<g class="node pop_up move_to_up" data-object="cr_node">
+				<rect class="cls-11" x="1100" y="1165" width="120" height="80" rx="15" />
+				<rect class="cls-12" x="1110" y="1165" width="120" height="80" rx="15" />
+				<text class="cls-24" transform="translate(1118 1205)">
+					Compliance
+					<tspan x="20" y="25">Review</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="1115" y="1165">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="cr_node">
+							<i class="close icon"></i>
+							<div class="header">
+								Compliance Review - 4 days before due date
+							</div>
+							<div class="content">
+								<div class="description">
+									@{ var file10 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("B93FD82D-0461-4584-ACE8-09F0F26CD11B"));}
+									<p><u>Coordinator(s):</u> Proposal Coordinator</p>
+									<p><u>Attendees:</u> Quality Manager</p>
+									<p><u>Objective:</u> Successful proposal submission.</p>
+									<p><u>Activities:</u> Review of bound, or otherwise finally prepared, proposals according to the
+										<a href="~/documents/commonfiles/@file10?.FileName" target="_blank">@file10?.Title</a>
+										@if (Model.UserI.IsAdmin)
+										{
+											<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file10?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment"><i class="edit icon"></i></a>
+										}
+										by the Quality Manager according to the Proposal Checklist and RFQ/RFP/LOI prior to final shipment or delivery.</p>
+									<p><u>Outcome:</u> Required number of copies and other items to be shipped/uploaded/delivered.</p>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<text class="cls-10" transform="translate(790 1420)">Compliant</text>
+			<text class="cls-10" transform="translate(780 1200)">Non-Compliant</text>
+			<path class="cls-4" d="M466.9,1553v108.6" />
+			<path class="cls-5" d="M466.9,1667.7l-4.7-14.2h9.3Z" />
+			<path class="cls-4" d="M528.3,1722.1H645" />
+			<path class="cls-5" d="M652.1,1722.1l-14.3,4.6v-9.2Z" />
+			<path class="cls-4" d="M845.3,1723.1h20.1v159.8H477.8v19.2" />
+			<path class="cls-5" d="M477.3,1910l-4.6-14.3H482Z" />
+			<g>
+				<g>
+					<path class="cls-7" d="M91.2,51.6h7.6c4.5,0,7.6,2.8,7.6,8s-2.8,8.2-8.1,8.2H94.7V79.9H91.2Zm3.5,13.3H98c3.2,0,4.9-1.7,4.9-5.3s-1.6-5.1-4.6-5.1H94.7Z" />
+					<path class="cls-7" d="M113.3,50.2v11c.7-1.7,2.3-2.9,5-2.9s5.3,2,5.3,6.6v15h-3.4V65.5c0-2.5-.7-4.2-3.2-4.2s-3.7,2.3-3.7,5.8V79.9h-3.5V50.2Z" />
+					<path class="cls-7" d="M140.8,76a38.4,38.4,0,0,0,.2,3.9h-3.2a13,13,0,0,1-.2-2.3c-.8,1.7-2.3,2.7-4.9,2.7s-5.6-3.2-5.6-6.2,2.7-6.8,8.2-6.8h2.1V64.6c0-1.5-.3-3.5-3-3.5s-3.1,2-3.2,3.5h-3.3c.1-3.1,1.5-6.3,6.6-6.3s6.3,2.1,6.3,6Zm-3.3-6h-2c-3.6,0-5,1.7-5,4s.9,3.5,3.1,3.5,3.9-2.1,3.9-6.3Z" />
+					<path class="cls-7" d="M147.3,73.8c.1,2.1,1.2,3.8,3.6,3.8a2.9,2.9,0,0,0,3.2-3.2c0-2-1-3-3.7-4.1-4.5-1.7-5.8-3.3-5.8-6.3s1.7-5.7,6.2-5.7,6.3,3.4,6.3,6.2h-3.3c-.1-1-.3-3.4-3.1-3.4a2.4,2.4,0,0,0-2.7,2.7c0,1.7.7,2.4,3.6,3.5s6,3.2,6,6.8-2.5,6.2-6.9,6.2-6.7-2.7-6.8-6.5Z" />
+					<path class="cls-7" d="M163.6,70c0,3.9.7,7.4,3.9,7.4s3.6-2.9,3.7-3.6h3.3c-.1.6-.6,6.5-7,6.5s-7.3-5.7-7.3-11,2.4-11,7.4-11,7.1,4.6,7.1,10a9.7,9.7,0,0,1-.1,1.7Zm7.7-2.6c0-3.3-.7-6.2-3.7-6.2s-3.9,4.7-3.9,6.2Z" />
+					<path class="cls-7" d="M188.2,79.9V56.4a12,12,0,0,1-3.7,1V54.7a10.8,10.8,0,0,0,4.8-2.4h2.3V79.9Z" />
+				</g>
+				@{ var file5 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("A189B270-C834-419E-836D-C1B5554C7EF5"));}
+				<a href="~/documents/processes/bd/0. Opportunity Development....Lead through Black Hat Review.docx" target="_blank"><foreignObject width="50" height="50" x="55" y="92"><i class="file alternate icon" style="color: black;"></i></foreignObject>
+					<text class="cls-8" transform="translate(75 110)">Capture Planning</text></a>
+			</g>
+			<g>
+				<g>
+					<path class="cls-7" d="M91.6,732.5l7.5.2c4.5.1,7.6,3,7.5,8.1s-3,8.2-8.3,8.1H94.7l-.2,12.1H91Zm3.2,13.4H98c3.3.1,5-1.6,5.1-5.3s-1.5-5-4.5-5.1H95Z" />
+					<path class="cls-7" d="M113.6,731.6l-.2,11c.8-1.7,2.4-2.9,5.1-2.8s5.3,2.1,5.2,6.6l-.3,15.1h-3.5l.3-14.3c.1-2.5-.6-4.3-3.1-4.3s-3.7,2.2-3.8,5.7l-.3,12.8h-3.4l.6-29.6Z" />
+					<path class="cls-7" d="M140.6,757.9c0,1.3.1,3.2.1,4h-3.1a15.2,15.2,0,0,1-.2-2.3c-.8,1.6-2.4,2.6-5,2.6s-5.5-3.3-5.4-6.3,2.8-6.8,8.3-6.7h2.1v-2.7c0-1.6-.2-3.5-2.9-3.6s-3.2,2-3.3,3.4H128c.1-3,1.6-6.2,6.7-6s6.3,2.1,6.2,6Zm-3.1-6-2-.2c-3.6,0-5.1,1.6-5.1,3.9s.8,3.6,3,3.6,4-2,4.1-6.2Z" />
+					<path class="cls-7" d="M147.2,755.8c.1,2.1,1.2,3.9,3.5,3.9s3.3-1.2,3.3-3.1-1-3-3.7-4.1c-4.5-1.8-5.7-3.5-5.6-6.5s1.8-5.6,6.3-5.5,6.2,3.4,6.2,6.2h-3.4c0-1-.1-3.4-2.9-3.5a2.5,2.5,0,0,0-2.8,2.7c-.1,1.6.7,2.4,3.5,3.6s5.9,3.3,5.8,6.9-2.6,6.1-6.9,6-6.7-2.8-6.7-6.6Z" />
+					<path class="cls-7" d="M163.6,752.4c-.1,3.9.5,7.4,3.7,7.5s3.6-2.9,3.8-3.5h3.3c-.1.6-.8,6.5-7.2,6.4s-7.1-5.9-7-11.2,2.5-10.9,7.6-10.8,7,4.8,6.9,10.1c0,.5-.1,1.3-.1,1.7Zm7.7-2.4c0-3.4-.6-6.2-3.6-6.3s-3.9,4.6-4,6.1Z" />
+					<path class="cls-7" d="M184.6,762.8v-.3c.1-3.6,2.1-7.2,6.4-11.9s4.6-5,4.7-8.1-.6-4.5-3.3-4.6-3.6,1.9-3.8,5.1h-3.3c.1-4.1,2.1-7.9,7.2-7.8s6.8,3.4,6.7,7.5-1.3,5.5-5,9.3-5.1,6-5.6,8l11,.2-.5,3Z" />
+				</g>
+				<a href="~/documents/processes/bd/1. Opportunity Development....Proposal to Submitted.docx" target="_blank"><foreignObject width="50" height="50" x="55" y="772"><i class="file alternate icon" style="color: black;"></i></foreignObject><text class="cls-8" transform="translate(75 790)">Proposal Process</text></a>
+			</g>
+			<polygon points="877.2 550 858.7 545 858.7 556 877.2 550" />
+			<polyline class="cls-4" points="753.9 510 753.9 552 785.8 552" />
+			<polyline class="cls-4" points="890 451 1090 451 1090 750"></polyline>
+			<polygon points="1083 700 1096 700 1090 716"></polygon>
+			<line class="cls-4" x1="780" y1="451" x2="855" y2="451" />
+			<text class="cls-10" transform="translate(862.4 455)">Go</text>
+			<text class="cls-10" transform="translate(792.6 556)">No Go</text>
+			<g class="node pop_up move_to_up" data-object="pko_node">
+				<rect class="cls-11" x="1027.8" y="679.4" width="107.5" height="180.85" rx="15" transform="translate(1862.4 -303.7) rotate(90.6)" />
+				<rect class="cls-12" x="1036.5" y="679.4" width="107.5" height="180.85" rx="15" transform="translate(1871.3 -312.5) rotate(90.6)" />
+				<text class="cls-13" transform="translate(1045 760)">
+					Proposal
+					<tspan x="0" y="30">Kick-Off</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="1007" y="719">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="pko_node">
+							<i class="close icon"></i>
+							<div class="header">
+								Proposal Kick-Off - MINIMUM 17 days before due date
+							</div>
+							<div class="content">
+								<div class="description">
+									@{ var file8 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("4BB3891E-7C7D-4770-A866-5F460DEB92AC"));}
+
+									<p><u>Coordinator(s):</u> Capture Manager, Proposal Coordinator</p>
+									<p><u>Attendee(s):</u> Capture Manager, Opportunity Lead Originator, Practice Lead, Practice Lead, proposed Project Manager, Proposed PIC, Proposed Quality Manager and Proposal Coordinator.</p>
+									<p><u>Objective:</u> Convert well-developed Capture Plan into a successful
+										<a href="~/documents/commonfiles/@file8?.FileName" target="_blank">@file8?.Title</a>
+										@if (Model.UserI.IsAdmin)
+										{
+											<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file8?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment"><i class="edit icon"></i></a>
+										}
+										that incorporates the requirements in the RFQ.</p>
+									<p><u>Activities:</u> Capture Manager and Proposal Coordinator complete the Proposal Kick-off and Outline Agenda with information from the Capture Plan. Proposal Coordinator provides the Proposal Kick-off and Outline Agenda to requested attendees prior to the Kick-off. All requested attendees should review the Proposal Kick-off and Outline Agenda and come to Kick-off prepared to answer questions.</p>
+									<p><u>Outcome:</u> Upon leaving the Kick-off, the proposal should be approximately 30% complete. The following questions should have been answered:</p>
+									<ul>
+										<li>proposal theme</li>
+										<li>teaming partners</li>
+										<li>workplan development</li>
+										<li>similar projects</li>
+										<li>necessary ATG and subconsultant staff</li>
+										<li>writing assignments made</li>
+										<li>preparation schedule established</li>
+										<li>desired graphics noted</li>
+									</ul>
+									<p>Capture Manager and Proposal Coordinator incorporate information gathered into the Proposal and assign activities as necessary.</p>
+
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<polygon points="488 1025.5 482 1007 494 1007 488 1025.5" />
+			<g class="node pop_up move_to_up" data-object="pp_node0">
+				<rect class="cls-11" x="987.7" y="990.2" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 2132.71, 50.33)" />
+				<rect class="cls-12" x="996.5" y="990.2" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 2141.6, 41.53)" />
+				<text class="cls-13" transform="translate(1005 1072)">
+					Proposal
+					<tspan x="-10" y="30">Production</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="967" y="1031">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="pp_node0">
+							<i class="close icon"></i>
+							<div class="header">
+								Proposal Production
+							</div>
+							<div class="content">
+								<div class="description">
+									<li>
+										@{ var file9 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("E93AA0BF-B809-4B59-8A01-03FEE2BB27D7"));}
+										[<a href="~/documents/commonfiles/@file9?.FileName" target="_blank">
+                                                                                     				@file9?.Extension.Substring(1).ToUpper()
+										</a>]
+										@if (Model.UserI.IsAdmin)
+										{
+											<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file9?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment"><i class="edit icon"></i></a>
+										}
+										Perform a final review, especially noting items in the Proofreading Checklist, and incorporate edits to fine tune graphics and correct any pagination, spelling or grammatical errors
+										</li>
+									<li>Obtain signatures where necessary</li>
+									<li>Quality check all elements of proposal and attachments</li>
+									<li>Produce additional internal copy for PM & Marketing Department</li>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<g class="node pop_up move_to_up" data-object="pr_node">
+				<rect class="cls-11" x="706.7" y="989.7" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 1848.36, 330.76)" />
+				<rect class="cls-12" x="715.5" y="990.2" width="107.5" height="180.85" rx="15" transform="translate(1857.8 322.5) rotate(90.6)" />
+				<text class="cls-13" transform="translate(725 1072)">
+					Proposal
+					<tspan x="10" y="30">Review</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="687" y="1030">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="pr_node">
+							<i class="close icon"></i>
+							<div class="header">
+								Pink Team Review - 12 days before due date
+							</div>
+							<div class="content">
+								<div class="description">
+									<p><u>Coordinator(s):</u> Capture Manager, Proposal Coordinator</p>
+									<p><u>Attendee(s):</u> Capture Manager, Marketing Manager Practice Lead, Project Manager, and Proposal Coordinator</p>
+									<p><u>Objective:</u>  Prepare 80% Word Document for Red Review to occur nine (9) days before due date.</p>
+									<p><u>Activities:</u></p>
+									<ul>
+										<li>Review 60% Word document to identify aspects that require additional information, including: Do we need additional partners or staff augmentation from ATG or subconsultants? Is scope sufficiently developed? Is workplan succinct, effective and on the right track? ?  Does it contain the necessary components for a complete and successful submission.</li>
+										<li>Review prepared graphics:  Are these the desired graphics?  Do we need additional graphics?  What text edits are required to graphics?</li>
+									</ul>
+									<p><u>Outcome:</u></p>
+									<ul>
+										<li>Proposal Coordinator contacts and provides information and coordinates with ATG staff and subconsultants who are required to provide additional content.</li>
+										<li>Sufficient comments and input should be documented and writing assignments confirmed so that the Capture Manager and Proposal Coordinator can incorporate changes to produce a minimum 80% Word document for Red Review to occur nine (9) days before due date.</li>
+										<li>Confirmed list of desired graphics.</li>
+									</ul>
+								</div>
+							</div>
+							<div class="header">
+								Red Team Review - 9 days before due date
+							</div>
+							<div class="content">
+								<div class="description">
+									<p><u>Coordinator(s):</u> Capture Manager, Marketing Manager, Proposal Coordinator</p>
+									<p><u>Attendee(s):</u> Capture Manager, Marketing Manager, Practice Lead, Project Manager and Proposal Coordinator</p>
+									<p><u>Objective:</u> Prepare single 90% Word Document for layout in InDesign and presentation at the Gold Review Red Review to occur nine (9) days before due date.</p>
+									<p><u>Activities:</u> Review the 80% Word document to ensure it clearly and concisely addresses the evaluation criteria. Provide immediate comments to Capture Manager to take text to 90%. Capture Manager incorporates comments into one Word document. Note: Gold Review is three (3) days from Red Review and Document Layout will take two (2) days, thus comments should be provided immediately.</p>
+									<p><u>Outcome:</u> Provide a single 90% Word Document to Marketing within one day.</p>
+								</div>
+							</div>
+							<div class="header">
+								Document Layout
+							</div>
+							<div class="content">
+								<div class="description">
+									<p><u>Coordinator(s):</u> Proposal Coordinator</p>
+									<p><u>Attendee(s):</u> Proposal Coordinator, Marketing Staff</p>
+									<p><u>Objective:</u> Compile InDesign document including graphics.</p>
+									<p><u>Outcome:</u> 90% copy-ready submission for Gold Review to occur six (6) days before due date.</p>
+								</div>
+							</div>
+							<div class="header">
+								Gold Team Review - 6 days before due date
+							</div>
+							<div class="content">
+								<div class="description">
+									<p><u>Coordinator(s):</u> Capture Manager, Proposal Coordinator</p>
+									<p><u>Attendees:</u> Capture Manager, Practice Lead, Project Manager and Proposal Coordinator</p>
+									<p><u>Objective:</u></p>
+									<p><u>Activities:</u> Review the complete document to ensure it clearly and concisely addresses the evaluation criteria in a graphically advanced and appealing product. Provide comments to take text to 100%.  Capture Manager incorporates comments into one .pdf document.</p>
+									<p><u>Outcome:</u></p>
+									<ul>
+										<li>Marketing provides updated copy for final Gold Review.</li>
+										<li>Produce a final copy four (4) days before due date.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<g class="node pop_up move_to_up" data-object="pp_node">
+				<rect class="cls-11" x="411.3" y="990.2" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 1550.36, 626.72)" />
+				<rect class="cls-12" x="420.1" y="990.2" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 1559.25, 617.92)" />
+				<text class="cls-24" transform="translate(415 1065)">
+					Proposal Text
+					<tspan x="10" y="22">and Graphic</tspan>
+					<tspan x="10" y="44">Preparation</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="390" y="1030">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="pp_node">
+							<i class="close icon"></i>
+							<div class="header">
+								Proposal Text and Graphic Preparation
+							</div>
+							<div class="content">
+								<div class="description">
+									<p><u>Coordinator(s):</u> Capture Manager and Proposal Coordinator</p>
+									<p><u>Objective:</u> Compile and prepare proposal.</p>
+									<p><u>Activities:</u> Preparation begins immediately after Kick-off and lasts until twelve (12) working days before proposal is due. Proposal Coordinator coordinates with team members, including ATG staff and subconsultants, their assigned content from the Kick-Off. Capture Manager and Proposal Coordinator collect and incorporate all information along with the administrative requirements to develop the text of the proposal in a Word Document. Additionally, Proposal Coordinator works with Capture Manager and marketing staff to develop the desired graphics.</p>
+									<p><u>Outcome:</u> Develop a minimum 60% Word document to present for the Pink Review to occur twelve (12) days before due date.</p>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<polyline class="cls-4" points="1047,1135 1047,1270 770,1270 770,1285" />
+			<polygon class="cls-5" points="765,1285 775,1285 770,1300" />
+			<rect class="cls-16" x="705" y="1300" rx="15" width="110" height="80" />
+			<rect class="cls-17" x="715" y="1300" rx="15" width="110" height="80" />
+			<text class="cls-18" transform="translate(730 1335)">
+				Finalize
+				<tspan x="5" y="28">Pricing</tspan>
+			</text>
+			<g class="node pop_up move_to_up" data-object="pd_node">
+				<rect class="cls-11" x="411.3" y="1408.9" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 1969.01, 1049.69)" />
+				<rect class="cls-12" x="420.1" y="1408.9" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 1977.9, 1040.9)" />
+				<text class="cls-13" transform="translate(425 1490)">
+					Proposal
+					<tspan x="-10" y="30">Submission</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="390" y="1450">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="pd_node">
+							<i class="close icon"></i>
+							<div class="header">
+								Proposal Submission
+							</div>
+							<div class="content">
+								<div class="description">
+									<p><u>Coordinator(s):</u> Proposal Coordinator</p>
+									<p><u>Attendees:</u> Proposal Coordinator</p>
+									<p><u>Objective:</u> Proposal submission.</p>
+									<p><u>Activity:</u> Submit completed proposal to client via the required submission method(s). Update Stage to Submitted.</p>
+									<p><u>Outcome:</u> Proposal submission accepted by Client.</p>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<g class="node pop_up move_to_up" data-object="p_node">
+				<rect class="cls-11" x="695.5" y="1632.2" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 2479.46, 991.08)" />
+				<rect class="cls-12" x="704.3" y="1632.2" width="107.5" height="180.85" rx="15" transform="translate(2488.3 982.3) rotate(90.6)" />
+				<text class="cls-13" transform="translate(692 1728)">
+					Presentation
+				</text>
+				<foreignObject width="50" height="50" x="675" y="1672">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="p_node">
+							<i class="close icon"></i>
+							<div class="header">
+								Presentation
+							</div>
+							<div class="content">
+								<div class="description">
+									<ul>
+										<li>Conduct a winning interview/presentation</li>
+										<li>Send any additional information the client may request or design</li>
+										<li>Send a thank you note to the client</li>
+										<li>Conduct an internal debrief on the interview/presentation</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<g class="node pop_up move_to_up" data-object="ip_node">
+				<rect class="cls-11" x="410.3" y="1632.1" width="107.5" height="180.85" rx="15" transform="translate(2191.2 1276.2) rotate(90.6)" />
+				<rect class="cls-12" x="421.1" y="1632.1" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 2202.11, 1265.4)" />
+				<text class="cls-13" transform="translate(425 1715)">
+					Interview
+					<tspan x="-13" y="30">Preparation</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="391" y="1672">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="ip_node">
+							<i class="close icon"></i>
+							<div class="header">
+								Interview Preparation
+							</div>
+							<div class="content">
+								<div class="description">
+									<ul>
+										<li>Establish a schedule for interview presentation preparation</li>
+										<li>Identify presentation team and ensure presenters have read and are familiar with the proposal</li>
+										<li>Develop understanding of requirements, outline/format, and logistics (time limits, format, room set-up, participants, etc.)</li>
+										<li>Draft presentation outline/format</li>
+										<li>Prepare boards, presentation slides, and "leave behinds"</li>
+										<li>Ensure presentation reinforces win theme/key messages from proposal or addresses other criteria established specific to the interview</li>
+										<li>Identify potential interview questions and formulate appropriate answers</li>
+										<li>Conduct presentation rehearsals and practice Q&A session</li>
+										<li>Determine appropriate attire and when/where to meet prior to interview</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<g>
+				<g>
+					<path class="cls-7" d="M91.6,1671.2l7.5.2c4.5.1,7.6,2.9,7.5,8.1s-3,8.2-8.3,8.1H94.7l-.2,12.1H91Zm3.2,13.4H98c3.3.1,5-1.6,5.1-5.3s-1.5-5-4.5-5.1H95Z" />
+					<path class="cls-7" d="M113.6,1670.3l-.2,10.9a5,5,0,0,1,5.1-2.7c3.2.1,5.3,2.1,5.2,6.6l-.3,15.1h-3.5l.3-14.3c.1-2.5-.6-4.3-3.1-4.3s-3.7,2.2-3.8,5.7L113,1700h-3.4l.6-29.7Z" />
+					<path class="cls-7" d="M140.6,1696.6c0,1.3.1,3.2.1,4h-3.1a15.2,15.2,0,0,1-.2-2.3c-.8,1.6-2.4,2.6-5,2.6s-5.5-3.3-5.4-6.3,2.8-6.8,8.3-6.7h2.1v-2.7c0-1.6-.2-3.6-2.9-3.6s-3.2,2-3.3,3.4H128c.1-3,1.6-6.2,6.7-6.1s6.3,2.2,6.2,6.1Zm-3.1-6-2-.2c-3.6,0-5.1,1.6-5.1,3.9s.8,3.6,3,3.6,4-2,4.1-6.3Z" />
+					<path class="cls-7" d="M147.2,1694.5c.1,2.1,1.2,3.8,3.5,3.9s3.3-1.2,3.3-3.1-1-3-3.7-4.1c-4.5-1.8-5.7-3.5-5.6-6.5s1.8-5.6,6.3-5.5,6.2,3.4,6.2,6.2h-3.4c0-1-.1-3.4-2.9-3.5a2.5,2.5,0,0,0-2.8,2.7c-.1,1.6.7,2.4,3.5,3.6s5.9,3.2,5.8,6.8-2.6,6.2-6.9,6.1-6.7-2.8-6.7-6.7Z" />
+					<path class="cls-7" d="M163.6,1691.1c-.1,3.9.5,7.4,3.7,7.5s3.6-2.9,3.8-3.5h3.3c-.1.6-.8,6.5-7.2,6.4s-7.1-5.9-7-11.2,2.5-10.9,7.6-10.8,7,4.8,6.9,10.1c0,.5-.1,1.2-.1,1.7Zm7.7-2.5c0-3.3-.6-6.1-3.6-6.2s-3.9,4.6-4,6.1Z" />
+					<path class="cls-7" d="M185.6,1680.7c.1-3,1.6-7.1,6.9-6.9s6.4,3,6.3,7-1.6,5.2-3.4,5.8h0c2.4.9,4.1,2.9,4,7s-1.9,8.5-7.6,8.4-6.9-3.6-7-7.4h3.3c.1,2.1,1,4.4,3.8,4.5s4-2.7,4-5.5-1.7-5.5-4.8-5.5h-1.2v-2.8h1.1c2.7.1,4.2-.9,4.3-4.4s-.6-4.3-3.1-4.3-3.4,2.8-3.5,4.2Z" />
+				</g>
+				<text class="cls-8" transform="translate(45 1730)">
+					Submission/Interview/
+					<tspan x="42" y="25">Presentation</tspan>
+				</text>
+			</g>
+			<g>
+				<g>
+					<path class="cls-7" d="M91.6,1928.5h7.5c4.5.1,7.6,3,7.5,8.2s-3,8.1-8.3,8H94.7l-.2,12.1H91Zm3.2,13.4H98c3.3.1,5-1.6,5.1-5.2s-1.5-5.1-4.5-5.2H95Z" />
+					<path class="cls-7" d="M113.6,1927.6l-.2,10.9c.8-1.7,2.4-2.8,5.1-2.8s5.3,2.2,5.2,6.7l-.3,15h-3.5l.3-14.4c.1-2.5-.6-4.2-3.1-4.3s-3.7,2.2-3.8,5.7l-.3,12.8h-3.4l.6-29.7Z" />
+					<path class="cls-7" d="M140.6,1953.9c0,1.3.1,3.2.1,3.9h-3.1a13,13,0,0,1-.2-2.3c-.8,1.6-2.4,2.7-5,2.6s-5.5-3.3-5.4-6.3,2.8-6.8,8.3-6.6h2.1v-2.8c0-1.5-.2-3.5-2.9-3.6s-3.2,2-3.3,3.4H128c.1-3.1,1.6-6.2,6.7-6.1s6.3,2.1,6.2,6.1Zm-3.1-6.1h-2c-3.6-.1-5.1,1.6-5.1,3.8s.8,3.6,3,3.6,4-2,4.1-6.2Z" />
+					<path class="cls-7" d="M147.2,1951.8c.1,2.1,1.2,3.8,3.5,3.8a2.8,2.8,0,0,0,3.3-3c0-2.1-1-3.1-3.7-4.2-4.5-1.8-5.7-3.4-5.6-6.4s1.8-5.7,6.3-5.6,6.2,3.5,6.2,6.3h-3.4c0-.9-.1-3.4-2.9-3.5a2.5,2.5,0,0,0-2.8,2.7c-.1,1.7.7,2.5,3.5,3.6s5.9,3.3,5.8,6.9-2.6,6.2-6.9,6.1-6.7-2.9-6.7-6.7Z" />
+					<path class="cls-7" d="M163.6,1948.4c-.1,3.8.5,7.4,3.7,7.4s3.6-2.9,3.8-3.5h3.3c-.1.5-.8,6.5-7.2,6.3s-7.1-5.9-7-11.2,2.5-10.8,7.6-10.7,7,4.7,6.9,10.1c0,.4-.1,1.2-.1,1.7Zm7.7-2.5c0-3.4-.6-6.2-3.6-6.2s-3.9,4.6-4,6Z" />
+					<path class="cls-7" d="M194.5,1958.9v-7.2l-9.8-.2v-2.8l9.1-17.3h4.4l-.4,17.5h2.7l-.4,2.9h-2.3l-.2,7.2Zm.4-17.3c0-2.5.1-5.2.2-7.3-1.2,3.2-4.8,10.2-7,14.4l6.6.2Z" />
+				</g>
+				<text class="cls-8" transform="translate(67 1985)">Selection/Debrief</text>
+			</g>
+			<path class="cls-4" d="M830,90.5H960" />
+			<path class="cls-5" d="M965,90.5l-14.2,4.7V85.9Z" />
+			<path d="M744.9,162h-12l6-18.5Z" />
+			<g class="node pop-up move_to_up" data-object="od_node">
+				<rect class="cls-11" x="680.8" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 832.48, -643.18)" />
+				<rect class="cls-12" x="689.6" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 841.37, -651.98)" />
+				<text class="cls-24" transform="translate(715 82)">
+					Lead
+					<tspan x="-40" y="22">Documentation</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="660" y="38">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="od_node">
+							<i class="close icon"></i>
+							<div class="header">
+								OPPO/PROP Creation (Lead Documentation)
+							</div>
+							<div class="content">
+							@{ var file3 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("73067A1C-C572-4DDB-A2F5-9A837EB7E87F"));}
+								<div class="description">
+									<p><u>Coordinator(s):</u> Opportunity Lead Originator, OPPO/PROP Creator</p>
+									<p><u>Attendee(s):</u> Opportunity Lead Originator, OPPO/PROP Creator</p>
+									<p><u>Objective:</u> Documentation of a Lead for potential work through creation of OPPO/PROP records.</p>
+									<p><u>Activity:</u> Submission of completed
+										<a href="~/documents/commonfiles/@file3?.FileName" target="_blank">@file3?.Title</a>
+	@if (Model.UserI.IsAdmin)
+	{
+		<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file3?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment"><i class="edit icon"></i></a>
+	}
+
+										to the assigned OPPO/PROP Creator indicated in the form.</p>
+									<p><u>Outcome:</u> Creation of OPPO and PROP records in Vision and the PROP folder on the network for the Lead.</p>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<path class="cls-4" d="M751.9,299.3h-174" />
+			<polyline class="cls-4" points="1013.3 143.5 1013.3 192 921.9 192" />
+			@*<g class="node decision pop_up move_to_up" data-object="gng_node_0">
+			<path xmlns="http://www.w3.org/2000/svg" class="cls-19" d="M1088.6,98.1,1020,144.3a12.7,12.7,0,0,1-14.2.1L937.9,99.2a12.5,12.5,0,0,1,.1-20.7l68.6-46.1a12.7,12.7,0,0,1,14.2-.1l67.9,45.1A12.4,12.4,0,0,1,1088.6,98.1Z" />
+			<path class="cls-20" d="M1088.3,100.1l-62.5,42.1a13.9,13.9,0,0,1-15.5.1l-61.9-41.1a13.7,13.7,0,0,1,.2-22.7l62.5-42.1a13.9,13.9,0,0,1,15.5-.1l61.9,41.2C1096.5,82.8,1096.4,94.7,1088.3,100.1Z" />
+			<text class="cls-21" transform="translate(970 95)">
+				Go/No Go
+			</text>
+			<foreignObject width="50" height="50" x="950" y="37">
+				<body xmlns="http://www.w3.org/2000/svg">
+					<i class="external alternate icon" width="100" height="100"></i>
+				</body>
+				<div class="ui longer modal" id="gng_node_0">
+					<i class="close icon"></i>
+					<div class="header">
+						Go/No Go
+					</div>
+					<div class="content">
+						<div class="description">
+							<ul>
+								<li><a href="~/documents/processes/bd/go-nogoanalysis.pdf" target="_blank">[PDF]</a> Complete Go/No Go form</li>
+								<li><a href="~/documents/processes/bd/captureplantemplate.pdf" target="_blank">[PDF]</a> Update capture plan</li>
+								<li>Assess scope, schedule, costs</li>
+								<li>Assess relevant firm and staff experience</li>
+								<li>Obtain initial Senior Management approval</li>
+								<li>Determine and implement plan to fill in information gaps and conduct initial recon</li>
+								<li>ID Capture Manager, Proposal Coordinator, Proposed PM and Proposed PIC</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</foreignObject>
+		</g>*@
+			<text class="cls-10" transform="translate(873 196)">No Go</text>
+			<path class="cls-4" d="M468.4,339v50" />
+			<path class="cls-4" d="M488.3,95.4H626.1" />
+			<path class="cls-5" d="M640.4,95.4l-14.3,4.7V90.8Z" />
+			<g>
+				<rect class="cls-11" x="411.3" y="-1" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 559.25, -374.64)" />
+				<rect class="cls-12" x="420.1" y="-1" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 568.14, -383.44)" />
+				<text class="cls-13" transform="translate(395 82)">
+					Market/Client
+					<tspan x="15" y="30">Assessment</tspan>
+				</text>
+				@*<foreignObject width="50" height="50" x="389" y="37">
+				<body xmlns="http://www.w3.org/2000/svg">
+					<i class="external alternate inverted icon" width="100" height="100"></i>
+					<div class="ui longer modal" id="mca_node">
+						<i class="close icon"></i>
+						<div class="header">
+							Opportunity Assessment
+						</div>
+						<div class="content">
+							<div class="description">
+								<ul class="">
+									<li><a href="~/documents/processes/bd/atgopportunitydevelopmentguide.pdf" target="_blank">[PDF]</a> Review strategic, annual and 90-day plans; identify possible projects/clients to pursue</li>
+									<li>
+										Speak w/client; conduct research to understand project/client needs; & discuss and document in the 90-day plan
+										<ul>
+											<li><a href="~/documents/processes/bd/ifbpform.pdf" target="_blank">[PDF]</a> Client's perceived competition</li>
+											<li>ATG capabilities</li>
+											<li>Ask/listen for potential opportunities</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</body>
+			</foreignObject>*@
+			</g>
+			<g class="node decision pop_up move_to_up" data-object="bluehr_node">
+				<g>
+					<path class="cls-22" d="M1052.1,104.2h-75.7c-10,.1-28.6.3-28.6,12.8,0,16.4,33.4,24.9,66.5,24.9s66.5-8.5,66.5-24.9C1080.8,104.5,1062.1,104.3,1052.1,104.2Z" />
+					<path class="cls-23" d="M1058.8,35.2a3.7,3.7,0,0,0-3-1.3h-83.1a3.9,3.9,0,0,0-3,1.3,4.2,4.2,0,0,0-1.2,3l4.2,79a4.2,4.2,0,0,0,3.1,3.8,174.1,174.1,0,0,0,76.9,0,4.2,4.2,0,0,0,3.1-3.8l4.2-79A4.2,4.2,0,0,0,1058.8,35.2Z" />
+				</g>
+				<text class="cls-30" transform="translate(981 80)">
+					Blue Hat
+					<tspan x="3" y="22">Review</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="1005" y="37">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+					</body>
+					<div class="ui longer modal" id="bluehr_node">
+						<i class="close icon"></i>
+						<div class="header">
+							Blue Hat Review
+						</div>
+						<div class="content">
+							<div class="description">
+								<p><u>Coordinator(s):</u> Opportunity Lead Originator, Marketing Manager</p>
+								<p><u>Attendee(s):</u> Opportunity Lead Originator, Practice Lead and Marketing Manager, at a minimum.</p>
+								<p><u>Objective:</u> Determine if ATG should continue to pursue an opportunity.</p>
+								<p><u>Activity:</u> Complete and periodically review the Blue Hat Review Form based on additional knowledge at EITHER the weekly BD Meeting or in a separately scheduled independent meeting, as needed.</p>
+								<p><u>Outcome:</u></p>
+								<ul>
+									<li>
+										@{ var file4 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("76C121B8-92C1-4199-B2E7-DF1CA1BE5BB6"));}
+										If the Blue Hat Review Form has a value of 35 or greater, then it is it is determined to be a GO
+										<ul>
+											<li>Capture Manager initiates the Capture Plan, including the Estimated Effort.</li>
+											<li>Capture Manager provides <a href="~/documents/commonfiles/@file4?.FileName" target="_blank">@file4?.Title</a>
+	@if (Model.UserI.IsAdmin)
+	{
+		<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file4?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment"><i class="edit icon"></i></a>
+	}
+
+												form with the signature of the Practice Lead and the Estimated Effort from the Capture Plan to Marketing Manager.</li>
+
+											<li>Marketing Manager identifies Proposal Coordinator.</li>
+										</ul>
+									</li>
+									<li>If determined to still be a Go BUT DOES NOT have a Blue Hat Review Form value of at least 35, the Opportunity Lead Originator will continue to monitor as a Lead and it will be tabled for evaluation at a subsequent Blue Hat Review.</li>
+									<li>If determined to be a No Go, process accordingly and remove from lists.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</foreignObject>
+			</g>
+			<g class="node decision pop_up move_to_up" data-object="blackhr_node">
+				<g>
+					<path class="cls-25" d="M791.8,473.5H716.1c-10,.2-28.7.4-28.7,12.8,0,16.4,33.5,25,66.5,25s66.5-8.6,66.5-25C820.4,473.9,801.8,473.7,791.8,473.5Z" />
+					<path class="cls-26" d="M798.5,404.5a4.3,4.3,0,0,0-3-1.3H712.4a4.4,4.4,0,0,0-3.1,1.3,4.7,4.7,0,0,0-1.1,3.1l4.2,79a4.1,4.1,0,0,0,3.1,3.8,173.6,173.6,0,0,0,76.8,0,4.2,4.2,0,0,0,3.2-3.8l4.1-79A3.9,3.9,0,0,0,798.5,404.5Z" />
+				</g>
+				<text class="cls-30" transform="translate(716 450)">
+					Black Hat
+					<tspan class="cls-27" x="10" y="22">Review</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="745" y="407">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+					</body>
+					<div class="ui longer modal" id="blackhr_node">
+						<i class="close icon"></i>
+						<div class="header">
+							Black Hat Review
+						</div>
+						<div class="content">
+							<div class="description">
+								@{ var file7 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("A189B270-C834-419E-836D-C1B5554C7EF5"));}
+								<p><u>Coordinator(s):</u> Capture Manager, Marketing Manager</p>
+								<p><u>Attendee(s):</u> Capture Manager, Practice Lead, and Proposal Coordinator, at a minimum. Should also include Opportunity Lead Originator, Practice Lead, proposed Project Manager, Proposed PIC, and Proposed Quality Manager, when necessary.</p>
+								<p><u>Objective:</u> Review the updated Capture Plan, Go/No Go, confirmed/unconfirmed team members and/or significant information. Go/No-Go reviews occur periodically during pursuit stage; however a
+									<a href="~/documents/commonfiles/@file7?.FileName" target="_blank">@file7?.Title</a>
+	@if (Model.UserI.IsAdmin)
+	{
+		<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file7?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment"><i class="edit icon"></i></a>
+	}
+									must be completed and a meeting with the minimum attendees above is required to advance from Pursuit to Proposal stage after an RFQ is issued.</p>
+								<p><u>Activities:</u> As knowledge increases AND WITHIN TWO (2) BUSINESS DAYS OF AN RFQ being issued, a Black Hat Review should be conducted. The Black Hat Review should be attended by the Capture Manager, Practice Lead, and Proposal Coordinator, at a minimum.</p>
+								<p><u>Outcome:</u></p>
+								<ul>
+									<li>If the Black Hat Review Form has a score of 15+ then it is determined to be a Go and advanced to the Proposal stage with the signature of the Practice Lead.</li>
+									<li>If the Black Hat Review Form has score of 12-14, it should be presented to the BD Executive. It may only be determined to be a go and advanced to the Proposal stage with a signature and explanation from the BD Executive.</li>
+									<li>It is determined to be a No Go, it is processed accordingly and removed from lists.</li>
+								</ul>
+								<p><u>Note:</u> An opportunity cannot reach the Proposal stage until an official RFQ is issued AND a Black Hat Review is conducted.</p>
+							</div>
+						</div>
+					</div>
+				</foreignObject>
+			</g>
+			<g class="node pop-up move_to_up" data-object="op_node">
+				<rect class="cls-11" x="770.5" y="205" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 1126.03, -527.89)" />
+				<rect class="cls-12" x="779.3" y="205" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 1134.92, -536.69)" />
+				<text class="cls-13" transform="translate(765 290)">
+					Capture Plan
+					<tspan x="0" y="30">Development</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="750" y="242">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+					</body>
+					<div class="ui longer modal" id="op_node">
+						<i class="close icon"></i>
+						<div class="header">
+							Capture Plan Development
+						</div>
+						<div class="content">
+							<div class="description">
+								<p><u>Coordinator(s):</u> Capture Manager, Marketing Manager or Proposal Coordinator</p>
+								<p><u>Attendee(s):</u> Separate meetings, not required, BUT CAN BE SCHEDULED AS NECESSARY.</p>
+								<p><u>Objective:</u>  Increase knowledge of the lead by developing a
+									@{ var file6 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("4F922AEE-6C43-4A63-8143-467066DBF2A0"));}
+									<a href="~/documents/commonfiles/@file6?.FileName">@file6?.Title</a>
+									@if (Model.UserI.IsAdmin)
+									{
+										<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file6?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment"><i class="edit icon"></i></a>
+									}
+
+									that improves ATG’s position for winning the work.</p>
+								<p><u>Activities:</u>  Capture Manager and Proposal Coordinator prepare background research and discuss at weekly BD Meeting and/or additional independent meetings as necessary to gather information for the Capture Plan.</p>
+								<p><u>Outcome:</u>  Capture Plan that improves ATG’s position for winning the work.</p>
+							</div>
+						</div>
+					</div>
+				</foreignObject>
+			</g>
+			<g class="node pop_up move_to_up" data-object="ppa_node">
+				<rect class="cls-11" x="411.3" y="205" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 766.76, -164.99)" />
+				<rect class="cls-12" x="420.1" y="205" width="107.5" height="180.85" rx="15" transform="translate(775.7 -173.8) rotate(90.6)" />
+				<text class="cls-24" transform="translate(400 285)">
+					Strategy Meeting
+					<tspan x="10" y="22">&amp; Pre-Proposal</tspan>
+					<tspan x="35" y="44">Activities</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="390" y="245">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="ppa_node">
+							<i class="close icon"></i>
+							<div class="header">
+								Strategy Meeting and Pre-Proposal Activities
+							</div>
+							<div class="content">
+								<div class="description">
+									<p><u>Coordinator(s):</u> Capture Manager, Marketing Manager</p>
+									<p><u>Attendee(s):</u> Capture Manager, Opportunity Lead Originator, Practice Lead, Client Service Manager, Proposed Project Manager, Proposed PIC, Proposal Coordinator and any other senior staff with relevant knowledge of the project or client.</p>
+									<p><u>Objective:</u> Increase knowledge of the Pursuit by developing a Capture Plan that improves ATG’s position for winning the work.</p>
+									<p><u>Activities:</u></p>
+									<li>
+										Conduct strategy meetings and other pre-proposal activities to develop key components of the Capture Plan, such as
+										<ul>
+											<li>Anticipating competitor’s likely proposed strategies and solutions</li>
+											<li>Documenting complete and necessary research</li>
+											<li>Designating teaming arrangements</li>
+											<li>Identifying important key points for the pursuit.</li>
+											<li>
+												Assigning future activities for
+												<ul>
+													<li>Opportunity evaluation</li>
+													<li>Team development</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>Continuously review the Capture Plan based on current knowledge including background research on the client, previous similar projects, likely competitors, etc.</li>
+									<li>Capture Manager and Proposal Coordinator continuously update the Capture Plan and assign additional activities as appropriate.</li>
+									<p><u>Outcome:</u>  Develop a successful Capture Plan that is sufficiently complete so that when an RFP is issued a Black Hat Review and decision can be made within 48 hours of RFP release.</p>
+
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<polyline class="cls-4" points="1060 88.3 1114.3 88.3 1114.3 180" />
+			<text class="cls-10" transform="translate(1105 195)">Go</text>
+			<path class="cls-5" d="M925,300l14.3-4.6v9.2Z" />
+			<path class="cls-5" d="M570.8,299.3l14.2-4.6v9.2Z" />
+			<polyline class="cls-4" points="1114.3 200 1114.3 300 930 300" />
+			<path class="cls-4" d="M545.3,450H699.8" />
+			<g>
+				<rect class="cls-11" x="95" y="674.4" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 1234.35, 307.96)" />
+				<rect class="cls-12" x="104" y="674.4" width="107.5" height="180.85" rx="15" transform="translate(1243.2 299.2) rotate(90.6)" />
+				<text class="cls-13" transform="translate(415 455)">
+					RFP Release
+				</text>
+			</g>
+			<polyline class="cls-4" points="738.9 158 738.9 192 865.4 192" />
+			<path class="cls-5" d="M468.4,390l-4.7-14.3h9.3Z" />
+			<g>
+				<ellipse class="cls-28" cx="944.1" cy="550" rx="66.5" ry="54.4" />
+				<ellipse class="cls-29" cx="954.9" cy="550" rx="62.3" ry="54.4" />
+				<text class="cls-30" transform="translate(935 540)">
+					Close
+					<tspan x="-28" y="22">Opportunity</tspan>
+				</text>
+			</g>
+			<line class="cls-4" x1="842.4" y1="552" x2="858.4" y2="552" />
+			<path class="cls-5" d="M707.7,450l-14.3,4.6v-9.2Z" />
+			<a xlink:href="Contracts">
+				<g class="node pop_up move_to_right">
+					<rect class="cls-32" x="1047.5" y="1883.8" width="107.5" height="180.85" rx="15" transform="translate(3086.7 893.3) rotate(90.6)" />
+					<rect class="cls-31" x="1056.3" y="1883.8" width="107.5" height="180.85" rx="15" transform="translate(3095.6 884.5) rotate(90.6)" />
+					<text class="cls-13" transform="translate(1050 1980)">
+						Contracting
+					</text>
+					<foreignObject width="50" height="50" x="1025" y="1925">
+						<body xmlns="http://www.w3.org/2000/svg">
+							<i class="sitemap inverted icon" width="50" height="50"></i>
+						</body>
+					</foreignObject>
+				</g>
+			</a>
+			<g class="node pop_up move_to_up" data-object="is_node">
+				<rect class="cls-11" x="995.1" y="2077.8" width="107.5" height="180.85" rx="15" transform="translate(3227.7 1141.7) rotate(90.6)" />
+				<rect class="cls-12" x="1003.9" y="2077.8" width="107.5" height="180.85" rx="15" transform="translate(3236.6 1132.9) rotate(90.6)" />
+				<text class="cls-13" transform="translate(1015 2160)">
+					Internal
+					<tspan x="-8" y="30">Summary</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="975" y="2120">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="is_node">
+							<i class="close icon"></i>
+							<div class="header">
+								Internal Summary
+							</div>
+							<div class="content">
+								<div class="description">
+									<ul>
+										<li>Complete & distribute Debrief Summary memo to proposal and management teams</li>
+										<li>Follow-up on action items & discuss lessons learned</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<text class="cls-10" transform="translate(622 1981)">
+				Selected
+			</text>
+			<path class="cls-4" d="M686.5,1975.6h40.9" />
+			<path class="cls-5" d="M735.5,1975.6l-14.2,4.6v-9.3Z" />
+			<path class="cls-4" d="M556.5,1975.6H614" />
+			<path class="cls-4" d="M474.5,2072.5v30.3" />
+			<path class="cls-5" d="M474.5,2112l-4.7-14.2h9.3Z" />
+			<path class="cls-4" d="M474.5,2015.5V2051" />
+			<g xmlns="http://www.w3.org/2000/svg">
+				<path class="cls-19" d="M551.5,1980.6l-68.6,46.2a12.9,12.9,0,0,1-14.2.1l-67.9-45.2a12.5,12.5,0,0,1,.1-20.7l68.6-46.1a12.7,12.7,0,0,1,14.2-.1l67.9,45.1A12.4,12.4,0,0,1,551.5,1980.6Z" />
+				<path class="cls-20" d="M551.2,1982.6l-62.5,42.1a13.9,13.9,0,0,1-15.5.1l-61.9-41.2c-8-5.3-7.9-17.2.2-22.6l62.5-42.1a13.9,13.9,0,0,1,15.5-.1l61.9,41.2C559.4,1965.3,559.3,1977.2,551.2,1982.6Z" />
+				<text class="cls-21" transform="translate(435 1980)">
+					Selection
+				</text>
+			</g>
+			<text class="cls-10" transform="translate(430 2067)">
+				Not Selected
+			</text>
+			<path class="cls-4" d="M544.9,2169.5H661.5" />
+			<g class="node pop_up move_to_up" data-object="idp_node">
+				<rect class="cls-11" x="423.8" y="2077.8" width="107.5" height="180.85" rx="15" transform="translate(2650.5 1712.9) rotate(90.6)" />
+				<rect class="cls-12" x="432.6" y="2077.8" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 2659.44, 1704.15)" />
+				<text class="cls-24" transform="translate(445 2160)">
+					Internal
+					<tspan x="-35" y="22">Debrief/Prep (L)</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="405" y="2120">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="idp_node">
+							<i class="close icon"></i>
+							<div class="header">
+								Internal Debrief/Prep (L)
+							</div>
+							<div class="content">
+								<div class="description">
+									<ul>
+										@{ var file12 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("8AED54ED-A157-492E-B634-D39A0E6ED6C9"));}
+										<li>Change the Opportunity’s stage to "NS-Proposal" or "NS-Interview" whichever is appropriate.</li>
+										<li>Request & schedule a debrief with client</li>
+										<li>Conduct Internal Debrief and meeting to determine questions to be asked at the
+										<a href="~/documents/commonfiles/@file12?.FileName" target="_blank">@file12?.Title</a>
+										@if (Model.UserI.IsAdmin)
+										{
+											<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file12?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment"><i class="edit icon"></i></a>
+										}
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<path class="cls-5" d="M668.6,2169l-14.2,4.7v-9.3Z" />
+			<path class="cls-4" d="M831,2169.5H947.6" />
+			<path class="cls-4" d="M885.7,1975.6h116.6" />
+			<path class="cls-5" d="M1009.5,1975.6l-14.3,4.6v-9.3Z" />
+			<g class="node pop_up move_to_up" data-object="id_node">
+				<rect class="cls-11" x="776.6" y="1883.8" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 2813.05, 1164.17)" />
+				<rect class="cls-12" x="785.4" y="1883.8" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 2821.94, 1155.38)" />
+				<text class="cls-13" transform="translate(795 1966)">
+					Internal
+					<tspan x="-15" y="30">Debrief (W)</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="757" y="1925">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="id_node">
+							<i class="close icon"></i>
+							<div class="header">
+								Internal Debrief (W)
+							</div>
+							<div class="content">
+								<div class="description">
+									<ul>
+										@{ var file11 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("5A57D1EE-1FEA-4B13-B6CE-4E01DF6DF87F"));}
+										<li>Change the Opportunity’s stage to SNC, On-Call or Prequalification based on the project type.</li>
+										<li>If it becomes "SNC" then the Project Manager and Principal-in-Charge should be assigned, and the project will be transitioned to the Project Manager and Project Accountant for contract negotiations.</li>
+										<li>Request & schedule a debrief with client</li>
+										<li>Conduct
+											<a href="~/documents/commonfiles/@file11?.FileName" target="_blank">@file11?.Title</a>
+											@if (Model.UserI.IsAdmin)
+											{
+												<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file11?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment"><i class="edit icon"></i></a>
+											}
+										</li>
+										<li>Complete & distribute Debrief Summary memo to proposal and management teams</li>
+										<li>Follow-up on action items & discuss lessons learned</li>
+										<li>The External Debrief with the client will be handled as part of the Contracting process for successful proposals.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+			<path class="cls-5" d="M954.7,2169.5l-14.2,4.7v-9.3Z" />
+			<g class="node pop_up move_to_up" data-object="ed_node">
+				<rect class="cls-11" x="707.1" y="2077.8" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 2936.77, 1429.65)" />
+				<rect class="cls-12" x="715.9" y="2077.8" width="107.5" height="180.85" rx="15" transform="matrix(-0.01, 1, -1, -0.01, 2945.66, 1420.86)" />
+				<text class="cls-13" transform="translate(725 2160)">
+					External
+					<tspan x="4" y="30">Debrief</tspan>
+				</text>
+				<foreignObject width="50" height="50" x="690" y="2120">
+					<body xmlns="http://www.w3.org/2000/svg">
+						<i class="external alternate inverted icon" width="100" height="100"></i>
+						<div class="ui longer modal" id="ed_node">
+							<i class="close icon"></i>
+							<div class="header">
+								External Debrief
+							</div>
+							<div class="content">
+								<div class="description">
+									<p>Attend & document
+										@{ var file13 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("AA61BDAC-F7E3-412C-B880-EAD05AFC49BF"));}
+										<a href="~/documents/commonfiles/@file13?.FileName" target="_blank">@file13?.Title</a>
+										@if (Model.UserI.IsAdmin)
+										{
+											<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file13?.Id" asp-route-returnUrl="/ATGProcesses/BusinessDevelopment"><i class="edit icon"></i></a>
+										}
+										with client</p>
+								</div>
+							</div>
+						</div>
+					</body>
+				</foreignObject>
+			</g>
+		</svg>
+	</div>
+</div>
+<div class="modalRefresher"></div>
+
+@section Scripts {
+	<script>
+		//Semantic Ui Modals.
+		$('.node').on('click', function () {
+			$('.ui.modal#' + $(this).attr('data-object')).modal('show');
+		});
+
+		//Changing path colors on hover to show clickable items.
+		$('.node').hover(function () {
+			$(this).find('.cls-11, .cls-12, .cls-20').css('transition', 'all 0.2s ease-out');
+			$(this).find('.cls-12').css('fill', '#0e6d77');
+		}, function () {
+			$(this).find('.cls-12').css('fill', '#15a5b6');
+		});
+
+
+	</script>
+}

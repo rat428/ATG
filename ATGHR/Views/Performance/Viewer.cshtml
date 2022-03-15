@@ -1,0 +1,120 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@{
+	ViewData["Title"] = "Viewer";
+	User ATGUser = (User)Util.GetUser(Context);
+}
+<h1 class="ui header center aligned">Goals and Reviews for ATGHR Viewers </h1>
+<div class="ui container white_form_box">
+	<div class="ui top attached tabular menu">
+		<a class="item active" data-tab="current">Viewable Goal Sheets</a>
+		<a class="item" data-tab="past">Viewable Review Sheets</a>
+	</div>
+	<div class="ui bottom attached tab segment active" data-tab="current">
+		<table class="ui striped table" id="current_sheet_table" style="width:100%">
+			<thead>
+				<tr>
+					<th>Owner</th>
+					<th>Status</th>
+					<th>Year</th>
+					<th>View</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+	<div class="ui bottom attached tab segment" data-tab="past">
+		<table class="ui striped table" id="past_sheet_table" style="width:100%">
+			<thead>
+				<tr>
+					<th>Owner</th>
+					<th>Status</th>
+					<th>Year</th>
+					<th>View</th>
+				</tr>
+			</thead>
+		</table>
+
+	</div>
+</div>
+
+
+
+@section Scripts
+	{
+	<script>
+		var UserId = @ATGUser.UserId;
+		var btn = '<button>View</button>';
+		$(function () {
+			loadLookups({
+				callback: function () {
+					$('#current_sheet_table').DataTable({
+						ajax: {
+							url: '/api/ViewerGoalSheetList',
+							type: 'POST',
+							dataSrc: ''
+						},
+						columns: [{
+							data: 'userId',
+							className: "dt-body-center",
+							render: function (data) {
+								return findUser(data).name;
+							}
+						}, {
+							data: 'status',
+							className: "dt-body-center"
+						}, {
+							data: 'year',
+							className: "dt-body-center"
+						}, {
+							data: 'sheetId',
+							className: "dt-body-center",
+							render: function () {
+								return "<button type='button' class='ui button view_sheet'>View</button>"
+							}
+						}]
+					});
+					$('#past_sheet_table').DataTable({
+						ajax: {
+							url: '/api/ViewerReviewSheetList',
+							type: 'POST',
+							dataSrc: ''
+						},
+						columns: [{
+							data: 'userId',
+							className: "dt-body-center",
+							render: function (data) {
+								return findUser(data).name;
+							}
+						}, {
+							data: 'status',
+							className: "dt-body-center"
+						}, {
+							data: 'year',
+							className: "dt-body-center"
+						}, {
+							data: 'sheetId',
+							className: "dt-body-center",
+							render: function () {
+								return "<button type='button' class='ui button view_sheet'>View</button>"
+							}
+						}]
+					});
+				}
+			});
+
+			//BUTTON TO VIEW THE CURRENT SHEETS
+			$('#current_sheet_table').on('click select', '.view_sheet', function (event) {
+				genPrevention(event);
+				var id = $('#current_sheet_table').DataTable().row($(this).parents('tr')).data().sheetId
+				window.location.href = "/Performance/GoalSheet/" + id;
+			});
+			//BUTTON TO VIEW THE PAST INTERACTED SHEET
+			$('#past_sheet_table').on('click select', '.view_sheet', function (event) {
+				genPrevention(event);
+				var id = $('#past_sheet_table').DataTable().row($(this).parents('tr')).data().sheetId
+				window.location.href = "/Performance/ReviewSheet/" + id;
+			});
+		});
+		
+	</script>
+}

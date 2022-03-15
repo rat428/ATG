@@ -1,0 +1,174 @@
+@using ATGHR.Models.Enums
+@model AddNewCourseDto
+
+@{
+	ViewBag.Title = "Add New Course";
+	Layout = "_Layout";
+}
+<style>
+	.trumbowyg-box,
+    .trumbowyg-editor {
+      min-height: 150px;
+    }
+</style>
+
+<h1 class="ui header center aligned">Add New Course</h1>
+
+<div class="ui container  local_templates">
+	<form method="post" asp-action="AddNewCourse" class="ui form light_grey_box margin_t" style="padding: 25px 100px 50px;" id="course_form" enctype="multipart/form-data">
+
+		<h3 class="ui dividing header">Course Information</h3>
+		<input type="hidden" asp-for="Course.LearningObjectives">
+		<input type="hidden" asp-for="Course.CourseDetails">
+		<input type="hidden" asp-for="Course.ContinuingEducationUnits">
+		<div class="field">
+			<label asp-for="Course.Title">Title</label>
+			<input type="text" asp-for="Course.Title" placeholder="Title" data-serialize="true"/>
+		</div>
+
+		<div class="field">
+			<label asp-for="Course.RecommendedLevelForMastery">Recommended Level for Mastery</label>
+			<select asp-for="Course.RecommendedLevelForMastery" asp-items="Html.GetEnumSelectList<RecommendedLevelForMastery>()">
+			</select>
+		</div>
+
+		<div class="field">
+			<label asp-for="Course.SubjectArea">Subject Area</label>
+			<select asp-for="Course.SubjectArea" asp-items="Html.GetEnumSelectList<CourseSubject>()"> </select>
+		</div>
+
+		<div class="field">
+			<label asp-for="Course.SubjectAreaText">Subject Area (Text) </label>
+			<input type="text" asp-for="Course.SubjectAreaText">
+		</div>
+
+		<div class="field">
+			<label asp-for="Course.CourseType">Course Type</label>
+			<select asp-for="Course.CourseType" asp-items="Html.GetEnumSelectList<CourseType>()"> </select>
+		</div>
+
+		<div class="field">
+			<label asp-for="Course.Source">Source</label>
+			<input type="text" asp-for="Course.Source" data-serialize="true">
+		</div>
+
+		<div class="field">
+			<label asp-for="Course.CourseDetails">Course Details</label>
+			<div id="courseDetails"></div>
+			@* <textarea  asp-for="Course.CourseDetails"   data-serialize="true" rows="3"></textarea> *@
+		</div>
+
+		<div class="field">
+			<label asp-for="Course.LearningObjectives">Learning Objectives</label>
+			<div id="learningObjectives"></div>
+			@* <textarea  asp-for="Course.LearningObjectives"  data-serialize="true" rows="3"></textarea> *@
+		</div>
+
+		<div class="field">
+			<label asp-for="Course.SkillsCovered">Skills Covered</label>
+			<input type="text" asp-for="Course.SkillsCovered" data-serialize="true">
+		</div>
+
+		<div class="field">
+			<label asp-for="Course.ContinuingEducationUnits">Continuing Education Units</label>
+			<div id="continuingEducationUnits"></div>
+		</div>
+
+		<div class="field">
+			<label asp-for="Course.DisplayOrder">Display Order</label>
+			<input type="number" asp-for="Course.DisplayOrder" data-serialize="true">
+		</div>
+
+		<div class="field">
+			<div class="ui toggle checkbox">
+				<input type="checkbox" asp-for="Course.IsActive" class="hidden" data-serialize="true" />
+				<label asp-for="Course.IsActive">Active </label>
+			</div>
+		</div>
+
+		<div class="ui container center aligned">
+			<button type="button" onclick="submitForm()" class="ui button" id="save"> Save</button>
+		</div>
+
+	</form>
+</div>
+
+@section Scripts
+{
+	<script>
+
+		$('#learningObjectives').trumbowyg();
+		$('#courseDetails').trumbowyg();
+		$('#continuingEducationUnits').trumbowyg();
+		// let modal;
+		if (typeof modal === 'object') {
+			modal.remove();
+		}
+
+		let isFromPost = '@Model.IsFromPost.ToString().ToLower()';
+		let isError = '@Model.IsError.ToString().ToLower()';
+		let errorDescription = '@Model.ErrorDescription';
+
+		// console.log(isFromPost);
+		// console.log(isError);
+		// console.log(errorDescription);
+		@*console.log(isFromPost);
+		console.log('@Model.Course.CourseDetails');
+		console.log('@Json.Serialize(Model.Course.CourseDetails)');
+		console.log('@Html.Raw(Json.Serialize(Model.Course.CourseDetails))');
+*@
+
+		if (isFromPost === 'true'){
+
+			let learningObjectives = '@Html.Raw(Json.Serialize(Model?.Course?.LearningObjectives))';
+			let courseDetails = '@Html.Raw(Json.Serialize(Model?.Course?.CourseDetails))';
+			let continuingEducationUnits = '@Html.Raw(Json.Serialize(Model?.Course?.ContinuingEducationUnits))';
+
+			if (courseDetails === 'null')
+				courseDetails = '';
+			if (learningObjectives === 'null')
+				learningObjectives = '';
+			if (continuingEducationUnits === 'null')
+				continuingEducationUnits = '';
+
+			if (courseDetails.length>3)
+				courseDetails = courseDetails.substring(1, courseDetails.length-1);
+			if (learningObjectives.length>3)
+				learningObjectives = learningObjectives.substring(1, learningObjectives.length-1);
+			if (continuingEducationUnits.length>3)
+				continuingEducationUnits = continuingEducationUnits.substring(1, continuingEducationUnits.length-1);
+
+
+			$('#courseDetails').trumbowyg('html', courseDetails);
+			$('#learningObjectives').trumbowyg('html', learningObjectives);
+        	$('#continuingEducationUnits').trumbowyg('html', continuingEducationUnits);
+
+			modal = $('<div class="modal" style="display: none;"></div>').appendTo($('body')).text('Saving ...').fadeIn(100);
+
+			if (isError === 'false'){
+				// console.log(isFromPost + '--' + isError);
+				modal.addClass('modal_success');
+				modal.text('Course Saved!');
+				setTimeout(function () { modal.fadeOut(500, 'swing', function () { modal.remove(); }); }, 2000);
+				setTimeout(function () { window.location = '/Admin/Courses'; }, 2500);
+			}else{
+				// console.log('error:' + isFromPost + '--' + isError);
+				modal.addClass('modal_error');
+				modal.text(errorDescription);
+				setTimeout(function () { modal.fadeOut(500, 'swing', function () { modal.remove(); }); }, 2000);
+			}
+		}
+
+		function submitForm() {
+
+			$("#Course_LearningObjectives").attr('value', $('#learningObjectives').trumbowyg('html'));
+			$("#Course_CourseDetails").attr('value', $('#courseDetails').trumbowyg('html'));
+			$("#Course_ContinuingEducationUnits").attr('value', $('#continuingEducationUnits').trumbowyg('html'));
+
+			//console.log($("#Course_LearningObjectives").val());
+
+			$("#course_form").submit();
+		}
+
+	</script>
+}

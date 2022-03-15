@@ -1,0 +1,138 @@
+@using ATGHR.Models.Enums
+@using ATGHR.Code.Enums
+@{
+	ViewBag.Title = "Courses";
+	Layout = "_Layout";
+}
+
+<h1 class="ui header center aligned">Courses</h1>
+<div class="ui container  local_templates">
+	<form class="ui form light_grey_box margin_t" id="user_form">
+		<table class="ui striped table" id="course_table" style="width:100%">
+			<thead>
+			<tr>
+				<th>Title</th>
+				<th class="center aligned">Subject Area</th>
+				<th class="center aligned">Course Type</th>
+				<th class="center aligned">Recommended Level</th>
+				<th class="center aligned"> </th>
+				<th class="center aligned"> </th>
+			</tr>
+			</thead>
+		</table>
+		<div>
+			<button class="circular ui button icon add_more" onclick="window.location.href='/Admin/AddNewCourse'" type="button">
+				<i class="plus icon"></i>
+			</button>
+			<a href="/Admin/AddNewCourse">Add New Course</a>
+		</div>
+
+	</form>
+
+
+</div>
+
+<div class="ui tiny test modal">
+	<div class="header">
+		Delete Course
+	</div>
+	<div class="content">
+		<p>Are you sure you want to delete this course</p>
+	</div>
+	<div class="actions">
+		<div class="ui negative button">
+			No
+		</div>
+		<div class="ui positive   icon button">
+			Delete
+		</div>
+	</div>
+</div>
+
+@section Scripts
+{
+	<script>
+
+	function showModal(courseId){
+		$('.tiny.modal')
+          .modal({
+            closable  : false,
+            onDeny    : function(){
+              // window.alert('Wait not yet!');
+              // return false;
+            },
+            onApprove : function() {
+				$.ajax({
+					type: 'DELETE',
+					url: '/admin/DeleteCourse?courseId=' + courseId,
+					success: function (data) {
+						if (data.success) {
+							window.alert(data.message);
+							window.location.reload();
+						} else {
+							window.alert(data.message);
+						}
+					}
+				});
+            }
+          })
+          // .modal('setting', 'transition', 1)
+          .modal('show');
+	}
+
+	let LearningA = '@RecommendedLevelForMastery.LearningA.ToDescription()';
+	let LearningB = '@RecommendedLevelForMastery.LearningB.ToDescription()';
+	let TeachingA = '@RecommendedLevelForMastery.TeachingA.ToDescription()';
+	let TeachingB = '@RecommendedLevelForMastery.TeachingB.ToDescription()';
+
+	$(function () {
+			$('#course_table').DataTable({
+					ajax: {
+						url: '/api/Admin/CoursesList',
+                        dataSrc: ''
+					},
+					columns: [  {
+						data: 'title'
+					}, {
+						data: 'subjectArea',
+						className: "center aligned"
+					},  {
+						data: 'courseType',
+						className: "center aligned"
+					}, {
+						className: "center aligned",
+						render: function (data, type, row) {
+
+							let content = '';
+							if (row.recommendedLevelForMastery === 'LearningA')
+								content = LearningA;
+							else if (row.recommendedLevelForMastery === 'LearningB')
+								content = LearningB;
+							else if (row.recommendedLevelForMastery === 'TeachingA')
+								content = TeachingA;
+							else if (row.recommendedLevelForMastery === 'TeachingB')
+								content = TeachingB;
+
+							return content
+						}},
+					{
+						searchable: false,
+						// target: [5],
+						className: "center aligned",
+						render: function (data, type, row) {
+							return "<a type='button' href='/Admin/UpdateCourse?courseId=" + row.id + "' class='ui button'>Edit</a>"
+						}
+						}, {
+						searchable: false,
+						// target: [5],
+						className: "center aligned",
+						render: function (data, type, row) {
+							return "<button type='button' onclick='showModal("+ row.id +")' class='ui button inverted grey' style='color:grey' >Delete</button>"
+						}
+					}]
+			});
+
+	});
+
+	</script>
+}

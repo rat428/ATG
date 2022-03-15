@@ -1,0 +1,409 @@
+@using ATGHR.Models.Database
+@using ATGHR.Code
+@{
+	ViewData["Title"] = "Review Sheet";
+	User ATGUser = (User)Util.GetUser(Context);
+}
+
+<div class="show_for_print">
+	<img class="ui image small" src="~/img/atg_color_logo.svg" />
+</div>
+<div class="ui teal inverted segment refresh_warning">
+	Please click <a href="">here</a> to keep your session active.
+</div>
+<div class="sheet_sub_nav local_active">
+	<div class="ui container">
+		<button class="ui button save_button">Save</button>
+		<button class="ui button print_sheet" onclick="window.print()"><i class="print icon"></i> Print</button>
+		<button class="ui button approve_button"></button>
+		<button class="ui red button unapprove_button" style="float: right;"></button>
+		<button class="expander local_active" aria-label="hide sheet"><i class="dropdown icon" tabindex="2"></i></button>
+		<div class="spacer" style="clear: both"></div>
+	</div>
+</div>
+<div class="local_spacer local_active" style="display:none;">&nbsp;</div>
+<h1 class="ui header center aligned"><span id="sheet_year"></span> Performance Review</h1>
+<div class="ui stackable grid container">
+	<div class="ten wide column page_header_info">
+		<h2 class="ui header container" id="user_name"></h2>
+		<h3 class="ui header container">Role: <span id="user_role"></span></h3>
+		<h3 class="ui header container">Division Name: <span id="user_division"></span></h3>
+		<h3 class="ui header container">Practice Name: <span id="user_practice"></span></h3>
+		<h3 class="ui header container">Career Ladder: <span id="user_career_ladder"></span></h3>
+		<h3 class="ui header container">Due: <span id="sheet_due_date"></span></h3>
+	</div>
+	<div class="six wide column">
+		<div class="ui equal width grid sheet_progress_bar review_progress_bar">
+			<div class="column">
+				<div class="review_progress" alt="Employee Progress"></div>
+			</div>
+			<div class="column">
+				<div class="review_progress" alt="Manager Progress"></div>
+			</div>
+			<div class="column">
+				<div class="review_progress" alt="Division Lead Progress"></div>
+			</div>
+			<div class="column">
+				<div class="review_progress" alt="Human Resources Progress"></div>
+			</div>
+		</div>
+		<div class="performance_sheet_score_container">
+			<p>Score:</p>
+			<div class="performance_sheet_score">
+				<h2 class="score_phrase" align="center"></h2>
+				<span class="r_score show_for_print"></span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<form class="ui form" id="review_sheet" method="post" action="" onsubmit="return false;">
+	<div class="ui container padding_tb" id="tab_container">
+		<div class="ui top attached tabular menu wrapped" id="tab_headers">
+			<!-- menu tabs get placed here -->
+			<div class="item" data-tab="tab_template" id="tab_header" style="display: none;"><h2></h2></div>
+		</div>
+		<div class='ui bottom attached tab segment' id="tab_body" data-tab="tab_template" style="display: none;">
+			<h2 class="show_for_print"></h2>
+		</div>
+		<!-- tab bodies get "appended" here -->
+	</div>
+	@*<div class="ui text container center aligned local_padding_top">
+		<button class="ui button" id="load_goals_button">View Past Goal Sheets For This Review</button>
+	</div>*@
+</form>
+
+@*Table for past goal sheets*@
+<div class="ui container padding_tb" id="load_goals">
+	<div class="ui container white_form_box" id="load_goals_table_container">
+		<table class="ui striped table" id="load_goals_table" style="width:100%">
+			<thead>
+				<tr>
+					<th class="center aligned">Approval Date</th>
+					<th class="center aligned">Performance Year</th>
+					<th class="center aligned">Final Draft</th>
+					<th class="center aligned">Edit</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+<div class="move_page_container">
+	<div align="right"><button class="back-to-top"><i class="arrow up icon"></i></button></div>
+</div>
+
+@* Admin boxes show on print only *@
+<div class="admin_use hidden">
+	<div class="ui container">
+		<h3 align="center">Administrative Use Only</h3>
+		<h5>Electronic Approvals</h5>
+		<div class="admin_block ui stackable grid container">
+			<div class="sixteen wide column">
+				<p>Score Phrase:&nbsp; <span class="au_text p_score"></span></p>
+				<p>Raw Score:&nbsp; <span class="au_text r_score"></span></p>
+			</div>
+			<div class="eight wide column">
+				<h6 class="prsn_role">Employee</h6>
+				<div class="approval_box employee">
+					<p class="approval_prsn">Name:&nbsp; <span class="au_text" id="e_name"></span></p>
+					<p class="approval_ts">E-Submit Date:&nbsp; <span class="au_text" id="e_approve_ts"></span></p>
+				</div>
+			</div>
+			<div class="eight wide column">
+				<h6 class="prsn_role">Manager</h6>
+				<div class="approval_box manager">
+					<p class="approval_prsn">Name:&nbsp; <span class="au_text" id="m_name"></span></p>
+					<p class="approval_ts">E-Approval Date:&nbsp; <span class="au_text" id="m_approve_ts"></span></p>
+				</div>
+			</div>
+			<div class="eight wide column">
+				<h6 class="prsn_role">Lead</h6>
+				<div class="approval_box lead">
+					<p class="approval_prsn">Name:&nbsp; <span class="au_text" id="l_name"></span></p>
+					<p class="approval_ts">E-Approval Date:&nbsp; <span class="au_text" id="l_approve_ts"></span></p>
+				</div>
+			</div>
+			<div class="eight wide column">
+				<h6 class="prsn_role">HR</h6>
+				<div class="approval_box hr">
+					<p class="approval_prsn">Name:&nbsp; <span class="au_text" id="hr_name"></span></p>
+					<p class="approval_ts">E-Approval Date:&nbsp; <span class="au_text" id="hr_approve_ts"></span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="performance_item" id="item_template" style="display: none;" aria-hidden="true">
+	<div class="white_form_box margin_tb">
+		<div class="ui form">
+			<h3 class="ui header center aligned performance_header" style="display: none;"></h3>
+			<h4 class="ui header performance_children_header" style="display: none;"></h4>
+			<div class="ui grid performance_due_date" style="display: none;">
+				<div class="three column row stackable">
+					<div class="field right floated column">
+						<label for="due_date">Due Date:</label>
+						<input type="date" />
+					</div>
+				</div>
+			</div>
+			<div class="field performance_division_description" style="display: none;"><strong>Division: </strong><span id="d_goal"></span></div>
+			<div class="field performance_practice_description" style="display: none;"><strong>Practice: </strong><span id="p_goal"></span></div>
+			<div class="field performance_description" style="display: none;"><strong>Personal Goal: </strong><span></span></div>
+			<div class="field performance_result" style="display: none;"><strong>Actual: </strong><span></span></div>
+			<div class="field performance_score" style="display: none;">
+				<div class="inline fields">
+					<label>Score: </label>
+				</div>
+			</div>
+			<div class="performance_text margin_b" style="display: none;"></div>
+			<div class="performance_comment performance_comment_top" data-serialize="false">
+				<div class="ui accordion comment_box">
+					<div class="title active">
+						<button class="c_add comment_action" aria-label="Comments" title="Click to create a discussion.">Discussion (<span class="comment_count">0</span>) &nbsp;<i class="comments icon"></i></button>
+					</div>
+					<div class="content">
+						<div class="accordion comment_box performance_comment" performanceItemTextId="">
+							<div class="title">
+								<button class="c_addNew c_reply comment_action" aria-label="Add New Comment">Add Comment &nbsp;<i class="comment icon"></i></button>
+							</div>
+							<div class="content">
+								<textarea type="text" placeholder="Comment" class="comment_text" rows="2"></textarea>
+								<button class="c_save comment_action" aria-label="Save Comment">Save &nbsp;<i class="save icon"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="performance_children" style="display: none;"></div>
+			<div class="performance_delete_button margin_t" align="right" style="display: none;"><button class="ui button" id="">Delete</button></div>
+		</div>
+	</div>
+</div>
+
+<div id="comment_template" class="performance_comment" style="display: none;">
+	<div class="c_owner"></div>
+	<div class="c_timestamp"></div>
+	<p class="c_text"></p>
+	<div class="c_textinput" style="display: none;">
+		<textarea type="text" placeholder="Comment" class="comment_text" rows="2"></textarea>
+		<button class="c_save comment_action" aria-label="Save Comment">Save &nbsp;<i class="save icon"></i></button>
+	</div>
+	<button class="c_edit comment_action" aria-label="Edit Comment">Edit &nbsp;<i class="eraser icon"></i></button>
+	<span class="hide_for_print">&nbsp;</span>
+	<button class="c_delete comment_action" aria-label="Delete Comment">Delete &nbsp;<i class="trash icon"></i></button>
+	<div class="accordion comment_box margin_l performance_comment" performanceItemTextId="">
+		<div class="title">
+			<button class="c_reply comment_action" aria-label="Reply">Reply &nbsp;<i class="comments icon"></i></button>
+		</div>
+		<div class="content">
+			<textarea type="text" placeholder="Comment" class="comment_text" rows="2"></textarea>
+			<button class="c_save comment_action" aria-label="Save Comment">Save &nbsp;<i class="save icon"></i></button>
+		</div>
+	</div>
+	<div class="accordion comment_box margin_l performance_comment performance_comment_replies" style="display: none;">
+		<div class="title plusminus"></div>
+		<div class="content"></div>
+	</div>
+</div>
+
+@section Scripts {
+	<script>
+		var sheet;
+		var self;
+		var done;
+		var admin = '@ATGUser.IsAdmin';
+		$('#load_goals_table_container').hide();
+
+	$(function() {
+		loadLookups({
+			callback: function () {
+				performanceScores.sort(function (a, b) { return a.score - b.score; }).forEach(function (score) {
+					var scoreitem = $('<div class="field"><div class="ui radio checkbox"><input type="radio" name="" /><label></label></div></div>').appendTo($('.performance_score .fields'));
+					scoreitem.find(':input')
+						.attr('id', 'item_template_score_' + score.performanceScoreId)
+						.attr('name', 'item_template_score_' + score.performanceScoreId)
+						.val(score.performanceScoreId);
+					scoreitem.find('label').text(score.name);
+				});
+				$('#item_template .ui.checkbox').checkbox();
+				$.ajax({
+					url: '/api/performance/reviewsheet/@ViewData["PerformanceReviewSheetId"]',
+					success: function (data) {
+						sheet = data.sheet;
+						self = data.self;
+						done = data.sheet.employeeComplete;
+						setStatus($('body'), sheet.employeeComplete, sheet.managerComplete, sheet.leadComplete, sheet.hrComplete);
+						$('#sheet_year').text(sheet.year);
+						$('#sheet_due_date').text($.format.date(sheet.dueDate, 'MM/dd/yyyy'));
+						$('#user_name').text(findUser(sheet.userId).name);
+						$('#user_role').text(findRole(sheet.roleId).name);
+						$('#user_career_ladder').text(findUser(sheet.userId).careerLadder);
+						$('#user_practice').text(findDivision(sheet.divisionId).name);
+						if (typeof findDivision(sheet.divisionId).parentDivisionId !== 'undefined') {
+							$('#user_division').text(findDivision(findDivision(sheet.divisionId).parentDivisionId).name);
+						} else {
+							$('#user_division').text(findDivision(sheet.divisionId).name);
+						}
+						sheetButtons({
+							self: data.self,
+							supervisor: data.supervisor,
+							lead: data.lead,
+							administrator: data.administrator,
+							employeeComplete: sheet.employeeComplete,
+							managerComplete: sheet.managerComplete,
+							leadComplete: sheet.leadComplete,
+							hrComplete: sheet.hrComplete,
+							reviewSheet: sheet.performanceReviewSheetItems,
+							goalSheet: sheet.performanceGoalSheetItems,
+							reviewActive: sheet.performanceReviewSheetId
+						});
+						buildTabs({
+							tabs: sheet.performanceReviewSheetItems,
+							userId: data.userId,
+							divisionId: sheet.divisionId,
+							self: data.self,
+							supervisor: data.supervisor,
+							lead: data.lead,
+							administrator: data.administrator
+						});
+
+						if (typeof sheet.score !== 'undefined' && sheet.score !== '') {
+							var regExp = /\(([^()]*)\)/;
+							var scoreType = regExp.exec(sheet.score);
+							$('.performance_sheet_score .score_phrase').text(sheet.score);
+							$('.performance_sheet_score, .performance_sheet_numScore').addClass(scoreType[1]);
+						}
+
+						//only display the button to view the goal sheets if you are a manager and you are not the owner of the sheet
+						@*var userId = sheet.userId;
+						var isManager  = '@ATGUser.IsManager' === '@true';
+						if (isManager && userId != @ATGUser.UserId) {
+							$('#load_goals_button').show();
+						}
+						else {
+							$('#load_goals_button').hide();
+						}*@
+
+						$('#load_goals_button').on('click', function (event) {
+							$('#load_goals_table_container').show();
+							$('#load_goals_button').hide();
+							$('#load_goals_table').DataTable({
+								ajax: {
+									url: '/api/PerformanceReviewSheetPastGoals',
+									data: function (obj) {
+										obj = {
+											id: sheet.userId,
+											text: sheet.year
+										}
+									  return JSON.stringify(obj);
+									},
+									contentType: "application/json",
+									type: 'POST',
+									dataSrc: ""
+								},
+								"order": [],
+								columns: [{
+									data: 'approvalDate',
+									className: "center aligned",
+									render: function (data) {
+										return formatDateFull(data)
+									}
+								}, {
+									data: 'year',
+									className: "center aligned"
+								}, {
+									data: 'currentSheet',
+									render: function (data) {
+										if (data === 1) {
+											return '<label class="checkbox-label"><input type="checkbox" checked disabled/><span class="checkbox-custom"></span></label>';
+										} else {
+											return '<label class="checkbox-label"><input type="checkbox" disabled/><span class="checkbox-custom"></span></label>';
+										}
+									  return data;
+									},
+									className: "center aligned"
+								}, {
+									data: 'id',
+									className: "center aligned",
+									render: function () {
+										return "<button type='button' class='ui button view_sheet'>View</button>"
+									}
+								}]
+							});
+						});
+
+
+
+
+						// E-Signatures show name and approval date.
+								if (sheet.hrComplete && admin.toLowerCase() === "true") {
+							$('.admin_use.hidden').addClass('show_for_print');
+							$('.p_score').text(sheet.score);
+							$('.r_score').text(sheet.numericScore.toFixed(3));
+							$('#e_name').text(findUser(sheet.employeeCompleteUserId).name);
+							$('#e_approve_ts').text($.format.date(sheet.employeeCompleteDatetime, 'MM/dd/yyyy hh:mm a'));
+							$('#m_name').text(findUser(sheet.managerCompleteUserId).name);
+							$('#m_approve_ts').text($.format.date(sheet.managerCompleteDatetime, 'MM/dd/yyyy hh:mm a'));
+							$('#l_name').text(findUser(sheet.leadCompleteUserId).name);
+							$('#l_approve_ts').text($.format.date(sheet.leadCompleteDatetime, 'MM/dd/yyyy hh:mm a'));
+							$('#hr_name').text(findUser(sheet.hrCompleteUserId).name);
+							$('#hr_approve_ts').text($.format.date(sheet.hrCompleteDatetime, 'MM/dd/yyyy hh:mm a'));
+								}
+
+							//Time out session for users who are filling out their reviews.
+							if (self && !done) {
+								//Show warning at 45 mins
+								setTimeout(function () {
+							$('.refresh_warning').css('display', 'block');
+								}, 2700000);
+							// Default to saving and refreshing someone's sheet at 55mins.
+							setTimeout(function () {
+								saveApprove(sheet, "refresh");
+							}, 3300000);
+						}
+					}
+				});
+			}
+
+		});
+
+		//BUTTON TO VIEW THE approved goals
+		$('#load_goals_table').on('click select', '.view_sheet', function (event) {
+			genPrevention(event);
+			var currentSheet = $('#load_goals_table').DataTable().row($(this).parents('tr')).data().currentSheet;
+			var id = $('#load_goals_table').DataTable().row($(this).parents('tr')).data().id
+			if (currentSheet == 1) {
+				$('#load_goals').append('<a id="redirectGoalSheet" href="/Performance/GoalSheet/' + id + '" target="_blank"></a>');
+				$('#redirectGoalSheet')[0].click();
+				$('#redirectGoalSheet').remove();
+			}
+			else {
+				$('#load_goals').append('<a id="redirectGoalSheet" href="/Performance/GoalSheetHistory/' + id + '" target="_blank"></a>');
+				$('#redirectGoalSheet')[0].click();
+				$('#redirectGoalSheet').remove();
+			}
+		});
+
+		$('.expander').on('click select', function () {
+			$('.sheet_sub_nav').hasClass('local_active') && $('.local_spacer').hasClass('local_active') ?
+				($('.sheet_sub_nav, .local_spacer, .expander').removeClass('local_active'), $('.local_spacer').slideUp('slow')) :
+				($('.sheet_sub_nav, .local_spacer, .expander').addClass('local_active'), $('.local_spacer').slideDown('slow'));
+		});
+
+		$('.refresh_warning, .refresh_warning a').on('click', function () {
+			event.preventDefault();
+			$('.refresh_warning').css('display', 'none');
+			saveApprove(sheet, "refresh");
+		});
+
+		$('.save_button').on('click', function (event) {
+			saveApprove(sheet);
+		});
+
+
+
+	});
+	</script>
+}

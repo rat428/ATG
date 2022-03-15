@@ -1,0 +1,202 @@
+@{
+	ViewData["Title"] = "OrganizationalChart";
+}
+
+<link rel="stylesheet" href="~/lib/orgchart/dist/css/jquery.orgchart.css" />
+<link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+
+<style>
+	#chart-container {
+		font-family: Arial;
+		height: 420px;
+		border: 2px dashed #aaa;
+		border-radius: 5px;
+		overflow: auto;
+		text-align: center;
+	}
+
+	.orgchart {
+		background: #fff;
+	}
+
+	#github-link {
+		position: fixed;
+		top: 0px;
+		right: 10px;
+		font-size: 3em;
+	}
+
+	#chart-container {
+		height: 100vh;
+		border: none;
+	}
+
+	.orgchart .c-planning .title {
+		background-color: #5691a4;
+	}
+
+	.orgchart .c-planning .content {
+		border-color: #5691a4;
+	}
+
+	.orgchart .c-engineer .title {
+		background-color: #3d3d3d;
+	}
+
+	.orgchart .c-engineer .content {
+		border-color: #3d3d3d;
+	}
+
+	.orgchart .c-administration .title {
+		background-color: #0e7062;
+	}
+
+	.orgchart .c-administration .content {
+		border-color: #0e7062;
+	}
+
+	.orgchart .c-dsa .title {
+		background-color: #ef4450;
+	}
+
+	.orgchart .c-dsa .content {
+		border-color: #ef4450;
+	}
+
+	.orgchart .lines .downLine {
+		background: #9e9e9e;
+	}
+
+
+	.orgchart .lines .rightLine {
+		border-right: 1px solid #9e9e9e;
+	}
+
+	.orgchart .lines .leftLine {
+		border-left: 1px solid #9e9e9e;
+	}
+
+	.orgchart .lines .topLine {
+		border-top: 2px solid #9e9e9e;
+	}
+
+	.orgchart .verticalNodes ul > li::before, .orgchart .verticalNodes ul > li::after {
+		border-color: #9e9e9e;
+	}
+
+	.orgchart .verticalNodes > td::before {
+		border: 1px solid #9e9e9e;
+	}
+
+	.orgchart .node .title, .orgchart .node .content {
+		padding-top: .5rem;
+		padding-bottom: 2rem;
+	}
+
+	.orgchart .node .content {
+		overflow-wrap: break-word;
+		word-break: break-all;
+	}
+
+	.orgchart .node .title {
+		font-size: .9rem;
+		padding-left: .2rem;
+	}
+
+		.orgchart .node .title .symbol {
+			padding-right: .3rem;
+		}
+
+	.orgchart .node .toggleBtn {
+		position: absolute;
+		left: 1px;
+		bottom: -5px;
+		color: rgba(192, 216, 75, 1);
+		font-size: 1.5rem;
+		background: white;
+	}
+
+	.orgchart .node .edge {
+		font-size: 1.5rem;
+		color: rgba(192, 216, 75, 0.8);
+		cursor: default;
+		transition: .2s;
+	}
+
+		.orgchart .node .edge i {
+			box-shadow: 2px 2px 5px #92a43b;
+		}
+
+	button {
+		margin-left: 1rem;
+	}
+
+		button.ui.button.expand_all, button.ui.button..close_all {
+			margin-left: 1rem !important;
+		}
+</style>
+
+<div class="ui container padding_t_2em">
+	<h1 class="ui header centered">ATG Organizational Chart</h1>
+	<button class="ui button expand_all">Expand</button>
+	<button class="ui button close_all">Collapse</button>
+</div>
+<div id="chart-container"></div>
+
+
+
+@section Scripts
+{
+
+	<script>
+
+		$('#org_nav').addClass('active');
+		var chartData = [];
+		var oc;
+		$(function () {
+			loadLookups({
+				callback: function () {
+					var build = $.get('/api/Lookup/Users', function (data) {
+						//console.log(data);
+						$.each(data, function (i, user) {
+							//Call recursive function to population data into array
+							if (typeof user.managerUserId === 'undefined') {
+								chartData.push(createUserTree(data, user));
+							};
+						});
+					}).done(function () {
+						//console.log(chartData);
+						//create orgchart
+						(function ($) {
+							$(function () {
+								var ds = chartData;
+								oc = $("#chart-container").orgchart({
+									//data need a [0]
+									data: ds[0],
+									//link to content name in object to show in box
+									nodeContent: 'title',
+									//level fro verticality to start
+									verticalLevel: 3,
+									//level to be visible by default
+									visibleLevel: 3,
+									exportButton: true,
+									exportFilename: "ATG_Organizational_Chart",
+									exportFileextension: "pdf"
+								});
+							});
+						})(jQuery);
+					});
+				}
+			});
+		});
+
+		$('.expand_all').on('click', function () {
+			$('i.toggleBtn.fa-plus-square').click();
+		})
+
+		$('.close_all').on('click', function () {
+			$('i.toggleBtn.fa-minus-square').click();
+		})
+
+	</script>
+}

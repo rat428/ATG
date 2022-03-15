@@ -1,0 +1,20 @@
+<img src="[EPG Leadership Team_Updated] (imported)" width="1024" height="768" border="0" usemap="#map" />
+
+<map name="map">
+<!-- #$-:Image map file created by GIMP Image Map plug-in -->
+<!-- #$-:GIMP Image Map plug-in by Maurits Rijk -->
+<!-- #$-:Please do not edit lines starting with "#$" -->
+<!-- #$VERSION:2.3 -->
+<!-- #$AUTHOR:ebu -->
+<area shape="rect" coords="405,108,628,248" href="localhost:44337/epg/President" />
+<area shape="rect" coords="640,221,850,357" href="/sec" />
+<area shape="rect" coords="181,238,384,353" href="/vicepre" />
+<area shape="rect" coords="756,393,962,525" href="/nomCom" />
+<area shape="rect" coords="528,396,731,526" href="memCom" />
+<area shape="rect" coords="293,400,493,522" href="proCalCom" />
+<area shape="rect" coords="69,393,269,522" href="/perDevCom" />
+<area shape="rect" coords="755,585,969,718" href="busDevCom" />
+<area shape="rect" coords="535,582,734,721" href="/recCom" />
+<area shape="rect" coords="290,592,497,718" href="comEnCom" />
+<area shape="rect" coords="70,585,272,715" href="/socCom" />
+</map>

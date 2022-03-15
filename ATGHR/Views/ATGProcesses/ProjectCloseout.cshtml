@@ -1,0 +1,82 @@
+@model ResourcesFileListDto
+
+<div class="ui breadcrumb padding_g">
+	<a href="~/ATGProcesses" class="section">ATG Project Delivery System (Main)</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/StrategicPlan" class="section">Strategic Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/AnnualBusinessPlan" class="section">Annual Business Plan</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/BusinessDevelopment" class="section">Business Development</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/Contracts" class="section">Contract Phase</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectExecution" class="section">Project Execution</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/ProjectCloseout" class="section">Project Closeout</a>
+	<i class="right arrow icon divider"></i>
+	<a href="~/ATGProcesses/RecordsRetention" class="section">Records Retention</a>
+</div>
+<div class="padding_t_2em" style="display: block !important;">
+	<h1 class="ui horizontal divider header margin_tb">
+		Project Closeout
+	</h1>
+	<div class="ui container">
+		<p>PM (or staff designated by PM) should complete the Project Closeout Sheet when the project is completed and set up a meeting with Accounting to submit the completed Project Closeout Sheet and complete the closeout process.  The completed Project Closeout Sheet should be stored in the project directory under /Admin/Closeout/.</p>
+		<p>Below is a summary of items listed on the Project Closeout Sheet that the PM is responsible for ensuring are completed:</p>
+		<ul>
+			@{
+				var file1 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("E8AA3EBC-580C-4EF5-B996-023939E992D8"));
+				var file2 = Model.Files.FirstOrDefault(x => x.Id == Guid.Parse("0C0B27E2-AAE4-4165-AF7B-148A0E53EAA6"));
+			}
+			<li>
+				<a href="/documents/commonfiles/@file1?.FileName">Populate Closeout Sheet</a>
+				@if (Model.UserI.IsAdmin)
+				{
+					<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file1?.Id" asp-route-returnUrl="/ATGProcesses/ProjectCloseout"><i class="edit icon"></i></a>
+				}
+			</li>
+			<li>Consult project contract and project management plan (PMP) to finalize closeout requirements</li>
+			<li>Project Closeout Meeting held, attendees documented</li>
+			<li>Lessons Learned, verify documented at Initial Internal Closeout Meeting</li>
+			<li>Confirm client has signed-off on all deliverables and completed
+				<a href="/documents/commonfiles/@file2?.FileName">Client Satisfaction Survey</a>
+				@if (Model.UserI.IsAdmin)
+				{
+					<a class="item" asp-controller="ATGProcesses" asp-action="UploadFile" asp-route-fileId="@file2?.Id" asp-route-returnUrl="/ATGProcesses/ProjectCloseout"><i class="edit icon"></i></a>
+				}
+			</li>
+			<li>Marketing:
+				<ul>
+					<li>Update project description in Vision and obtain review/approval from Marketing</li>
+					<li>Thank You Letter(s) sent, recipient(s) and address(es) denoted in Vision</li>
+					<li>Letter of recommendation requested</li>
+				</ul>
+			</li>
+			<li>Accounting:
+				<ul>
+					<li>Final invoice and progress report submitted, prior to Project Closeout Meeting. PM should follow-up with client (as needed) until final payment is received</li>
+					<li>Make project dormant when closeout is complete</li>
+				</ul>
+			</li>
+			<li>Archiving:
+				<ul>
+					<li>Files and folders have been cleaned-up and organized</li>
+					<li>Final deliverables saved in read only format, links/location indicated on Closeout Sheet</li>
+					<li>Documents and Data Archived, location indicated</li>
+					<li>Communications archived, location indicated</li>
+				</ul>
+			</li>
+			<li>Update Vision Project Module:
+				<ul>
+					<li>Project description marked as completed on background tab of Vision Project Module</li>
+					<li>Project Reference saved as contact and linked as reference in contacts tab of Vision Project Module</li>
+					<li>Applicable Key Words added to Background tab of Vision Project Module</li>
+					<li>Employee Roles and a Role Description indicated on Team tab of Vision Project Module</li>
+					<li>Physical Archives, location denoted in Vision</li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+</div>

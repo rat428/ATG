@@ -1,0 +1,20 @@
+{
+	"name": "atghr",
+	"version": "1.0.0",
+	"dependencies": {
+		"del": "^3.0.0",
+		"gulp": "4.0.2",
+		"gulp-clean-css": "^3.10.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-uglify": "^3.0.1",
+		"run-sequence": "^2.2.1",
+		"datatables.net": "^1.10.19",
+		"datatables.net-dt": "^1.10.19",
+		"datatables.net-se": "^1.10.19",
+		"font-awesome": "^4.7.0",
+		"jquery": "^3.3.1",
+		"jquery-dateformat": "^1.0.3",
+		"orgchart": "^2.1.5",
+		"semantic-ui": "2.4.2"
+	}
+}

@@ -1,0 +1,303 @@
+@model dynamic
+
+@{
+	ViewBag.Title = "EPG";
+	Layout = "_Layout";
+}
+
+@* <img src="/workplace.jpg" alt="Workplace" usemap="#workmap" width="400" height="379"   > *@
+@* *@
+@* <map name="workmap"> *@
+@* 	<area shape="rect" coords="342,29,387,78" alt="Computer" href="computer.htm"> *@
+@* 	<area shape="rect" coords="290,172,333,250" alt="Phone" href="phone.htm"> *@
+@* 	<area shape="circle" coords="337,300,44" alt="Cup of coffee" href="coffee.htm"> *@
+@* </map> *@
+
+@* <img src="img/epg/EPG Leadership Team_Updated.png" width="1024" height="768" border="0" usemap="#map"/> *@
+@* *@
+@* <map name="map"> *@
+@* 	<area shape="rect" coords="405,108,628,248" href="epg/President"/> *@
+@* </map> *@
+
+
+
+<map name="map">
+	<area shape="rect" coords="405,108,628,248" href="epg/President"/>
+	<area shape="rect" coords="640,221,850,357" href="epg/Secretary"/>
+	<area shape="rect" coords="181,238,384,353" href="epg/VicePresident"/>
+	<area shape="rect" coords="756,393,962,525" href="epg/NominatingCommittee"/>
+	<area shape="rect" coords="528,396,731,526" href="epg/MembershipCommittee"/>
+	<area shape="rect" coords="293,400,493,522" href="epg/ProgramCalendarCommittee"/>
+	<area shape="rect" coords="69,393,269,522" href="epg/ProfessionalDevelopmentCommittee"/>
+	<area shape="rect" coords="755,585,969,718" href="epg/BusinessDevelopmentCommittee"/>
+	<area shape="rect" coords="535,582,734,721" href="epg/RecruitingCommittee"/>
+	<area shape="rect" coords="290,592,497,718" href="epg/CommunityEngagementCommittee"/>
+	<area shape="rect" coords="70,585,272,715" href="epg/SocialCommittee"/>
+</map>
+
+<div class="ui equal width center aligned padded grid stackable relaxed">
+	<h1 style="margin-top: 70px; margin-bottom: 75px;">Emerging Professionals Group</h1>
+</div>
+
+<div class="ui vertical stripe segment">
+	<div class="ui text container">
+		<p>The mission of ATG’s Emerging Professionals Group is to equip and grow ATG’s new professionals, providing avenues for enhancing and optimizing their contribution to the firm, our clients, and our community.</p>
+
+		<h5 class="ui horizontal header divider">
+			<i class="circle outline icon"></i>
+		</h5>
+
+		<h3 class="ui header">EPG adds value to ATG, its stakeholders, and its clients in five keyways:</h3>
+		<div class="ui list">
+			<div class="item">
+				<i class="map marker icon"></i>
+				<div class="content">
+					<a class="header">Accelerating professional development;</a>
+				</div>
+			</div>
+			<div class="item">
+				<i class="map marker icon"></i>
+				<div class="content">
+					<a class="header">Cultivating leadership potential</a>
+				</div>
+			</div>
+			<div class="item">
+				<i class="map marker icon"></i>
+				<div class="content">
+					<a class="header">Improving services and solutions;</a>
+				</div>
+			</div>
+			<div class="item">
+				<i class="map marker icon"></i>
+				<div class="content">
+					<a class="header">Attracting talent; and</a>
+				</div>
+			</div>
+			<div class="item">
+				<i class="map marker icon"></i>
+				<div class="content">
+					<a class="header">Serving our community.</a>
+				</div>
+			</div>
+		</div>
+
+		<h5 class="ui horizontal header divider">
+			<i class="circle outline icon"></i>
+		</h5>
+
+		<h3 class="ui header"> EPG accomplishes its mission through four primary strategies:</h3>
+		<div class="ui list">
+			<div class="item">
+				<i class="map marker icon"></i>
+				<div class="content">
+					<a class="header"> Accelerate professional and career development through technical, interpersonal, and professional skillsets training. </a>
+				</div>
+			</div>
+			<div class="item">
+				<i class="map marker icon"></i>
+				<div class="content">
+					<a class="header"> Immerse new professionals in ATG’s culture and practices.</a>
+				</div>
+			</div>
+			<div class="item">
+				<i class="map marker icon"></i>
+				<div class="content">
+					<a class="header"> Promote cross-discipline and company-wide collaboration and socializing.</a>
+				</div>
+			</div>
+			<div class="item">
+				<i class="map marker icon"></i>
+				<div class="content">
+					<a class="header"> Provide opportunities to represent the company by engaging and serving its professional and local communities.</a>
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+
+	</div>
+</div>
+<br>
+<br>
+<div class="ui vertical stripe segment" style="border-bottom: none">
+	<div class="ui text container">
+
+		<div class="ui raised card" style="width: auto">
+			<div class="content">
+				<div>
+					<p> EPG has set up a structure that includes a president, vice-president and secretary; as well as eight committees and their elected committee chairs.</p>
+
+					<p> Select the position or committee of interest below to learn more.</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="ui equal width center aligned padded grid stackable relaxed">
+	<a class="ui raised card" style="width: auto">
+		<div class="image">
+			@* <img class="ui fluid rounded image" src="/img/epg/EPG Leadership Team_Updated.png" alt="" > *@
+			<img src="img/epg/EPG Leadership Team_Updated.png" width="1024" height="768" usemap="#map" />
+		</div>
+	</a>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="ui vertical stripe quote segment" style="border-top: 1px solid rgba(34, 36, 38, 0.15);">
+	<div class="ui equal width stackable internally celled grid">
+		<div class="center aligned row" style="margin-bottom: 10px;">
+			<div class="column">
+				<h3>Executive Team</h3>
+				<a asp-action="President" class="ui button">President</a>
+				<a asp-action="VicePresident" class="ui button">Vice President</a>
+				<a asp-action="Secretary" class="ui button">Secretary</a>
+			</div>
+			<div class="column">
+				<h3>Individual Committee</h3>
+
+				<div class="ui middle aligned divided list" style="border-top: none; ">
+					<div class="item" style="border-top: none ;">
+						<div class=" content">
+							<a asp-action="ProfessionalDevelopmentCommittee" class="ui grey  button  ">Professional Development Committee</a>
+						</div>
+					</div>
+					<div class="item" style="border-top: none ;">
+						<div class=" content">
+							<a asp-action="ProgramCalendarCommittee" class="ui grey button">Program/Calendar Committee</a>
+						</div>
+					</div>
+					<div class="item" style="border-top: none ;">
+						<div class=" content">
+							<a asp-action="MembershipCommittee" class="ui grey button">Membership Committee</a>
+						</div>
+					</div>
+
+					<div class="item" style="border-top: none ;">
+						<div class=" content">
+							<a asp-action="NominatingCommittee" class="ui grey button">Nominating Committee</a>
+						</div>
+					</div>
+					<div class="item" style="border-top: none ;">
+						<div class=" content">
+							<a asp-action="SocialCommittee" class="ui grey button">Social Committee</a>
+						</div>
+					</div>
+
+					<div class="item" style="border-top: none ;">
+						<div class=" content">
+							<a asp-action="CommunityEngagementCommittee" class="ui grey button">Community Engagement Committee</a>
+						</div>
+					</div>
+					<div class="item" style="border-top: none ;">
+						<div class=" content">
+							<a asp-action="RecruitingCommittee" class="ui grey button">Recruiting Committee</a>
+						</div>
+					</div>
+
+					<div class="item" style="border-top: none ;">
+						<div class=" content">
+							<a asp-action="BusinessDevelopmentCommittee" class="ui grey button">Business Development Committee</a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<br>
+<br>
+<br>
+
+
+<div class="ui equal width center aligned padded grid stackable relaxed" style="border-bottom: 1px solid rgba(34, 36, 38, 0.15);">
+	<div class="row " style="margin-bottom: 50px;">
+		<div class="three wide  column">
+			<a asp-action="Membership">
+				<h2 class="ui center aligned icon header">
+					<i class="circular users icon"></i>
+					Membership
+				</h2>
+			</a>
+		</div>
+		<div class="three wide  column">
+			<a asp-action="LeadershipBoard">
+				<h2 class="ui center aligned icon header">
+					<i class="circular compass outline icon"></i>
+					Leadership Board
+				</h2>
+			</a>
+
+		</div>
+		<div class="three wide column">
+			<a asp-action="Oversight">
+				<h2 class="ui center aligned icon header">
+					<i class="circular certificate   icon"></i>
+					Oversight
+				</h2>
+			</a>
+
+		</div>
+		<div class="three wide  column">
+			<a asp-action="Calendar">
+				<h2 class="ui center aligned icon header">
+					<i class="circular calendar alternate outline icon"></i>
+					Calendar
+				</h2>
+			</a>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+@* <div class="ui vertical stripe segment"> *@
+@* 	<div class="ui middle aligned stackable grid container"> *@
+@* 		<div class="row"> *@
+@* 			<div class="eight wide column"> *@
+@* 				<h3 class="ui header">We Help Companies and Companions</h3> *@
+@* 				<p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p> *@
+@* 				<h3 class="ui header">We Make Bananas That Can Dance</h3> *@
+@* 				<p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p> *@
+@* 			</div> *@
+@* 			<div class="six wide right floated column"> *@
+@* 				<img src="assets/images/wireframe/white-image.png" class="ui large bordered rounded image"> *@
+@* 			</div> *@
+@* 		</div> *@
+@* 		<div class="row"> *@
+@* 			<div class="center aligned column"> *@
+@* 				<a class="ui huge button">Check Them Out</a> *@
+@* 			</div> *@
+@* 		</div> *@
+@* 	</div> *@
+@* </div> *@
+@* *@
+@* *@
+@* <div class="ui vertical stripe segment"> *@
+@* 	<div class="ui text container"> *@
+@* 		<h3 class="ui header">Breaking The Grid, Grabs Your Attention</h3> *@
+@* 		<p>Instead of focusing on content creation and hard work, we have learned how to master the art of doing nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic and worth your attention.</p> *@
+@* 		<a class="ui large button">Read More</a> *@
+@* 		<h4 class="ui horizontal header divider"> *@
+@* 			<a href="#">Case Studies</a> *@
+@* 		</h4> *@
+@* 		<h3 class="ui header">Did We Tell You About Our Bananas?</h3> *@
+@* 		<p>Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but its really true. It took years of gene splicing and combinatory DNA research, but our bananas can really dance.</p> *@
+@* 		<a class="ui large button">I'm Still Quite Interested</a> *@
+@* 	</div> *@
+@* </div> *@

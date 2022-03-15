@@ -1,0 +1,703 @@
+@using ATGHR.Models.Enums
+@model CoursesByDto
+
+@{
+	ViewBag.Title = "Courses By Subject Area";
+	Layout = "_Layout";
+}
+
+<div class="ui equal width center aligned padded grid stackable relaxed">
+
+<h1 style="margin-top: 70px;">Courses By Subject Area </h1>
+
+<div class="row " style="margin: 45px 10px 25px;">
+
+<div class="ten wide column" style="text-align: left;">
+
+<div class="ui relaxed divided list">
+
+<div class="item">
+	<i class="large sort down  middle aligned icon"></i>
+	<div class="content">
+		<h4>Business Development (BD)</h4>
+	</div>
+</div>
+@if (Model.Courses.Any(x => x.SubjectArea == CourseSubject.BD && x.CourseType == CourseType.ThirdParty))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>3rd Party Training</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.BD && x.CourseType == CourseType.ThirdParty))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x => x.SubjectArea == CourseSubject.BD && x.CourseType == CourseType.ATG))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>ATG In-House Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.BD && x.CourseType == CourseType.ATG))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x => x.SubjectArea == CourseSubject.BD && x.CourseType == CourseType.LIL))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>Linked In Learning Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.BD && x.CourseType == CourseType.LIL))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+<br>
+
+<div class="item" style="border-top: none;">
+	<i class="large sort down  middle aligned icon"></i>
+	<div class="content">
+		<h4>Communication (Comm)</h4>
+	</div>
+</div>
+
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.Comm  && x.CourseType == CourseType.ThirdParty))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>3rd Party Training</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.Comm && x.CourseType == CourseType.ThirdParty))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.Comm && x.CourseType == CourseType.ATG))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>ATG In-House Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x =>  x.SubjectArea == CourseSubject.Comm && x.CourseType == CourseType.ATG))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.Comm && x.CourseType == CourseType.LIL))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>Linked In Learning Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.Comm && x.CourseType == CourseType.LIL))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+<br>
+
+<div class="item" style="border-top: none;">
+	<i class="large sort down  middle aligned icon"></i>
+	<div class="content">
+		<h4>Human Resource (HR)</h4>
+	</div>
+</div>
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.HR && x.CourseType == CourseType.ThirdParty))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>3rd Party Training</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.HR && x.CourseType == CourseType.ThirdParty))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.HR && x.CourseType == CourseType.ATG))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>ATG In-House Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x =>  x.SubjectArea == CourseSubject.HR && x.CourseType == CourseType.ATG))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.HR && x.CourseType == CourseType.LIL))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>Linked In Learning Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.HR && x.CourseType == CourseType.LIL))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+<br>
+
+<div class="item" style="border-top: none;">
+	<i class="large sort down  middle aligned icon"></i>
+	<div class="content">
+		<h4>Personal Development (Pers)</h4>
+	</div>
+</div>
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.Pers && x.CourseType == CourseType.ThirdParty))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>3rd Party Training</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.Pers && x.CourseType == CourseType.ThirdParty))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x => x.SubjectArea == CourseSubject.Pers && x.CourseType == CourseType.ATG))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>ATG In-House Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.Pers && x.CourseType == CourseType.ATG))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x => x.SubjectArea == CourseSubject.Pers && x.CourseType == CourseType.LIL))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>Linked In Learning Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.Pers && x.CourseType == CourseType.LIL))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button"> Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+
+<br>
+
+<div class="item" style="border-top: none;">
+	<i class="large sort down  middle aligned icon"></i>
+	<div class="content">
+		<h4>Project Delivery (PD)</h4>
+	</div>
+</div>
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.PD && x.CourseType == CourseType.ThirdParty))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>3rd Party Training</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.PD && x.CourseType == CourseType.ThirdParty))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.PD && x.CourseType == CourseType.ATG))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>ATG In-House Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x =>  x.SubjectArea == CourseSubject.PD && x.CourseType == CourseType.ATG))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.PD && x.CourseType == CourseType.LIL))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>Linked In Learning Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.PD && x.CourseType == CourseType.LIL))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+
+<br>
+
+<div class="item" style="border-top: none;">
+	<i class="large sort down  middle aligned icon"></i>
+	<div class="content">
+		<h4>Project Management (PM)</h4>
+	</div>
+</div>
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.PM && x.CourseType == CourseType.ThirdParty))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>3rd Party Training</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.PM && x.CourseType == CourseType.ThirdParty))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.PM && x.CourseType == CourseType.ATG))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>ATG In-House Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x =>  x.SubjectArea == CourseSubject.PM && x.CourseType == CourseType.ATG))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+@if (Model.Courses.Any(x =>  x.SubjectArea == CourseSubject.PM && x.CourseType == CourseType.LIL))
+{
+	<div class="item">
+		<div class="ui relaxed divided list">
+			<div class="item">
+				<i class="large sort down  middle aligned icon"></i>
+				<div class="content">
+					<h5>Linked In Learning Courses</h5>
+				</div>
+			</div>
+			<div class="item">
+				<div class="ui relaxed divided list">
+
+					@foreach (var course in Model.Courses.Where(x => x.SubjectArea == CourseSubject.PM && x.CourseType == CourseType.LIL))
+					{
+						<div class="item">
+							<div class="right floated content">
+								<a asp-action="CourseInDetail" asp-route-courseId="@course.Id" class="ui inverted primary button">Details</a>
+							</div>
+
+							<i class="chevron right  middle aligned icon"></i>
+							<div class="content">
+								<a class="header">Course: @course.Title</a>
+								@* <div class="description">Updated 34 mins ago</div> *@
+							</div>
+						</div>
+					}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+</div>
+</div>
+</div>
+
+
+</div>

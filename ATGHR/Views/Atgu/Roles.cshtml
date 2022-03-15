@@ -1,0 +1,553 @@
+@model dynamic
+
+@{
+	ViewBag.Title = "Roles";
+	Layout = null;
+	string Year = DateTime.Now.ToString("yyyy");
+}
+
+<style>
+   .overlays{
+		position:absolute;
+	}
+</style>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>@ViewData["Title"] - ATG Connect</title>
+
+	<environment include="Development">
+		<link rel="stylesheet" href="~/lib/semantic-ui/dist/semantic.css"/>
+		<link rel="stylesheet" href="~/lib/datatables.net-se/css/dataTables.semanticui.css"/>
+		<link rel="stylesheet" href="https://use.typekit.net/fze1lwb.css">
+		<link rel="stylesheet" href="~/trumbowyg/ui/trumbowyg.min.css"/>
+		<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+	</environment>
+	<link rel="stylesheet" href="~/css/print.css" asp-append-version="true"/>
+	<environment exclude="Development">
+		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>
+	</environment>
+</head>
+<body>
+<a id="skip_to_main" href="#main_content" class="ui button" role="navigation" style="z-index: 1000;" tab-index="0">
+	Skip to Main Content
+</a>
+<partial name="_LoginPartial"/>
+<div class="pusher">
+	<a name="main_content"></a>
+
+	<h1 style="position: absolute; left: 900px; top: 65px;">Roles</h1>
+
+	<img id="graphic" src="/img/courses/courses.PNG" alt="" class="overlays" style="left: 350px; top: 150px;">
+
+
+	<div class="ui list" style="position: absolute; left: 90px; top: 200px;">
+		<li>
+			<a class="item" onclick="togglePrincipalInCharge(1233, 285, '/img/courses/principalInCharge.png', 'principalInCharge')" style="cursor: pointer">Principal In Charge</a>
+			<a asp-action="RoleDefinition" asp-route-role="principalInCharge">
+				<i class="external alternate icon"></i>
+			</a>
+		</li>
+		<li>
+			<a class="item" onclick="toggleStaff(1443, 588, '/img/courses/staff.png', 'staff')" style="cursor: pointer">Staff</a>
+			@* <a asp-action="RoleDefinition" asp-route-role="staff"> *@
+			@* 	<i class="external alternate icon"></i> *@
+			@* </a> *@
+		</li>
+		<li>
+			<a class="item" onclick="toggleProjectAccountant(1085, 710, '/img/courses/projectAccountant.png', 'projectAccountant')" style="cursor: pointer">Project Accountant</a>
+			<a asp-action="RoleDefinition" asp-route-role="projectAccountant">
+				<i class="external alternate icon"></i>
+			</a>
+		</li>
+		<li>
+			<a class="item" onclick="toggleAssistantProjectManager(1230, 470, '/img/courses/assistantProjectManager.png', 'assistantProjectManager')" style="cursor: pointer">Assistant Project Manager</a>
+			<a asp-action="RoleDefinition" asp-route-role="assistantProjectManager">
+				<i class="external alternate icon"></i>
+			</a>
+		</li>
+		<li>
+			<a class="item" onclick="toggleOpportunityLeadOriginator(955, 285, '/img/courses/opportunityLeadOriginator.png', 'opportunityLeadOriginator')" style="cursor: pointer">Opportunity Lead Originator</a>
+			<a asp-action="RoleDefinition" asp-route-role="opportunityLeadOriginator">
+				<i class="external alternate icon"></i>
+			</a>
+		</li>
+		<li>
+			<a class="item" onclick="toggleClientServiceManager(637, 285, '/img/courses/clientServiceManager.png', 'clientServiceManager')" style="cursor: pointer">Client Service Manager</a>
+			<a asp-action="RoleDefinition" asp-route-role="clientServiceManager">
+				<i class="external alternate icon"></i>
+			</a>
+		</li>
+		<li>
+			<a class="item" onclick="toggleQualityManager(1375, 285, '/img/courses/qualityManager.png', 'qualityManager')" style="cursor: pointer">Quality Manager</a>
+			<a asp-action="RoleDefinition" asp-route-role="qualityManager">
+				<i class="external alternate icon"></i>
+			</a>
+		</li>
+		<li>
+			<a class="item" onclick="toggleDeputyCaptureManager(960, 465, '/img/courses/deputyCaptureManager.png', 'deputyCaptureManager')" style="cursor: pointer">Deputy Capture Manager</a>
+			<a asp-action="RoleDefinition" asp-route-role="deputyCaptureManager">
+				<i class="external alternate icon"></i>
+			</a>
+		</li>
+		<li>
+			<a class="item" onclick="toggleCaptureManager(952, 402, '/img/courses/captureManager.png', 'captureManager')" style="cursor: pointer">Capture Manager</a>
+			<a asp-action="RoleDefinition" asp-route-role="captureManager">
+				<i class="external alternate icon"></i>
+			</a>
+		</li>
+		<li>
+			<a class="item" onclick="toggleProjectManager(1230, 404, '/img/courses/projectManager.png', 'projectManager')" style="cursor: pointer">Project Manager</a>
+			<a asp-action="RoleDefinition" asp-route-role="projectManager">
+				<i class="external alternate icon"></i>
+			</a>
+		</li>
+		<li>
+			<a class="item" onclick="toggleMarketingCoordinator(635, 649, '/img/courses/marketingCoordinator.png', 'marketingCoordinator')" style="cursor: pointer">Marketing Coordinator</a>
+			@* <a asp-action="RoleDefinition" asp-route-role="marketingCoordinator"> *@
+			@* 	<i class="external alternate icon"></i> *@
+			@* </a> *@
+		</li>
+		<li>
+			<a class="item" onclick="toggleProposalCoordinator(953, 649, '/img/courses/proposalCoordinator.png', 'proposalCoordinator')" style="cursor: pointer">Proposal Coordinator</a>
+			<a asp-action="RoleDefinition" asp-route-role="proposalCoordinator">
+				<i class="external alternate icon"></i>
+			</a>
+		</li>
+		<li>
+			<a class="item" onclick="toggleBusinessDevelopmentExecutive(635, 285, '/img/courses/businessDevelopmentExecutive.png', 'businessDevelopmentExecutive')" style="cursor: pointer">Business Development Executive</a>
+			<a asp-action="RoleDefinition" asp-route-role="businessDevelopmentExecutive">
+				<i class="external alternate icon"></i>
+			</a>
+		</li>
+<br>
+<br>
+<br>
+<br>
+			<a href="/documents/courses/Project Delivery System Roles_Descriptions 20190318.pdf" class="ui button" style="margin-bottom: 10px;"> Download Definitions </a>
+
+	</div>
+
+</div>
+
+<div id="principalInChargeModal" class="ui modal">
+	<div class="header">Principal-in-Charge (PIC)</div>
+	<div class="scrolling content">
+		<p>
+			This individual is responsible for executing contracts in accordance with implementation of the Strategic
+			Business and Marketing Plan. This role is assigned when the project reaches the SNC stage. The
+			individual will coordinate with the Capture Manager, Project Manager and Project Accountant on the
+			resource and budget needs for executing the project, including category rates for staff. This role should
+			only be assigned to staff with contract signatory authority for the firm. This role accepts responsibility as
+			the final reviewer and signatory authority for the Contract. This role and should not be filled by the CM,
+			PM or CSM.
+		</p>
+		<span>
+			<p>• Ensure executed contracts are in accordance with the strategic direction for the company. </p>
+			<p>• Support business development being carried out by division directors and practice leaders.</p>
+			<p>• Develop and maintain client / teaming partner relationships</p>
+			<p>
+				• Promote continuous improvement in technical and operational capabilities through use of best
+				practice quality management principles across the company
+			</p>
+			<p>• Create a positive and productive workplace</p>
+			<p>• Empower staff to grow professionally</p>
+		</span>
+	</div>
+</div>
+<div id="projectAccountantModal" class="ui modal">
+	<div class="header">Project Accountant</div>
+	<div class="scrolling content">
+		<p>
+			This individual assists in development of project scope and fee information by providing rate sheets and
+			other support for use in initial contract scoping through final contract negotiations. These includes the
+			applicable multiplier and/or negotiated rates, when appropriate, and the required time that should be
+			incorporated for Accounting staff in the Project Plan. The Project Accountant is also responsible for
+			Project Set-up and Monthly Invoicing.
+		</p>
+	</div>
+</div>
+<div id="assistantProjectManagerModal" class="ui modal">
+	<div class="header">Assistant Project Manager (APM)</div>
+	<div class="scrolling content">
+		<p>
+			This individual is responsible for assisting the Project Manager in management of the work product that
+			will be provided to the client. They should take on as much of the Project Manager responsibilities as
+			they are capable of leading. Fulfillment of all elements of Project Manager duties as an Assistant Project
+			Manager is necessary for future assignment as a Project Manager. When completing Vision entries,
+			leave blank if there is not an APM.
+		</p>
+	</div>
+</div>
+<div id="opportunityLeadOriginatorModal" class="ui modal">
+	<div class="header">Opportunity Lead Originator (LO)</div>
+	<div class="scrolling content">
+		<p>
+			This individual is responsible for representing the company and assisting BD efforts for practices /
+			geographic areas. This individual discovers and leads BD efforts and provides market awareness.
+			Responsible for coordinating with other roles to move the lead forward into a pursuit. Once the Lead
+			Originator is defined, it should not be changed.
+		</p>
+	</div>
+</div>
+<div id="clientServiceManagerModal" class="ui modal">
+	<div class="header">Client Service Manager (CSM)</div>
+	<div class="scrolling content">
+		<p>
+			This individual is responsible for developing and maintaining client relationships and successfully
+			promoting all viable Alliance services to clients. They will provide in depth knowledge of the client and
+			assist the Capture Manager in strategy, capture plans, contact plans, setting goals for specific clients,
+			making connections to the client’s staff, identifying pursuits, and creating marketing, proposal and
+			interview materials. This individual will provide input for go / no go decisions
+		</p>
+	</div>
+</div>
+<div id="qualityManagerModal" class="ui modal">
+	<div class="header">Quality Manager</div>
+	<div class="scrolling content">
+		<p>
+			This is the individual who will be responsible for directing project QC activities and reporting results to
+			Project Manager as well as, coordinating QA audits with Division QA Manager.
+		</p>
+	</div>
+</div>
+<div id="deputyCaptureManagerModal" class="ui modal">
+	<div class="header">Deputy Capture Manager (DCM)</div>
+	<div class="scrolling content">
+		<p>
+			This individual is responsible for assisting the Capture Manager in proposal process through SNC. The
+			DCM is encouraged to learn and take on as much of the Capture Manager responsibilities for developing
+			pursuits as they are capable of leading. Fulfillment of all elements of Capture Manager duties as a
+			Deputy Capture Manager is necessary for future assignment as a Capture Manager. When completing
+			Vision entries, leave blank if there is not a DCM.
+		</p>
+	</div>
+</div>
+<div id="captureManagerModal" class="ui modal">
+	<div class="header">Capture Manager (CM)</div>
+	<div class="scrolling content">
+		<p>
+			This individual is responsible for a specific opportunity from initial stages through SNC and ensures that
+			all Processes and Procedures are followed and adhered to correctly. An individual can only be assigned
+			this role when they are able to fulfill ALL the CM duties. The Division Director is responsible for
+			confirming the CM designation. The duties of a CM include:
+		</p>
+		<span>
+			<p>• Lead the capture team</p>
+			<p>• Identify strategy, resource needs, appropriate Project Manager, subconsultants / team firms / people</p>
+			<p>
+				• Lead the go / no go decision. Take responsibility for the discussion and forms and make the
+				request for the decision
+			</p>
+			<p>• Ensure Vision entry(ies) are up to date and include all required information</p>
+			<p>• Set the pursuit / proposal schedule</p>
+			<p>• Assist the Proposal Coordinator in action item follow up</p>
+			<p>• Review the final proposal</p>
+			<p>• Verify the checklists are being used</p>
+			<p>• Train Deputy Capture Managers</p>
+		</span>
+		<br>
+		<p>
+			Note: When a pursuit becomes an on-call, the CM for that contract is to be listed as CM for all work
+			authorizations or task orders under that master contract.
+		</p>
+	</div>
+</div>
+<div id="projectManagerModal" class="ui modal">
+	<div class="header">Project Manager (PM)</div>
+	<div class="scrolling content">
+		<p>
+			This individual is responsible for management of the work product that will be provided to the client, i.e.
+			project, for the opportunity that is being pursued. The Project Manager is finalized at SNC stage and will
+			work coordinate with the Principal-in-Charge and Project Accountant to provide scope, budget and
+			staffing information for use negotiation of the contract. During Project Execution, the PM role includes:
+		</p>
+		<span>
+			<p>• Ultimate responsibility for all project outcomes</p>
+			<p>• Service as the main point of contact to collects and shares project information</p>
+			<p>• Manages budgets and schedules</p>
+			<p>• Primary POC to client</p>
+			<p>• Plans and delegates work tasks</p>
+			<p>• Ensures project quality</p>
+			<p>• Project documentation</p>
+			<p>• Uses ATG standard procedures</p>
+			<p>• Assists accounting with invoices and prepares progress reports</p>
+			<p>• Owns the project</p>
+			<p>• Maintains communication with the entire project team (internal/external)</p>
+			<p>• Provide leadership</p>
+			<p>• Successfully prepare, review and coordinate execution of a contract</p>
+			<p>• Review and interpret a scope and develop an appropriate work breakdown structure</p>
+			<p>• Develop a budget and schedule</p>
+			<p>• Set up a project</p>
+			<p>• Develop a Project Management Plan</p>
+			<p>• Develop project-specific QC plan and direct QC activities</p>
+			<p>• Appoint Project QC Manager (if separate from Project Manager)</p>
+			<p>• Develop and maintain an effective communications plan</p>
+			<p>• Monitor and control a project (in terms of budget, schedule and deliverables)</p>
+			<p>• Coordinate QA audits with Division QA Manager</p>
+			<p>• Resolve deficiencies and implement corrective actions</p>
+			<p>• Conduct project lessons learned meetings; document and distribute lessons learned to project team, Division QA Manager, Practice Leader and Division Manager.</p>
+			<p>• Close a project out</p>
+		</span>
+	</div>
+</div>
+<div id="proposalCoordinatorModal" class="ui modal">
+	<div class="header">Proposal Coordinator (PC)</div>
+	<div class="scrolling content">
+		<p>
+			This individual, from the marketing staff, is responsible for coordinating the efforts of the Capture Team
+			throughout the process. This individual is responsible for ensuring proposals meet all client
+			requirements and are created within the appropriate Alliance standards. Duties include:
+		</p>
+		<span>
+			<p>• Coordinate with the Capture Manager to set an appropriate schedule for all pursuit activities</p>
+			<p>• Create meeting minutes and action items, timely</p>
+			<p>• Follow up on action items to ensure completion</p>
+			<p>• Request appropriate subconsultant information</p>
+			<p>• Respond to prime requests</p>
+			<p>• Read and suggest edits on all text</p>
+			<p>• Maintain and ensure checklists are completed</p>
+		</span>
+	</div>
+</div>
+<div id="businessDevelopmentExecutiveModal" class="ui modal">
+	<div class="header">Business Development (BD) Executive</div>
+	<div class="scrolling content">
+		<p>
+			This individual is responsible for strategic development and implementation of Business Development
+			and Marketing plans for the company, across divisions, disciplines, practice and geographic areas. This
+			individual will guide the Capture Manager, as needed, through the pursuit and provide input for go / no
+			go decisions.
+		</p>
+	</div>
+</div>
+
+
+<environment include="Development">
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/jquery-dateFormat/dist/jquery-dateFormat.js"></script>
+	<script src="~/lib/datatables.net/js/jquery.dataTables.js"></script>
+	<script src="~/lib/datatables.net-se/js/dataTables.semanticui.js"></script>
+	<script src="~/lib/semantic-ui/dist/semantic.js"></script>
+	<script src="~/lib/orgchart/dist/js/jquery.orgchart.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+</environment>
+<script src="~/trumbowyg/trumbowyg.min.js"></script>
+<environment exclude="Development">
+	<script src="~/js/site.min.js" asp-append-version="true"></script>
+</environment>
+</body>
+</html>
+
+<script>
+		let image = document.getElementById('graphic');
+
+ 		let isShowPrincipalInCharge = false;
+ 		let isShowStaff = false;
+ 		let isShowProjectAccountant = false;
+ 		let isShowAssistantProjectManager = false;
+ 		let isShowOpportunityLeadOriginator = false;
+ 		let isShowClientServiceManager = false;
+ 		let isShowQualityManager = false;
+ 		let isShowDeputyCaptureManager = false;
+ 		let isShowCaptureManager = false;
+ 		let isShowProjectManager = false;
+ 		let isShowMarketingCoordinator = false;
+ 		let isShowProposalCoordinator = false;
+ 		let isShowBusinessDevelopmentExecutive = false;
+
+ 		function togglePrincipalInCharge(coordinateX, coordinateY, src, newImgId){
+			 if (isShowPrincipalInCharge){
+				 hideImage(newImgId);
+				 isShowPrincipalInCharge = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowPrincipalInCharge = true;
+			 }
+ 		}
+		function toggleStaff(coordinateX, coordinateY, src, newImgId){
+			 if (isShowStaff){
+				 hideImage(newImgId);
+				 isShowStaff = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowStaff = true;
+			 }
+ 		}
+		function toggleProjectAccountant(coordinateX, coordinateY, src, newImgId){
+			 if (isShowProjectAccountant){
+				 hideImage(newImgId);
+				 isShowProjectAccountant = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowProjectAccountant = true;
+			 }
+ 		}
+		function toggleAssistantProjectManager(coordinateX, coordinateY, src, newImgId){
+			 if (isShowAssistantProjectManager){
+				 hideImage(newImgId);
+				 isShowAssistantProjectManager = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowAssistantProjectManager = true;
+			 }
+ 		}
+		function toggleOpportunityLeadOriginator(coordinateX, coordinateY, src, newImgId){
+			 if (isShowOpportunityLeadOriginator){
+				 hideImage(newImgId);
+				 isShowOpportunityLeadOriginator = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowOpportunityLeadOriginator = true;
+			 }
+ 		}
+		function toggleClientServiceManager(coordinateX, coordinateY, src, newImgId){
+			 if (isShowClientServiceManager){
+				 hideImage(newImgId);
+				 isShowClientServiceManager = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowClientServiceManager = true;
+			 }
+ 		}
+		function toggleQualityManager(coordinateX, coordinateY, src, newImgId){
+			 if (isShowQualityManager){
+				 hideImage(newImgId);
+				 isShowQualityManager = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowQualityManager = true;
+			 }
+ 		}
+		function toggleDeputyCaptureManager(coordinateX, coordinateY, src, newImgId){
+			 if (isShowDeputyCaptureManager){
+				 hideImage(newImgId);
+				 isShowDeputyCaptureManager = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowDeputyCaptureManager = true;
+			 }
+ 		}
+		function toggleCaptureManager(coordinateX, coordinateY, src, newImgId){
+			 if (isShowCaptureManager){
+				 hideImage(newImgId);
+				 isShowCaptureManager = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowCaptureManager = true;
+			 }
+ 		}
+		function toggleProjectManager(coordinateX, coordinateY, src, newImgId){
+			 if (isShowProjectManager){
+				 hideImage(newImgId);
+				 isShowProjectManager = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowProjectManager = true;
+			 }
+ 		}
+		function toggleMarketingCoordinator(coordinateX, coordinateY, src, newImgId){
+			 if (isShowMarketingCoordinator){
+				 hideImage(newImgId);
+				 isShowMarketingCoordinator = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowMarketingCoordinator = true;
+			 }
+ 		}
+		function toggleProposalCoordinator(coordinateX, coordinateY, src, newImgId){
+			 if (isShowProposalCoordinator){
+				 hideImage(newImgId);
+				 isShowProposalCoordinator = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowProposalCoordinator = true;
+			 }
+ 		}
+		function toggleBusinessDevelopmentExecutive(coordinateX, coordinateY, src, newImgId){
+			 if (isShowBusinessDevelopmentExecutive){
+				 hideImage(newImgId);
+				 isShowBusinessDevelopmentExecutive = false;
+			 }else{
+				 showImage(coordinateX, coordinateY, src, newImgId);
+				 isShowBusinessDevelopmentExecutive = true;
+			 }
+ 		}
+
+		// function showImage1(coordinateX, coordinateY, newImgId){
+		// 	let newImg = document.getElementById(newImgId);
+		// 	img.parentNode.insertBefore(newImg, img);
+		// 	newImg.parentNode.insertBefore(img, newImg);
+		//
+		// 	newImg.style.position = 'relative';newImg.style.left = coordinateX+"px";
+		// 	newImg.style.top = (coordinateY - img.offsetHeight)+"px";
+		// 	newImg.style.display = 'block';
+		// }
+
+		function hideImage(newImgId){
+			let newImage = document.getElementById(newImgId);
+			document.body.removeChild(newImage);
+		 }
+
+		function showImage(coordinateX, coordinateY, src, newImgId) {
+			let newImage = document.createElement("img");
+			newImage.setAttribute('src', src);
+			newImage.setAttribute('id', newImgId);
+			newImage.setAttribute('class', 'overlays');
+			// newImage.setAttribute('data-tooltip', 'overlays');
+			newImage.style.left = coordinateX + "px";
+			newImage.style.top = coordinateY + "px";
+			newImage.style.zIndex = '999';
+
+			if (newImgId === 'principalInCharge'){
+				newImage.addEventListener("click", function (){
+					$('#principalInChargeModal').modal('show');
+				});
+			}else if (newImgId === 'projectAccountant'){
+				newImage.addEventListener("click", function (){
+					$('#projectAccountantModal').modal('show');
+				});
+			}else if (newImgId === 'assistantProjectManager'){
+				newImage.addEventListener("click", function (){
+					$('#assistantProjectManagerModal').modal('show');
+				});
+			}else if (newImgId === 'opportunityLeadOriginator'){
+				newImage.addEventListener("click", function (){
+					$('#opportunityLeadOriginatorModal').modal('show');
+				});
+			}else if (newImgId === 'clientServiceManager'){
+				newImage.addEventListener("click", function (){
+					$('#clientServiceManagerModal').modal('show');
+				});
+			}else if (newImgId === 'qualityManager'){
+				newImage.addEventListener("click", function (){
+					$('#qualityManagerModal').modal('show');
+				});
+			}else if (newImgId === 'deputyCaptureManager'){
+				newImage.addEventListener("click", function (){
+					$('#deputyCaptureManagerModal').modal('show');
+				});
+			}else if (newImgId === 'captureManager'){
+				newImage.addEventListener("click", function (){
+					$('#captureManagerModal').modal('show');
+				});
+			}else if (newImgId === 'projectManager'){
+				newImage.addEventListener("click", function (){
+					$('#projectManagerModal').modal('show');
+				});
+			}else if (newImgId === 'proposalCoordinator'){
+				newImage.addEventListener("click", function (){
+					$('#proposalCoordinatorModal').modal('show');
+				});
+			}else if (newImgId === 'businessDevelopmentExecutive'){
+				newImage.addEventListener("click", function (){
+					$('#businessDevelopmentExecutiveModal').modal('show');
+				});
+			}
+
+			document.body.appendChild(newImage);
+		}
+
+	</script>

@@ -1,0 +1,219 @@
+@model dynamic
+
+@{
+	ViewBag.Title = "Calendar";
+	Layout = "_Layout";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.2.4/css/dx.common.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.2.4/css/dx.light.css"/>
+
+<div class="ui equal width center aligned padded grid stackable relaxed">
+
+	<h1 style="margin-top: 70px;">Calendar </h1>
+	<div class="row " style="margin: 50px 10px 25px;">
+		<div class="sixteen wide  column">
+
+			<div class="demo-container">
+
+				<div id="scheduler"></div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+@section Scripts {
+	<script src="https://cdn3.devexpress.com/jslib/21.2.4/js/dx.all.js"></script>
+	<script src="https://unpkg.com/devextreme-aspnet-data@2.8.2/js/dx.aspnet.data.js"></script>
+	<script>
+console.log('asdf');
+console.log(DevExpress.data);
+// const url2 = '/Epg/GetData';
+// $(() => {
+// 	const locations = ['Europe/London', 'Europe/Berlin', 'Europe/Helsinki'];
+//   const currentDate = new Date();
+//
+//   const getLocations = function (date) {
+//     const timeZones = DevExpress.utils.getTimeZones(date);
+// console.log(timeZones)
+//     return timeZones;
+//   };
+//
+//   const demoLocations = getLocations(currentDate);
+//   const scheduler = $('#scheduler').dxScheduler({
+//     dataSource: DevExpress.data.AspNet.createStore({
+//       key: 'AppointmentId',
+//       loadUrl: `${url2}/Get`,
+//       insertUrl: `${url2}/Post`,
+//       updateUrl: `${url2}/Put`,
+//       deleteUrl: `${url2}/Delete`,
+//       onBeforeSend(method, ajaxOptions) {
+// 		  console.log('enter');
+//         ajaxOptions.xhrFields = { withCredentials: true };
+//       },
+//       onAfterSend(){
+// 		  console.log('exit');
+//       }
+//     }),
+//     views: ['workWeek'],
+//     timeZone: demoLocations[0].id,
+//     currentView: 'month',
+//     currentDate,
+//     startDayHour: 8,
+//     height: 600,
+//     editing: {
+//       allowTimeZoneEditing: true,
+//     },
+//     onOptionChanged(e) {
+//       if (e.name === 'currentDate') {
+//         locationSwitcher.option('items', getLocations(e.value));
+//       }
+//     },
+//     onAppointmentFormOpening(e) {
+//       const { form } = e;
+//
+//       const startDateTimezoneEditor = form.getEditor('startDateTimeZone');
+//       const endDateTimezoneEditor = form.getEditor('endDateTimeZone');
+//       const startDateDataSource = startDateTimezoneEditor.option('dataSource');
+//       const endDateDataSource = endDateTimezoneEditor.option('dataSource');
+//
+//       startDateDataSource.filter(['id', 'contains', 'Europe']);
+//       endDateDataSource.filter(['id', 'contains', 'Europe']);
+//
+//       startDateDataSource.load();
+//       endDateDataSource.load();
+//     },
+//   }).dxScheduler('instance');
+//
+//   const locationSwitcher = $('#location-switcher').dxSelectBox({
+//     items: demoLocations,
+//     displayExpr: 'title',
+//     valueExpr: 'id',
+//     width: 240,
+//     value: demoLocations[0].id,
+//     onValueChanged(data) {
+//       scheduler.option('timeZone', data.value);
+//     },
+//   }).dxSelectBox('instance');
+// });
+
+
+$(() => {
+  const url = 'https://js.devexpress.com/Demos/Mvc/api/SchedulerData';
+  const url2 = '/Epg/GetData';
+  $('#scheduler').dxScheduler({
+    timeZone: 'UTC',
+		editing: {
+			allowAdding: false,
+			allowDeleting: false,
+			allowUpdating: false,
+			allowResizing: false,
+			allowDragging: false,
+		},
+    dataSource: DevExpress.data.AspNet.createStore({
+      key: 'AppointmentId',
+      loadUrl: `${url2}/Get`,
+      insertUrl: `${url}/Post`,
+      updateUrl: `${url}/Put`,
+      deleteUrl: `${url}/Delete`,
+      onBeforeSend(method, ajaxOptions) {
+		  console.log('enter');
+        ajaxOptions.xhrFields = { withCredentials: true };
+      },
+      // onAfterSend(){
+		//   console.log('exit');
+      // }
+    }),
+    remoteFiltering: true,
+    dateSerializationFormat: 'yyyy-MM-ddTHH:mm:ssZ',
+    views: [ 'month'],
+    currentView: 'month',
+    currentDate: new Date(),
+    startDayHour: 9,
+    endDayHour: 19,
+    height: 600,
+    TextExpr: 'text',
+    StartDateExpr: 'startDate',
+    EndDateExpr: 'endDate',
+    AllDayExpr: 'allDay',
+    RecurrenceRuleExpr: 'recurrenceRule',
+    RecurrenceExceptionExpr: 'recurrenceException',
+  });
+});
+
+const data = [
+  {
+    text: 'Website Re-Design Plan',
+    startDate: new Date('2021-03-29T16:30:00.000Z'),
+    endDate: new Date('2021-03-29T18:30:00.000Z'),
+  }, {
+    text: 'Book Flights to San Fran for Sales Trip',
+    startDate: new Date('2021-03-29T19:00:00.000Z'),
+    endDate: new Date('2021-03-29T20:00:00.000Z'),
+    allDay: true,
+  }, {
+    text: 'Install New Router in Dev Room',
+    startDate: new Date('2021-03-29T21:30:00.000Z'),
+    endDate: new Date('2021-03-29T22:30:00.000Z'),
+  }, {
+    text: 'Approve Personal Computer Upgrade Plan',
+    startDate: new Date('2021-03-30T17:00:00.000Z'),
+    endDate: new Date('2021-03-30T18:00:00.000Z'),
+  }, {
+    text: 'Final Budget Review',
+    startDate: new Date('2021-03-30T19:00:00.000Z'),
+    endDate: new Date('2021-03-30T20:35:00.000Z'),
+  }, {
+    text: 'New Brochures',
+    startDate: new Date('2021-03-30T21:30:00.000Z'),
+    endDate: new Date('2021-03-30T22:45:00.000Z'),
+  }, {
+    text: 'Install New Database',
+    startDate: new Date('2021-03-31T16:45:00.000Z'),
+    endDate: new Date('2021-03-31T18:15:00.000Z'),
+  }, {
+    text: 'Approve New Online Marketing Strategy',
+    startDate: new Date('2021-03-31T19:00:00.000Z'),
+    endDate: new Date('2021-03-31T21:00:00.000Z'),
+  }, {
+    text: 'Upgrade Personal Computers',
+    startDate: new Date('2021-03-31T22:15:00.000Z'),
+    endDate: new Date('2021-03-31T23:30:00.000Z'),
+  }, {
+    text: 'Customer Workshop',
+    startDate: new Date('2021-04-01T18:00:00.000Z'),
+    endDate: new Date('2021-04-01T19:00:00.000Z'),
+    allDay: true,
+  }, {
+    text: 'Prepare 2021 Marketing Plan',
+    startDate: new Date('2021-04-01T18:00:00.000Z'),
+    endDate: new Date('2021-04-01T20:30:00.000Z'),
+  }, {
+    text: 'Brochure Design Review',
+    startDate: new Date('2021-04-01T21:00:00.000Z'),
+    endDate: new Date('2021-04-01T22:30:00.000Z'),
+  }, {
+    text: 'Create Icons for Website',
+    startDate: new Date('2021-04-02T17:00:00.000Z'),
+    endDate: new Date('2021-04-02T18:30:00.000Z'),
+  }, {
+    text: 'Upgrade Server Hardware',
+    startDate: new Date('2021-04-02T21:30:00.000Z'),
+    endDate: new Date('2021-04-02T23:00:00.000Z'),
+  }, {
+    text: 'Submit New Website Design',
+    startDate: new Date('2021-04-02T23:30:00.000Z'),
+    endDate: new Date('2021-04-03T01:00:00.000Z'),
+  }, {
+    text: 'Launch New Website',
+    startDate: new Date('2021-04-02T19:20:00.000Z'),
+    endDate: new Date('2021-04-02T21:00:00.000Z'),
+  },
+];
+
+
+
+</script>
+}
